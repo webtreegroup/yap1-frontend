@@ -19,25 +19,25 @@
             </header>
 
             <section class="profile-options__fields">
-                <div class="input-control">
-                    <input value="password" class="touched" type="password" name="oldPassword" id="oldPassword">
-                    <label for="oldPassword">Старый пароль</label>
-                </div>
+                <form class="ajax-form">
+                    <div class="input-control">
+                        <input value="password" class="touched" type="password" name="oldPassword" id="oldPassword">
+                        <label for="oldPassword">Старый пароль</label>
+                    </div>
+    
+                    <div class="input-control">
+                        <input value="password" class="touched" type="password" name="newPassword" id="newPassword">
+                        <label for="newPassword">Новый пароль</label>
+                    </div>
+    
+                    <div class="input-control">
+                        <input value="password" class="touched" type="password" name="password_confirm" id="password_confirm">
+                        <label for="password_confirm">Повторите новый пароль</label>
+                    </div>
 
-                <div class="input-control">
-                    <input value="password" class="touched" type="password" name="newPassword" id="newPassword">
-                    <label for="newPassword">Новый пароль</label>
-                </div>
-
-                <div class="input-control">
-                    <input value="password" class="touched" type="password" name="password_confirm" id="password_confirm">
-                    <label for="password_confirm">Повторите новый пароль</label>
-                </div>
+                    <button type="submit" class="btn btn_primary">Сохранить</button>
+                </form>
             </section>
-
-            <footer class="profile-options__actions">
-                <button class="btn btn_primary">Сохранить</button>
-            </footer>
         </main>
     </div>
 
