@@ -1,0 +1,12 @@
+logs
+*.log
+npm-debug.log*
+node_modules
+.npm
+$RECYCLE.BIN/
+.sass-cache/
+*.css.map
+.settings/
+.vscode/
+
+dist/css
