@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+<body class="app">
+    <main class="login-page">
+
+        <div class="popup-wrap popup-wrap_active">
+            <div class="popup">
+                <form>
+                    <h3 class="popup__title">Вход</h3>
+    
+                    <div class="popup__body">
+                        
+                            <div class="input-control">
+                                <input type="text" name="login" id="login">
+                                <label for="login">Логин</label>
+                            </div>
+    
+                            <div class="input-control">
+                                <input type="password" name="password" id="password">
+                                <label for="password">Пароль</label>
+                            </div>
+                        
+                    </div>
+    
+                    <div class="popup__footer">
+                        <button type="submit" class="btn btn_primary">Авторизоваться</button>
+                        <a href="./signin.html">Нет аккаунта?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="./js/controls.js"></script>
+    <script src="./js/popups.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
