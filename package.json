@@ -17,5 +17,7 @@
     "url": "https://github.com/webtreegroup/mf.messenger.praktikum.yandex/issues"
   },
   "homepage": "https://github.com/webtreegroup/mf.messenger.praktikum.yandex#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
 }
