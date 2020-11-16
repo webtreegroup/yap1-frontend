@@ -9,14 +9,14 @@ class Popups {
     }
 
     show(){
-        this._elem.classList.add('popup-wrap_active')
+        this._elem?.classList.add('popup-wrap_active')
     }
 
     hide(){
-        this._elem.classList.remove('popup-wrap_active')
+        this._elem?.classList.remove('popup-wrap_active')
     }
 
     toggle(){
-        this._elem.classList.toggle('popup-wrap_active')
+        this._elem?.classList.toggle('popup-wrap_active')
     }
 }

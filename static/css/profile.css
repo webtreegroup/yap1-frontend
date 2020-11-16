@@ -1,0 +1,84 @@
+.profile-page {
+  display: flex;
+}
+
+.profile-page__out {
+  width: 70px;
+  flex-shrink: 0;
+  background-color: #FBFBFB;
+  border-right: 1px solid #EAEAEA;
+  height: 100vh;
+}
+
+.profile-page__out a {
+  display: flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.profile-page__out a:hover {
+  opacity: 0.7;
+}
+
+.profile-page__out a svg {
+  width: 32px;
+  height: 32px;
+}
+
+.profile-options {
+  flex-grow: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-options__image {
+  margin-bottom: 20px;
+}
+
+.profile-options__image svg {
+  width: 100px;
+  height: 100px;
+}
+
+.profile-options__fields {
+  max-width: 500px;
+  width: 100%;
+}
+
+.profile-options__fields input:disabled {
+  padding-left: 10px;
+}
+
+.profile-options__actions {
+  max-width: 500px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+.profile-options__actions ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-options__actions ul li {
+  margin-bottom: 10px;
+}
+
+.profile-options__actions ul a {
+  text-decoration: none;
+}
+
+.profile-options__actions ul a b {
+  color: red;
+}
+
+.profile-options__actions ul a:hover {
+  opacity: 0.7;
+}
