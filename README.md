@@ -11,9 +11,9 @@
 
 - `./login.html` - Вход
 - `./signin.html` - Регистрация
-- `./chats-list.html` - Список чатов
+- `./chats.html` - Список чатов
 - `./search.html` - Поиск чата
-- `./chat.html` - Конкретный чат
+- `./chat-single.html` - Конкретный чат
 - `./profile.html` - Профиль пользователя
 - `./profile-edit.html` - Редактирование данных профиля
 - `./profile-edit-pass.html` - Редактирование пароля профиля
