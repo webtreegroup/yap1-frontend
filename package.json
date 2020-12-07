@@ -5,8 +5,8 @@
   "main": "server.ts",
   "type": "module",
   "scripts": {
-    "scss": "node-sass --output-style expanded -o static src",
-    "autoprefixer": "postcss -u autoprefixer -r static",
+    "scss": "node-sass --output-style expanded -o static/src/ src",
+    "autoprefixer": "postcss -u autoprefixer -r static/src",
     "build:css": "npm run scss && npm run autoprefixer",
     "build:js": "npx tsc",
     "build:all": "npm run build:css && npx tsc",

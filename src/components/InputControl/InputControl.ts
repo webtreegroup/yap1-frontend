@@ -1,8 +1,8 @@
 const controls = document.querySelectorAll('.input-control input')
 
-function handleControlChangeOrFocus(e) {
-    const elem = e.target
-    const currentValue = e.target.value
+function handleControlChangeOrFocus(e: Event) {
+    const elem = e.target as HTMLInputElement
+    const currentValue = elem?.value
 
     if (currentValue) {
         elem.classList.add('touched')

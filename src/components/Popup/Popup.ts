@@ -1,9 +1,9 @@
-class Popups {
-    _elem = null
+export class Popups {
+    _elem: HTMLElement | null = null
 
-    constructor(elemId){
+    constructor(elemId: string){
         this._elem = document.getElementById(elemId)
-        this._elem?.querySelector('.popup__close').addEventListener('click', () => {
+        this._elem?.querySelector('.popup__close')?.addEventListener('click', () => {
             this.hide()
         })
     }
