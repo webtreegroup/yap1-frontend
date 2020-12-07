@@ -1,3 +1,4 @@
+import { Button } from "./components/Button/Button.js"
 import { Popups } from "./components/Popup/Popup.js"
 
 // popups
@@ -41,3 +42,27 @@ forms.forEach((form) => {
     })
 })
 
+function render(query: string, block: Button) {
+    const root = document.querySelector(query)
+    const appendBlock = block.getContent()
+
+    if (!appendBlock) return
+    
+    root?.appendChild(appendBlock)
+    
+    return root
+}
+
+const button = new Button({
+    text: 'Click me',
+})
+
+// app — это id дива в корне DOM
+render(".index-page", button);
+
+// Через секунду контент изменится сам, достаточно обновить пропсы
+setTimeout(() => {
+    button.setProps({
+        text: 'Click me, please',
+    });
+}, 1000);

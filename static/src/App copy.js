@@ -1,4 +1,3 @@
-import { Button } from "./components/Button/Button.js";
 import { Popups } from "./components/Popup/Popup.js";
 // popups
 const editUserImagePopup = new Popups('edit-user-image');
@@ -32,23 +31,4 @@ forms.forEach((form) => {
         console.log(requestForConsole);
     });
 });
-function render(query, block) {
-    const root = document.querySelector(query);
-    const appendBlock = block.getContent();
-    if (!appendBlock)
-        return;
-    root === null || root === void 0 ? void 0 : root.appendChild(appendBlock);
-    return root;
-}
-const button = new Button({
-    text: 'Click me',
-});
-// app — это id дива в корне DOM
-render(".index-page", button);
-// Через секунду контент изменится сам, достаточно обновить пропсы
-setTimeout(() => {
-    button.setProps({
-        text: 'Click me, please',
-    });
-}, 1000);
-//# sourceMappingURL=App.js.map
+//# sourceMappingURL=App%20copy.js.map
