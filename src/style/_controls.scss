@@ -1,0 +1,44 @@
+@import './consts.scss';
+@import './mixins.scss';
+
+.input-control {
+    position: relative;
+    margin-bottom: 20px;
+
+    input {
+        border: 0;
+        border-bottom: $input_border;
+        display: block;
+        width: 100%;
+        padding: $input_padding 0;
+        font-size: 13px;
+        outline: 0;
+
+        &::placeholder {
+            display: block;
+            
+        }
+
+        &:focus + label, &.touched + label {
+            font-size: 9px;
+            line-height: 9px;
+            height: 50%;
+            transform: translateY(-100%);
+        }
+    }
+
+    label {
+        display: block;
+        top: 0;
+        width: 100%;
+        font-size: 13px;
+        line-height: 13px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        color: $input_label_color;
+        transition: $transition_ms;
+        cursor: text;
+    }
+}

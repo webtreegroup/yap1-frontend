@@ -1,0 +1,66 @@
+@import './consts.scss';
+@import './mixins.scss';
+
+.popup {
+    width: $popup_width_xs;
+    background: $popup_bg_color;
+    box-shadow: $popup_box_shadow;
+    border-radius: $popup_border_radius;
+    padding: $popup_padding;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        @include svg_sizes;
+    }
+
+    &__title {
+        font-size: $popup_title_font_size;
+        font-weight: $popup_title_font_weight;
+        line-height: $popup_title_font_size;
+        text-align: center;
+    }
+
+    &__body {
+        flex-grow: 1;
+    }
+
+    &__footer {
+        text-align: center;
+    }
+
+    a {
+        font-size: 11px;
+    }
+
+    &__footer {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+
+        .btn {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.popup-wrap {
+    @include vh_align;
+    transition: $transition_ms;
+    position: absolute;
+    z-index: 1000;
+    background-color: #0000001c;
+    opacity: 0;
+    visibility: hidden;
+    top: 0;
+
+    &_active {
+        opacity: 1;
+        visibility: visible; 
+    }
+}
