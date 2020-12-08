@@ -1,5 +1,3 @@
-import { render } from "./utils/common.utils.js";
-import { Button } from "./components/Button/Button.js";
 // import { Popup } from "./components/Popup/Popup.js"
 // popups
 // const editUserImagePopup = new Popup('edit-user-image')
@@ -33,8 +31,4 @@ forms.forEach((form) => {
         console.log(requestForConsole);
     });
 });
-const button = new Button({
-    text: 'Click me',
-    children: ''
-});
-render(".index-page", button);
+export {};

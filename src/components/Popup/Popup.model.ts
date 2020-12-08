@@ -1,4 +1,4 @@
-import { IComponent } from "../../App.model";
+import { IComponent } from "../../App.model"
 
 export interface IPopup extends IComponent {
     title?: string

@@ -1,6 +1,6 @@
 import { EventBus } from "./EventBus.js";
 export class Block {
-    constructor(tagName, props, children) {
+    constructor(tagName, props = {}, children) {
         this._element = null;
         this.setProps = (nextProps) => {
             if (!nextProps)
@@ -29,10 +29,8 @@ export class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
     _createResources(props) {
-        var _a;
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
-        (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add(props.className);
         this.createResources(props);
     }
     createResources(_props) { }
@@ -60,11 +58,11 @@ export class Block {
             return;
         const block = this.render(typeof this._children === 'string' ? this._children : undefined);
         this._element.innerHTML = block;
-        if (typeof this._children !== 'string' && this._children) {
+        const childrenContainer = this._element.querySelector('.children-node-target');
+        if (typeof this._children !== 'string' && this._children && childrenContainer) {
             const children = this._children.map(el => el.getContent());
             children.forEach(el => {
-                var _a;
-                (_a = this._element) === null || _a === void 0 ? void 0 : _a.appendChild(el);
+                childrenContainer.appendChild(el);
             });
         }
     }

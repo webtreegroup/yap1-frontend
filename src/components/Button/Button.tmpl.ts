@@ -2,5 +2,5 @@ import { IButton } from "./Button.model"
 
 export const buttonTmplRender = ({
     text = 'Кнопка',
-    children
+    children = ''
 }: IButton): string => `${text}${children}`

@@ -1,6 +1,4 @@
 import { Store } from "./App.model.js"
-import { render } from "./utils/common.utils.js"
-import { Button } from "./components/Button/Button.js"
 // import { Popup } from "./components/Popup/Popup.js"
 
 // popups
@@ -43,11 +41,3 @@ forms.forEach((form) => {
         console.log(requestForConsole)
     })
 })
-
-const button = new Button({
-    text: 'Click me',
-    children: ''
-})
-
-render(".index-page", button)
-

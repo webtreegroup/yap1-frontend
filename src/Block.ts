@@ -21,7 +21,7 @@ export class Block<ElementType extends HTMLElement = any> {
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props: Store, children?: Block[] | string) {
+    constructor(tagName: string, props = {} as Store, children?: Block[] | string) {
         const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
@@ -51,7 +51,6 @@ export class Block<ElementType extends HTMLElement = any> {
     _createResources(props: Store) {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
-        this._element?.classList.add(props.className)
         this.createResources(props)
     }
 
@@ -93,12 +92,13 @@ export class Block<ElementType extends HTMLElement = any> {
 
         const block = this.render(typeof this._children === 'string' ? this._children : undefined)
         this._element.innerHTML = block
+        const childrenContainer = this._element.querySelector('.children-node-target')
 
-        if (typeof this._children !== 'string' && this._children) {
+        if (typeof this._children !== 'string' && this._children && childrenContainer) {
             const children = this._children.map(el => el.getContent())
 
             children.forEach(el => {
-                this._element?.appendChild(el)
+                childrenContainer.appendChild(el)
             })
         }
     }

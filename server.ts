@@ -1,7 +1,7 @@
 import express from 'express'
 
 const app: express.Application = express()
-const PORT = 4000
+const PORT = 3000
 
 app.use(express.static('./static'))
 
