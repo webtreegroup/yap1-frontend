@@ -1,6 +1,6 @@
-import { Block } from "../../Block.js"
-import { IPopup } from "./Popup.model.js"
-import { popupTmplRender } from "./Popup.tmpl.js"
+import { Block } from "../../core/Block.js"
+import { IPopup, popupTmplRender } from "./index.js"
+
 
 export class Popup extends Block<HTMLDivElement> {
     constructor(props: IPopup, children?: Block[]){

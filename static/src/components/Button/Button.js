@@ -1,5 +1,5 @@
-import { Block } from "../../Block.js";
-import { buttonTmplRender } from "./Button.tmpl.js";
+import { Block } from "../../core/Block.js";
+import { buttonTmplRender } from "./index.js";
 export class Button extends Block {
     constructor(props) {
         super("button", props);

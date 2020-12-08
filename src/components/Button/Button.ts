@@ -1,6 +1,5 @@
-import { IButton } from "./Button.model"
-import { Block } from "../../Block.js"
-import { buttonTmplRender } from "./Button.tmpl.js"
+import { Block } from "../../core/Block.js"
+import { buttonTmplRender, IButton } from "./index.js"
 
 export class Button extends Block<HTMLButtonElement> {
     constructor(props: IButton) {
