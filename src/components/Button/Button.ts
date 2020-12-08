@@ -1,5 +1,5 @@
 import { Store } from "../../App.model"
-import { Block } from "../../block.js"
+import { Block } from "../../Block.js"
 
 export class Button extends Block {
     constructor(props: Store) {
@@ -7,7 +7,7 @@ export class Button extends Block {
     }
 
     render() {
-          // В проекте должен быть ваш собственный шаблонизатор
-        return `<div>${this.props.text}</div>`
+        // В проекте должен быть ваш собственный шаблонизатор
+        return `${this.props.text}`
     }
 }

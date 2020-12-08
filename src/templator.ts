@@ -18,8 +18,15 @@ export class Templator {
         /\{\{(.+?)\}\}/ig, 
         (_match, ...group) => {
           const result = this.get(ctx, group[0].trim())
+          
           if (typeof result === 'object') {
             console.log('it is object')
+          }
+
+          if (typeof result === 'function') {
+            window[group[0]] = result
+            
+            return `window.${group[0].trim()}()`
           }
 
           return result ? String(result) : ''

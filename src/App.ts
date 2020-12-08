@@ -1,3 +1,5 @@
+import { Store } from "./App.model.js"
+import { Block } from "./Block.js"
 import { Button } from "./components/Button/Button.js"
 import { Popups } from "./components/Popup/Popup.js"
 
@@ -30,7 +32,7 @@ forms.forEach((form) => {
     form.addEventListener('submit', (e) => {
         e.preventDefault()
         
-        const requestForConsole: { [key: string]: any } = {}
+        const requestForConsole: Store = {}
 
         const formData = new FormData(form as HTMLFormElement)
 
@@ -42,27 +44,44 @@ forms.forEach((form) => {
     })
 })
 
-function render(query: string, block: Button) {
-    const root = document.querySelector(query)
+function render(query: string | HTMLElement | null, block: Button) {
     const appendBlock = block.getContent()
-
     if (!appendBlock) return
+
+    if (typeof query === 'string') {
+        const root = document.querySelector(query)
+        return root?.appendChild(appendBlock)
+    }
     
-    root?.appendChild(appendBlock)
-    
-    return root
+    return query?.appendChild(appendBlock)
 }
 
 const button = new Button({
     text: 'Click me',
 })
 
+export class Span extends Block {
+    constructor(props: Store) {
+        super("span", props)
+    }
+
+    render() {
+        return `<div>${this.props.text}</div>`
+    }
+}
+
+const SpanComponent = new Span({
+    text: 'Button span',
+})
+
 // app — это id дива в корне DOM
 render(".index-page", button);
+render(button.getContent() as HTMLElement, SpanComponent);
 
 // Через секунду контент изменится сам, достаточно обновить пропсы
 setTimeout(() => {
     button.setProps({
         text: 'Click me, please',
     });
-}, 1000);
+}, 3000);
+

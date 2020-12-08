@@ -1,5 +1,5 @@
 import { Store, StoreValue } from "./App.model"
-import { EventBus } from "./event-bus.js"
+import { EventBus } from "./EventBus.js"
 
 interface IBlockMeta {
     tagName: string
@@ -96,6 +96,7 @@ export class Block {
     getContent() {
         return this.element
     }
+
     _makePropsProxy(props: Store) {
         const self = this
 

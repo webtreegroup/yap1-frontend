@@ -1,4 +1,4 @@
-import { EventBus } from "./event-bus.js";
+import { EventBus } from "./EventBus.js";
 export class Block {
     constructor(tagName, props) {
         this._element = null;
@@ -91,4 +91,4 @@ Block.EVENTS = {
     FLOW_RENDER: "flow:render",
     FLOW_CDU: "flow:component-did-update",
 };
-//# sourceMappingURL=block.js.map
+//# sourceMappingURL=Block.js.map
