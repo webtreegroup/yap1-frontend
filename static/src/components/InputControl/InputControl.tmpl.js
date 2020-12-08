@@ -4,4 +4,3 @@ export const inputControlTmpl = `
         <label for="{{ name }}">{{ label }}</label>
     </div>
 `;
-//# sourceMappingURL=InputControl.tmpl.js.map

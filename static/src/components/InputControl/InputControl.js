@@ -14,4 +14,3 @@ controls.forEach(element => {
     element.addEventListener('focus', handleControlChangeOrFocus);
     element.addEventListener('input', handleControlChangeOrFocus);
 });
-//# sourceMappingURL=InputControl.js.map

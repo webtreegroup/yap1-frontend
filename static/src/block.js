@@ -1,6 +1,6 @@
 import { EventBus } from "./EventBus.js";
 export class Block {
-    constructor(tagName, props) {
+    constructor(tagName, props, children) {
         this._element = null;
         this.setProps = (nextProps) => {
             if (!nextProps)
@@ -12,6 +12,7 @@ export class Block {
             tagName,
             props
         };
+        this._childElement = children;
         this.props = this._makePropsProxy(props);
         this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
@@ -55,10 +56,14 @@ export class Block {
         return this._element;
     }
     _render() {
+        var _a;
         if (!this._element)
             return;
         const block = this.render();
         this._element.innerHTML = block;
+        const children = (_a = this._childElement) === null || _a === void 0 ? void 0 : _a.getContent();
+        if (children)
+            this._element.appendChild(children);
     }
     render() {
         return '';
@@ -91,4 +96,3 @@ Block.EVENTS = {
     FLOW_RENDER: "flow:render",
     FLOW_CDU: "flow:component-did-update",
 };
-//# sourceMappingURL=Block.js.map

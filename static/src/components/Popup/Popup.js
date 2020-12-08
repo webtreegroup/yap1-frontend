@@ -20,4 +20,3 @@ export class Popups {
         (_a = this._elem) === null || _a === void 0 ? void 0 : _a.classList.toggle('popup-wrap_active');
     }
 }
-//# sourceMappingURL=Popup.js.map

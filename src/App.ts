@@ -1,5 +1,5 @@
 import { Store } from "./App.model.js"
-import { Block } from "./Block.js"
+import { render } from "./App.utils.js"
 import { Button } from "./components/Button/Button.js"
 import { Popups } from "./components/Popup/Popup.js"
 
@@ -44,44 +44,10 @@ forms.forEach((form) => {
     })
 })
 
-function render(query: string | HTMLElement | null, block: Button) {
-    const appendBlock = block.getContent()
-    if (!appendBlock) return
-
-    if (typeof query === 'string') {
-        const root = document.querySelector(query)
-        return root?.appendChild(appendBlock)
-    }
-    
-    return query?.appendChild(appendBlock)
-}
-
 const button = new Button({
     text: 'Click me',
+    children: ''
 })
 
-export class Span extends Block {
-    constructor(props: Store) {
-        super("span", props)
-    }
-
-    render() {
-        return `${this.props.text}`
-    }
-}
-
-const SpanComponent = new Span({
-    text: 'Button span',
-})
-
-// app — это id дива в корне DOM
-render(".index-page", button);
-render(button.getContent() as HTMLElement, SpanComponent);
-
-// Через секунду контент изменится сам, достаточно обновить пропсы
-setTimeout(() => {
-    SpanComponent.setProps({
-        text: 'Click me, please',
-    });
-}, 1000);
+render(".index-page", button)
 

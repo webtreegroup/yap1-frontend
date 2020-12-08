@@ -18,4 +18,3 @@ export const popupTmplRender = ({ title, isActive, id, isClosable, children }) =
         </div>
     `;
 };
-//# sourceMappingURL=Popup.tmpl.js.map

@@ -19,4 +19,3 @@ export class Templator {
         });
     }
 }
-//# sourceMappingURL=Templator.js.map

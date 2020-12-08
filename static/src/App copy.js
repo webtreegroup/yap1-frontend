@@ -1,3 +1,4 @@
+import { Button } from "./components/Button/Button.js";
 import { Popups } from "./components/Popup/Popup.js";
 // popups
 const editUserImagePopup = new Popups('edit-user-image');
@@ -31,4 +32,37 @@ forms.forEach((form) => {
         console.log(requestForConsole);
     });
 });
-//# sourceMappingURL=App%20copy.js.map
+function render(query, block) {
+    const appendBlock = block.getContent();
+    if (!appendBlock)
+        return;
+    if (typeof query === 'string') {
+        const root = document.querySelector(query);
+        return root === null || root === void 0 ? void 0 : root.appendChild(appendBlock);
+    }
+    return query === null || query === void 0 ? void 0 : query.appendChild(appendBlock);
+}
+const button = new Button({
+    text: 'Click me',
+    children: ''
+});
+// export class Span extends Block {
+//     constructor(props: Store) {
+//         super("span", props)
+//     }
+//     render() {
+//         return `${this.props.text}`
+//     }
+// }
+// const SpanComponent = new Span({
+//     text: 'Button span',
+// })
+// app — это id дива в корне DOM
+render(".index-page", button);
+// render(button.getContent() as HTMLElement, SpanComponent);
+// // Через секунду контент изменится сам, достаточно обновить пропсы
+// setTimeout(() => {
+//     SpanComponent.setProps({
+//         text: 'Click me, please',
+//     });
+// }, 3000);

@@ -23,4 +23,3 @@ export class EventBus {
         });
     }
 }
-//# sourceMappingURL=EventBus.js.map
