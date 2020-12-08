@@ -12,7 +12,7 @@ export class Block {
             tagName,
             props
         };
-        this._childElement = children;
+        this._children = children;
         this.props = this._makePropsProxy(props);
         this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
@@ -61,9 +61,13 @@ export class Block {
             return;
         const block = this.render();
         this._element.innerHTML = block;
-        const children = (_a = this._childElement) === null || _a === void 0 ? void 0 : _a.getContent();
-        if (children)
-            this._element.appendChild(children);
+        const children = (_a = this._children) === null || _a === void 0 ? void 0 : _a.map(el => el.getContent());
+        if (children) {
+            children.forEach(el => {
+                var _a;
+                (_a = this._element) === null || _a === void 0 ? void 0 : _a.appendChild(el);
+            });
+        }
     }
     render() {
         return '';

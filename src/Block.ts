@@ -16,19 +16,19 @@ export class Block<ElementType extends HTMLElement = any> {
 
     eventBus: () => EventBus
     
-    _childElement?: Block
+    _children?: Block[]
     _element: ElementType | null = null
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props: Store, children?: Block) {
+    constructor(tagName: string, props: Store, children?: Block[]) {
         const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
             props
         }
 
-        this._childElement = children
+        this._children = children
         this.props = this._makePropsProxy(props)
         this.eventBus = () => eventBus
         this._registerEvents(eventBus)
@@ -93,8 +93,12 @@ export class Block<ElementType extends HTMLElement = any> {
 
         const block = this.render()
         this._element.innerHTML = block
-        const children = this._childElement?.getContent()
-        if (children) this._element.appendChild(children)
+        const children = this._children?.map(el => el.getContent())
+        if (children) {
+            children.forEach(el => {
+                this._element?.appendChild(el)
+            })
+        }
     }
 
     render() {

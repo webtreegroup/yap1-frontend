@@ -2,7 +2,6 @@ import { Block } from "../../Block.js";
 import { buttonTmplRender } from "./Button.tmpl.js";
 export class Span extends Block {
     constructor(props) {
-        console.log('Span Contructor')
         super("span", props);
     }
     render() {
@@ -11,17 +10,23 @@ export class Span extends Block {
 }
 export class Button extends Block {
     constructor(props) {
-        const children = new Span({
-            text: 'Button span',
+        const Span1 = new Span({
+            text: 'Button span 1',
         });
-        console.log('Button Contructor', children)
-
-        super("button", props, children);
+        const Span2 = new Span({
+            text: 'Button span 2',
+        });
+        super("button", props, [Span1, Span2]);
         setTimeout(() => {
-            children === null || children === void 0 ? void 0 : children.setProps({
-                text: 'Click me, please',
+            Span1 === null || Span1 === void 0 ? void 0 : Span1.setProps({
+                text: ' Span1',
             });
         }, 3000);
+        setTimeout(() => {
+            Span2 === null || Span2 === void 0 ? void 0 : Span2.setProps({
+                text: 'Span2',
+            });
+        }, 4000);
     }
     createResources({ className = 'btn_primary', btnType = 'button' }) {
         var _a, _b;

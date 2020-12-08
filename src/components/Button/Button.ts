@@ -14,17 +14,25 @@ export class Span extends Block {
 }
 export class Button extends Block<HTMLButtonElement> {
     constructor(props: IButton) {
-        const children = new Span({
-            text: 'Button span',
+        const Span1 = new Span({
+            text: 'Button span 1',
+        })
+        const Span2 = new Span({
+            text: 'Button span 2',
         })
 
-        super("button", props, children)
+        super("button", props, [Span1, Span2])
         
         setTimeout(() => {
-            children?.setProps({
-                text: 'Click me, please',
+            Span1?.setProps({
+                text: ' Span1',
             });
         }, 3000);
+        setTimeout(() => {
+            Span2?.setProps({
+                text: 'Span2',
+            });
+        }, 4000);
     }
 
     createResources({ className = 'btn_primary', btnType = 'button' }: IButton) {
