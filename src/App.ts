@@ -1,5 +1,5 @@
 import { Store } from "./App.model.js"
-import { render } from "./App.utils.js"
+import { render } from "./utils/common.utils.js"
 import { Button } from "./components/Button/Button.js"
 import { Popups } from "./components/Popup/Popup.js"
 

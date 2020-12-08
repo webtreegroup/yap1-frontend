@@ -1,4 +1,4 @@
-import { Block } from "./Block"
+import { Block } from "../Block"
 
 export function render(query: string | HTMLElement | null, block: Block) {
     const appendBlock = block.getContent()
