@@ -56,20 +56,19 @@ export class Block {
         return this._element;
     }
     _render() {
-        var _a;
         if (!this._element)
             return;
-        const block = this.render();
+        const block = this.render(typeof this._children === 'string' ? this._children : undefined);
         this._element.innerHTML = block;
-        const children = (_a = this._children) === null || _a === void 0 ? void 0 : _a.map(el => el.getContent());
-        if (children) {
+        if (typeof this._children !== 'string' && this._children) {
+            const children = this._children.map(el => el.getContent());
             children.forEach(el => {
                 var _a;
                 (_a = this._element) === null || _a === void 0 ? void 0 : _a.appendChild(el);
             });
         }
     }
-    render() {
+    render(_children) {
         return '';
     }
     getContent() {

@@ -16,12 +16,12 @@ export class Block<ElementType extends HTMLElement = any> {
 
     eventBus: () => EventBus
     
-    _children?: Block[]
+    _children?: Block[] | string
     _element: ElementType | null = null
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props: Store, children?: Block[]) {
+    constructor(tagName: string, props: Store, children?: Block[] | string) {
         const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
@@ -91,17 +91,19 @@ export class Block<ElementType extends HTMLElement = any> {
     _render() {
         if (!this._element) return
 
-        const block = this.render()
+        const block = this.render(typeof this._children === 'string' ? this._children : undefined)
         this._element.innerHTML = block
-        const children = this._children?.map(el => el.getContent())
-        if (children) {
+
+        if (typeof this._children !== 'string' && this._children) {
+            const children = this._children.map(el => el.getContent())
+
             children.forEach(el => {
                 this._element?.appendChild(el)
             })
         }
     }
 
-    render() {
+    render(_children?: string) {
         return ''
     }
 
