@@ -1,6 +1,2 @@
-export const buttonTmpl = `
-    <button type="{{ btnType }}" class="btn btn_{{ classType }}">
-        {{ text }}
-    </button>
-`;
+export const buttonTmplRender = ({ text = 'Кнопка' }) => text;
 //# sourceMappingURL=Button.tmpl.js.map

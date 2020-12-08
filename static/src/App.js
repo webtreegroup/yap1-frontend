@@ -51,7 +51,7 @@ export class Span extends Block {
         super("span", props);
     }
     render() {
-        return `<div>${this.props.text}</div>`;
+        return `${this.props.text}`;
     }
 }
 const SpanComponent = new Span({
@@ -62,8 +62,8 @@ render(".index-page", button);
 render(button.getContent(), SpanComponent);
 // Через секунду контент изменится сам, достаточно обновить пропсы
 setTimeout(() => {
-    button.setProps({
+    SpanComponent.setProps({
         text: 'Click me, please',
     });
-}, 3000);
+}, 1000);
 //# sourceMappingURL=App.js.map

@@ -6,7 +6,7 @@ interface IBlockMeta {
     props: Store
 }
 
-export class Block {
+export class Block<ElementType extends HTMLElement = any> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -16,7 +16,7 @@ export class Block {
 
     eventBus: () => EventBus
     
-    _element: HTMLElement | null = null
+    _element: ElementType | null = null
     _meta: IBlockMeta
     props: Store
 
@@ -32,7 +32,7 @@ export class Block {
         this.eventBus = () => eventBus
 
         this._registerEvents(eventBus)
-        eventBus.emit(Block.EVENTS.INIT)
+        eventBus.emit(Block.EVENTS.INIT, this.props)
     }
 
     _registerEvents(eventBus: EventBus) {
@@ -42,25 +42,30 @@ export class Block {
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     }
 
-    _createResources() {
-        const { tagName } = this._meta
-        this._element = this._createDocumentElement(tagName)
-    }
-
-    init() {
-        this._createResources()
+    init(props: Store) {
+        this._createResources(props)
         this.eventBus().emit(Block.EVENTS.FLOW_CDM)
     }
 
+    _createResources(props: Store) {
+        const { tagName } = this._meta
+        this._element = this._createDocumentElement(tagName)
+        this._element?.classList.add(props.className)
+        this.createResources(props)
+    }
+
+    createResources(_props: Store) {}
+
+    _createDocumentElement(tagName: string) {
+        return document.createElement(tagName) as ElementType
+    }
+
     _componentDidMount() {
-        this.componentDidMount(this.props)
+        this.componentDidMount()
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
     }
 
-    componentDidMount(oldProps: Store) {
-        if (!this._element) return
-        this._element.innerText = oldProps.text ? String(oldProps.text) : ''
-    }
+    componentDidMount() {}
 
     _componentDidUpdate(oldProps: StoreValue, newProps: StoreValue) {
         const response = this.componentDidUpdate(oldProps, newProps)
@@ -116,9 +121,5 @@ export class Block {
                 throw new Error("Нет доступа")
             }
         })
-    }
-
-    _createDocumentElement(tagName: string) {
-        return document.createElement(tagName)
     }
 }

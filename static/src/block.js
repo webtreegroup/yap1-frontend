@@ -15,7 +15,7 @@ export class Block {
         this.props = this._makePropsProxy(props);
         this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT);
+        eventBus.emit(Block.EVENTS.INIT, this.props);
     }
     _registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -23,23 +23,26 @@ export class Block {
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     }
-    _createResources() {
-        const { tagName } = this._meta;
-        this._element = this._createDocumentElement(tagName);
-    }
-    init() {
-        this._createResources();
+    init(props) {
+        this._createResources(props);
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
+    _createResources(props) {
+        var _a;
+        const { tagName } = this._meta;
+        this._element = this._createDocumentElement(tagName);
+        (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add(props.className);
+        this.createResources(props);
+    }
+    createResources(_props) { }
+    _createDocumentElement(tagName) {
+        return document.createElement(tagName);
+    }
     _componentDidMount() {
-        this.componentDidMount(this.props);
+        this.componentDidMount();
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
-    componentDidMount(oldProps) {
-        if (!this._element)
-            return;
-        this._element.innerText = oldProps.text ? String(oldProps.text) : '';
-    }
+    componentDidMount() { }
     _componentDidUpdate(oldProps, newProps) {
         const response = this.componentDidUpdate(oldProps, newProps);
         if (response)
@@ -80,9 +83,6 @@ export class Block {
                 throw new Error("Нет доступа");
             }
         });
-    }
-    _createDocumentElement(tagName) {
-        return document.createElement(tagName);
     }
 }
 Block.EVENTS = {

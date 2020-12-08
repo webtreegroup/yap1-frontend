@@ -1,5 +1,5 @@
-export const buttonTmpl: string = `
-    <button type="{{ btnType }}" class="btn btn_{{ classType }}">
-        {{ text }}
-    </button>
-`
+import { IButton } from "./Button.model"
+
+export const buttonTmplRender = ({
+    text = 'Кнопка'
+}: IButton): string => text

@@ -1,13 +1,18 @@
-import { Store } from "../../App.model"
+import { IButton } from "./Button.model"
 import { Block } from "../../Block.js"
+import { buttonTmplRender } from "./Button.tmpl.js"
 
-export class Button extends Block {
-    constructor(props: Store) {
+export class Button extends Block<HTMLButtonElement> {
+    constructor(props: IButton) {
         super("button", props)
     }
 
+    createResources({ className = 'btn_primary', btnType = 'button' }: IButton) {
+        this._element?.classList.add('btn', className)
+        this._element?.setAttribute('type', btnType)
+    }
+
     render() {
-        // В проекте должен быть ваш собственный шаблонизатор
-        return `${this.props.text}`
+        return buttonTmplRender(this.props)
     }
 }
