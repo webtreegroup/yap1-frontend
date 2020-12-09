@@ -18,9 +18,11 @@ export class InputControl extends Block {
             elem.classList.remove('touched');
         }
     }
-    createResources() {
-        var _a;
+    createResources({ isTouched }) {
+        var _a, _b, _c;
         (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add('input-control');
+        if (isTouched)
+            (_c = (_b = this._element) === null || _b === void 0 ? void 0 : _b.querySelector('input')) === null || _c === void 0 ? void 0 : _c.classList.add('touched');
     }
     render() {
         return inputControlTmplRender(this.props);

@@ -1,3 +1,4 @@
+import { classNames } from "../../App.js";
 import { Block } from "../../core/Block.js";
 import { popupTmplRender } from "./Popup.tmpl.js";
 export class Popup extends Block {
@@ -19,7 +20,13 @@ export class Popup extends Block {
     }
     createResources({ isActive }) {
         var _a;
-        (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add('popup-wrap', isActive ? 'popup-wrap_active' : '');
+        const classes = classNames([
+            'popup-wrap',
+            isActive
+                ? 'popup-wrap_active'
+                : undefined
+        ]);
+        (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add(...classes);
     }
     render() {
         return popupTmplRender(Object.assign(Object.assign({}, this.props), { onToggleVisible: this.toggle }));

@@ -11,7 +11,7 @@ interface IBaseTemplateRender {
 }
 
 interface IBlockChildren {
-    [key: string]: Block
+    [key: string]: Block | Block[]
 }
 
 export class Block<ElementType extends HTMLElement = any> {
@@ -25,12 +25,12 @@ export class Block<ElementType extends HTMLElement = any> {
     eventBus: () => EventBus
     
     _baseTmplRender?: IBaseTemplateRender
-    _children?: Block[]
+    _children?: IBlockChildren | Block[]
     _element: ElementType | null = null
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props = {} as Store, children?: Block[], baseTmplRender?: IBaseTemplateRender) {
+    constructor(tagName: string, props = {} as Store, children?: IBlockChildren | Block[], baseTmplRender?: IBaseTemplateRender) {
         const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
@@ -103,15 +103,31 @@ export class Block<ElementType extends HTMLElement = any> {
 
         const block = this.render()
         this._element.innerHTML = block
+        
+        if (!this._children) return
 
-        const childrenContainer = this._element.querySelector('[data-component="children"]')
-        const componentContainer = childrenContainer ? childrenContainer : this._element
-
-        if (this._children) {
+        if (!Array.isArray(this._children)) {
+            const children = this._children as IBlockChildren
+            
+            Object.keys(children).map(componentKey => {
+                const components = children[componentKey]
+                const componentsContainer = this._element?.querySelector(`[data-component="${componentKey}"]`)
+                const appendTarget = componentsContainer ? componentsContainer : this._element
+                
+                if (Array.isArray(components)) {
+                    components.map(el => appendTarget?.appendChild(el.getContent()))
+                } else {
+                    appendTarget?.appendChild(components.getContent())
+                }
+            })
+        } else {
+            const componentContainer = this._element.querySelector('[data-component="children"]')
+            const appendTarget = componentContainer ? componentContainer : this._element
+    
             const children = this._children.map(el => el.getContent())
 
             children.forEach(el => {
-                componentContainer.appendChild(el)
+                appendTarget.appendChild(el)
             })
         }
     }

@@ -1,3 +1,4 @@
+import { classNames } from "../../../../App.js";
 import { Block } from "../../../../core/Block.js";
 import { chatMessageTmplRender } from "./ChatMessage.tmpl.js";
 export class ChatMessage extends Block {
@@ -6,12 +7,12 @@ export class ChatMessage extends Block {
     }
     createResources() {
         var _a;
-        const classes = [
+        const classes = classNames([
             'chat-history-item',
             this.props.isOwn
                 ? 'chat-history-item_own'
                 : undefined
-        ].filter(Boolean);
+        ]);
         (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add(...classes);
     }
     render() {

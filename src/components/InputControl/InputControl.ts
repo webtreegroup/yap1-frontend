@@ -23,8 +23,9 @@ export class InputControl extends Block<HTMLInputElement> {
         }
     }
 
-    createResources() {
+    createResources({ isTouched }: IInputControl) {
         this._element?.classList.add('input-control')
+        if (isTouched) this._element?.querySelector('input')?.classList.add('touched')
     }
 
     render() {

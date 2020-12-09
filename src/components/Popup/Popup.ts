@@ -1,3 +1,4 @@
+import { classNames } from "../../App.js"
 import { Block } from "../../core/Block.js"
 import { IPopup } from "./Popup.model.js"
 import { popupTmplRender } from "./Popup.tmpl.js"
@@ -21,7 +22,14 @@ export class Popup extends Block<HTMLDivElement> {
     }
 
     createResources({ isActive }: IPopup) {
-        this._element?.classList.add('popup-wrap', isActive ? 'popup-wrap_active' : '')
+        const classes = classNames([
+            'popup-wrap', 
+            isActive 
+                ? 'popup-wrap_active'
+                : undefined
+            ])
+
+        this._element?.classList.add(...classes)
     }
 
     render() {

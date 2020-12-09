@@ -1,6 +1,6 @@
 import { EventBus } from "./EventBus.js";
 export class Block {
-    constructor(tagName, props = {}, children) {
+    constructor(tagName, props = {}, children, baseTmplRender) {
         this._element = null;
         this.setProps = (nextProps) => {
             if (!nextProps)
@@ -14,6 +14,7 @@ export class Block {
         };
         this._children = children;
         this.props = this._makePropsProxy(props);
+        this._baseTmplRender = baseTmplRender;
         this.eventBus = () => eventBus;
         this._registerEvents(eventBus);
         eventBus.emit(Block.EVENTS.INIT, this.props);
@@ -61,18 +62,35 @@ export class Block {
             return;
         const block = this.render();
         this._element.innerHTML = block;
-        const childrenContainer = this._element.querySelector('[data-component="children"]');
-        const componentContainer = childrenContainer ? childrenContainer : this._element;
-        // debugger
-        if (this._children) {
+        if (!this._children)
+            return;
+        if (!Array.isArray(this._children)) {
+            const children = this._children;
+            Object.keys(children).map(componentKey => {
+                var _a;
+                const components = children[componentKey];
+                const componentsContainer = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(`[data-component="${componentKey}"]`);
+                const appendTarget = componentsContainer ? componentsContainer : this._element;
+                if (Array.isArray(components)) {
+                    components.map(el => appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(el.getContent()));
+                }
+                else {
+                    appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(components.getContent());
+                }
+            });
+        }
+        else {
+            const componentContainer = this._element.querySelector('[data-component="children"]');
+            const appendTarget = componentContainer ? componentContainer : this._element;
             const children = this._children.map(el => el.getContent());
             children.forEach(el => {
-                componentContainer.appendChild(el);
+                appendTarget.appendChild(el);
             });
         }
     }
     render() {
-        return '';
+        var _a;
+        return ((_a = this._baseTmplRender) === null || _a === void 0 ? void 0 : _a.call(this, this.props)) || '';
     }
     getContent() {
         return this.element;
