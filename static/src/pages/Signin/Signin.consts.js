@@ -8,3 +8,4 @@ export const SIGNIN_FORM_CONTROLS = [
     { name: 'password', label: 'Пароль', inputType: 'password', required: true },
     { name: 'password_confirm', label: 'Пароль (ещё раз)', inputType: 'password', required: true },
 ];
+//# sourceMappingURL=Signin.consts.js.map

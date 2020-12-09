@@ -4,3 +4,4 @@ export function checkLoginLength(value) {
     const regexp = new RegExp(/^[a-zA-Z]{3,}$/);
     return regexp.test(value);
 }
+//# sourceMappingURL=form.utils.js.map

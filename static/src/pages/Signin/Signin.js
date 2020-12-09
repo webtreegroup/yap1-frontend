@@ -7,3 +7,4 @@ const SigninPopup = new Popup({
     isActive: true
 }, [SigninFormComponent]);
 render(".signin-page", SigninPopup);
+//# sourceMappingURL=Signin.js.map

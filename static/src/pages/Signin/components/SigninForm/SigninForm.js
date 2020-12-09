@@ -13,3 +13,4 @@ export class SigninForm extends Form {
         return loginFormTmplRender();
     }
 }
+//# sourceMappingURL=SigninForm.js.map

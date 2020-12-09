@@ -22,3 +22,4 @@ export const editUserImageFormTmplRender = () => {
         </div>
     `;
 };
+//# sourceMappingURL=EditUserImageForm.tmpl.js.map

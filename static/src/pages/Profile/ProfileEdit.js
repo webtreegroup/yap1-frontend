@@ -10,3 +10,4 @@ const btnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' });
 const profileEditForm = new Form({}, [...fields, btnSubmit]);
 const Profile = new Block('div', { className: 'profile-page' }, [profileEditForm], profileEditTmplRender);
 render(".app", Profile);
+//# sourceMappingURL=ProfileEdit.js.map
