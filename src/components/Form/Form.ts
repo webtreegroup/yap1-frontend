@@ -15,6 +15,13 @@ export class Form extends Block<HTMLFormElement> {
         e.preventDefault()
         
         const requestForConsole: Store = {}
+        const fieldsWithErrors = this._element?.querySelectorAll('input.error')
+        
+        if (fieldsWithErrors?.length) {
+            alert('Поля заполнены не правильно, проверьте форму еще раз...')
+
+            return
+        }
 
         const formData = new FormData(this._element as HTMLFormElement)
 

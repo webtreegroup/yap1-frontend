@@ -1,4 +1,4 @@
 export const LOGIN_FORM_CONTROLS = [
-    { name: 'login', label: 'Логин' },
-    { name: 'password', label: 'Пароль', inputType: 'password' },
+    { name: 'login', label: 'Логин', required: true },
+    { name: 'password', label: 'Пароль', inputType: 'password', required: true },
 ];
