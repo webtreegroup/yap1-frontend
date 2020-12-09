@@ -8,6 +8,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    // TODO:
     // "sourceMap": true,
     "watch": true,
     "lib": [

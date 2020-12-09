@@ -4,7 +4,6 @@ import { MESSAGES } from "./Chats.consts.js"
 import { ChatHistory } from "./components/ChatHistory/ChatHistory.js"
 import { ChatsAside } from "./components/ChatsAside/ChatsAside.js"
 
-const ChatsAsideComponent = new ChatsAside()
 // TODO: добавить прорбос свойст в дочерние компоненты
 const ChatHistoryComponent = new ChatHistory({ messages: MESSAGES })
 
@@ -14,6 +13,6 @@ const Chats = new Block(
     {
         className: 'chats-page',
     }, 
-    [ChatsAsideComponent, ChatHistoryComponent])
+    [new ChatsAside(), ChatHistoryComponent])
 
 render(".app", Chats)

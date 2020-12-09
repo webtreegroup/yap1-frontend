@@ -6,6 +6,14 @@ interface IBlockMeta {
     props: Store
 }
 
+interface IBaseTemplateRender {
+    (props?: Store): string
+}
+
+interface IBlockChildren {
+    [key: string]: Block
+}
+
 export class Block<ElementType extends HTMLElement = any> {
     static EVENTS = {
         INIT: "init",
@@ -16,12 +24,13 @@ export class Block<ElementType extends HTMLElement = any> {
 
     eventBus: () => EventBus
     
+    _baseTmplRender?: IBaseTemplateRender
     _children?: Block[]
     _element: ElementType | null = null
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props = {} as Store, children?: Block[]) {
+    constructor(tagName: string, props = {} as Store, children?: Block[], baseTmplRender?: IBaseTemplateRender) {
         const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
@@ -30,6 +39,7 @@ export class Block<ElementType extends HTMLElement = any> {
 
         this._children = children
         this.props = this._makePropsProxy(props)
+        this._baseTmplRender = baseTmplRender
         this.eventBus = () => eventBus
         this._registerEvents(eventBus)
 
@@ -93,9 +103,10 @@ export class Block<ElementType extends HTMLElement = any> {
 
         const block = this.render()
         this._element.innerHTML = block
+
         const childrenContainer = this._element.querySelector('[data-component="children"]')
         const componentContainer = childrenContainer ? childrenContainer : this._element
-        // debugger
+
         if (this._children) {
             const children = this._children.map(el => el.getContent())
 
@@ -106,7 +117,7 @@ export class Block<ElementType extends HTMLElement = any> {
     }
 
     render() {
-        return ''
+        return this._baseTmplRender?.(this.props) || ''
     }
 
     getContent() {
