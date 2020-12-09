@@ -27,4 +27,3 @@ export const removeUserFormTmplRender = () => {
         </div>
     `;
 };
-//# sourceMappingURL=RemoveUserForm.tmpl.js.map

@@ -6,4 +6,3 @@ export const loginFormTmplRender = () => {
         </div>    
     `;
 };
-//# sourceMappingURL=SigninForm.tmpl.js.map

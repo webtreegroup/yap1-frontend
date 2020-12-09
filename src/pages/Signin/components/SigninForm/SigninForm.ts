@@ -5,7 +5,7 @@ import { IPopup } from "../../../../components/Popup/Popup.model.js"
 import { loginFormTmplRender } from "../../../Login/components/LoginForm/LoginForm.tmpl.js"
 import { SIGNIN_FORM_CONTROLS } from "../../Signin.consts.js"
 
-export class LoginForm extends Form {
+export class SigninForm extends Form {
     constructor(props?: IPopup){
         const controls = SIGNIN_FORM_CONTROLS.map(el => new InputControl(el))
         const btnSubmit = new Button({ text: 'Зарегистрироваться', btnType: 'submit' })

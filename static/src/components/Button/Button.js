@@ -13,4 +13,3 @@ export class Button extends Block {
         return buttonTmplRender(this.props);
     }
 }
-//# sourceMappingURL=Button.js.map

@@ -21,4 +21,3 @@ export const profileTmplRender = () => `
     </main>
 
 `;
-//# sourceMappingURL=Profile.tmpl.js.map

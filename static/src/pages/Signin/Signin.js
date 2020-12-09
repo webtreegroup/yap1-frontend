@@ -1,10 +1,9 @@
 import { Popup } from "../../components/Popup/Popup.js";
 import { render } from "../../utils/common.utils.js";
-import { LoginForm } from "../Login/components/LoginForm/LoginForm.js";
-const SigninFormComponent = new LoginForm();
+import { SigninForm } from "./components/SigninForm/SigninForm.js";
+const SigninFormComponent = new SigninForm();
 const SigninPopup = new Popup({
     title: 'Регистрация',
     isActive: true
 }, [SigninFormComponent]);
 render(".signin-page", SigninPopup);
-//# sourceMappingURL=Signin.js.map

@@ -1,8 +1,9 @@
 import { IInputControl } from "../../components/InputControl/InputControl.model.js"
+import { checkLoginLength } from "../../utils/form.utils.js"
 
 export const SIGNIN_FORM_CONTROLS: IInputControl[] = [
-    { name: 'email', label: 'Почта', inputType: 'email' },
-    { name: 'login', label: 'Логин' },
+    { name: 'email', label: 'Почта', inputType: 'email', required: true },
+    { name: 'login', label: 'Логин', required: true, validationFn: [checkLoginLength] },
     { name: 'first_name', label: 'Имя' },
     { name: 'second_name', label: 'Фамилия' },
     { name: 'phone', label: 'Телефон' },

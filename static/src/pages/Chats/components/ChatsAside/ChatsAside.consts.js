@@ -18,4 +18,3 @@ export const CHATS = [
         unread: 100,
     },
 ];
-//# sourceMappingURL=ChatsAside.consts.js.map

@@ -7,4 +7,3 @@ const LoginPopup = new Popup({
     isActive: true
 }, [LoginFormComponent]);
 render(".login-page", LoginPopup);
-//# sourceMappingURL=Login.js.map

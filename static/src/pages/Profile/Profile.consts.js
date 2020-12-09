@@ -11,4 +11,3 @@ export const PROFILE_FORM_PASS_CONTROLS = [
     { value: 'password', inputType: 'password', name: 'newPassword', label: 'Новый пароль', },
     { value: 'password', inputType: 'password', name: 'passwordConfirm', label: 'Повторите новый пароль', }
 ];
-//# sourceMappingURL=Profile.consts.js.map

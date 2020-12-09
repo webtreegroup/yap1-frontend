@@ -6,8 +6,9 @@ export const inputControlTmplRender = ({
     value = '',
     disabled,
     label,
-    isTouched
+    isTouched,
+    required
 }: IInputControl): string => `
-    <input class="${ isTouched ? 'touched' : '' }" type="${ inputType }" name="${ name }" id="${ name }" value="${ value }" ${ disabled ? 'disabled' : '' }>
+    <input class="${ isTouched ? 'touched' : '' }" type="${ inputType }" name="${ name }" id="${ name }" value="${ value }" ${ disabled ? 'disabled' : '' } ${ required ? 'required' : '' }>
     <label for="${ name }">${ label }</label>
 `

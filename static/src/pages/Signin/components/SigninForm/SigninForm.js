@@ -3,7 +3,7 @@ import { Form } from "../../../../components/Form/Form.js";
 import { InputControl } from "../../../../components/InputControl/InputControl.js";
 import { loginFormTmplRender } from "../../../Login/components/LoginForm/LoginForm.tmpl.js";
 import { SIGNIN_FORM_CONTROLS } from "../../Signin.consts.js";
-export class LoginForm extends Form {
+export class SigninForm extends Form {
     constructor(props) {
         const controls = SIGNIN_FORM_CONTROLS.map(el => new InputControl(el));
         const btnSubmit = new Button({ text: 'Зарегистрироваться', btnType: 'submit' });
@@ -13,4 +13,3 @@ export class LoginForm extends Form {
         return loginFormTmplRender();
     }
 }
-//# sourceMappingURL=SigninForm.js.map

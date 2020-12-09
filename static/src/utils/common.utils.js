@@ -11,4 +11,3 @@ export function render(query, block) {
 export function classNames(classes) {
     return classes.filter(Boolean);
 }
-//# sourceMappingURL=common.utils.js.map

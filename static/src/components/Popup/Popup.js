@@ -32,4 +32,3 @@ export class Popup extends Block {
         return popupTmplRender(Object.assign(Object.assign({}, this.props), { onToggleVisible: this.toggle }));
     }
 }
-//# sourceMappingURL=Popup.js.map

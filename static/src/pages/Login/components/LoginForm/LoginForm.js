@@ -13,4 +13,3 @@ export class LoginForm extends Form {
         return loginFormTmplRender();
     }
 }
-//# sourceMappingURL=LoginForm.js.map

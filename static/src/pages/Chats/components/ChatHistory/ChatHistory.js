@@ -5,8 +5,7 @@ export class ChatHistory extends Block {
     constructor(props) {
         var _a;
         const messages = (_a = props === null || props === void 0 ? void 0 : props.messages) === null || _a === void 0 ? void 0 : _a.map(el => new ChatMessage(el));
-        // TODO: необходимо добавить два попапа - addUserPopup, removeUserPopup
-        super('main', props, messages ? messages : undefined);
+        super('main', props, messages);
     }
     createResources() {
         var _a;
@@ -16,4 +15,3 @@ export class ChatHistory extends Block {
         return chatHistoryTmplRender(this.props);
     }
 }
-//# sourceMappingURL=ChatHistory.js.map
