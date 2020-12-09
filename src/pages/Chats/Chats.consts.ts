@@ -1,6 +1,6 @@
+import { IInputControl } from "../../components/InputControl/InputControl.model.js"
+import { IChatMessage } from "./components/ChatMessage/ChatMessage.model.js"
 
-import { IInputControl } from "../../components/index.js"
-import { IChatMessage } from "./components/ChatMessage/index.js"
 
 export const SIGNIN_FORM_CONTROLS: IInputControl[] = [
     { name: 'email', label: 'Почта', inputType: 'email' },

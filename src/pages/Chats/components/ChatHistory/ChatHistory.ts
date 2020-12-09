@@ -1,7 +1,7 @@
 import { Block } from "../../../../core/Block.js"
-import { ChatMessage } from "../ChatMessage/index.js"
+import { ChatMessage } from "../ChatMessage/ChatMessage.js"
 import { IChatHistory } from "./ChatHistory.model.js"
-import { chatHistoryTmplRender } from "./index.js"
+import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js"
 
 export class ChatHistory extends Block {
     constructor(props?: IChatHistory){

@@ -1,5 +1,6 @@
 import { Block } from "../../../../core/Block.js"
-import { chatMessageTmplRender, IChatMessage } from "./index.js"
+import { IChatMessage } from "./ChatMessage.model.js"
+import { chatMessageTmplRender } from "./ChatMessage.tmpl.js"
 
 export class ChatMessage extends Block<HTMLDivElement> {
     constructor(props?: IChatMessage){

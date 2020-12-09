@@ -1,7 +1,7 @@
 import { Store } from "../../App.model.js"
 import { Block } from "../../core/Block.js"
-import { formTmplRender, IForm } from "./index.js"
-
+import { IForm } from "./Form.model.js"
+import { formTmplRender } from "./Form.tmpl.js"
 
 export class Form extends Block<HTMLFormElement> {
     constructor(props?: IForm, children?: Block[]){

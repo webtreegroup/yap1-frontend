@@ -1,5 +1,5 @@
 import { Block } from "../../../../core/Block.js";
-import { chatGroupTmplRender } from "./index.js";
+import { chatGroupTmplRender } from "./ChatGroup.tmpl.js";
 export class ChatGroup extends Block {
     constructor(props) {
         super('div', props);

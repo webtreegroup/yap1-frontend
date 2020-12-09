@@ -1,4 +1,4 @@
-import { IChatMessage } from "./index.js"
+import { IChatMessage } from "./ChatMessage.model.js"
 
 export const chatMessageTmplRender = ({
     time,

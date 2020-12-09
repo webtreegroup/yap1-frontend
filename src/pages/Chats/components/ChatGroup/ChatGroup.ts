@@ -1,5 +1,6 @@
 import { Block } from "../../../../core/Block.js"
-import { chatGroupTmplRender, IChatGroup } from "./index.js"
+import { IChatGroup } from "./ChatGroup.model.js"
+import { chatGroupTmplRender } from "./ChatGroup.tmpl.js"
 
 export class ChatGroup extends Block<HTMLDivElement> {
     constructor(props?: IChatGroup){

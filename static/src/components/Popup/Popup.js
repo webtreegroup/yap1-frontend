@@ -1,5 +1,5 @@
 import { Block } from "../../core/Block.js";
-import { popupTmplRender } from "./index.js";
+import { popupTmplRender } from "./Popup.tmpl.js";
 export class Popup extends Block {
     constructor(props, children) {
         super("div", props, children);

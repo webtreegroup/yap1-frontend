@@ -1,5 +1,6 @@
 import { Block } from "../../core/Block.js"
-import { IInputControl, inputControlTmplRender } from "./index.js"
+import { IInputControl } from "./InputControl.model.js"
+import { inputControlTmplRender } from "./InputControl.tmpl.js"
 
 export class InputControl extends Block<HTMLInputElement> {
     constructor(props: IInputControl) {

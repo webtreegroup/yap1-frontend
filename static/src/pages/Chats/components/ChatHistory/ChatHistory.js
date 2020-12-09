@@ -1,6 +1,6 @@
 import { Block } from "../../../../core/Block.js";
-import { ChatMessage } from "../ChatMessage/index.js";
-import { chatHistoryTmplRender } from "./index.js";
+import { ChatMessage } from "../ChatMessage/ChatMessage.js";
+import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js";
 export class ChatHistory extends Block {
     constructor(props) {
         var _a;

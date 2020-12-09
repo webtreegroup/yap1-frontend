@@ -1,5 +1,5 @@
 import { Block } from "../../core/Block.js";
-import { inputControlTmplRender } from "./index.js";
+import { inputControlTmplRender } from "./InputControl.tmpl.js";
 export class InputControl extends Block {
     constructor(props) {
         var _a, _b;

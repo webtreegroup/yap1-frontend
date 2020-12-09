@@ -1,8 +1,8 @@
 import { IComponent } from "../../../../App.model.js"
 import { Block } from "../../../../core/Block.js"
-import { ChatGroup } from "../index.js"
+import { ChatGroup } from "../ChatGroup/ChatGroup.js"
 import { CHATS } from "./ChatsAside.consts.js"
-import { chatsAsideTmplRender } from "./index.js"
+import { chatsAsideTmplRender } from "./ChatsAside.tmpl.js"
 
 export class ChatsAside extends Block {
     constructor(props?: IComponent){

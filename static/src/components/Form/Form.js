@@ -1,5 +1,5 @@
 import { Block } from "../../core/Block.js";
-import { formTmplRender } from "./index.js";
+import { formTmplRender } from "./Form.tmpl.js";
 export class Form extends Block {
     constructor(props, children) {
         var _a;

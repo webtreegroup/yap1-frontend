@@ -1,7 +1,6 @@
-import { Popup } from "../../components/index.js"
+import { Popup } from "../../components/Popup/Popup.js"
 import { render } from "../../utils/common.utils.js"
-import { LoginForm } from "./components/index.js"
-
+import { LoginForm } from "./components/LoginForm/LoginForm.js"
 
 const LoginFormComponent = new LoginForm()
 
