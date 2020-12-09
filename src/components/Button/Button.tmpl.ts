@@ -1,4 +1,4 @@
-import { IButton } from "./Button.model"
+import { IButton } from "./Button.model.js"
 
 export const buttonTmplRender = ({
     text = 'Кнопка',
