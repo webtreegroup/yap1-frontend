@@ -6,8 +6,9 @@ import { chatHistoryTmplRender } from "./index.js"
 export class ChatHistory extends Block {
     constructor(props?: IChatHistory){
         const messages = props?.messages?.map(el => new ChatMessage(el))
-
-        super('main', props, messages ? [...messages] : undefined)
+        
+        // TODO: необходимо добавить два попапа - addUserPopup, removeUserPopup
+        super('main', props, messages ? messages : undefined)
     }
 
     createResources() {

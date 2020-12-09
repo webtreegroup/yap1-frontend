@@ -5,7 +5,8 @@ export class ChatHistory extends Block {
     constructor(props) {
         var _a;
         const messages = (_a = props === null || props === void 0 ? void 0 : props.messages) === null || _a === void 0 ? void 0 : _a.map(el => new ChatMessage(el));
-        super('main', props, messages ? [...messages] : undefined);
+        // TODO: необходимо добавить два попапа - addUserPopup, removeUserPopup
+        super('main', props, messages ? messages : undefined);
     }
     createResources() {
         var _a;
