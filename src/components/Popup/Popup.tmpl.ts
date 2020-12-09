@@ -16,7 +16,7 @@ export const popupTmplRender = ({
         <div class="popup">
             ${ isClosable ? closeBtn : '' }                    
             <h3 class="popup__title">${ title }</h3>
-            <div class="popup__body children-node-target">
+            <div class="popup__body" data-component="children">
                 ${ children }
             </div>
         </div>

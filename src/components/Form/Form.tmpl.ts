@@ -2,7 +2,7 @@ import { IForm } from "./Form.model.js"
 
 export const formTmplRender = ({ children = '' }: IForm): string => {
     return `
-        <div class="children-node-target">
+        <div data-component="children">
             ${ children }
         </div>
     `

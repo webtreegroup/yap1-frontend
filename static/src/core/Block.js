@@ -29,8 +29,11 @@ export class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
     _createResources(props) {
+        var _a;
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
+        if (props.className)
+            (_a = this._element) === null || _a === void 0 ? void 0 : _a.classList.add(props.className);
         this.createResources(props);
     }
     createResources(_props) { }
@@ -56,17 +59,19 @@ export class Block {
     _render() {
         if (!this._element)
             return;
-        const block = this.render(typeof this._children === 'string' ? this._children : undefined);
+        const block = this.render();
         this._element.innerHTML = block;
-        const childrenContainer = this._element.querySelector('.children-node-target');
-        if (typeof this._children !== 'string' && this._children && childrenContainer) {
+        const childrenContainer = this._element.querySelector('[data-component="children"]');
+        const componentContainer = childrenContainer ? childrenContainer : this._element;
+        // debugger
+        if (this._children) {
             const children = this._children.map(el => el.getContent());
             children.forEach(el => {
-                childrenContainer.appendChild(el);
+                componentContainer.appendChild(el);
             });
         }
     }
-    render(_children) {
+    render() {
         return '';
     }
     getContent() {

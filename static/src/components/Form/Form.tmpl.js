@@ -1,6 +1,6 @@
 export const formTmplRender = ({ children = '' }) => {
     return `
-        <div class="children-node-target">
+        <div data-component="children">
             ${children}
         </div>
     `;

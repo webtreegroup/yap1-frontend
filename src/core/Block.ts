@@ -16,12 +16,12 @@ export class Block<ElementType extends HTMLElement = any> {
 
     eventBus: () => EventBus
     
-    _children?: Block[] | string
+    _children?: Block[]
     _element: ElementType | null = null
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props = {} as Store, children?: Block[] | string) {
+    constructor(tagName: string, props = {} as Store, children?: Block[]) {
         const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
@@ -51,6 +51,7 @@ export class Block<ElementType extends HTMLElement = any> {
     _createResources(props: Store) {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
+        if (props.className) this._element?.classList.add(props.className)
         this.createResources(props)
     }
 
@@ -90,20 +91,21 @@ export class Block<ElementType extends HTMLElement = any> {
     _render() {
         if (!this._element) return
 
-        const block = this.render(typeof this._children === 'string' ? this._children : undefined)
+        const block = this.render()
         this._element.innerHTML = block
-        const childrenContainer = this._element.querySelector('.children-node-target')
-
-        if (typeof this._children !== 'string' && this._children && childrenContainer) {
+        const childrenContainer = this._element.querySelector('[data-component="children"]')
+        const componentContainer = childrenContainer ? childrenContainer : this._element
+        // debugger
+        if (this._children) {
             const children = this._children.map(el => el.getContent())
 
             children.forEach(el => {
-                childrenContainer.appendChild(el)
+                componentContainer.appendChild(el)
             })
         }
     }
 
-    render(_children?: string) {
+    render() {
         return ''
     }
 
