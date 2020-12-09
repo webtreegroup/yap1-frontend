@@ -1,4 +1,5 @@
 import { Block } from "../../../../core/Block.js"
+import { classNames } from "../../../../utils/common.utils.js"
 import { IChatGroup } from "./ChatGroup.model.js"
 import { chatGroupTmplRender } from "./ChatGroup.tmpl.js"
 
@@ -7,8 +8,13 @@ export class ChatGroup extends Block<HTMLDivElement> {
         super('div', props)
     }
 
-    createResources() {
-        this._element?.classList.add('chats-item')
+    createResources({ isCurrent }: IChatGroup) {
+        const classes = classNames([
+            'chats-item', 
+            isCurrent ? 'chats-item_current' : undefined
+        ])
+
+        this._element?.classList.add(...classes)
     }
 
     render() {

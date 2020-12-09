@@ -7,8 +7,7 @@ export class ChatHistory extends Block {
     constructor(props?: IChatHistory){
         const messages = props?.messages?.map(el => new ChatMessage(el))
         
-        // TODO: необходимо добавить два попапа - addUserPopup, removeUserPopup
-        super('main', props, messages ? messages : undefined)
+        super('main', props, messages )
     }
 
     createResources() {

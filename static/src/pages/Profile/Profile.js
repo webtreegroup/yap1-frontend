@@ -8,3 +8,4 @@ const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl(Object.assign(Ob
 const editUserImgPopup = new Popup({ title: 'Загрузите файл' });
 const Profile = new Block('div', { className: 'profile-page' }, { 'Fields': fields, 'Popups': editUserImgPopup }, profileTmplRender);
 render(".app", Profile);
+//# sourceMappingURL=Profile.js.map

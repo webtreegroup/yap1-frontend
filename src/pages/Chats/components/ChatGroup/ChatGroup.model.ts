@@ -6,7 +6,6 @@ export interface IChatGroup extends IComponent {
     time?: string
     unread?: number
     isOwnMessage?: boolean
-    // TODO: необходим для модификатора класса `chats-item_current`, будет задейстован, когда будет реализован роутинг
     isCurrent?: boolean
     img?: string
 }

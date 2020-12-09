@@ -16,3 +16,4 @@ export class ChatHistory extends Block {
         return chatHistoryTmplRender(this.props);
     }
 }
+//# sourceMappingURL=ChatHistory.js.map

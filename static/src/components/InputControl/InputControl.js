@@ -28,3 +28,4 @@ export class InputControl extends Block {
         return inputControlTmplRender(this.props);
     }
 }
+//# sourceMappingURL=InputControl.js.map

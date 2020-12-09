@@ -12,3 +12,4 @@ export class ChatGroup extends Block {
         return chatGroupTmplRender(this.props);
     }
 }
+//# sourceMappingURL=ChatGroup.js.map

@@ -16,3 +16,4 @@ export class Form extends Block {
         console.log(requestForConsole);
     }
 }
+//# sourceMappingURL=Form.js.map

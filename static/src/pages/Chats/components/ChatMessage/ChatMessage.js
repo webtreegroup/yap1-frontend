@@ -19,3 +19,4 @@ export class ChatMessage extends Block {
         return chatMessageTmplRender(this.props);
     }
 }
+//# sourceMappingURL=ChatMessage.js.map

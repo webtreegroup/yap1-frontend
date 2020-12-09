@@ -14,3 +14,4 @@ export const popupTmplRender = ({ title, isClosable, children = '', onToggleVisi
         </div>
     `;
 };
+//# sourceMappingURL=Popup.tmpl.js.map
