@@ -9,8 +9,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     // TODO:
-    // "sourceMap": true,
-    "watch": true,
+    "sourceMap": true,
+    // "watch": true,
     "lib": [
       "es2019",
       "dom",

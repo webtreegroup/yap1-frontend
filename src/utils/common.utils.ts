@@ -14,3 +14,6 @@ export function render(query: string | HTMLElement | null, block: Block) {
     return query?.appendChild(appendBlock)
 }
 
+export function classNames(classes: (string | undefined)[]) {
+    return classes.filter(Boolean) as string[]
+}

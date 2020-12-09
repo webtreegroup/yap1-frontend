@@ -1,7 +1,6 @@
 import { Store } from "../../App.model.js"
 import { Block } from "../../core/Block.js"
 import { IForm } from "./Form.model.js"
-import { formTmplRender } from "./Form.tmpl.js"
 
 export class Form extends Block<HTMLFormElement> {
     constructor(props?: IForm, children?: Block[]){
@@ -24,9 +23,5 @@ export class Form extends Block<HTMLFormElement> {
         }
 
         console.log(requestForConsole)
-    }
-
-    render() {
-        return formTmplRender({ ...this.props })
     }
 }

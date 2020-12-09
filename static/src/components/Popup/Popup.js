@@ -1,5 +1,5 @@
-import { classNames } from "../../App.js";
 import { Block } from "../../core/Block.js";
+import { classNames } from "../../utils/common.utils.js";
 import { popupTmplRender } from "./Popup.tmpl.js";
 export class Popup extends Block {
     constructor(props, children) {

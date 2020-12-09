@@ -1,5 +1,4 @@
 import { Block } from "../../core/Block.js";
-import { formTmplRender } from "./Form.tmpl.js";
 export class Form extends Block {
     constructor(props, children) {
         var _a;
@@ -15,8 +14,5 @@ export class Form extends Block {
             requestForConsole[key] = value;
         }
         console.log(requestForConsole);
-    }
-    render() {
-        return formTmplRender(Object.assign({}, this.props));
     }
 }

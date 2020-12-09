@@ -1,5 +1,5 @@
-import { classNames } from "../../App.js"
 import { Block } from "../../core/Block.js"
+import { classNames } from "../../utils/common.utils.js"
 import { IPopup } from "./Popup.model.js"
 import { popupTmplRender } from "./Popup.tmpl.js"
 

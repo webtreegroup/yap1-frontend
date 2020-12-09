@@ -8,3 +8,6 @@ export function render(query, block) {
     }
     return query === null || query === void 0 ? void 0 : query.appendChild(appendBlock);
 }
+export function classNames(classes) {
+    return classes.filter(Boolean);
+}
