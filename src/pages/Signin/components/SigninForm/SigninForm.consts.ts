@@ -1,5 +1,5 @@
-import { IInputControl } from "../../components/InputControl/InputControl.model.js"
-import { checkLoginLength } from "../../utils/form.utils.js"
+import { IInputControl } from "../../../../components/InputControl/InputControl.model.js"
+import { checkLoginLength } from "../../../../utils/form.utils.js"
 
 export const SIGNIN_FORM_CONTROLS: IInputControl[] = [
     { name: 'email', label: 'Почта', inputType: 'email', required: true },

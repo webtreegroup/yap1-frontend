@@ -1,20 +1,13 @@
-import { Button } from "../../components/Button/Button.js"
-import { Form } from "../../components/Form/Form.js"
-import { InputControl } from "../../components/InputControl/InputControl.js"
 import { Block } from "../../core/Block.js"
 import { render } from "../../utils/common.utils.js"
-import { PROFILE_FORM_PASS_CONTROLS } from "./Profile.consts.js"
+import { ProfileEditPassForm } from "./components/ProfileForm/ProfileEditPassForm.js"
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js"
 
-const fields = PROFILE_FORM_PASS_CONTROLS.map(el => new InputControl({ ...el, isTouched: true }))
-const btnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' })
-const profileEditForm = new Form({}, [...fields, btnSubmit])
-
-const Profile = new Block(
+const ProfileEditPass = new Block(
     'div', 
     { className: 'profile-page' }, 
-    [profileEditForm], 
+    [ProfileEditPassForm], 
     profileEditTmplRender
 )
 
-render(".app", Profile)
+render(".app", ProfileEditPass)
