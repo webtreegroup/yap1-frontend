@@ -6,12 +6,12 @@ interface IBlockMeta {
     props: Store
 }
 
-interface IBaseTemplateRender {
+export interface IBaseTemplateRender {
     (props?: Store): string
 }
 
 interface IBlockChildren {
-    [key: string]: Block | Block[]
+    [key: string]: Block | Block[] | undefined
 }
 
 export class Block<ElementType extends HTMLElement = any> {
@@ -110,6 +110,9 @@ export class Block<ElementType extends HTMLElement = any> {
             
             Object.keys(children).map(componentKey => {
                 const components = children[componentKey]
+
+                if (!components) return
+                
                 const componentsContainer = this._element?.querySelector(`[data-component="${componentKey}"]`)
                 const appendTarget = componentsContainer ? componentsContainer : this._element
                 

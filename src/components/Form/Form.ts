@@ -1,10 +1,10 @@
 import { Store } from "../../App.model.js"
-import { Block } from "../../core/Block.js"
+import { Block, IBaseTemplateRender } from "../../core/Block.js"
 import { IForm } from "./Form.model.js"
 
 export class Form extends Block<HTMLFormElement> {
-    constructor(props?: IForm, children?: Block[]){
-        super("form", props, children)
+    constructor(props?: IForm, children?: Block[], baseTmplRender?: IBaseTemplateRender){
+        super("form", props, children, baseTmplRender)
         
         this.handleSubmit = this.handleSubmit.bind(this)
 

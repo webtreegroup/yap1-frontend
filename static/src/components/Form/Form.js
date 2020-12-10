@@ -1,8 +1,8 @@
 import { Block } from "../../core/Block.js";
 export class Form extends Block {
-    constructor(props, children) {
+    constructor(props, children, baseTmplRender) {
         var _a;
-        super("form", props, children);
+        super("form", props, children, baseTmplRender);
         this.handleSubmit = this.handleSubmit.bind(this);
         (_a = this._element) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', this.handleSubmit);
     }

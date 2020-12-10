@@ -49,12 +49,13 @@
 .popup-wrap {
     @include vh_align;
     transition: $transition_ms;
-    position: absolute;
+    position: fixed;
     z-index: 1000;
     background-color: #0000001c;
     opacity: 0;
     visibility: hidden;
     top: 0;
+    left: 0;
 
     &_active {
         opacity: 1;

@@ -12,7 +12,7 @@ export const profileTmplRender = () => `
 
         <footer class="profile-options__actions">
             <ul>
-                <li><a href="#" class="edit-user-image">Изменить изображение</a></li>
+                <li data-component="ToggleEditUserImgPopup"></li>
                 <li><a href="./profile-edit.html">Изменить данные</a></li>
                 <li><a href="./profile-edit-pass.html">Изменить пароль</a></li>
                 <li><a href="./login.html"><b>Выйти</b></a></li>

@@ -68,6 +68,8 @@ export class Block {
             Object.keys(children).map(componentKey => {
                 var _a;
                 const components = children[componentKey];
+                if (!components)
+                    return;
                 const componentsContainer = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(`[data-component="${componentKey}"]`);
                 const appendTarget = componentsContainer ? componentsContainer : this._element;
                 if (Array.isArray(components)) {
