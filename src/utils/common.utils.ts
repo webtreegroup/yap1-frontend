@@ -1,7 +1,7 @@
 import { Block } from "../core/Block"
 
 export function render(query: string | HTMLElement | null, block: Block) {
-    const appendBlock = block.getContent()
+    const appendBlock = block.content
 
     if (!appendBlock) return
 

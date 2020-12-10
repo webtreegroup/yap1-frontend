@@ -114,16 +114,16 @@ export class Block<ElementType extends HTMLElement = any> {
                 const appendTarget = componentsContainer ? componentsContainer : this._element
                 
                 if (Array.isArray(components)) {
-                    components.map(el => appendTarget?.appendChild(el.getContent()))
+                    components.map(el => appendTarget?.appendChild(el.content))
                 } else {
-                    appendTarget?.appendChild(components.getContent())
+                    appendTarget?.appendChild(components.content)
                 }
             })
         } else {
             const componentContainer = this._element.querySelector('[data-component="children"]')
             const appendTarget = componentContainer ? componentContainer : this._element
     
-            const children = this._children.map(el => el.getContent())
+            const children = this._children.map(el => el.content)
 
             children.forEach(el => {
                 appendTarget.appendChild(el)
@@ -135,7 +135,7 @@ export class Block<ElementType extends HTMLElement = any> {
         return this._baseTmplRender?.(this.props) || ''
     }
 
-    getContent() {
+    get content() {
         return this.element
     }
 

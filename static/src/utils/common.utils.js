@@ -1,5 +1,5 @@
 export function render(query, block) {
-    const appendBlock = block.getContent();
+    const appendBlock = block.content;
     if (!appendBlock)
         return;
     if (typeof query === 'string') {

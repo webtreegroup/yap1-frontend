@@ -71,17 +71,17 @@ export class Block {
                 const componentsContainer = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(`[data-component="${componentKey}"]`);
                 const appendTarget = componentsContainer ? componentsContainer : this._element;
                 if (Array.isArray(components)) {
-                    components.map(el => appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(el.getContent()));
+                    components.map(el => appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(el.content));
                 }
                 else {
-                    appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(components.getContent());
+                    appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(components.content);
                 }
             });
         }
         else {
             const componentContainer = this._element.querySelector('[data-component="children"]');
             const appendTarget = componentContainer ? componentContainer : this._element;
-            const children = this._children.map(el => el.getContent());
+            const children = this._children.map(el => el.content);
             children.forEach(el => {
                 appendTarget.appendChild(el);
             });
@@ -91,7 +91,7 @@ export class Block {
         var _a;
         return ((_a = this._baseTmplRender) === null || _a === void 0 ? void 0 : _a.call(this, this.props)) || '';
     }
-    getContent() {
+    get content() {
         return this.element;
     }
     _makePropsProxy(props) {
