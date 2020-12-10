@@ -3,4 +3,4 @@ export const LOGIN_FORM_CONTROLS = [
     { name: 'login', label: 'Логин', required: true, validationFn: [checkAllowedLengthAndTypeChar] },
     { name: 'password', label: 'Пароль', inputType: 'password', required: true, validationFn: [checkAllowedLengthAndTypeChar] },
 ];
-//# sourceMappingURL=LoginForm.consts.js.map
+//# sourceMappingURL=LoginForm.config.js.map
