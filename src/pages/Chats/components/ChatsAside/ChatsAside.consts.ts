@@ -1,4 +1,4 @@
-import { IChatGroup } from "../ChatGroup/ChatGroup.model.js"
+import { IChatGroup } from "../ChatGroup/ChatGroup.types.js"
 
 export const CHATS: IChatGroup[] = [
     { 

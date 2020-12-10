@@ -1,4 +1,4 @@
-import { ILink } from "./Link.model.js"
+import { ILink } from "./Link.types.js"
 
 export const linkTmplRender = ({
     text = 'Ссылка',

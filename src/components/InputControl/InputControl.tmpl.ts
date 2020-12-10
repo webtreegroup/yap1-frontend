@@ -1,4 +1,4 @@
-import { IInputControl } from "./InputControl.model.js"
+import { IInputControl } from "./InputControl.types.js"
 
 export const inputControlTmplRender = ({
     inputType = 'text',

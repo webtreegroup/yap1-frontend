@@ -1,4 +1,4 @@
-import { IComponent } from "../../../../App.model.js"
+import { IComponent } from "../../../../App.types.js"
 import { Block } from "../../../../core/Block.js"
 import { ChatGroup } from "../ChatGroup/ChatGroup.js"
 import { CHATS } from "./ChatsAside.consts.js"

@@ -1,7 +1,7 @@
 import { Block } from "../../core/Block.js"
 import { classNames } from "../../utils/common.utils.js"
 import { Link } from "../Link/Link.js"
-import { IPopup } from "./Popup.model.js"
+import { IPopup } from "./Popup.types.js"
 import { popupTmplRender } from "./Popup.tmpl.js"
 
 export class Popup extends Block<HTMLDivElement> {

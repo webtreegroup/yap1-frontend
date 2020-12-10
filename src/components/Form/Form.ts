@@ -1,6 +1,6 @@
-import { Store } from "../../App.model.js"
+import { Store } from "../../App.types.js"
 import { Block, IBaseTemplateRender } from "../../core/Block.js"
-import { IForm } from "./Form.model.js"
+import { IForm } from "./Form.types.js"
 
 export class Form extends Block<HTMLFormElement> {
     constructor(props?: IForm, children?: Block[], baseTmplRender?: IBaseTemplateRender){

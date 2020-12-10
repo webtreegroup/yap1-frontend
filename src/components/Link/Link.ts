@@ -1,5 +1,5 @@
 import { Block } from "../../core/Block.js"
-import { ILink } from "./Link.model.js"
+import { ILink } from "./Link.types.js"
 import { linkTmplRender } from "./Link.tmpl.js"
 
 export class Link extends Block<HTMLLinkElement> {

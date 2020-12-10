@@ -1,4 +1,4 @@
-import { IInputControl } from "../../../../components/InputControl/InputControl.model.js"
+import { IInputControl } from "../../../../components/InputControl/InputControl.types.js"
 import { checkAllowedLengthAndTypeChar } from "../../../../utils/form.utils.js"
 
 export const PROFILE_FORM_PASS_CONTROLS: IInputControl[] = [

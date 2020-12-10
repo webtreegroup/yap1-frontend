@@ -1,4 +1,4 @@
-import { IInputControl } from "../../../../components/InputControl/InputControl.model.js"
+import { IInputControl } from "../../../../components/InputControl/InputControl.types.js"
 import { checkAllowedLengthAndTypeChar, checkEmail, checkPhoneNumber } from "../../../../utils/form.utils.js"
 
 export const PROFILE_FORM_CONTROLS: IInputControl[] = [

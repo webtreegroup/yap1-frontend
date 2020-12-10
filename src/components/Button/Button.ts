@@ -1,5 +1,5 @@
 import { Block } from "../../core/Block.js"
-import { IButton } from "./Button.model.js"
+import { IButton } from "./Button.types.js"
 import { buttonTmplRender } from "./Button.tmpl.js"
 
 export class Button extends Block<HTMLButtonElement> {

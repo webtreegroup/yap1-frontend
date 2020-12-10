@@ -1,4 +1,4 @@
-import { IInputControl } from "../../../../components/InputControl/InputControl.model.js"
+import { IInputControl } from "../../../../components/InputControl/InputControl.types.js"
 import { checkAllowedLengthAndTypeChar } from "../../../../utils/form.utils.js"
 
 export const LOGIN_FORM_CONTROLS: IInputControl[] = [

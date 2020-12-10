@@ -1,4 +1,4 @@
-import { Store, StoreValue } from "../App.model.js"
+import { Store, StoreValue } from "../App.types.js"
 import { EventBus } from "./EventBus.js"
 
 interface IBlockMeta {

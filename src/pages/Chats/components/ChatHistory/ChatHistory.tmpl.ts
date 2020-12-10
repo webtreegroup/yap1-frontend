@@ -1,4 +1,4 @@
-import { IChatHistory } from "./ChatHistory.model.js"
+import { IChatHistory } from "./ChatHistory.types.js"
 
 export const chatHistoryTmplRender = ({ messages }: IChatHistory): string => {
     const chatEpty = `

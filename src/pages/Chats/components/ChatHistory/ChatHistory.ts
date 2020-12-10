@@ -4,7 +4,7 @@ import { Block } from "../../../../core/Block.js"
 import { AddUserForm } from "../AddUserForm/AddUserForm.js"
 import { ChatMessage } from "../ChatMessage/ChatMessage.js"
 import { RemoveUserForm } from "../RemoveUserForm/RemoveUserForm.js"
-import { IChatHistory } from "./ChatHistory.model.js"
+import { IChatHistory } from "./ChatHistory.types.js"
 import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js"
 
 export class ChatHistory extends Block {

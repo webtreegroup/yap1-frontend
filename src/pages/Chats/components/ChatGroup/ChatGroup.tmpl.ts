@@ -1,4 +1,4 @@
-import { IChatGroup } from "./ChatGroup.model.js"
+import { IChatGroup } from "./ChatGroup.types.js"
 
 export const chatGroupTmplRender = ({
     name = 'no name',

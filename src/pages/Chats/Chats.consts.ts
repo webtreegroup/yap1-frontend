@@ -1,5 +1,5 @@
 import { IChatMessage } from "./components/ChatMessage/ChatMessage.model.js"
-
+./components/ChatMessage/ChatMessage.types.js
 export const MESSAGES: IChatMessage[] = [
     {
         check: true,
