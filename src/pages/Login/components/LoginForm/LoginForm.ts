@@ -2,7 +2,7 @@ import { Button } from "../../../../components/Button/Button.js"
 import { Form } from "../../../../components/Form/Form.js"
 import { InputControl } from "../../../../components/InputControl/InputControl.js"
 import { IPopup } from "../../../../components/Popup/Popup.types.js"
-import { LOGIN_FORM_CONTROLS } from "./LoginForm.consts.js"
+import { LOGIN_FORM_CONTROLS } from "./LoginForm.config.js"
 import { loginFormTmplRender } from "./LoginForm.tmpl.js"
 
 export class LoginForm extends Form {
