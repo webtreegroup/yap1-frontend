@@ -22,7 +22,7 @@ export class Block<ElementType extends HTMLElement = any> {
         FLOW_CDU: "flow:component-did-update",
     }
 
-    eventBus: () => EventBus
+    eventBus: EventBus
     
     _baseTmplRender?: IBaseTemplateRender
     _children?: IBlockChildren | Block[]
@@ -31,7 +31,6 @@ export class Block<ElementType extends HTMLElement = any> {
     props: Store
 
     constructor(tagName: string, props = {} as Store, children?: IBlockChildren | Block[], baseTmplRender?: IBaseTemplateRender) {
-        const eventBus: EventBus = new EventBus()
         this._meta = {
             tagName,
             props
@@ -40,10 +39,10 @@ export class Block<ElementType extends HTMLElement = any> {
         this._children = children
         this.props = this._makePropsProxy(props)
         this._baseTmplRender = baseTmplRender
-        this.eventBus = () => eventBus
-        this._registerEvents(eventBus)
+        this.eventBus = new EventBus()
+        this._registerEvents(this.eventBus)
 
-        eventBus.emit(Block.EVENTS.INIT, this.props)
+        this.eventBus.emit(Block.EVENTS.INIT, this.props)
     }
 
     _registerEvents(eventBus: EventBus) {
@@ -55,7 +54,7 @@ export class Block<ElementType extends HTMLElement = any> {
 
     init(props: Store) {
         this._createResources(props)
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM)
+        this.eventBus.emit(Block.EVENTS.FLOW_CDM)
     }
 
     _createResources(props: Store) {
@@ -73,7 +72,7 @@ export class Block<ElementType extends HTMLElement = any> {
 
     _componentDidMount() {
         this.componentDidMount()
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+        this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
     }
 
     componentDidMount() {}
@@ -81,7 +80,7 @@ export class Block<ElementType extends HTMLElement = any> {
     _componentDidUpdate(oldProps: StoreValue, newProps: StoreValue) {
         const response = this.componentDidUpdate(oldProps, newProps)
     
-        if (response) this.eventBus().emit(Block.EVENTS.FLOW_RENDER)
+        if (response) this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
     }
 
     componentDidUpdate(oldProps: StoreValue, newProps: StoreValue) {
@@ -151,7 +150,7 @@ export class Block<ElementType extends HTMLElement = any> {
             set(target, prop: string, value: StoreValue) {
                 const oldProps: Store = Object.assign({}, self.props)
                 target[prop] = value
-                self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value)
+                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value)
 
                 return true
             },

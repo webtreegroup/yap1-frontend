@@ -7,7 +7,6 @@ export class Block {
                 return;
             Object.assign(this.props, nextProps);
         };
-        const eventBus = new EventBus();
         this._meta = {
             tagName,
             props
@@ -15,9 +14,9 @@ export class Block {
         this._children = children;
         this.props = this._makePropsProxy(props);
         this._baseTmplRender = baseTmplRender;
-        this.eventBus = () => eventBus;
-        this._registerEvents(eventBus);
-        eventBus.emit(Block.EVENTS.INIT, this.props);
+        this.eventBus = new EventBus();
+        this._registerEvents(this.eventBus);
+        this.eventBus.emit(Block.EVENTS.INIT, this.props);
     }
     _registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -27,7 +26,7 @@ export class Block {
     }
     init(props) {
         this._createResources(props);
-        this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+        this.eventBus.emit(Block.EVENTS.FLOW_CDM);
     }
     _createResources(props) {
         var _a;
@@ -43,13 +42,13 @@ export class Block {
     }
     _componentDidMount() {
         this.componentDidMount();
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+        this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
     componentDidMount() { }
     _componentDidUpdate(oldProps, newProps) {
         const response = this.componentDidUpdate(oldProps, newProps);
         if (response)
-            this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+            this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
     componentDidUpdate(oldProps, newProps) {
         return oldProps !== newProps;
@@ -105,7 +104,7 @@ export class Block {
             set(target, prop, value) {
                 const oldProps = Object.assign({}, self.props);
                 target[prop] = value;
-                self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value);
+                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value);
                 return true;
             },
             deleteProperty() {
