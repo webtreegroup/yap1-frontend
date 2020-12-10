@@ -9,7 +9,7 @@
     "autoprefixer": "postcss -u autoprefixer -r static/src",
     "build:css": "npm run scss && npm run autoprefixer",
     "build:js": "npx tsc",
-    "build:all": "npm run build:css && npx tsc",
+    "build:all": "npm run build:css && build:js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
