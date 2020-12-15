@@ -2,43 +2,86 @@ enum METHOD {
     GET = 'GET',
     POST = 'POST',
     PUT = 'PUT',
-    PATCH = 'PATCH',
     DELETE = 'DELETE'
 }
 
-type Options = {
-    method: METHOD
-    data?: any
+type HeadersType = {
+    [key: string]: string
 }
 
-type OptionsWithoutMethod = Omit<Options, 'method'>
+type OptionsType = {
+    method: METHOD
+    data?: any
+    headers?: HeadersType
+    timeout?: number
+}
+
+type OptionsWithoutMethodType = Omit<OptionsType, 'method'>
 
 const API_BASE_PATH = 'http://ya-praktikum.tech/api/v2'
 
+export function queryStringify<T extends object>(data: T): string {
+    if (!data) return ''
+
+    const queryArr = Object.entries(data).map(([key, value]) => 
+        `${key}=${value}`)
+
+	return `?${queryArr.join('&')}`
+}
+
 export class HTTPTransport {
-    get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    get(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
         return this.request(url, {...options, method: METHOD.GET})
     }
 
-    request(url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
+    post(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
+        return this.request(url, {...options, method: METHOD.POST})
+    }
+
+    put(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
+        return this.request(url, {...options, method: METHOD.PUT})
+    }
+
+    delete(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
+        return this.request(url, {...options, method: METHOD.DELETE})
+    }
+
+    request(
+        url: string, 
+        options: OptionsType = { method: METHOD.GET }, 
+        timeout = 5000
+    ): Promise<XMLHttpRequest> {
         const {method, data} = options
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest()
-            xhr.open(method, `${API_BASE_PATH}/${url}`)
+            const basePath = `${API_BASE_PATH}/${url}`
+            const path = method === METHOD.GET 
+                ? `${basePath}${queryStringify(data)}`
+                : basePath
+
+            xhr.open(method, path)
+
+            if (options.headers) {
+                Object.entries(options.headers).forEach(([key, value]) => 
+                    xhr.setRequestHeader(key, value)
+                )
+            }
             
             xhr.onload = function() {
                 resolve(xhr)
             }
 
+            xhr.timeout = timeout
             xhr.onabort = reject
             xhr.onerror = reject
             xhr.ontimeout = reject
-            
+
             if (method === METHOD.GET || !data) {
                 xhr.send()
             } else {
-                xhr.send(data)
+                xhr.setRequestHeader('Content-Type', 'application/json')
+                xhr.send(JSON.stringify(data))
             }
         })
     }
