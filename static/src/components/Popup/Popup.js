@@ -50,4 +50,3 @@ export class Popup extends Block {
         return popupTmplRender(this.props);
     }
 }
-//# sourceMappingURL=Popup.js.map

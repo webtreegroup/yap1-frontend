@@ -8,4 +8,3 @@ const Chats = new Block('div', {
     className: 'chats-page',
 }, [new ChatsAside(), ChatHistoryComponent]);
 render(".app", Chats);
-//# sourceMappingURL=ChatsSingle.js.map

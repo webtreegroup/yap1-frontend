@@ -5,4 +5,3 @@ export const EditUserImageForm = new Form({ className: 'edit-user-image-fields' 
         <input type="file" name="avatar" required>
         <div data-component="children"></div>
     `);
-//# sourceMappingURL=EditUserImageForm.js.map

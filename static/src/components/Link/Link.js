@@ -14,4 +14,3 @@ export class Link extends Block {
         return linkTmplRender(this.props);
     }
 }
-//# sourceMappingURL=Link.js.map

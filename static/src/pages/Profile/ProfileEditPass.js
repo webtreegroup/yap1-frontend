@@ -4,4 +4,3 @@ import { ProfileEditPassForm } from "./components/ProfileForm/ProfileEditPassFor
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js";
 const ProfileEditPass = new Block('div', { className: 'profile-page' }, [ProfileEditPassForm], profileEditTmplRender);
 render(".app", ProfileEditPass);
-//# sourceMappingURL=ProfileEditPass.js.map

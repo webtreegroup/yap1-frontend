@@ -18,4 +18,3 @@ const ToggleEditUserImgPopup = new Link({
 });
 const Profile = new Block('div', { className: 'profile-page' }, { 'ProfileForm': ProfileForm, 'Popups': EditUserImgPopup, 'ToggleEditUserImgPopup': ToggleEditUserImgPopup }, profileTmplRender);
 render(".app", Profile);
-//# sourceMappingURL=Profile.js.map

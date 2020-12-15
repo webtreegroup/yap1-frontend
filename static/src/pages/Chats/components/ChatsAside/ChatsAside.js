@@ -15,4 +15,3 @@ export class ChatsAside extends Block {
         return chatsAsideTmplRender();
     }
 }
-//# sourceMappingURL=ChatsAside.js.map

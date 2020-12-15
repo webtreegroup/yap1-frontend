@@ -4,4 +4,3 @@ import { InputControl } from "../../../../components/InputControl/InputControl.j
 const Loginfield = new InputControl({ name: 'loginToAdd', label: 'Логин', required: true });
 const BtnSubmit = new Button({ text: 'Добавить', btnType: 'submit' });
 export const AddUserForm = new Form({ className: 'add-user-fields' }, [Loginfield, BtnSubmit]);
-//# sourceMappingURL=AddUserForm.js.map

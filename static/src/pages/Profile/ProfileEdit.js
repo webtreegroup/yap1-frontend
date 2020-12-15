@@ -4,4 +4,3 @@ import { ProfileFormEdit } from "./components/ProfileForm/ProfileFormEdit.js";
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js";
 const ProfileEdit = new Block('div', { className: 'profile-page' }, [ProfileFormEdit], profileEditTmplRender);
 render(".app", ProfileEdit);
-//# sourceMappingURL=ProfileEdit.js.map

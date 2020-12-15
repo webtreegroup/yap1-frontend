@@ -2,8 +2,8 @@ import { Button } from "../../../../components/Button/Button.js"
 import { Form } from "../../../../components/Form/Form.js"
 import { InputControl } from "../../../../components/InputControl/InputControl.js"
 import { IPopup } from "../../../../components/Popup/Popup.types.js"
-import { LOGIN_FORM_CONTROLS } from "./LoginForm.config.js"
-import { loginFormTmplRender } from "./LoginForm.tmpl.js"
+import { LOGIN_FORM_CONTROLS } from "./SigninForm.config.js"
+import { loginFormTmplRender } from "./SigninForm.tmpl.js"
 
 export class LoginForm extends Form {
     constructor(props?: IPopup){

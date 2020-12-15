@@ -21,4 +21,3 @@ export const chatsAsideTmplRender = () => {
         <section class="chats__body" data-component="children"></section>
     `;
 };
-//# sourceMappingURL=ChatsAside.tmpl.js.map

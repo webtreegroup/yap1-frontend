@@ -1,9 +1,14 @@
 import { Popup } from "../../components/Popup/Popup.js";
+import { HTTP } from "../../core/Api.js";
 import { render } from "../../utils/common.utils.js";
-import { SigninForm } from "./components/SigninForm/SigninForm.js";
-const SigninPopup = new Popup({
-    title: 'Регистрация',
+import { LoginForm } from "./components/LoginForm/SigninForm.js";
+const LoginFormComponent = new LoginForm();
+const LoginPopup = new Popup({
+    title: 'Вход',
     isActive: true
-}, [new SigninForm()]);
-render(".signin-page", SigninPopup);
-//# sourceMappingURL=Signin.js.map
+}, [LoginFormComponent]);
+render(".login-page", LoginPopup);
+/****************************
+ * TODO: практика
+ ****************************/
+HTTP.get('chats');

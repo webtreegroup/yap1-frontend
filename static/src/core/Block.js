@@ -121,4 +121,3 @@ Block.EVENTS = {
     FLOW_RENDER: "flow:render",
     FLOW_CDU: "flow:component-did-update",
 };
-//# sourceMappingURL=Block.js.map
