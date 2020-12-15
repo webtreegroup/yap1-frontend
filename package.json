@@ -11,7 +11,7 @@
     "build:js": "npx tsc",
     "build:all": "npm run build:css && build:js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node static/server.js"
   },
   "repository": {
     "type": "git",
