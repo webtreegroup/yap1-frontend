@@ -1,5 +1,6 @@
 import { Router } from "./core/Router.js";
 import { Chats } from "./pages/Chats/Chats.js";
+import { Home } from "./pages/Home/Home.js";
 import { Profile } from "./pages/Profile/Profile.js";
 const location = window.location;
 console.log(location.pathname);
@@ -15,6 +16,7 @@ const handleLinkClick = (e) => {
 };
 document.addEventListener('click', handleLinkClick);
 Router
+    .use("/", Home)
     .use("/profile", Profile)
     .use("/chats", Chats)
     .start();

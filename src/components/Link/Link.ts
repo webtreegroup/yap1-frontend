@@ -4,12 +4,19 @@ import { linkTmplRender } from "./Link.tmpl.js"
 
 export class Link extends Block<HTMLLinkElement> {
     constructor(props: ILink) {
-        super("a", props)
+        super(
+            "a", 
+            props,
+        )
     }
 
-    createResources({ onClick }: ILink) {
-        this._element?.setAttribute('href', '#')
-        if (onClick) this._element?.addEventListener('click', onClick)
+    createResources({ onClick, href }: ILink) {
+        this._element?.setAttribute('href', href || '#')
+        function onClickWrapper(e: Event) {
+            e.preventDefault()
+            onClick?.()
+        }
+        if (onClick) this._element?.addEventListener('click', onClickWrapper)
     }
 
     render() {

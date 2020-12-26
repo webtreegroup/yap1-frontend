@@ -11,12 +11,11 @@ export class Profile extends Block {
             isClosable: true
         }, [EditUserImageForm]);
         const ToggleEditUserImgPopup = new Link({
-            onClick: (e) => {
-                e.preventDefault();
+            onClick: () => {
                 EditUserImgPopup.show();
             },
             text: 'Изменить изображение'
         });
-        super('div', { className: 'profile-page' }, { 'ProfileForm': ProfileForm, 'Popups': EditUserImgPopup, 'ToggleEditUserImgPopup': ToggleEditUserImgPopup }, profileTmplRender);
+        super('main', { className: 'profile-page' }, { 'ProfileForm': ProfileForm, 'Popups': EditUserImgPopup, 'ToggleEditUserImgPopup': ToggleEditUserImgPopup }, profileTmplRender);
     }
 }

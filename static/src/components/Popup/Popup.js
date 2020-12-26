@@ -33,8 +33,7 @@ export class Popup extends Block {
     }
     render() {
         const ToggleAddPopupVisibility = new Link({
-            onClick: (e) => {
-                e.preventDefault();
+            onClick: () => {
                 this.hide();
             },
             text: `

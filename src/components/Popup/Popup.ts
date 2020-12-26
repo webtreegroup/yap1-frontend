@@ -38,8 +38,7 @@ export class Popup extends Block<HTMLDivElement> {
 
     render() {
         const ToggleAddPopupVisibility = new Link({ 
-            onClick: (e) => {
-                e.preventDefault()
+            onClick: () => {
                 this.hide()
             },
             text: `

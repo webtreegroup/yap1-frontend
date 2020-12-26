@@ -6,8 +6,8 @@ interface IBlockMeta {
     props: Store
 }
 
-export interface IBaseTemplateRender {
-    (props?: Store): string
+export interface IBaseTemplateRender<T = Store> {
+    (props?: T): string
 }
 
 export interface IBlockChildren {

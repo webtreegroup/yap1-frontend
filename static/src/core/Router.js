@@ -32,12 +32,12 @@ class Route {
 }
 export class Router {
     static use(pathname, block) {
-        debugger;
         const route = new Route(pathname, block, { rootQuery: this._rootQuery });
         this.routes.push(route);
         return this;
     }
     static start() {
+        debugger;
         window.onpopstate = (event) => {
             console.log(event);
             const target = event === null || event === void 0 ? void 0 : event.currentTarget;

@@ -5,7 +5,7 @@ import { ChatsAside } from "./components/ChatsAside/ChatsAside.js"
 export class Chats extends Block<HTMLDivElement> {
     constructor(){
         super(
-            'div', 
+            'main', 
             {
                 className: 'chats-page',
             }, 

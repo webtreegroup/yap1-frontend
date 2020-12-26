@@ -18,8 +18,7 @@ export class ChatHistory extends Block {
             isClosable: true
         }, [RemoveUserForm]);
         const ToggleAddUserPopup = new Link({
-            onClick: (e) => {
-                e.preventDefault();
+            onClick: () => {
                 AddUserPopup.show();
             },
             text: `
@@ -28,8 +27,7 @@ export class ChatHistory extends Block {
             `
         });
         const ToggleRemoveUserPopup = new Link({
-            onClick: (e) => {
-                e.preventDefault();
+            onClick: () => {
                 RemoveUserPopup.show();
             },
             text: `

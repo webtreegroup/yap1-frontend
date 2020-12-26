@@ -3,7 +3,7 @@ import { ChatHistory } from "./components/ChatHistory/ChatHistory.js";
 import { ChatsAside } from "./components/ChatsAside/ChatsAside.js";
 export class Chats extends Block {
     constructor() {
-        super('div', {
+        super('main', {
             className: 'chats-page',
         }, [new ChatsAside(), new ChatHistory()]);
     }
