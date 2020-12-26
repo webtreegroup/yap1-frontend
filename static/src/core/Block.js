@@ -114,6 +114,12 @@ export class Block {
             }
         });
     }
+    hide() {
+        console.log('hide block');
+    }
+    show() {
+        console.log('show block');
+    }
 }
 Block.EVENTS = {
     INIT: "init",
