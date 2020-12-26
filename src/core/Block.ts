@@ -10,7 +10,7 @@ export interface IBaseTemplateRender {
     (props?: Store): string
 }
 
-interface IBlockChildren {
+export interface IBlockChildren {
     [key: string]: Block | Block[] | undefined
 }
 
@@ -30,7 +30,12 @@ export class Block<ElementType extends HTMLElement = any> {
     _meta: IBlockMeta
     props: Store
 
-    constructor(tagName: string, props = {} as Store, children?: IBlockChildren | Block[], baseTmplRender?: IBaseTemplateRender) {
+    constructor(
+        tagName: string, 
+        props = {} as Store, 
+        children?: IBlockChildren | Block[], 
+        baseTmplRender?: IBaseTemplateRender
+    ) {
         this._meta = {
             tagName,
             props
@@ -161,5 +166,13 @@ export class Block<ElementType extends HTMLElement = any> {
                 throw new Error("Нет доступа")
             }
         })
+    }
+
+    hide(){
+        console.log('hide block')
+    }
+
+    show(){
+        console.log('show block')
     }
 }
