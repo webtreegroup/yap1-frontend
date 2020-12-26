@@ -6,6 +6,8 @@
     <title>Document</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./src/style/app.css">
+    <link rel="stylesheet" href="./src/style/chats.css">
+    <link rel="stylesheet" href="./src/style/profile.css">
 </head>
 <body>
     <main class="index-page">
@@ -19,15 +21,17 @@
                 <li><a href="./signin.html">Вход</a></li>
                 <li><a href="./signup.html">Регистрация</a></li>
                 <!-- TODO: список и поиск по сути одно и тоже, доделать когда появится роутинг -->
-                <li><a href="./chats.html">Список чатов (Поиск чата)</a></li>
+                <li><a href="/chats">Список чатов (Поиск чата)</a></li>
                 <li><a href="./chat-single.html">Конкретный чат</a></li>
-                <li><a href="./profile.html">Профиль пользователя</a></li>
+                <li><a href="/profile">Профиль пользователя</a></li>
                 <li><a href="./profile-edit.html">Редактирование данных профиля</a></li>
                 <li><a href="./profile-edit-pass.html">Редактирование пароля профиля</a></li>
             </ul>
         </section>
 
     </main>
+
+    <div class="app"></div>
 
     <script type="module" src="./src/App.js"></script>
 </body>

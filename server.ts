@@ -5,7 +5,11 @@ const app: express.Application = express()
 const PORT = 3000
 const __dirname = path.resolve()
 
+// app.use(express.static('./static/src'))
+
 app.get('*', (req, res) => {
+    console.log(req.path)
+    
     const pattern = new RegExp('\.(js|css)$', 'g')
 
     if (pattern.test(req.path)) {

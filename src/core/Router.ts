@@ -57,6 +57,7 @@ export class Router {
     static _rootQuery: string = '.app'
 
     static use(pathname: string, block: IBlockConstructor) {
+        debugger
         const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 
         this.routes.push(route)
@@ -66,6 +67,7 @@ export class Router {
 
     static start() {
         window.onpopstate = (event: PopStateEvent) => {
+            console.log(event)
             const target = event?.currentTarget as Window
             this._onRoute(target?.location.pathname);
         };
@@ -88,6 +90,7 @@ export class Router {
     }
 
     static go(pathname: string) {
+        debugger
         this.history.pushState({}, "", pathname)
         this._onRoute(pathname)
     }

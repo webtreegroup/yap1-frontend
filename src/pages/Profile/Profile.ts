@@ -1,7 +1,6 @@
 import { Link } from "../../components/Link/Link.js"
 import { Popup } from "../../components/Popup/Popup.js"
 import { Block } from "../../core/Block.js"
-import { render } from "../../utils/common.utils.js"
 import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageForm.js"
 import { ProfileForm } from "./components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
@@ -29,5 +28,3 @@ export class Profile extends Block<HTMLDivElement> {
         )
     }
 }
-
-render(".app", new Profile())

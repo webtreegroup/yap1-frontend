@@ -32,12 +32,14 @@ class Route {
 }
 export class Router {
     static use(pathname, block) {
+        debugger;
         const route = new Route(pathname, block, { rootQuery: this._rootQuery });
         this.routes.push(route);
         return this;
     }
     static start() {
         window.onpopstate = (event) => {
+            console.log(event);
             const target = event === null || event === void 0 ? void 0 : event.currentTarget;
             this._onRoute(target === null || target === void 0 ? void 0 : target.location.pathname);
         };
@@ -55,6 +57,7 @@ export class Router {
         route.render();
     }
     static go(pathname) {
+        debugger;
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);
     }
