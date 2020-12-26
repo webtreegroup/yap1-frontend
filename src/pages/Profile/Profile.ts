@@ -6,7 +6,7 @@ import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageF
 import { ProfileForm } from "./components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
 
-class Profile extends Block<HTMLDivElement> {
+export class Profile extends Block<HTMLDivElement> {
     constructor(){
         const EditUserImgPopup = new Popup({ 
             title: 'Загрузите файл',

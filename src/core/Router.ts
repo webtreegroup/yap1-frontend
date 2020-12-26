@@ -1,7 +1,7 @@
 
-import { Store } from '../App.types'
-import { render } from '../utils/common.utils'
-import { Block } from './Block'
+import { Store } from '../App.types.js'
+import { render } from '../utils/common.utils.js'
+import { Block } from './Block.js'
 
 interface IBlockConstructor {
     new (): Block

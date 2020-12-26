@@ -1,4 +1,4 @@
-import { render } from '../utils/common.utils';
+import { render } from '../utils/common.utils.js';
 class Route {
     constructor(pathname, view, props) {
         this._pathname = pathname;

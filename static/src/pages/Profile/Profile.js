@@ -5,7 +5,7 @@ import { render } from "../../utils/common.utils.js";
 import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageForm.js";
 import { ProfileForm } from "./components/ProfileForm/ProfileForm.js";
 import { profileTmplRender } from "./Profile.tmpl.js";
-class Profile extends Block {
+export class Profile extends Block {
     constructor() {
         const EditUserImgPopup = new Popup({
             title: 'Загрузите файл',
