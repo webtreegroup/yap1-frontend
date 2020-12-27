@@ -18,7 +18,7 @@ type OptionsType = {
 
 type OptionsWithoutMethodType = Omit<OptionsType, 'method'>
 
-const API_BASE_PATH = 'http://ya-praktikum.tech/api/v2'
+const API_BASE_PATH = 'https://ya-praktikum.tech/api/v2'
 
 export function queryStringify<T extends object>(data: T): string {
     if (!data) return ''
@@ -60,7 +60,7 @@ export class HTTPTransport {
                 ? `${basePath}${queryStringify(data)}`
                 : basePath
 
-            xhr.open(method, path)
+            xhr.open(method, path, true)
 
             if (options.headers) {
                 Object.entries(options.headers).forEach(([key, value]) => 
@@ -72,6 +72,9 @@ export class HTTPTransport {
                 resolve(xhr)
             }
 
+            xhr.setRequestHeader('Sec-Fetch-Mode', 'cors')
+            xhr.setRequestHeader('Sec-Fetch-Site', 'cross-site')
+            xhr.withCredentials = true
             xhr.timeout = timeout
             xhr.onabort = reject
             xhr.onerror = reject
