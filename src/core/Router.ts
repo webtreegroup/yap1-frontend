@@ -1,6 +1,5 @@
 
 import { Store } from '../App.types.js'
-import { render } from '../utils/common.utils.js'
 import { Block } from './Block.js'
 
 interface IBlockConstructor {
@@ -40,13 +39,9 @@ class Route {
     render() {
         if (!this._block) {
             this._block = new this._blockClass()
-
-            if (this._block) render(this._props.rootQuery, this._block)
-
-            return
         }
 
-        this._block.show()
+        this._block.show(this._props.rootQuery)
     }
 } 
 
@@ -65,9 +60,7 @@ export class Router {
     } 
 
     static start() {
-        debugger
         window.onpopstate = (event: PopStateEvent) => {
-            console.log(event)
             const target = event?.currentTarget as Window
             this._onRoute(target?.location.pathname);
         }
@@ -83,14 +76,14 @@ export class Router {
         }
     
         if (this._currentRoute) {
-                this._currentRoute.leave()
+            this._currentRoute.leave()
+            this._currentRoute = route
         }
     
         route.render()
     }
 
     static go(pathname: string) {
-        debugger
         this.history.pushState({}, "", pathname)
         this._onRoute(pathname)
     }

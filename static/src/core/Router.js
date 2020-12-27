@@ -1,4 +1,3 @@
-import { render } from '../utils/common.utils.js';
 class Route {
     constructor(pathname, view, props) {
         this._pathname = pathname;
@@ -23,11 +22,8 @@ class Route {
     render() {
         if (!this._block) {
             this._block = new this._blockClass();
-            if (this._block)
-                render(this._props.rootQuery, this._block);
-            return;
         }
-        this._block.show();
+        this._block.show(this._props.rootQuery);
     }
 }
 export class Router {
@@ -37,9 +33,7 @@ export class Router {
         return this;
     }
     static start() {
-        debugger;
         window.onpopstate = (event) => {
-            console.log(event);
             const target = event === null || event === void 0 ? void 0 : event.currentTarget;
             this._onRoute(target === null || target === void 0 ? void 0 : target.location.pathname);
         };
@@ -53,11 +47,11 @@ export class Router {
         }
         if (this._currentRoute) {
             this._currentRoute.leave();
+            this._currentRoute = route;
         }
         route.render();
     }
     static go(pathname) {
-        debugger;
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);
     }

@@ -1,4 +1,5 @@
 import { Store, StoreValue } from "../App.types.js"
+import { render } from "../utils/common.utils.js"
 import { EventBus } from "./EventBus.js"
 
 interface IBlockMeta {
@@ -169,10 +170,10 @@ export class Block<ElementType extends HTMLElement = any> {
     }
 
     hide(){
-        console.log('hide block')
+        this._element?.remove()
     }
 
-    show(){
-        console.log('show block')
+    show(rootQuery: string){
+        render(rootQuery, this)
     }
 }

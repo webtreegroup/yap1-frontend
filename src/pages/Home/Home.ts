@@ -5,7 +5,6 @@ import { homeTmplRender } from "./Home.tmpl.js"
 
 export class Home extends Block<HTMLDivElement> {
     constructor(){
-        debugger
         const MainNavigation = new List({ list: NAVIGATION_LINKS })
 
         super(

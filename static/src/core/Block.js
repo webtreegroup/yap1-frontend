@@ -1,3 +1,4 @@
+import { render } from "../utils/common.utils.js";
 import { EventBus } from "./EventBus.js";
 export class Block {
     constructor(tagName, props = {}, children, baseTmplRender) {
@@ -115,10 +116,11 @@ export class Block {
         });
     }
     hide() {
-        console.log('hide block');
+        var _a;
+        (_a = this._element) === null || _a === void 0 ? void 0 : _a.remove();
     }
-    show() {
-        console.log('show block');
+    show(rootQuery) {
+        render(rootQuery, this);
     }
 }
 Block.EVENTS = {

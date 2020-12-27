@@ -1,6 +1,7 @@
 import { Block } from "../../core/Block.js"
 import { ILink } from "./Link.types.js"
 import { linkTmplRender } from "./Link.tmpl.js"
+import { Router } from "../../core/Router.js"
 
 export class Link extends Block<HTMLLinkElement> {
     constructor(props: ILink) {
@@ -12,11 +13,16 @@ export class Link extends Block<HTMLLinkElement> {
 
     createResources({ onClick, href }: ILink) {
         this._element?.setAttribute('href', href || '#')
+        
         function onClickWrapper(e: Event) {
             e.preventDefault()
+
+            if (href) Router.go(href)
+
             onClick?.()
         }
-        if (onClick) this._element?.addEventListener('click', onClickWrapper)
+
+        this._element?.addEventListener('click', onClickWrapper)
     }
 
     render() {
