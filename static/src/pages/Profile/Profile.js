@@ -14,7 +14,7 @@ export class Profile extends Block {
             onClick: () => {
                 EditUserImgPopup.show();
             },
-            text: 'Изменить изображение'
+            title: 'Изменить изображение'
         });
         super('main', { className: 'profile-page' }, { 'ProfileForm': ProfileForm, 'Popups': EditUserImgPopup, 'ToggleEditUserImgPopup': ToggleEditUserImgPopup }, profileTmplRender);
     }

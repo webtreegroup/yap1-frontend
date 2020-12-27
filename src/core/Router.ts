@@ -19,6 +19,10 @@ class Route {
         this._props = props
     }
 
+    get pathname() {
+        return this._pathname
+    }
+
     navigate(pathname: string) {
         if (this.match(pathname)) {
             this._pathname = pathname
@@ -89,6 +93,14 @@ export class Router {
     }
 
     static getRoute(pathname: string) {
-        return this.routes.find(route => route.match(pathname))
+        const route = this.routes.find(route => {
+            const pattern = new RegExp(`^${route.pathname}$`, 'g')
+            const result = pathname.match(pattern)
+            
+            return result
+        })
+        
+
+        return route
     }
 }

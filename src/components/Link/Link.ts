@@ -11,13 +11,13 @@ export class Link extends Block<HTMLLinkElement> {
         )
     }
 
-    createResources({ onClick, href }: ILink) {
-        this._element?.setAttribute('href', href || '#')
+    createResources({ onClick, path }: ILink) {
+        this._element?.setAttribute('href', path || '#')
         
         function onClickWrapper(e: Event) {
             e.preventDefault()
 
-            if (href) Router.go(href)
+            if (path) Router.go(path)
 
             onClick?.()
         }

@@ -5,13 +5,13 @@ export class Link extends Block {
     constructor(props) {
         super("a", props);
     }
-    createResources({ onClick, href }) {
+    createResources({ onClick, path }) {
         var _a, _b;
-        (_a = this._element) === null || _a === void 0 ? void 0 : _a.setAttribute('href', href || '#');
+        (_a = this._element) === null || _a === void 0 ? void 0 : _a.setAttribute('href', path || '#');
         function onClickWrapper(e) {
             e.preventDefault();
-            if (href)
-                Router.go(href);
+            if (path)
+                Router.go(path);
             onClick === null || onClick === void 0 ? void 0 : onClick();
         }
         (_b = this._element) === null || _b === void 0 ? void 0 : _b.addEventListener('click', onClickWrapper);

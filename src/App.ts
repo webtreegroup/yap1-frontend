@@ -1,5 +1,6 @@
 import { Router } from "./core/Router.js"
 import { Chats } from "./pages/Chats/Chats.js"
+import { ErrorPage } from "./pages/Error/Error.js"
 import { Home } from "./pages/Home/Home.js"
 import { Profile } from "./pages/Profile/Profile.js"
 import { ProfileEdit } from "./pages/Profile/ProfileEdit.js"
@@ -15,4 +16,5 @@ Router
     .use("/chats", Chats)
     .use("/signin", Signin)
     .use("/signup", Signup)
+    .use("/.*", ErrorPage)
     .start()

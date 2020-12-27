@@ -4,11 +4,8 @@ import { Link } from "../Link/Link.js"
 
 export class List extends Block<HTMLUListElement> {
     constructor(props: IList) {
-        const mappedLinks = props.list?.map(el => {
-            const link = new Link({ 
-                text: el.title,
-                href: el.path
-            })
+        const mappedLinks = props.list?.map(route => {
+            const link = new Link(route)
 
             const result = new Block('li', {}, [link])
 

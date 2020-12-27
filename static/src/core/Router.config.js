@@ -1,4 +1,5 @@
 export const ROUTES = {
+    HOME: { path: '/', title: 'Главная' },
     ERROR_404: { path: '/404', title: '404' },
     SIGNIN: { path: '/signin', title: 'Вход' },
     SIGNUP: { path: '/signup', title: 'Регистрация' },

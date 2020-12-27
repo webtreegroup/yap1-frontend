@@ -16,7 +16,7 @@ export class Profile extends Block<HTMLDivElement> {
             onClick: () => {
                 EditUserImgPopup.show()
             },
-            text: 'Изменить изображение'
+            title: 'Изменить изображение'
         })
 
         super(

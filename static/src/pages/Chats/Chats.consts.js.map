@@ -1,1 +1,0 @@
-{"version":3,"file":"Chats.consts.js","sourceRoot":"","sources":["../../../../src/pages/Chats/Chats.consts.ts"],"names":[],"mappings":"AAEA,MAAM,CAAC,MAAM,QAAQ,GAAmB;IACpC;QACI,KAAK,EAAE,IAAI;QACX,IAAI,EAAE,OAAO;QACb,IAAI,EAAE,okBAAokB;KAC7kB;IACD;QACI,KAAK,EAAE,IAAI;QACX,IAAI,EAAE,OAAO;QACb,IAAI,EAAE,eAAe;QACrB,KAAK,EAAE,IAAI;KACd;CACJ,CAAA"}

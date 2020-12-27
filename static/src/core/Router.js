@@ -5,6 +5,9 @@ class Route {
         this._block = null;
         this._props = props;
     }
+    get pathname() {
+        return this._pathname;
+    }
     navigate(pathname) {
         if (this.match(pathname)) {
             this._pathname = pathname;
@@ -56,7 +59,12 @@ export class Router {
         this._onRoute(pathname);
     }
     static getRoute(pathname) {
-        return this.routes.find(route => route.match(pathname));
+        const route = this.routes.find(route => {
+            const pattern = new RegExp(`^${route.pathname}$`, 'g');
+            const result = pathname.match(pattern);
+            return result;
+        });
+        return route;
     }
 }
 Router._currentRoute = null;
