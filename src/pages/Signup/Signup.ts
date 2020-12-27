@@ -1,10 +1,18 @@
 import { Popup } from "../../components/Popup/Popup.js"
-import { render } from "../../utils/common.utils.js"
-import { SigninForm } from "./components/SigninForm/SignupForm.js"
+import { Block } from "../../core/Block.js"
+import { SignupForm } from "./components/SigninForm/SignupForm.js"
 
-const SigninPopup = new Popup({
-    title: 'Регистрация',
-    isActive: true
-}, [new SigninForm()])
+export class Signup extends Block<HTMLDivElement> {
+    constructor() {
+        const SignupPopup = new Popup({
+            title: 'Регистрация',
+            isActive: true
+        }, [new SignupForm()])
 
-render(".signin-page", SigninPopup)
+        super(
+            'main', 
+            { className: 'signup-page' }, 
+            [SignupPopup], 
+        )
+    }
+}

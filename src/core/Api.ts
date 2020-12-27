@@ -91,3 +91,18 @@ export class HTTPTransport {
 } 
 
 export const HTTP = new HTTPTransport()
+
+/****************************
+ * TODO: практика
+ ****************************/
+
+// HTTP.get('auth/user')
+// HTTP.get('chats', {
+//     data: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
+// })
+// HTTP.post('auth/signin', {
+//     data: {
+//         login: 'SanchoPansoYo',
+//         password: 'SanchoPansoYo123'
+//     }
+// })

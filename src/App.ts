@@ -5,6 +5,7 @@ import { Profile } from "./pages/Profile/Profile.js"
 import { ProfileEdit } from "./pages/Profile/ProfileEdit.js"
 import { ProfileEditPass } from "./pages/Profile/ProfileEditPass.js"
 import { Signin } from "./pages/Signin/Signin.js"
+import { Signup } from "./pages/Signup/Signup.js"
 
 Router
     .use("/", Home)
@@ -13,4 +14,5 @@ Router
     .use("/profile", Profile)
     .use("/chats", Chats)
     .use("/signin", Signin)
+    .use("/signup", Signup)
     .start()
