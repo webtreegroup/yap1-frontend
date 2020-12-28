@@ -1,5 +1,5 @@
 import { ChatAPI } from "./core/api/chat.api.js"
-import { Router } from "./core/Router.js"
+import { Router } from "./core/router/Router.js"
 import { Chats } from "./pages/Chats/Chats.js"
 import { ChatSingle } from "./pages/Chats/ChatsSingle.js"
 import { ErrorPage } from "./pages/Error/Error.js"

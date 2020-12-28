@@ -1,6 +1,6 @@
 
-import { StoreType } from '../App.types.js'
-import { Block } from './Block.js'
+import { StoreType } from '../../App.types.js'
+import { Block } from '../Block.js'
 
 interface IBlockConstructor {
     new (): Block

@@ -1,6 +1,6 @@
 import { Block } from "../../core/Block.js";
 import { linkTmplRender } from "./Link.tmpl.js";
-import { Router } from "../../core/Router.js";
+import { Router } from "../../core/router/Router.js";
 export class Link extends Block {
     constructor(props) {
         super("a", props);
