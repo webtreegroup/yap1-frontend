@@ -1,5 +1,5 @@
 
-import { Store } from '../App.types.js'
+import { StoreType } from '../App.types.js'
 import { Block } from './Block.js'
 
 interface IBlockConstructor {
@@ -10,9 +10,9 @@ class Route {
     _pathname: string
     _blockClass: IBlockConstructor
     _block: Block | null
-    _props: Store
+    _props: StoreType
 
-    constructor(pathname: string, view: IBlockConstructor, props: Store) {
+    constructor(pathname: string, view: IBlockConstructor, props: StoreType) {
         this._pathname = pathname
         this._blockClass = view
         this._block = null

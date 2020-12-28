@@ -29,7 +29,13 @@ export function queryStringify<T extends object>(data: T): string {
 	return `?${queryArr.join('&')}`
 }
 
-export class HTTPTransport {
+export class HTTP {
+    _path: string = API_BASE_PATH
+
+    constructor(path = ''){
+        this._path += path
+    }
+
     get(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
         return this.request(url, {...options, method: METHOD.GET})
     }
@@ -55,7 +61,7 @@ export class HTTPTransport {
 
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest()
-            const basePath = `${API_BASE_PATH}/${url}`
+            const basePath = `${this._path}${url}`
             const path = method === METHOD.GET 
                 ? `${basePath}${queryStringify(data)}`
                 : basePath
@@ -88,9 +94,7 @@ export class HTTPTransport {
             }
         })
     }
-} 
-
-export const HTTP = new HTTPTransport()
+}
 
 /****************************
  * TODO: практика

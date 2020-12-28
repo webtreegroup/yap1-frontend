@@ -13,6 +13,10 @@ export function queryStringify(data) {
     return `?${queryArr.join('&')}`;
 }
 export class HTTP {
+    constructor(path = '') {
+        this._path = API_BASE_PATH;
+        this._path += path;
+    }
     get(url, options = {}) {
         return this.request(url, Object.assign(Object.assign({}, options), { method: METHOD.GET }));
     }
@@ -29,7 +33,7 @@ export class HTTP {
         const { method, data } = options;
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
-            const basePath = `${API_BASE_PATH}/${url}`;
+            const basePath = `${this._path}${url}`;
             const path = method === METHOD.GET
                 ? `${basePath}${queryStringify(data)}`
                 : basePath;

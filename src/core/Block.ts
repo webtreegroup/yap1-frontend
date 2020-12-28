@@ -1,13 +1,13 @@
-import { Store, StoreValue } from "../App.types.js"
+import { StoreType, StoreValue } from "../App.types.js"
 import { render } from "../utils/common.utils.js"
 import { EventBus } from "./EventBus.js"
 
 interface IBlockMeta {
     tagName: string
-    props: Store
+    props: StoreType
 }
 
-export interface IBaseTemplateRender<T = Store> {
+export interface IBaseTemplateRender<T = StoreType> {
     (props?: T): string
 }
 
@@ -29,11 +29,11 @@ export class Block<ElementType extends HTMLElement = any> {
     _children?: IBlockChildren | Block[]
     _element: ElementType | null = null
     _meta: IBlockMeta
-    props: Store
+    props: StoreType
 
     constructor(
         tagName: string, 
-        props = {} as Store, 
+        props = {} as StoreType, 
         children?: IBlockChildren | Block[], 
         baseTmplRender?: IBaseTemplateRender
     ) {
@@ -58,19 +58,19 @@ export class Block<ElementType extends HTMLElement = any> {
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     }
 
-    init(props: Store) {
+    init(props: StoreType) {
         this._createResources(props)
         this.eventBus.emit(Block.EVENTS.FLOW_CDM)
     }
 
-    _createResources(props: Store) {
+    _createResources(props: StoreType) {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
         if (props.className) this._element?.classList.add(props.className)
         this.createResources(props)
     }
 
-    createResources(_props: Store) {}
+    createResources(_props: StoreType) {}
 
     _createDocumentElement(tagName: string) {
         return document.createElement(tagName) as ElementType
@@ -93,7 +93,7 @@ export class Block<ElementType extends HTMLElement = any> {
         return oldProps !== newProps
     }
 
-    setProps = (nextProps?: Store) => {
+    setProps = (nextProps?: StoreType) => {
         if (!nextProps) return
 
         Object.assign(this.props, nextProps)
@@ -148,7 +148,7 @@ export class Block<ElementType extends HTMLElement = any> {
         return this.element
     }
 
-    _makePropsProxy(props: Store) {
+    _makePropsProxy(props: StoreType) {
         const self = this
 
         return new Proxy(props, {
@@ -157,7 +157,7 @@ export class Block<ElementType extends HTMLElement = any> {
                 return typeof value === "function" ? value.bind(target) : value
             },
             set(target, prop: string, value: StoreValue) {
-                const oldProps: Store = Object.assign({}, self.props)
+                const oldProps: StoreType = Object.assign({}, self.props)
                 target[prop] = value
                 self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value)
 

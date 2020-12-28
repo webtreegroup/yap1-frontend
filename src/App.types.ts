@@ -1,6 +1,6 @@
 export type StoreValue = any
 
-export type Store = {
+export type StoreType = {
     [key: string]: StoreValue
 }
 

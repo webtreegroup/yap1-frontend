@@ -1,4 +1,4 @@
-import { Store } from "../App.types"
+import { StoreType } from "../App.types"
 import { Block } from "../core/Block"
 
 export function render(query: string | HTMLElement | null, block: Block) {
@@ -19,7 +19,7 @@ export function classNames(classes: (string | undefined)[]) {
     return classes.filter(Boolean) as string[]
 }
 
-export function isEqual(firstObject?: Store, secondObject?: Store): boolean {
+export function isEqual(firstObject?: StoreType, secondObject?: StoreType): boolean {
     if (firstObject === null 
         || firstObject === undefined 
         || secondObject === null 
@@ -40,8 +40,8 @@ export function isEqual(firstObject?: Store, secondObject?: Store): boolean {
 
     return secondObjectKeys.every(function (i) { return firstObjectKeys.indexOf(i) !== -1 }) &&
         firstObjectKeys.every(function (i) { 
-            const firstSubObject = <Store>firstObject
-            const secondSubObject = <Store>secondObject
+            const firstSubObject = <StoreType>firstObject
+            const secondSubObject = <StoreType>secondObject
             return isEqual(firstSubObject[i], secondSubObject[i]) 
         })
 }

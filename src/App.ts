@@ -1,3 +1,4 @@
+import { ChatAPI } from "./core/api/chat.api.js"
 import { Router } from "./core/Router.js"
 import { Chats } from "./pages/Chats/Chats.js"
 import { ChatSingle } from "./pages/Chats/ChatsSingle.js"
@@ -20,3 +21,5 @@ Router
     .use("/signup", Signup)
     .use("/.*", ErrorPage)
     .start()
+
+ChatAPI.request()
