@@ -1,4 +1,4 @@
-import { StoreType } from "../../App.types.js"
+import { IState } from "../../App.types.js"
 import { Block, IBaseTemplateRender } from "../../core/Block.js"
 import { IForm } from "./Form.types.js"
 
@@ -14,7 +14,7 @@ export class Form extends Block<HTMLFormElement> {
     handleSubmit(e: Event) {
         e.preventDefault()
         
-        const requestForConsole: StoreType = {}
+        const requestForConsole: IState = {}
         const fieldsWithErrors = this._element?.querySelectorAll('input.error')
         
         if (fieldsWithErrors?.length) {

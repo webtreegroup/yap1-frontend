@@ -1,7 +1,7 @@
-export type StoreValue = any
+export type IStateValue = any
 
-export type StoreType = {
-    [key: string]: StoreValue
+export type IState = {
+    [key: string]: IStateValue
 }
 
 export interface IComponent {

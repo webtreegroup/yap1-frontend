@@ -1,5 +1,5 @@
 
-import { StoreType } from '../../App.types.js'
+import { IState } from '../../App.types.js'
 import { Block } from '../Block.js'
 
 interface IBlockConstructor {
@@ -10,9 +10,9 @@ class Route {
     _pathname: string
     _blockClass: IBlockConstructor
     _block: Block | null
-    _props: StoreType
+    _props: IState
 
-    constructor(pathname: string, view: IBlockConstructor, props: StoreType) {
+    constructor(pathname: string, view: IBlockConstructor, props: IState) {
         this._pathname = pathname
         this._blockClass = view
         this._block = null
@@ -55,7 +55,7 @@ export class Router {
     static routes: Route[] = []
     static _rootQuery: string = '.app'
 
-    static use(pathname: string, block: IBlockConstructor) {
+    static use(pathname: string, block: any) {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 
         this.routes.push(route)

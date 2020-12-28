@@ -1,7 +1,7 @@
-import { StoreValue } from "../../App.types.js"
+import { IStateValue } from "../../App.types.js"
 
 export class BaseAPI {
-    create(_: StoreValue) { 
+    create(_: IStateValue) { 
         throw new Error('Not implemented')
     }
 
@@ -9,11 +9,11 @@ export class BaseAPI {
         throw new Error('Not implemented') 
     }
 
-    update(_: StoreValue) { 
+    update(_: IStateValue) { 
         throw new Error('Not implemented') 
     }
 
-    delete(_: StoreValue) { 
+    delete(_: IStateValue) { 
         throw new Error('Not implemented') 
     }
 }

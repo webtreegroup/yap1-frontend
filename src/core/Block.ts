@@ -1,13 +1,13 @@
-import { StoreType, StoreValue } from "../App.types.js"
+import { IState, IStateValue } from "../App.types.js"
 import { render } from "../utils/common.utils.js"
 import { EventBus } from "./EventBus.js"
 
 interface IBlockMeta {
     tagName: string
-    props: StoreType
+    props: IState
 }
 
-export interface IBaseTemplateRender<T = StoreType> {
+export interface IBaseTemplateRender<T = IState> {
     (props?: T): string
 }
 
@@ -29,11 +29,11 @@ export class Block<ElementType extends HTMLElement = any> {
     _children?: IBlockChildren | Block[]
     _element: ElementType | null = null
     _meta: IBlockMeta
-    props: StoreType
+    props: IState
 
     constructor(
         tagName: string, 
-        props = {} as StoreType, 
+        props = {} as IState, 
         children?: IBlockChildren | Block[], 
         baseTmplRender?: IBaseTemplateRender
     ) {
@@ -58,19 +58,19 @@ export class Block<ElementType extends HTMLElement = any> {
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     }
 
-    init(props: StoreType) {
+    init(props: IState) {
         this._createResources(props)
         this.eventBus.emit(Block.EVENTS.FLOW_CDM)
     }
 
-    _createResources(props: StoreType) {
+    _createResources(props: IState) {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
         if (props.className) this._element?.classList.add(props.className)
         this.createResources(props)
     }
 
-    createResources(_props: StoreType) {}
+    createResources(_props: IState) {}
 
     _createDocumentElement(tagName: string) {
         return document.createElement(tagName) as ElementType
@@ -83,17 +83,17 @@ export class Block<ElementType extends HTMLElement = any> {
 
     componentDidMount() {}
 
-    _componentDidUpdate(oldProps: StoreValue, newProps: StoreValue) {
+    _componentDidUpdate(oldProps: IStateValue, newProps: IStateValue) {
         const response = this.componentDidUpdate(oldProps, newProps)
     
         if (response) this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
     }
 
-    componentDidUpdate(oldProps: StoreValue, newProps: StoreValue) {
+    componentDidUpdate(oldProps: IStateValue, newProps: IStateValue) {
         return oldProps !== newProps
     }
 
-    setProps = (nextProps?: StoreType) => {
+    setProps = (nextProps?: IState) => {
         if (!nextProps) return
 
         Object.assign(this.props, nextProps)
@@ -148,7 +148,7 @@ export class Block<ElementType extends HTMLElement = any> {
         return this.element
     }
 
-    _makePropsProxy(props: StoreType) {
+    _makePropsProxy(props: IState) {
         const self = this
 
         return new Proxy(props, {
@@ -156,8 +156,8 @@ export class Block<ElementType extends HTMLElement = any> {
                 const value = target[prop]
                 return typeof value === "function" ? value.bind(target) : value
             },
-            set(target, prop: string, value: StoreValue) {
-                const oldProps: StoreType = Object.assign({}, self.props)
+            set(target, prop: string, value: IStateValue) {
+                const oldProps: IState = Object.assign({}, self.props)
                 target[prop] = value
                 self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value)
 
