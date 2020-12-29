@@ -13,9 +13,9 @@ export const profileTmplRender = () => `
         <footer class="profile-options__actions">
             <ul>
                 <li data-component="ToggleEditUserImgPopup"></li>
-                <li><a href="./profile-edit.html">Изменить данные</a></li>
-                <li><a href="./profile-edit-pass.html">Изменить пароль</a></li>
-                <li><a href="./login.html"><b>Выйти</b></a></li>
+                <li data-component="ProfileEditLink"></li>
+                <li data-component="ProfileEditPasswordLink"></li>
+                <li data-component="ProfileLogout"></li>
             </ul>
         </footer>
     </main>

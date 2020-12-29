@@ -6,7 +6,7 @@ import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageF
 import { ProfileForm } from "./components/ProfileForm/ProfileForm.js";
 import { profileTmplRender } from "./Profile.tmpl.js";
 export class Profile extends Block {
-    constructor(props) {
+    constructor() {
         const EditUserImgPopup = new Popup({
             title: 'Загрузите файл',
             isClosable: true
@@ -26,12 +26,10 @@ export class Profile extends Block {
             title: 'Изменить пароль'
         });
         const ProfileLogout = new Link({
-            onClick: props === null || props === void 0 ? void 0 : props.onLogout,
+            onClick: () => { console.log('logout'); },
             title: 'Выйти'
         });
-        super('main', {
-            className: 'profile-page',
-        }, {
+        super('main', { className: 'profile-page' }, {
             'ProfileForm': ProfileForm,
             'Popups': EditUserImgPopup,
             'ToggleEditUserImgPopup': ToggleEditUserImgPopup,

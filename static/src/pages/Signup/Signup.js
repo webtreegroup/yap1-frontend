@@ -1,12 +1,13 @@
 import { Popup } from "../../components/Popup/Popup.js";
 import { Block } from "../../core/Block.js";
-import { SignupForm } from "./components/SigninForm/SignupForm.js";
+import { SignupFormContainer } from "./components/SigninForm/SignupFormContainer.js";
 export class Signup extends Block {
     constructor() {
+        const SignupForm = new SignupFormContainer();
         const SignupPopup = new Popup({
             title: 'Регистрация',
             isActive: true
-        }, [new SignupForm()]);
+        }, [SignupForm.createBlock()]);
         super('main', { className: 'signup-page' }, [SignupPopup]);
     }
 }

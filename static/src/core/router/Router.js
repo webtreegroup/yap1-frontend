@@ -24,7 +24,10 @@ class Route {
     render() {
         var _a;
         if (!this._block) {
-            this._block = new this._blockClass();
+            const instance = new this._blockClass();
+            this._block = instance && 'createBlock' in instance
+                ? instance.createBlock()
+                : instance;
         }
         (_a = this._block) === null || _a === void 0 ? void 0 : _a.show(this._props.rootQuery);
     }

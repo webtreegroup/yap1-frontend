@@ -40,7 +40,10 @@ class Route {
 
     render() {
         if (!this._block) {
-            this._block = new this._blockClass()
+            const instance = new this._blockClass()
+            this._block = instance && 'createBlock' in instance 
+                ? instance.createBlock()
+                : instance
         }
 
         this._block?.show(this._props.rootQuery)

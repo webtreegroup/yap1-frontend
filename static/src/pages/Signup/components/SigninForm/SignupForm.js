@@ -9,6 +9,9 @@ export class SignupForm extends Form {
         const BtnSubmit = new Button({ text: 'Зарегистрироваться', btnType: 'submit' });
         super(props, [...controls, BtnSubmit]);
     }
+    onSubmit(request) {
+        this.props.onSignup(request);
+    }
     render() {
         return signupFormTmplRender();
     }

@@ -5,6 +5,8 @@ export class AuthAPI extends BaseAPI {
     static signup(data) {
         return authAPIInstance.post('/signup', { data });
     }
+    // login: 'SanchoPansoYo',
+    // password: 'SanchoPansoYo123'
     static signin(data) {
         return authAPIInstance.post('/signin', { data });
     }

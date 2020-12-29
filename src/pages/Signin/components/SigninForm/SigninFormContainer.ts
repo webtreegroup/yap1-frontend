@@ -4,7 +4,6 @@ import { SigninForm } from "./SigninForm.js"
 export class SigninFormContainer {
     constructor() {
         this.onSignin = this.onSignin.bind(this)
-        AuthAPI.logout()
     }
 
     onSignin(request: ISignin){

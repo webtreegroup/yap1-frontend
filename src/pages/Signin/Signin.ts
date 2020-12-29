@@ -5,6 +5,7 @@ import { SigninFormContainer } from "./components/SigninForm/SigninFormContainer
 export class Signin extends Block<HTMLDivElement> {
     constructor() {
         const SigninForm = new SigninFormContainer()
+        
         const SigninPopup = new Popup({
             title: 'Вход',
             isActive: true
