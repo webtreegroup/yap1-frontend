@@ -15,18 +15,18 @@ class Route {
         }
     }
     leave() {
-        if (this._block) {
-            this._block.hide();
-        }
+        var _a;
+        (_a = this._block) === null || _a === void 0 ? void 0 : _a.hide();
     }
     match(pathname) {
         return pathname === this._pathname;
     }
     render() {
+        var _a;
         if (!this._block) {
             this._block = new this._blockClass();
         }
-        this._block.show(this._props.rootQuery);
+        (_a = this._block) === null || _a === void 0 ? void 0 : _a.show(this._props.rootQuery);
     }
 }
 export class Router {

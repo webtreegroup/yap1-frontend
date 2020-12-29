@@ -44,8 +44,6 @@ export class HTTP {
             xhr.onload = function () {
                 resolve(xhr);
             };
-            xhr.setRequestHeader('Sec-Fetch-Mode', 'cors');
-            xhr.setRequestHeader('Sec-Fetch-Site', 'cross-site');
             xhr.withCredentials = true;
             xhr.timeout = timeout;
             xhr.onabort = reject;

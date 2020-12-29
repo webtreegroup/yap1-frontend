@@ -1,7 +1,7 @@
 import { HTTP } from "./Api.js";
 import { BaseAPI } from "./base.api.js";
 const authAPIInstance = new HTTP('/auth');
-export class ChatAPI extends BaseAPI {
+export class AuthAPI extends BaseAPI {
     static signup(data) {
         return authAPIInstance.post('/signup', { data });
     }

@@ -6,15 +6,19 @@ export class Form extends Block<HTMLFormElement> {
     constructor(props?: IForm, children?: Block[], baseTmplRender?: IBaseTemplateRender){
         super("form", props, children, baseTmplRender)
         
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this._onSubmit = this._onSubmit.bind(this)
 
-        this._element?.addEventListener('submit', this.handleSubmit)
+        this._element?.addEventListener('submit', this._onSubmit)
     }
 
-    handleSubmit(e: Event) {
+    onSubmit(request: IState){
+        console.log(request)
+    }
+
+    _onSubmit(e: Event) {
         e.preventDefault()
         
-        const requestForConsole: IState = {}
+        const request: IState = {}
         const fieldsWithErrors = this._element?.querySelectorAll('input.error')
         
         if (fieldsWithErrors?.length) {
@@ -26,9 +30,9 @@ export class Form extends Block<HTMLFormElement> {
         const formData = new FormData(this._element as HTMLFormElement)
 
         for(const [key, value] of formData.entries()) {
-            requestForConsole[key] = value
+            request[key] = value
         }
 
-        console.log(requestForConsole)
+        this.onSubmit(request)
     }
 }

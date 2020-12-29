@@ -2,8 +2,8 @@
 import { IState } from '../../App.types.js'
 import { Block } from '../Block.js'
 
-interface IBlockConstructor {
-    new (): Block
+export interface IBlockConstructor {
+    new (): any
 }
 
 class Route {
@@ -31,9 +31,7 @@ class Route {
     }
 
     leave() {
-        if (this._block) {
-            this._block.hide()
-        }
+        this._block?.hide()
     }
 
     match(pathname: string) {
@@ -45,7 +43,7 @@ class Route {
             this._block = new this._blockClass()
         }
 
-        this._block.show(this._props.rootQuery)
+        this._block?.show(this._props.rootQuery)
     }
 } 
 
@@ -55,7 +53,7 @@ export class Router {
     static routes: Route[] = []
     static _rootQuery: string = '.app'
 
-    static use(pathname: string, block: any) {
+    static use(pathname: string, block: IBlockConstructor) {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 
         this.routes.push(route)

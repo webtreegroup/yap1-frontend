@@ -3,13 +3,16 @@ export class Form extends Block {
     constructor(props, children, baseTmplRender) {
         var _a;
         super("form", props, children, baseTmplRender);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        (_a = this._element) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', this.handleSubmit);
+        this._onSubmit = this._onSubmit.bind(this);
+        (_a = this._element) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', this._onSubmit);
     }
-    handleSubmit(e) {
+    onSubmit(request) {
+        console.log(request);
+    }
+    _onSubmit(e) {
         var _a;
         e.preventDefault();
-        const requestForConsole = {};
+        const request = {};
         const fieldsWithErrors = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelectorAll('input.error');
         if (fieldsWithErrors === null || fieldsWithErrors === void 0 ? void 0 : fieldsWithErrors.length) {
             alert('Поля заполнены не правильно, проверьте форму еще раз...');
@@ -17,8 +20,8 @@ export class Form extends Block {
         }
         const formData = new FormData(this._element);
         for (const [key, value] of formData.entries()) {
-            requestForConsole[key] = value;
+            request[key] = value;
         }
-        console.log(requestForConsole);
+        this.onSubmit(request);
     }
 }

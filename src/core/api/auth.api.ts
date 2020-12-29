@@ -17,7 +17,7 @@ export interface ISignin {
 
 const authAPIInstance = new HTTP('/auth')
 
-export class ChatAPI extends BaseAPI {
+export class AuthAPI extends BaseAPI {
     static signup(data: ISignup) {
         return authAPIInstance.post('/signup', { data })
     }

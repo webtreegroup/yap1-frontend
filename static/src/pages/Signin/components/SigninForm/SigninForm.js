@@ -9,6 +9,9 @@ export class SigninForm extends Form {
         const BtnSubmit = new Button({ text: 'Авторизоваться', btnType: 'submit' });
         super(props, [...controls, BtnSubmit]);
     }
+    onSubmit(request) {
+        this.props.onSignin(request);
+    }
     render() {
         return loginFormTmplRender();
     }
