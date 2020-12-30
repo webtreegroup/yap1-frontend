@@ -1,8 +1,7 @@
 export const signupFormTmplRender = (): string => {
     return `
-        <div class="popup__footer">
-            <div data-component="children"></div>
-            <a href="./login.html">Войти</a>
+        <div class="popup__footer" data-component="SigninLink">
+            <div data-component="fields"></div>
         </div>    
     `
 }

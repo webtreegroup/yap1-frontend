@@ -1,9 +1,4 @@
-enum METHOD {
-    GET = 'GET',
-    POST = 'POST',
-    PUT = 'PUT',
-    DELETE = 'DELETE'
-}
+import { METHOD } from './api.consts.js'
 
 type HeadersType = {
     [key: string]: string

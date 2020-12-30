@@ -6,6 +6,7 @@ import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageF
 import { ProfileForm } from "./components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
 import { IProfile } from "./Profile.type.js"
+import { ChatsLink } from "./components/ChatsLink/ChatsLink.js"
 
 export class Profile extends Block<HTMLDivElement> {
     constructor(props?: IProfile) {
@@ -23,12 +24,12 @@ export class Profile extends Block<HTMLDivElement> {
 
         const ProfileEditLink = new Link({ 
             path: ROUTES.PROFILE_EDIT.path,
-            title: 'Изменить данные'
+            title: ROUTES.PROFILE_EDIT.title
         })
 
         const ProfileEditPasswordLink = new Link({ 
             path: ROUTES.PROFILE_EDIT_PASS.path,
-            title: 'Изменить пароль'
+            title: ROUTES.PROFILE_EDIT_PASS.title
         })
 
         const ProfileLogout = new Link({ 
@@ -42,12 +43,13 @@ export class Profile extends Block<HTMLDivElement> {
                 className: 'profile-page',
             }, 
             { 
-                'ProfileForm': ProfileForm, 
-                'Popups': EditUserImgPopup, 
-                'ToggleEditUserImgPopup': ToggleEditUserImgPopup,
-                'ProfileEditLink': ProfileEditLink,
-                'ProfileEditPasswordLink': ProfileEditPasswordLink,
-                'ProfileLogout': ProfileLogout,
+                ProfileForm, 
+                EditUserImgPopup, 
+                ToggleEditUserImgPopup,
+                ProfileEditLink,
+                ProfileEditPasswordLink,
+                ProfileLogout,
+                ChatsLink
             }, 
             profileTmplRender
         )

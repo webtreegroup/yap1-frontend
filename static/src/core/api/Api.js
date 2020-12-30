@@ -1,10 +1,4 @@
-var METHOD;
-(function (METHOD) {
-    METHOD["GET"] = "GET";
-    METHOD["POST"] = "POST";
-    METHOD["PUT"] = "PUT";
-    METHOD["DELETE"] = "DELETE";
-})(METHOD || (METHOD = {}));
+import { METHOD } from './api.consts.js';
 const API_BASE_PATH = 'https://ya-praktikum.tech/api/v2';
 export function queryStringify(data) {
     if (!data)

@@ -5,6 +5,7 @@ import { ROUTES } from "../../core/router/Router.config.js";
 import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageForm.js";
 import { ProfileForm } from "./components/ProfileForm/ProfileForm.js";
 import { profileTmplRender } from "./Profile.tmpl.js";
+import { ChatsLink } from "./components/ChatsLink/ChatsLink.js";
 export class Profile extends Block {
     constructor(props) {
         const EditUserImgPopup = new Popup({
@@ -19,11 +20,11 @@ export class Profile extends Block {
         });
         const ProfileEditLink = new Link({
             path: ROUTES.PROFILE_EDIT.path,
-            title: 'Изменить данные'
+            title: ROUTES.PROFILE_EDIT.title
         });
         const ProfileEditPasswordLink = new Link({
             path: ROUTES.PROFILE_EDIT_PASS.path,
-            title: 'Изменить пароль'
+            title: ROUTES.PROFILE_EDIT_PASS.title
         });
         const ProfileLogout = new Link({
             onClick: props === null || props === void 0 ? void 0 : props.onLogout,
@@ -32,12 +33,13 @@ export class Profile extends Block {
         super('main', {
             className: 'profile-page',
         }, {
-            'ProfileForm': ProfileForm,
-            'Popups': EditUserImgPopup,
-            'ToggleEditUserImgPopup': ToggleEditUserImgPopup,
-            'ProfileEditLink': ProfileEditLink,
-            'ProfileEditPasswordLink': ProfileEditPasswordLink,
-            'ProfileLogout': ProfileLogout,
+            ProfileForm,
+            EditUserImgPopup,
+            ToggleEditUserImgPopup,
+            ProfileEditLink,
+            ProfileEditPasswordLink,
+            ProfileLogout,
+            ChatsLink
         }, profileTmplRender);
     }
 }
