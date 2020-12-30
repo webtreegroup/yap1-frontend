@@ -1,10 +1,12 @@
-import { IState, IStateValue } from "../App.types.js"
+import { IStateValue } from "../../App.types.js"
+import { loaderReducer } from "./reducers.js"
+import { INITIAL_STATE, IStoreState } from "./store.config.js"
 
 interface IReducers {
     [key: string]: Function
 }
 
-interface IAction {
+export interface IAction {
     type: string
     payload?: IStateValue
 }
@@ -12,9 +14,9 @@ interface IAction {
 export class Store {
     private subscribers: Function[]
     private reducers: IReducers
-    private state: IState
+    private state: IStoreState
 
-    constructor(reducers = {}, initialState = {}) {
+    constructor(reducers = {}, initialState = {} as IStoreState) {
         this.subscribers = []
         this.reducers = reducers
         this.state = this.reduce(initialState, {})
@@ -38,8 +40,8 @@ export class Store {
         this.subscribers.forEach(fn => fn(this.value))
     }
 
-    private reduce(state: IState, action: IAction | {}) {
-        const newState: IState = {}
+    private reduce(state: IStoreState, action: IAction | {}) {
+        const newState = {} as IStoreState
 
         for (const prop in this.reducers) {
             newState[prop] = this.reducers[prop](state[prop], action)
@@ -64,6 +66,7 @@ function counterReducer(state: any, action: IAction) {
 
 const reducers = {
     counter: counterReducer,
+    loader: loaderReducer
 }
 
-export const store = new Store(reducers, { counter: 0 })
+export const store = new Store(reducers, INITIAL_STATE)

@@ -3,7 +3,7 @@ import { classNames } from "../../utils/common.utils.js"
 import { Link } from "../Link/Link.js"
 import { IPopup } from "./Popup.types.js"
 import { popupTmplRender } from "./Popup.tmpl.js"
-import { store } from "../../core/Store.js"
+import { store } from "../../core/store/store.js"
 
 export class Popup extends Block<HTMLDivElement> {
     constructor(props: IPopup, children?: Block[]){

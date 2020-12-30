@@ -1,5 +1,6 @@
 import { IState } from "../../App.types.js"
 import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/Block.js"
+import { store } from "../../core/store/store.js"
 import { IForm } from "./Form.types.js"
 
 export class Form extends Block<HTMLFormElement> {
@@ -9,6 +10,10 @@ export class Form extends Block<HTMLFormElement> {
         this._onSubmit = this._onSubmit.bind(this)
 
         this._element?.addEventListener('submit', this._onSubmit)
+
+        store.subscribe(() => {
+            this.setProps(store.value.loader)
+        })
     }
 
     onSubmit(request: IState){
