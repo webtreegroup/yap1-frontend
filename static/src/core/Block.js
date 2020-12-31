@@ -1,4 +1,4 @@
-import { render } from "../utils/common.utils.js";
+import { isEqual, render } from "../utils/common.utils.js";
 import { EventBus } from "./EventBus.js";
 export class Block {
     constructor(tagName, props = {}, children, baseTmplRender) {
@@ -52,7 +52,7 @@ export class Block {
             this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
     componentDidUpdate(oldProps, newProps) {
-        return oldProps !== newProps;
+        return !isEqual(oldProps, newProps);
     }
     get element() {
         return this._element;
@@ -107,7 +107,7 @@ export class Block {
             set(target, prop, value) {
                 const oldProps = Object.assign({}, self.props);
                 target[prop] = value;
-                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value);
+                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
                 return true;
             },
             deleteProperty() {

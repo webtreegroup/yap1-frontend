@@ -28,19 +28,7 @@ export class Store {
         return newState;
     }
 }
-export function incrementCounter() {
-    store.dispatch({
-        type: 'INCREMENT'
-    });
-}
-function counterReducer(state, action) {
-    if (action.type === 'INCREMENT') {
-        state = state + 1;
-    }
-    return state;
-}
 const reducers = {
-    counter: counterReducer,
     loader: loaderReducer
 };
 export const store = new Store(reducers, INITIAL_STATE);

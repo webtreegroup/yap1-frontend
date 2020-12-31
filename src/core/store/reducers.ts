@@ -7,18 +7,12 @@ export function loaderReducer(state: IStoreState, action: IAction) {
         case LOADER_ON:
             return {
                 ...state,
-                loader: {
-                    ...state.loader,
-                    active: true
-                }
+                active: true
             }
         case LOADER_OFF:
             return {
                 ...state,
-                loader: {
-                    ...state.loader,
-                    active: false
-                }
+                active: false
             }
     }
 

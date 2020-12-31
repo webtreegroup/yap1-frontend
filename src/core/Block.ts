@@ -1,5 +1,5 @@
 import { IState, IStateValue } from "../App.types.js"
-import { render } from "../utils/common.utils.js"
+import { isEqual, render } from "../utils/common.utils.js"
 import { EventBus } from "./EventBus.js"
 
 interface IBlockMeta {
@@ -90,7 +90,7 @@ export class Block<ElementType extends HTMLElement = any> {
     }
 
     componentDidUpdate(oldProps: IStateValue, newProps: IStateValue) {
-        return oldProps !== newProps
+        return !isEqual(oldProps, newProps)
     }
 
     setProps = (nextProps?: IState) => {
@@ -159,7 +159,7 @@ export class Block<ElementType extends HTMLElement = any> {
             set(target, prop: string, value: IStateValue) {
                 const oldProps: IState = Object.assign({}, self.props)
                 target[prop] = value
-                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value)
+                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target)
 
                 return true
             },

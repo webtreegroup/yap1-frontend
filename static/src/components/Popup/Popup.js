@@ -2,16 +2,12 @@ import { Block } from "../../core/Block.js";
 import { classNames } from "../../utils/common.utils.js";
 import { Link } from "../Link/Link.js";
 import { popupTmplRender } from "./Popup.tmpl.js";
-import { store } from "../../core/store/store.js";
 export class Popup extends Block {
     constructor(props, children) {
         super("div", props, children);
         this.show = this.show.bind(this);
         this.hide = this.hide.bind(this);
         this.toggle = this.toggle.bind(this);
-        store.subscribe(() => {
-            this.setProps(store.value);
-        });
     }
     show() {
         var _a;

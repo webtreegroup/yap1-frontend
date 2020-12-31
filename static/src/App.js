@@ -1,5 +1,4 @@
 import { Router } from "./core/router/Router.js";
-import { incrementCounter } from "./core/store/store.js";
 import { Chats } from "./pages/Chats/Chats.js";
 import { ChatSingle } from "./pages/Chats/ChatsSingle.js";
 import { ErrorPage } from "./pages/Error/Error.js";
@@ -20,6 +19,3 @@ Router
     .use("/signup", Signup)
     .use("/.*", ErrorPage)
     .start();
-setTimeout(() => {
-    incrementCounter();
-}, 2000);

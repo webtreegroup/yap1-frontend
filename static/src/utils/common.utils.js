@@ -11,36 +11,36 @@ export function render(query, block) {
 export function classNames(classes) {
     return classes.filter(Boolean);
 }
-export function isEqual(firstObject, secondObject) {
-    if (firstObject === null
-        || firstObject === undefined
-        || secondObject === null
-        || secondObject === undefined)
-        return firstObject === secondObject;
-    if (firstObject.constructor !== secondObject.constructor)
+export function isEqual(firstArg, secondArg) {
+    if (firstArg === null
+        || firstArg === undefined
+        || secondArg === null
+        || secondArg === undefined)
+        return firstArg === secondArg;
+    if (firstArg.constructor !== secondArg.constructor)
         return false;
-    if (firstObject instanceof Function)
-        return firstObject === secondObject;
-    if (firstObject instanceof RegExp)
-        return firstObject === secondObject;
-    if (firstObject === secondObject
-        || firstObject.valueOf() === secondObject.valueOf())
+    if (firstArg instanceof Function)
+        return firstArg === secondArg;
+    if (firstArg instanceof RegExp)
+        return firstArg === secondArg;
+    if (firstArg === secondArg
+        || firstArg.valueOf() === secondArg.valueOf())
         return true;
-    if (Array.isArray(firstObject)
-        && firstObject.length !== secondObject.length)
+    if (Array.isArray(firstArg)
+        && firstArg.length !== secondArg.length)
         return false;
-    if (firstObject instanceof Date)
+    if (firstArg instanceof Date)
         return false;
-    if (!(firstObject instanceof Object))
+    if (!(firstArg instanceof Object))
         return false;
-    if (!(secondObject instanceof Object))
+    if (!(secondArg instanceof Object))
         return false;
-    const firstObjectKeys = Object.keys(firstObject);
-    const secondObjectKeys = Object.keys(secondObject);
+    const firstObjectKeys = Object.keys(firstArg);
+    const secondObjectKeys = Object.keys(secondArg);
     return secondObjectKeys.every(function (i) { return firstObjectKeys.indexOf(i) !== -1; }) &&
         firstObjectKeys.every(function (i) {
-            const firstSubObject = firstObject;
-            const secondSubObject = secondObject;
+            const firstSubObject = firstArg;
+            const secondSubObject = secondArg;
             return isEqual(firstSubObject[i], secondSubObject[i]);
         });
 }
