@@ -15,8 +15,8 @@ export class ChatsAside extends Block {
             `,
         });
         super('aside', props, {
-            'chats': chats,
-            'ProfileLink': ProfileLink
+            chats,
+            ProfileLink
         });
     }
     createResources() {

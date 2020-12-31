@@ -3,7 +3,7 @@ import { Popup } from "../../components/Popup/Popup.js"
 import { Block } from "../../core/Block.js"
 import { ROUTES } from "../../core/router/Router.config.js"
 import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageForm.js"
-import { ProfileForm } from "./components/ProfileForm/ProfileForm.js"
+import ProfileForm from "./components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
 import { IProfile } from "./Profile.type.js"
 import { ChatsLink } from "./components/ChatsLink/ChatsLink.js"
@@ -39,7 +39,8 @@ export class Profile extends Block<HTMLDivElement> {
 
         super(
             'main', 
-            { 
+            {
+                ...props,
                 className: 'profile-page',
             }, 
             { 
@@ -53,5 +54,9 @@ export class Profile extends Block<HTMLDivElement> {
             }, 
             profileTmplRender
         )
+    }
+
+    componentDidMount(){
+        this.props?.onLoadProfile()
     }
 }

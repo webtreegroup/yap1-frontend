@@ -9,9 +9,13 @@ export class ProfileContainer {
     onLogout() {
         AuthAPI.logout().then(() => Router.go(ROUTES.SIGNIN.path));
     }
+    onLoadProfile() {
+        AuthAPI.getCurrentUserInfo();
+    }
     createBlock() {
         return new Profile({
-            onLogout: this.onLogout
+            onLogout: this.onLogout,
+            onLoadProfile: this.onLoadProfile,
         });
     }
 }

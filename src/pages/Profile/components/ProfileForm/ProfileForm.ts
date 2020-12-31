@@ -2,10 +2,16 @@ import { InputControl } from "../../../../components/InputControl/InputControl.j
 import { Block } from "../../../../core/Block.js"
 import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js"
 
-const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl({ ...el, disabled: true, isTouched: true }))
+class ProfileForm extends Block {
+    constructor() {
+        const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl({ ...el, disabled: true, isTouched: true }))
 
-export const ProfileForm = new Block(
-    'div', 
-    { className: 'profile-fields' }, 
-    fields, 
-)
+        super(
+            'div', 
+            { className: 'profile-fields' }, 
+            fields, 
+        )
+    }
+}
+
+export default new ProfileForm()

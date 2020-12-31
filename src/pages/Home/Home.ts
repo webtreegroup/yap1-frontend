@@ -10,7 +10,7 @@ export class Home extends Block<HTMLDivElement> {
         super(
             'main', 
             { className: 'index-page' }, 
-            { 'MainNavigation': MainNavigation }, 
+            { MainNavigation }, 
             homeTmplRender
         )
     }
