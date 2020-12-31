@@ -5,15 +5,15 @@ import { ChatSingle } from "./pages/Chats/ChatsSingle.js"
 import { ErrorPage } from "./pages/Error/Error.js"
 import { Home } from "./pages/Home/Home.js"
 import { ProfileContainer } from "./pages/Profile/ProfileContainer.js"
-import { ProfileEdit } from "./pages/Profile/ProfileEdit.js"
 import { ProfileEditPass } from "./pages/Profile/ProfileEditPass.js"
 import { Signin } from "./pages/Signin/Signin.js"
 import { Signup } from "./pages/Signup/Signup.js"
+import { ProfileEditContainer } from "./pages/Profile/ProfileEditContainer.js"
 
 Router
     .use("/", Home)
     .use("/profile/edit-pass", ProfileEditPass)
-    .use("/profile/edit", ProfileEdit)
+    .use("/profile/edit", ProfileEditContainer)
     .use("/profile", ProfileContainer)
     .use("/chats/[0-9]+", ChatSingle)
     .use("/chats", Chats)

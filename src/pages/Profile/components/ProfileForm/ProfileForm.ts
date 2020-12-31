@@ -22,7 +22,7 @@ class ProfileForm extends Block {
     
             fields.forEach(field => {
                 const fieldName: keyof ICurrentUserInfo = field.props.name
-                field.setProps({ value: fieldsValues[fieldName] })
+                field.setProps({ value: fieldsValues[fieldName] || '-' })
             })
         })
     }

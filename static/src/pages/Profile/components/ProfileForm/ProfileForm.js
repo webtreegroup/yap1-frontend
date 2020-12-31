@@ -13,7 +13,7 @@ class ProfileForm extends Block {
             const fieldsValues = store.value.currentUser;
             fields.forEach(field => {
                 const fieldName = field.props.name;
-                field.setProps({ value: fieldsValues[fieldName] });
+                field.setProps({ value: fieldsValues[fieldName] || '-' });
             });
         });
     }

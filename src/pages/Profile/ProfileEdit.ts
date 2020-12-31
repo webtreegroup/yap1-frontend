@@ -1,18 +1,26 @@
 import { Block } from "../../core/Block.js"
 import { ChatsLink } from "./components/ChatsLink/ChatsLink.js"
-import { ProfileFormEdit } from "./components/ProfileForm/ProfileFormEdit.js"
+import ProfileFormEdit from "./components/ProfileForm/ProfileFormEdit.js"
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js"
+import { IProfileEdit } from "./ProfileEdit.type.js"
 
 export class ProfileEdit extends Block<HTMLDivElement> {
-    constructor() {        
+    constructor(props?: IProfileEdit) {        
         super(
             'main', 
-            { className: 'profile-page' }, 
+            { 
+                ...props,
+                className: 'profile-page'
+            }, 
             {
                 ChatsLink,
                 ProfileFormEdit
             }, 
             profileEditTmplRender
         )
+    }
+
+    componentDidMount(){
+        this.props?.onLoadProfile()
     }
 }
