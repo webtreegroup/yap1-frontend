@@ -1,4 +1,4 @@
-import { currentUserReducer, loaderReducer } from "./reducers.js";
+import { reducers } from "./reducers.js";
 import { INITIAL_STATE } from "./store.config.js";
 export class Store {
     constructor(reducers = {}, initialState = {}) {
@@ -28,8 +28,4 @@ export class Store {
         return newState;
     }
 }
-const reducers = {
-    loader: loaderReducer,
-    currentUser: currentUserReducer
-};
 export const store = new Store(reducers, INITIAL_STATE);

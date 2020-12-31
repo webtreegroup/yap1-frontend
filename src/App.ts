@@ -1,3 +1,4 @@
+import { store } from "./core/store/store.js"
 import { Router } from "./core/router/Router.js"
 import { Chats } from "./pages/Chats/Chats.js"
 import { ChatSingle } from "./pages/Chats/ChatsSingle.js"
@@ -20,3 +21,5 @@ Router
     .use("/signup", Signup)
     .use("/.*", ErrorPage)
     .start()
+
+console.log(store.value)

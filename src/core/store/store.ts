@@ -1,5 +1,5 @@
+import { reducers } from "./reducers.js"
 import { IStateValue } from "../../App.types.js"
-import { currentUserReducer, loaderReducer } from "./reducers.js"
 import { INITIAL_STATE, IStoreState } from "./store.config.js"
 
 interface IReducers {
@@ -49,11 +49,6 @@ export class Store {
 
         return newState
     }
-}
-
-const reducers = {
-    loader: loaderReducer,
-    currentUser: currentUserReducer
 }
 
 export const store = new Store(reducers, INITIAL_STATE)

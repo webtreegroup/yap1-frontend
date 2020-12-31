@@ -15,3 +15,7 @@ export function currentUserReducer(state, action) {
     }
     return state;
 }
+export const reducers = {
+    loader: loaderReducer,
+    currentUser: currentUserReducer
+};

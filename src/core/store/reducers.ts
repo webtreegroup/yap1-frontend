@@ -30,3 +30,8 @@ export function currentUserReducer(state: IStoreState, action: IAction) {
 
     return state
 }
+
+export const reducers = {
+    loader: loaderReducer,
+    currentUser: currentUserReducer
+}
