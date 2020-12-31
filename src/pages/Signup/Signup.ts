@@ -1,4 +1,4 @@
-import Loader from "../../components/Loader/Loader.js"
+import { Loader } from "../../components/Loader/Loader.js"
 import { Popup } from "../../components/Popup/Popup.js"
 import { Block } from "../../core/Block.js"
 import { SignupFormContainer } from "./components/SigninForm/SignupFormContainer.js"
@@ -15,7 +15,7 @@ export class Signup extends Block<HTMLDivElement> {
         super(
             'main', 
             { className: 'signup-page' }, 
-            [SignupPopup, Loader], 
+            [SignupPopup, new Loader()], 
         )
     }
 }

@@ -1,12 +1,15 @@
 import { Link } from "../../../components/Link/Link.js"
+import { Loader } from "../../../components/Loader/Loader.js"
 import { Block } from "../../../core/Block.js"
 import { ROUTES } from "../../../core/router/Router.config.js"
-import ProfileFormEdit from "./components/ProfileFormEdit/ProfileFormEdit.js"
+import { ProfileEditFormContainer } from "./components/ProfileEditForm/ProfileEditFormContainer.js"
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js"
 import { IProfileEdit } from "./ProfileEdit.type.js"
 
 export class ProfileEdit extends Block<HTMLDivElement> {
     constructor(props?: IProfileEdit) {  
+        const ProfileEditForm = new ProfileEditFormContainer()
+        const LoaderComponent = new Loader()
         const ChatsLink = new Link({ 
             path: ROUTES.CHATS.path,
             title: `
@@ -22,7 +25,8 @@ export class ProfileEdit extends Block<HTMLDivElement> {
             }, 
             {
                 ChatsLink,
-                ProfileFormEdit
+                ProfileEditForm: ProfileEditForm.createBlock(),
+                LoaderComponent
             }, 
             profileEditTmplRender
         )

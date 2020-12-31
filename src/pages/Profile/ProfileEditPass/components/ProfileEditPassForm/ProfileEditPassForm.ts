@@ -7,7 +7,7 @@ import { IProfileEditPass } from "./ProfileEditPassForm.types.js"
 
 export class ProfileEditPassForm extends Form {
     constructor(props?: IProfileEditPass){
-        const fields = PROFILE_FORM_PASS_CONTROLS.map(el => new InputControl({ ...el, isTouched: true }))
+        const fields = PROFILE_FORM_PASS_CONTROLS.map(el => new InputControl(el))
         const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' })
 
         super(
@@ -20,6 +20,6 @@ export class ProfileEditPassForm extends Form {
     }
 
     onSubmit(request: IState){
-        this.props.onSignin(request)
+        this.props.onProfilePasswordChange(request)
     }
 }

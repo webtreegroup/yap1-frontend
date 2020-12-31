@@ -1,4 +1,4 @@
-import Loader from "../../components/Loader/Loader.js";
+import { Loader } from "../../components/Loader/Loader.js";
 import { Popup } from "../../components/Popup/Popup.js";
 import { Block } from "../../core/Block.js";
 import { ROUTES } from "../../core/router/Router.config.js";
@@ -10,6 +10,6 @@ export class Signin extends Block {
             title: ROUTES.SIGNIN.title,
             isActive: true
         }, [SigninForm.createBlock()]);
-        super('main', { className: 'signin-page' }, [SigninPopup, Loader]);
+        super('main', { className: 'signin-page' }, [SigninPopup, new Loader()]);
     }
 }

@@ -4,7 +4,7 @@ import { store } from "../../core/store/store.js"
 import { ILoader } from "./Loader.types.js"
 import { isEqual } from "../../utils/common.utils.js"
 
-class Loader extends Block<HTMLLinkElement> {
+export class Loader extends Block<HTMLLinkElement> {
     constructor() {
         super(
             "div", 
@@ -32,5 +32,3 @@ class Loader extends Block<HTMLLinkElement> {
         return loaderTmplRender(this.props)
     }
 }
-
-export default new Loader()

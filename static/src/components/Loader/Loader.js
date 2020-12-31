@@ -2,7 +2,7 @@ import { Block } from "../../core/Block.js";
 import { loaderTmplRender } from "./Loader.tmpl.js";
 import { store } from "../../core/store/store.js";
 import { isEqual } from "../../utils/common.utils.js";
-class Loader extends Block {
+export class Loader extends Block {
     constructor() {
         super("div", { className: 'loader' });
         store.subscribe(() => {
@@ -26,4 +26,3 @@ class Loader extends Block {
         return loaderTmplRender(this.props);
     }
 }
-export default new Loader();

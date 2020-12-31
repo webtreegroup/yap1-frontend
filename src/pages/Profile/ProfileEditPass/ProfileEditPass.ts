@@ -1,4 +1,6 @@
+
 import { Link } from "../../../components/Link/Link.js"
+import { Loader } from "../../../components/Loader/Loader.js"
 import { Block } from "../../../core/Block.js"
 import { ROUTES } from "../../../core/router/Router.config.js"
 import { ProfileEditPassFormContainer } from "./components/ProfileEditPassForm/ProfileEditPassFormContainer.js"
@@ -7,6 +9,7 @@ import { profileEditPassTmplRender } from "./ProfileEditPass.tmpl.js"
 export class ProfileEditPass extends Block<HTMLDivElement> {
     constructor() {
         const ProfileEditPassForm = new ProfileEditPassFormContainer()
+        const LoaderComponent = new Loader()
         const ChatsLink = new Link({ 
             path: ROUTES.CHATS.path,
             title: `
@@ -19,7 +22,8 @@ export class ProfileEditPass extends Block<HTMLDivElement> {
             { className: 'profile-page' }, 
             {
                 ChatsLink,
-                ProfileEditPassForm: ProfileEditPassForm.createBlock()
+                ProfileEditPassForm: ProfileEditPassForm.createBlock(),
+                LoaderComponent
             },
             profileEditPassTmplRender
         )

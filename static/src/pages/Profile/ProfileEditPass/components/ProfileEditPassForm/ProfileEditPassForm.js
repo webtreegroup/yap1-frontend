@@ -4,11 +4,11 @@ import { InputControl } from "../../../../../components/InputControl/InputContro
 import { PROFILE_FORM_PASS_CONTROLS } from "./ProfileEditPassForm.consts.js";
 export class ProfileEditPassForm extends Form {
     constructor(props) {
-        const fields = PROFILE_FORM_PASS_CONTROLS.map(el => new InputControl(Object.assign(Object.assign({}, el), { isTouched: true })));
+        const fields = PROFILE_FORM_PASS_CONTROLS.map(el => new InputControl(el));
         const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' });
         super(Object.assign(Object.assign({}, props), { className: 'profile-fields' }), [...fields, BtnSubmit]);
     }
     onSubmit(request) {
-        this.props.onSignin(request);
+        this.props.onProfilePasswordChange(request);
     }
 }

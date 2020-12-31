@@ -1,4 +1,4 @@
-import Loader from "../../components/Loader/Loader.js";
+import { Loader } from "../../components/Loader/Loader.js";
 import { Popup } from "../../components/Popup/Popup.js";
 import { Block } from "../../core/Block.js";
 import { SignupFormContainer } from "./components/SigninForm/SignupFormContainer.js";
@@ -9,6 +9,6 @@ export class Signup extends Block {
             title: 'Регистрация',
             isActive: true
         }, [SignupForm.createBlock()]);
-        super('main', { className: 'signup-page' }, [SignupPopup, Loader]);
+        super('main', { className: 'signup-page' }, [SignupPopup, new Loader()]);
     }
 }
