@@ -1,5 +1,5 @@
-import { Button } from "../../../../components/Button/Button.js"
-import { Form } from "../../../../components/Form/Form.js"
+import { Button } from "../../../../../components/Button/Button.js"
+import { Form } from "../../../../../components/Form/Form.js"
 
 const BtnSubmit = new Button({ text: 'Поменять', btnType: 'submit' })
 

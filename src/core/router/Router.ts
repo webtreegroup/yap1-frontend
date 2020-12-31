@@ -66,6 +66,7 @@ export class Router {
 
     static start(_?: IState) {
         window.onpopstate = (event: PopStateEvent) => {
+            debugger
             const target = event?.currentTarget as Window
             this._onRoute(target?.location.pathname);
         }

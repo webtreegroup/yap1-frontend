@@ -1,10 +1,10 @@
-import { Button } from "../../../../components/Button/Button.js"
-import { Form } from "../../../../components/Form/Form.js"
-import { InputControl } from "../../../../components/InputControl/InputControl.js"
-import { ICurrentUserInfo } from "../../../../core/api/auth.api.js"
-import { Block } from "../../../../core/Block.js"
-import { store } from "../../../../core/store/store.js"
-import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js"
+import { Button } from "../../../../../components/Button/Button.js"
+import { Form } from "../../../../../components/Form/Form.js"
+import { InputControl } from "../../../../../components/InputControl/InputControl.js"
+import { ICurrentUserInfo } from "../../../../../core/api/auth.api.js"
+import { Block } from "../../../../../core/Block.js"
+import { store } from "../../../../../core/store/store.js"
+import { PROFILE_FORM_CONTROLS } from "../../../ProfileMain/components/ProfileForm/ProfileForm.config.js"
 
 class ProfileFormEdit extends Form {
     constructor() {

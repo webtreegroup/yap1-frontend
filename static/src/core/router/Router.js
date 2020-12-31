@@ -40,6 +40,7 @@ export class Router {
     }
     static start(_) {
         window.onpopstate = (event) => {
+            debugger;
             const target = event === null || event === void 0 ? void 0 : event.currentTarget;
             this._onRoute(target === null || target === void 0 ? void 0 : target.location.pathname);
         };

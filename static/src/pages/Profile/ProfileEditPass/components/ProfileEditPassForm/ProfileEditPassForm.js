@@ -1,6 +1,6 @@
-import { Button } from "../../../../components/Button/Button.js";
-import { Form } from "../../../../components/Form/Form.js";
-import { InputControl } from "../../../../components/InputControl/InputControl.js";
+import { Button } from "../../../../../components/Button/Button.js";
+import { Form } from "../../../../../components/Form/Form.js";
+import { InputControl } from "../../../../../components/InputControl/InputControl.js";
 import { PROFILE_FORM_PASS_CONTROLS } from "./ProfileEditPassForm.consts.js";
 export class ProfileEditPassForm extends Form {
     constructor(props) {
