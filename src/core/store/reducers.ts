@@ -1,4 +1,4 @@
-import { LOADER_OFF, LOADER_ON } from "./actions.js"
+import { LOADER_OFF, LOADER_ON, PROFILE_LOAD } from "./actions.js"
 import { IStoreState } from "./store.config.js"
 import { IAction } from "./store.js"
 
@@ -13,6 +13,18 @@ export function loaderReducer(state: IStoreState, action: IAction) {
             return {
                 ...state,
                 active: false
+            }
+    }
+
+    return state
+}
+
+export function currentUserReducer(state: IStoreState, action: IAction) {
+    switch (action.type) {
+        case PROFILE_LOAD:
+            return {
+                ...state,
+                ...action.payload
             }
     }
 

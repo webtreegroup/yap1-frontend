@@ -15,6 +15,17 @@ export interface ISignin {
     password: string
 }
 
+export interface ICurrentUserInfo {   
+    id: number
+    first_name: string
+    second_name: string
+    display_name: string
+    login: string
+    email: string
+    phone: string
+    avatar: string
+}
+
 const authAPIInstance = new HTTP('/auth')
 
 export class AuthAPI extends BaseAPI {
@@ -27,7 +38,7 @@ export class AuthAPI extends BaseAPI {
     }
 
     static getCurrentUserInfo() {
-        return authAPIInstance.get('/user')
+        return authAPIInstance.get<string>('/user')
     }
 
     static logout() {

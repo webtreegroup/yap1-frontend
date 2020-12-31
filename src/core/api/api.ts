@@ -13,6 +13,10 @@ type OptionsType = {
 
 type OptionsWithoutMethodType = Omit<OptionsType, 'method'>
 
+interface IResponse<T> extends Omit<XMLHttpRequest, 'response'> {
+    response: T
+}
+
 const API_BASE_PATH = 'https://ya-praktikum.tech/api/v2'
 
 export function queryStringify<T extends object>(data: T): string {
@@ -31,30 +35,30 @@ export class HTTP {
         this._path += path
     }
 
-    get(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
-        return this.request(url, {...options, method: METHOD.GET})
+    get<T = any>(url: string, options: OptionsWithoutMethodType = {}) {
+        return this.request<T>(url, {...options, method: METHOD.GET})
     }
 
-    post(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
-        return this.request(url, {...options, method: METHOD.POST})
+    post<T = any>(url: string, options: OptionsWithoutMethodType = {}) {
+        return this.request<T>(url, {...options, method: METHOD.POST})
     }
 
-    put(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
-        return this.request(url, {...options, method: METHOD.PUT})
+    put<T = any>(url: string, options: OptionsWithoutMethodType = {}) {
+        return this.request<T>(url, {...options, method: METHOD.PUT})
     }
 
-    delete(url: string, options: OptionsWithoutMethodType = {}): Promise<XMLHttpRequest> {
-        return this.request(url, {...options, method: METHOD.DELETE})
+    delete<T = any>(url: string, options: OptionsWithoutMethodType = {}) {
+        return this.request<T>(url, {...options, method: METHOD.DELETE})
     }
 
-    request(
+    request<T>(
         url: string, 
         options: OptionsType = { method: METHOD.GET }, 
         timeout = 5000
-    ): Promise<XMLHttpRequest> {
+    ): Promise<IResponse<T>> {
         const {method, data} = options
 
-        return new Promise((resolve, reject) => {
+        return new Promise<IResponse<T>>((resolve, reject) => {
             const xhr = new XMLHttpRequest()
             const basePath = `${this._path}${url}`
             const path = method === METHOD.GET 

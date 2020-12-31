@@ -1,7 +1,8 @@
 
-import { AuthAPI } from "../../core/api/auth.api.js"
+import { AuthAPI, ICurrentUserInfo } from "../../core/api/auth.api.js"
 import { ROUTES } from "../../core/router/Router.config.js"
 import { Router } from "../../core/router/Router.js"
+import { onGetCurrentUserInfo } from "../../core/store/actions.js"
 import { Profile } from "./Profile.js"
 
 export class ProfileContainer {
@@ -14,7 +15,11 @@ export class ProfileContainer {
     }
 
     onLoadProfile(){
-        AuthAPI.getCurrentUserInfo()
+        AuthAPI.getCurrentUserInfo().then((xhr) => {
+            const response: ICurrentUserInfo = JSON.parse(xhr.response)
+
+            onGetCurrentUserInfo(response)
+        })
     }
 
     createBlock() {

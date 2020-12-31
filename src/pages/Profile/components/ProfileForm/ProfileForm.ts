@@ -1,5 +1,7 @@
 import { InputControl } from "../../../../components/InputControl/InputControl.js"
+import { ICurrentUserInfo } from "../../../../core/api/auth.api.js"
 import { Block } from "../../../../core/Block.js"
+import { store } from "../../../../core/store/store.js"
 import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js"
 
 class ProfileForm extends Block {
@@ -11,6 +13,16 @@ class ProfileForm extends Block {
             { className: 'profile-fields' }, 
             fields, 
         )
+    }
+
+    componentDidMount(){
+        const fields = this._children as Block[]
+        const fieldsValues = store.value.currentUser
+
+        fields.forEach(field => {
+            const fieldName: keyof ICurrentUserInfo = field.props.name
+            field.setProps({ value: fieldsValues[fieldName] })
+        })
     }
 }
 
