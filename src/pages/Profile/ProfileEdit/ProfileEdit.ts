@@ -1,6 +1,6 @@
-import { Block } from "../../core/Block.js"
-import { ChatsLink } from "./components/ChatsLink/ChatsLink.js"
-import ProfileFormEdit from "./components/ProfileForm/ProfileFormEdit.js"
+import { Block } from "../../../core/Block.js"
+import { ChatsLink } from "../components/ChatsLink/ChatsLink.js"
+import ProfileFormEdit from "../components/ProfileForm/ProfileFormEdit.js"
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js"
 import { IProfileEdit } from "./ProfileEdit.type.js"
 

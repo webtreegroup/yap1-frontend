@@ -4,11 +4,11 @@ import { Chats } from "./pages/Chats/Chats.js";
 import { ChatSingle } from "./pages/Chats/ChatsSingle.js";
 import { ErrorPage } from "./pages/Error/Error.js";
 import { Home } from "./pages/Home/Home.js";
-import { ProfileContainer } from "./pages/Profile/ProfileContainer.js";
-import { ProfileEditPass } from "./pages/Profile/ProfileEditPass.js";
+import { ProfileContainer } from "./pages/Profile/ProfileMain/ProfileContainer.js";
+import { ProfileEditPass } from "./pages/Profile/ProfileEditPass/ProfileEditPass.js";
 import { Signin } from "./pages/Signin/Signin.js";
 import { Signup } from "./pages/Signup/Signup.js";
-import { ProfileEditContainer } from "./pages/Profile/ProfileEditContainer.js";
+import { ProfileEditContainer } from "./pages/Profile/ProfileEdit/ProfileEditContainer.js";
 Router
     .use("/", Home)
     .use("/profile/edit-pass", ProfileEditPass)

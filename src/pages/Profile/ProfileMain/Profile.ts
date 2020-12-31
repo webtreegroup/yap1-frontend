@@ -1,12 +1,12 @@
-import { Link } from "../../components/Link/Link.js"
-import { Popup } from "../../components/Popup/Popup.js"
-import { Block } from "../../core/Block.js"
-import { ROUTES } from "../../core/router/Router.config.js"
-import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageForm.js"
-import ProfileForm from "./components/ProfileForm/ProfileForm.js"
+import { Link } from "../../../components/Link/Link.js"
+import { Popup } from "../../../components/Popup/Popup.js"
+import { Block } from "../../../core/Block.js"
+import { ROUTES } from "../../../core/router/Router.config.js"
+import { EditUserImageForm } from "../components/EditUserImageForm/EditUserImageForm.js"
+import ProfileForm from "../components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
 import { IProfile } from "./Profile.type.js"
-import { ChatsLink } from "./components/ChatsLink/ChatsLink.js"
+import { ChatsLink } from "../components/ChatsLink/ChatsLink.js"
 
 export class Profile extends Block<HTMLDivElement> {
     constructor(props?: IProfile) {

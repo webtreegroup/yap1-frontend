@@ -1,8 +1,8 @@
 
-import { AuthAPI, ICurrentUserInfo } from "../../core/api/auth.api.js"
-import { ROUTES } from "../../core/router/Router.config.js"
-import { Router } from "../../core/router/Router.js"
-import { onGetCurrentUserInfo } from "../../core/store/actions.js"
+import { AuthAPI, ICurrentUserInfo } from "../../../core/api/auth.api.js"
+import { ROUTES } from "../../../core/router/Router.config.js"
+import { Router } from "../../../core/router/Router.js"
+import { onGetCurrentUserInfo } from "../../../core/store/actions.js"
 import { Profile } from "./Profile.js"
 
 export class ProfileContainer {
