@@ -16,12 +16,14 @@ class ProfileForm extends Block {
     }
 
     componentDidMount(){
-        const fields = this._children as Block[]
-        const fieldsValues = store.value.currentUser
-
-        fields.forEach(field => {
-            const fieldName: keyof ICurrentUserInfo = field.props.name
-            field.setProps({ value: fieldsValues[fieldName] })
+        store.subscribe(() => {
+            const fields = this._children as Block[]
+            const fieldsValues = store.value.currentUser
+    
+            fields.forEach(field => {
+                const fieldName: keyof ICurrentUserInfo = field.props.name
+                field.setProps({ value: fieldsValues[fieldName] })
+            })
         })
     }
 }

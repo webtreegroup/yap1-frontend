@@ -38,7 +38,7 @@ export class Router {
         this.routes.push(route);
         return this;
     }
-    static start() {
+    static start(_) {
         window.onpopstate = (event) => {
             const target = event === null || event === void 0 ? void 0 : event.currentTarget;
             this._onRoute(target === null || target === void 0 ? void 0 : target.location.pathname);

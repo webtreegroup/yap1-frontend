@@ -64,7 +64,7 @@ export class Router {
         return this
     } 
 
-    static start() {
+    static start(_?: IState) {
         window.onpopstate = (event: PopStateEvent) => {
             const target = event?.currentTarget as Window
             this._onRoute(target?.location.pathname);

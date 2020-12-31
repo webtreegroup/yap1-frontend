@@ -8,11 +8,13 @@ class ProfileForm extends Block {
         super('div', { className: 'profile-fields' }, fields);
     }
     componentDidMount() {
-        const fields = this._children;
-        const fieldsValues = store.value.currentUser;
-        fields.forEach(field => {
-            const fieldName = field.props.name;
-            field.setProps({ value: fieldsValues[fieldName] });
+        store.subscribe(() => {
+            const fields = this._children;
+            const fieldsValues = store.value.currentUser;
+            fields.forEach(field => {
+                const fieldName = field.props.name;
+                field.setProps({ value: fieldsValues[fieldName] });
+            });
         });
     }
 }

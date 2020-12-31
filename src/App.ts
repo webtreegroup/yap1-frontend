@@ -20,6 +20,4 @@ Router
     .use("/signin", Signin)
     .use("/signup", Signup)
     .use("/.*", ErrorPage)
-    .start()
-
-console.log(store.value)
+    .start(store.value)
