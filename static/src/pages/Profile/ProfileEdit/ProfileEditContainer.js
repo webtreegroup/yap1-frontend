@@ -1,11 +1,11 @@
 import { AuthAPI } from "../../../core/api/auth.api.js";
-import { onGetCurrentUserInfo } from "../../../core/store/actions.js";
+import { getCurrentUserInfoAction } from "../../../core/store/actions.js";
 import { ProfileEdit } from "./ProfileEdit.js";
 export class ProfileEditContainer {
     onLoadProfile() {
         AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response = JSON.parse(xhr.response);
-            onGetCurrentUserInfo(response);
+            getCurrentUserInfoAction(response);
         });
     }
     createBlock() {

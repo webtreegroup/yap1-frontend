@@ -1,13 +1,13 @@
 import { PROFILE_CHANGE_FAIL_MESSAGE, PROFILE_CHANGE_SUCCESS_MESSAGE } from "../../../../../core/api/api.consts.js";
 import { ProfileAPI } from "../../../../../core/api/profile.api.js";
-import { offLoader, onLoader } from "../../../../../core/store/actions.js";
+import { loaderOffAction, loaderOnAction } from "../../../../../core/store/actions.js";
 import { ProfileEditPassForm } from "./ProfileEditPassForm.js";
 export class ProfileEditPassFormContainer {
     constructor() {
         this.onProfilePasswordChange = this.onProfilePasswordChange.bind(this);
     }
     onProfilePasswordChange(request) {
-        onLoader();
+        loaderOnAction();
         ProfileAPI.changePassword(request).then((response) => {
             switch (response.status) {
                 case 200:
@@ -17,7 +17,7 @@ export class ProfileEditPassFormContainer {
                     alert(PROFILE_CHANGE_FAIL_MESSAGE);
             }
         }).finally(() => {
-            offLoader();
+            loaderOffAction();
         });
     }
     createBlock() {

@@ -1,14 +1,13 @@
-import { IComponent } from "../../../../App.types.js"
 import { Link } from "../../../../components/Link/Link.js"
 import { Block } from "../../../../core/Block.js"
 import { ROUTES } from "../../../../core/router/Router.config.js"
+import { store } from "../../../../core/store/store.js"
 import { ChatGroup } from "../ChatGroup/ChatGroup.js"
-import { CHATS } from "./ChatsAside.consts.js"
 import { chatsAsideTmplRender } from "./ChatsAside.tmpl.js"
+import { IChatsAside } from "./ChatsAside.types.js"
 
 export class ChatsAside extends Block {
-    constructor(props?: IComponent){
-        const chats = CHATS.map(el => new ChatGroup(el))
+    constructor(props?: IChatsAside){
         const ProfileLink = new Link({
             path: ROUTES.PROFILE.path,
             title: `
@@ -18,16 +17,22 @@ export class ChatsAside extends Block {
         })
 
         super('aside', props, {
-            chats,
+            chats: [],
             ProfileLink
         })
     }
 
-    createResources() {
-        this._element?.classList.add('chats')
-    }
-
     render() {
+        // TODO: не катит такой вариант, необходимо наладить связку store.subscribe - block.setProps
+        store.subscribe(() => {
+            const chats = store.value.chats.map(el => new ChatGroup(el))
+    
+            this._children = {
+                ...this._children,
+                chats
+            }
+        })
+
         return chatsAsideTmplRender()
     }
 }

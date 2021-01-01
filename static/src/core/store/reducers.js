@@ -1,4 +1,4 @@
-import { LOADER_OFF, LOADER_ON, PROFILE_LOAD } from "./actions.js";
+import { CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD } from "./actions.js";
 export function loaderReducer(state, action) {
     switch (action.type) {
         case LOADER_ON:
@@ -15,7 +15,15 @@ export function currentUserReducer(state, action) {
     }
     return state;
 }
+export function chatsReducer(state, action) {
+    switch (action.type) {
+        case CHATS_LOAD:
+            return Object.assign(Object.assign({}, state), action.payload);
+    }
+    return state;
+}
 export const reducers = {
     loader: loaderReducer,
-    currentUser: currentUserReducer
+    currentUser: currentUserReducer,
+    chats: chatsReducer
 };

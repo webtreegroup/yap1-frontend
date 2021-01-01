@@ -29,3 +29,6 @@ export class Store {
     }
 }
 export const store = new Store(reducers, INITIAL_STATE);
+// TODO: для дебага Store
+const windowStore = 'store';
+window[windowStore] = store;

@@ -1,3 +1,4 @@
+// TODO: пока оставить для примера
 export const CHATS = [
     {
         name: 'Андрей',

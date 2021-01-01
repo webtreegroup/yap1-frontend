@@ -1,6 +1,6 @@
 
 import { AuthAPI, ICurrentUserInfo } from "../../../core/api/auth.api.js"
-import { onGetCurrentUserInfo } from "../../../core/store/actions.js"
+import { getCurrentUserInfoAction } from "../../../core/store/actions.js"
 import { ProfileEdit } from "./ProfileEdit.js"
 
 export class ProfileEditContainer {
@@ -8,7 +8,7 @@ export class ProfileEditContainer {
         AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
-            onGetCurrentUserInfo(response)
+            getCurrentUserInfoAction(response)
         })
     }
 

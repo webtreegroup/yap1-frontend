@@ -1,5 +1,6 @@
 import { IChatGroup } from "../ChatGroup/ChatGroup.types.js"
 
+// TODO: пока оставить для примера
 export const CHATS: IChatGroup[] = [
     { 
         name: 'Андрей', 
