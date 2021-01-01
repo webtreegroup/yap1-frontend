@@ -19,7 +19,8 @@ export class SigninForm extends Form {
         });
     }
     onSubmit(request) {
-        this.props.onSignin(request);
+        var _a, _b;
+        (_b = (_a = this.props).onSignin) === null || _b === void 0 ? void 0 : _b.call(_a, request);
     }
     render() {
         return loginFormTmplRender();

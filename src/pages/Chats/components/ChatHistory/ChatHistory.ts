@@ -45,10 +45,10 @@ export class ChatHistory extends Block {
             'main', 
             { ...props, onAddUser: AddUserPopup.show }, 
             { 
-                "messages": messages, 
-                "Popups": messages.length ? [AddUserPopup, RemoveUserPopup] : undefined, 
-                "ToggleAddUserPopup": messages && ToggleAddUserPopup,
-                "ToggleRemoveUserPopup": messages && ToggleRemoveUserPopup 
+                messages, 
+                Popups: messages.length ? [AddUserPopup, RemoveUserPopup] : undefined, 
+                ToggleAddUserPopup: messages.length ? ToggleAddUserPopup : undefined,
+                ToggleRemoveUserPopup: messages.length ? ToggleRemoveUserPopup : undefined 
             }
         )
     }

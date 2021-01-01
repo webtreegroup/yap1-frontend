@@ -1,5 +1,5 @@
-import { IChangeProfileAvatar } from "../../../../../core/api/profile.api.js"
+import { IComponent } from "../../../../../App.types.js";
 
-export interface IEditUserImageForm {
-    onUserImageChange: (request: IChangeProfileAvatar) => void
+export interface IEditUserImageForm extends IComponent {
+    onUserImageChange: (request: FormData) => void
 }

@@ -5,7 +5,7 @@ export class EditUserImageForm extends Form {
         const BtnSubmit = new Button({ text: 'Поменять', btnType: 'submit' });
         super(Object.assign(Object.assign({}, props), { className: 'edit-user-image-fields' }), { root: [BtnSubmit] }, () => `
                 <input type="file" name="avatar" required>
-                <div data-component="children"></div>
+                <div data-component="root"></div>
             `);
     }
     onSubmit(_, formData) {

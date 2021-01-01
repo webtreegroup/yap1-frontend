@@ -1,15 +1,15 @@
-import { IState } from "../../../../../App.types.js"
 import { Button } from "../../../../../components/Button/Button.js"
 import { Form } from "../../../../../components/Form/Form.js"
 import { InputControl } from "../../../../../components/InputControl/InputControl.js"
 import { ICurrentUserInfo } from "../../../../../core/api/auth.api.js"
+import { IChangeProfile } from "../../../../../core/api/profile.api.js"
 import { Block } from "../../../../../core/Block.js"
 import { store } from "../../../../../core/store/store.js"
 import { PROFILE_FORM_CONTROLS } from "../../../ProfileMain/components/ProfileForm/ProfileForm.config.js"
 import { IProfileEditForm } from "./ProfileEditForm.types.js"
 
-export class ProfileEditForm extends Form {
-    constructor(props?: IProfileEditForm) {
+export class ProfileEditForm extends Form<IProfileEditForm> {
+    constructor(props: IProfileEditForm) {
         const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl({ ...el, isTouched: true }))
         const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' })
 
@@ -37,7 +37,7 @@ export class ProfileEditForm extends Form {
         })
     }
 
-    onSubmit(request: IState){
+    onSubmit(request: IChangeProfile){
         this.props.onProfileChange(request)
     }
 }

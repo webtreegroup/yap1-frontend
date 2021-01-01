@@ -1,6 +1,6 @@
 
 import { PROFILE_CHANGE_FAIL_MESSAGE, PROFILE_CHANGE_SUCCESS_MESSAGE } from "../../../../../core/api/api.consts.js"
-import { IChangeProfileAvatar, ProfileAPI } from "../../../../../core/api/profile.api.js"
+import { ProfileAPI } from "../../../../../core/api/profile.api.js"
 import { loaderOffAction, loaderOnAction } from "../../../../../core/store/actions.js"
 import { EditUserImageForm } from "./EditUserImageForm.js"
 
@@ -10,7 +10,7 @@ export class EditUserImageFormContainer {
         this.onUserImageChange = this.onUserImageChange.bind(this)
     }
 
-    onUserImageChange(request: IChangeProfileAvatar){
+    onUserImageChange(request: FormData){
         loaderOnAction()
         
         ProfileAPI.changeAvatar(request).then((response) => {

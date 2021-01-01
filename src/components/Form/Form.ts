@@ -1,9 +1,8 @@
 import { IState } from "../../App.types.js"
 import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/Block.js"
-import { IForm } from "./Form.types.js"
 
-export class Form extends Block<HTMLFormElement> {
-    constructor(props?: IForm, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
+export class Form<PropType extends object> extends Block<HTMLFormElement, PropType> {
+    constructor(props?: PropType, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
         super("form", props, children, baseTmplRender)
         
         this._onSubmit = this._onSubmit.bind(this)

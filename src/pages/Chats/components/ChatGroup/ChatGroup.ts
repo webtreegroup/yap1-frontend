@@ -3,7 +3,7 @@ import { classNames } from "../../../../utils/common.utils.js"
 import { IChatGroup } from "./ChatGroup.types.js"
 import { chatGroupTmplRender } from "./ChatGroup.tmpl.js"
 
-export class ChatGroup extends Block<HTMLDivElement> {
+export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
     constructor(props?: IChatGroup){
         super('div', props)
     }

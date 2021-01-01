@@ -5,7 +5,7 @@ export type IState = {
 }
 
 export interface IComponent {
-    [key: string]: IStateValue
+    // [key: string]: IStateValue
     className?: string
     children?: string | number | HTMLElement
 }

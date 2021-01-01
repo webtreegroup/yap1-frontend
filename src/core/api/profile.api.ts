@@ -26,7 +26,7 @@ export class ProfileAPI extends BaseAPI {
         return profileAPIInstance.put('/profile', { data })
     }
 
-    static changeAvatar(data: IChangeProfileAvatar) {
+    static changeAvatar(data: FormData) {
         return profileAPIInstance.put('/profile/avatar', { data })
     }
 

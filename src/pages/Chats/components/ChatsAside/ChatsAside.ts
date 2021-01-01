@@ -21,7 +21,9 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
     }
 
     render() {
-        const chats = this.props.chats.map(el => new ChatGroup(el))
+        const chats = this.props.chats.map(el => new ChatGroup({
+            name: el.title
+        }))
 
         this._children = {
             ...this._children,

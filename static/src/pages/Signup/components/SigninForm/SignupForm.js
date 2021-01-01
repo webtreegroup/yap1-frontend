@@ -14,12 +14,13 @@ export class SignupForm extends Form {
             title: ROUTES.SIGNIN.title,
         });
         super(props, {
-            'fields': [...controls, BtnSubmit],
-            'SigninLink': SigninLink,
+            fields: [...controls, BtnSubmit],
+            SigninLink: SigninLink,
         });
     }
     onSubmit(request) {
-        this.props.onSignup(request);
+        var _a, _b;
+        (_b = (_a = this.props).onSignup) === null || _b === void 0 ? void 0 : _b.call(_a, request);
     }
     render() {
         return signupFormTmplRender();
