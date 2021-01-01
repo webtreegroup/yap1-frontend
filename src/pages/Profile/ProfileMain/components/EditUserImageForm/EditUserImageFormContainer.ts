@@ -1,19 +1,19 @@
 
 import { PROFILE_CHANGE_FAIL_MESSAGE, PROFILE_CHANGE_SUCCESS_MESSAGE } from "../../../../../core/api/api.consts.js"
-import { IChangePassword, ProfileAPI } from "../../../../../core/api/profile.api.js"
+import { IChangeProfileAvatar, ProfileAPI } from "../../../../../core/api/profile.api.js"
 import { offLoader, onLoader } from "../../../../../core/store/actions.js"
-import { ProfileEditPassForm } from "./ProfileEditPassForm.js"
+import { EditUserImageForm } from "./EditUserImageForm.js"
 
 
-export class ProfileEditPassFormContainer {
+export class EditUserImageFormContainer {
     constructor() {
-        this.onProfilePasswordChange = this.onProfilePasswordChange.bind(this)
+        this.onUserImageChange = this.onUserImageChange.bind(this)
     }
 
-    onProfilePasswordChange(request: IChangePassword){
+    onUserImageChange(request: IChangeProfileAvatar){
         onLoader()
         
-        ProfileAPI.changePassword(request).then((response) => {
+        ProfileAPI.changeAvatar(request).then((response) => {
             switch (response.status) {
                 case 200:
                     alert(PROFILE_CHANGE_SUCCESS_MESSAGE)
@@ -27,8 +27,8 @@ export class ProfileEditPassFormContainer {
     }
 
     createBlock() {
-        return new ProfileEditPassForm({
-            onProfilePasswordChange: this.onProfilePasswordChange,
+        return new EditUserImageForm({
+            onUserImageChange: this.onUserImageChange,
         })
     }
 }

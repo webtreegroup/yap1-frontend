@@ -1,18 +1,21 @@
 import { Link } from "../../../components/Link/Link.js"
+import { Loader } from "../../../components/Loader/Loader.js"
 import { Popup } from "../../../components/Popup/Popup.js"
 import { Block } from "../../../core/Block.js"
 import { ROUTES } from "../../../core/router/Router.config.js"
-import { EditUserImageForm } from "./components/EditUserImageForm/EditUserImageForm.js"
+import { EditUserImageFormContainer } from "./components/EditUserImageForm/EditUserImageFormContainer.js"
 import ProfileForm from "./components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
 import { IProfile } from "./Profile.type.js"
 
 export class Profile extends Block<HTMLDivElement> {
     constructor(props?: IProfile) {
+        const EditUserImageForm = new EditUserImageFormContainer()
+
         const EditUserImgPopup = new Popup({ 
             title: 'Загрузите файл',
             isClosable: true
-        }, [EditUserImageForm])
+        }, [EditUserImageForm.createBlock()])
         
         const ToggleEditUserImgPopup = new Link({ 
             onClick: () => {
@@ -43,6 +46,8 @@ export class Profile extends Block<HTMLDivElement> {
             `
         })
 
+        const LoaderComponent = new Loader()
+
         super(
             'main', 
             {
@@ -51,7 +56,7 @@ export class Profile extends Block<HTMLDivElement> {
             }, 
             { 
                 ProfileForm, 
-                EditUserImgPopup, 
+                EditUserImgPopup: [EditUserImgPopup, LoaderComponent], 
                 ToggleEditUserImgPopup,
                 ProfileEditLink,
                 ProfileEditPasswordLink,

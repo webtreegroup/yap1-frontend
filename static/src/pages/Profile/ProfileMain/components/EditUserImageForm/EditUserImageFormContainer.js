@@ -1,14 +1,14 @@
 import { PROFILE_CHANGE_FAIL_MESSAGE, PROFILE_CHANGE_SUCCESS_MESSAGE } from "../../../../../core/api/api.consts.js";
 import { ProfileAPI } from "../../../../../core/api/profile.api.js";
 import { offLoader, onLoader } from "../../../../../core/store/actions.js";
-import { ProfileEditForm } from "./ProfileEditForm.js";
-export class ProfileEditFormContainer {
+import { EditUserImageForm } from "./EditUserImageForm.js";
+export class EditUserImageFormContainer {
     constructor() {
-        this.onProfileChange = this.onProfileChange.bind(this);
+        this.onUserImageChange = this.onUserImageChange.bind(this);
     }
-    onProfileChange(request) {
+    onUserImageChange(request) {
         onLoader();
-        ProfileAPI.change(request).then((response) => {
+        ProfileAPI.changeAvatar(request).then((response) => {
             switch (response.status) {
                 case 200:
                     alert(PROFILE_CHANGE_SUCCESS_MESSAGE);
@@ -21,8 +21,8 @@ export class ProfileEditFormContainer {
         });
     }
     createBlock() {
-        return new ProfileEditForm({
-            onProfileChange: this.onProfileChange,
+        return new EditUserImageForm({
+            onUserImageChange: this.onUserImageChange,
         });
     }
 }
