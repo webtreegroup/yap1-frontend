@@ -11,8 +11,8 @@ export class Form extends Block<HTMLFormElement> {
         this._element?.addEventListener('submit', this._onSubmit)
     }
 
-    onSubmit(request: IState){
-        console.log(request)
+    onSubmit(request: IState, formData?: FormData){
+        console.log(request, formData)
     }
 
     _onSubmit(e: Event) {
@@ -33,6 +33,6 @@ export class Form extends Block<HTMLFormElement> {
             request[key] = value
         }
 
-        this.onSubmit(request)
+        this.onSubmit(request, formData)
     }
 }

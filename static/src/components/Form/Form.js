@@ -6,8 +6,8 @@ export class Form extends Block {
         this._onSubmit = this._onSubmit.bind(this);
         (_a = this._element) === null || _a === void 0 ? void 0 : _a.addEventListener('submit', this._onSubmit);
     }
-    onSubmit(request) {
-        console.log(request);
+    onSubmit(request, formData) {
+        console.log(request, formData);
     }
     _onSubmit(e) {
         var _a;
@@ -22,6 +22,6 @@ export class Form extends Block {
         for (const [key, value] of formData.entries()) {
             request[key] = value;
         }
-        this.onSubmit(request);
+        this.onSubmit(request, formData);
     }
 }

@@ -8,8 +8,7 @@ export class EditUserImageForm extends Form {
                 <div data-component="children"></div>
             `);
     }
-    onSubmit(request) {
-        debugger;
-        this.props.onUserImageChange(request);
+    onSubmit(_, formData) {
+        this.props.onUserImageChange(formData);
     }
 }
