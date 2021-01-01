@@ -20,6 +20,14 @@ export class Chats extends Block<HTMLDivElement, IChats> {
     }
 
     componentDidMount(){
-        this.props.onLoadChats()
+        const [aside] = this._children.root as Block[]
+
+        this.props.onLoadChats().then(() => {
+            store.subscribe((state) => {
+                aside.setProps({
+                    chats: state.chats
+                })
+            })
+        })
     }
 }

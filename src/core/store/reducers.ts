@@ -34,10 +34,7 @@ export function currentUserReducer(state: IStoreState, action: IAction) {
 export function chatsReducer(state: IStoreState, action: IAction) {
     switch (action.type) {
         case CHATS_LOAD:
-            return {
-                ...state,
-                ...action.payload
-            }
+            return action.payload
     }
 
     return state

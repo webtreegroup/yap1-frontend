@@ -10,6 +10,13 @@ export class Chats extends Block {
             ] });
     }
     componentDidMount() {
-        this.props.onLoadChats();
+        const [aside] = this._children.root;
+        this.props.onLoadChats().then(() => {
+            store.subscribe((state) => {
+                aside.setProps({
+                    chats: state.chats
+                });
+            });
+        });
     }
 }

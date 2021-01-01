@@ -18,7 +18,7 @@ export function currentUserReducer(state, action) {
 export function chatsReducer(state, action) {
     switch (action.type) {
         case CHATS_LOAD:
-            return Object.assign(Object.assign({}, state), action.payload);
+            return action.payload;
     }
     return state;
 }

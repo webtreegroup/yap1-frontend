@@ -1,12 +1,11 @@
 import { Link } from "../../../../components/Link/Link.js"
 import { Block } from "../../../../core/Block.js"
 import { ROUTES } from "../../../../core/router/Router.config.js"
-import { store } from "../../../../core/store/store.js"
 import { ChatGroup } from "../ChatGroup/ChatGroup.js"
 import { chatsAsideTmplRender } from "./ChatsAside.tmpl.js"
 import { IChatsAside } from "./ChatsAside.types.js"
 
-export class ChatsAside extends Block {
+export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
     constructor(props?: IChatsAside){
         const ProfileLink = new Link({
             path: ROUTES.PROFILE.path,
@@ -17,21 +16,17 @@ export class ChatsAside extends Block {
         })
 
         super('aside', props, {
-            chats: [],
             ProfileLink
         })
     }
 
     render() {
-        // TODO: не катит такой вариант, необходимо наладить связку store.subscribe - block.setProps
-        store.subscribe(() => {
-            const chats = store.value.chats.map(el => new ChatGroup(el))
-    
-            this._children = {
-                ...this._children,
-                chats
-            }
-        })
+        const chats = this.props.chats.map(el => new ChatGroup(el))
+
+        this._children = {
+            ...this._children,
+            chats
+        }
 
         return chatsAsideTmplRender()
     }

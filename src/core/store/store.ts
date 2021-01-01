@@ -26,7 +26,7 @@ export class Store {
         return this.state
     }
 
-    subscribe(fn: Function) {
+    subscribe(fn: (currentState: IStoreState) => void) {
         this.subscribers = [...this.subscribers, fn]
         fn(this.value)
 
