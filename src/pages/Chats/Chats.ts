@@ -4,22 +4,22 @@ import { IChats } from "./Chats.type.js"
 import { ChatHistory } from "./components/ChatHistory/ChatHistory.js"
 import { ChatsAside } from "./components/ChatsAside/ChatsAside.js"
 
-export class Chats extends Block<HTMLDivElement> {
-    constructor(props?: IChats){
+export class Chats extends Block<HTMLDivElement, IChats> {
+    constructor(props: IChats){
         super(
             'main', 
             {
                 ...props,
                 className: 'chats-page',
             }, 
-            [
+            {root: [
                 new ChatsAside({ className: 'chats', chats: store.value.chats }), 
                 new ChatHistory()
-            ]
+            ]}
         )
     }
 
     componentDidMount(){
-        this.props?.onLoadChats()
+        this.props.onLoadChats()
     }
 }

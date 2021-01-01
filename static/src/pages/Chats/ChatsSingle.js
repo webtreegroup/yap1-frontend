@@ -6,6 +6,8 @@ export class ChatSingle extends Block {
     constructor() {
         super('main', {
             className: 'chats-page',
-        }, [new ChatsAside(), new ChatHistory({ messages: MESSAGES })]);
+        }, {
+            root: [new ChatsAside(), new ChatHistory({ messages: MESSAGES })]
+        });
     }
 }

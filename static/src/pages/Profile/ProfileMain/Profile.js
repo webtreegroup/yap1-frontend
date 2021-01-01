@@ -12,7 +12,9 @@ export class Profile extends Block {
         const EditUserImgPopup = new Popup({
             title: 'Загрузите файл',
             isClosable: true
-        }, [EditUserImageForm.createBlock()]);
+        }, {
+            root: [EditUserImageForm.createBlock()]
+        });
         const ToggleEditUserImgPopup = new Link({
             onClick: () => {
                 EditUserImgPopup.show();

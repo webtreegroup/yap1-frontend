@@ -11,13 +11,18 @@ class ProfileForm extends Block {
         super(
             'div', 
             { className: 'profile-fields' }, 
-            fields, 
+            {
+                root: fields
+            }, 
         )
     }
 
     componentDidMount(){
+        const fields = this._children.root as Block[]
+        
+        if (!fields) return
+
         store.subscribe(() => {
-            const fields = this._children as Block[]
             const fieldsValues = store.value.currentUser
     
             fields.forEach(field => {

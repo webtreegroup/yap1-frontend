@@ -9,17 +9,17 @@ import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js"
 
 export class ChatHistory extends Block {
     constructor(props?: IChatHistory){
-        const messages = props?.messages?.map(el => new ChatMessage(el))
+        const messages = props?.messages?.map(el => new ChatMessage(el)) || []
         
         const AddUserPopup = new Popup({
             title: 'Добавить пользователя',
             isClosable: true
-        }, [AddUserForm])
+        }, {root: [AddUserForm]})
 
         const RemoveUserPopup = new Popup({
             title: 'Удалить пользователя',
             isClosable: true
-        }, [RemoveUserForm])
+        }, {root: [RemoveUserForm]})
 
         const ToggleAddUserPopup = new Link({ 
             onClick: () => {
@@ -46,7 +46,7 @@ export class ChatHistory extends Block {
             { ...props, onAddUser: AddUserPopup.show }, 
             { 
                 "messages": messages, 
-                "Popups": messages && [AddUserPopup, RemoveUserPopup], 
+                "Popups": messages.length ? [AddUserPopup, RemoveUserPopup] : undefined, 
                 "ToggleAddUserPopup": messages && ToggleAddUserPopup,
                 "ToggleRemoveUserPopup": messages && ToggleRemoveUserPopup 
             }

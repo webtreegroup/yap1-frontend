@@ -3,7 +3,7 @@ import { classNames } from "../../utils/common.utils.js";
 import { Link } from "../Link/Link.js";
 import { popupTmplRender } from "./Popup.tmpl.js";
 export class Popup extends Block {
-    constructor(props, children) {
+    constructor(props, children = {}) {
         super("div", props, children);
         this.show = this.show.bind(this);
         this.hide = this.hide.bind(this);
@@ -42,9 +42,9 @@ export class Popup extends Block {
             className: 'popup__close'
         });
         if (this.props.isClosable) {
-            this._children = this._children
-                ? [...this._children, ToggleAddPopupVisibility]
-                : [ToggleAddPopupVisibility];
+            this._children = Object.assign(Object.assign({}, this._children), { root: Array.isArray(this._children.root) ? [
+                    ...this._children.root, ToggleAddPopupVisibility
+                ] : this._children.root });
         }
         return popupTmplRender(this.props);
     }

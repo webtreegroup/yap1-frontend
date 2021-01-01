@@ -11,12 +11,16 @@ export class Signin extends Block<HTMLDivElement> {
         const SigninPopup = new Popup({
             title: ROUTES.SIGNIN.title,
             isActive: true
-        }, [SigninForm.createBlock()])
+        }, {
+            root: [SigninForm.createBlock()]
+        })
 
         super(
             'main', 
             { className: 'signin-page' }, 
-            [SigninPopup, new Loader()], 
+            {
+                root: [SigninPopup, new Loader()]
+            }, 
         )
     }
 }

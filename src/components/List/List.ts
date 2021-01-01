@@ -7,7 +7,7 @@ export class List extends Block<HTMLUListElement> {
         const mappedLinks = props.list?.map(route => {
             const link = new Link(route)
 
-            const result = new Block('li', {}, [link])
+            const result = new Block('li', {}, { root: [link] })
 
             return result 
         })
@@ -15,7 +15,7 @@ export class List extends Block<HTMLUListElement> {
         super(
             "ul", 
             props,
-            mappedLinks
+            { root: mappedLinks }
         )
     }
 }

@@ -7,5 +7,5 @@ const BtnSubmit = new Button({ text: 'Удалить', btnType: 'submit' })
 
 export const RemoveUserForm = new Form(
     { className: 'remove-user-fields' }, 
-    [Loginfield, BtnSubmit], 
+    { root: [Loginfield, BtnSubmit] }, 
 )

@@ -8,7 +8,11 @@ export class Signup extends Block {
         const SignupPopup = new Popup({
             title: 'Регистрация',
             isActive: true
-        }, [SignupForm.createBlock()]);
-        super('main', { className: 'signup-page' }, [SignupPopup, new Loader()]);
+        }, {
+            root: [SignupForm.createBlock()]
+        });
+        super('main', { className: 'signup-page' }, {
+            root: [SignupPopup, new Loader()]
+        });
     }
 }

@@ -9,7 +9,11 @@ export class Signin extends Block {
         const SigninPopup = new Popup({
             title: ROUTES.SIGNIN.title,
             isActive: true
-        }, [SigninForm.createBlock()]);
-        super('main', { className: 'signin-page' }, [SigninPopup, new Loader()]);
+        }, {
+            root: [SigninForm.createBlock()]
+        });
+        super('main', { className: 'signin-page' }, {
+            root: [SigninPopup, new Loader()]
+        });
     }
 }

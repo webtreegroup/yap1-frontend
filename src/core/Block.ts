@@ -15,7 +15,10 @@ export interface IBlockChildren {
     [key: string]: Block | Block[] | undefined
 }
 
-export class Block<ElementType extends HTMLElement = any> {
+export class Block<
+    ElementType extends HTMLElement = any, 
+    PropsType extends object = any
+> {
     static EVENTS = {
         INIT: "init",
         FLOW_CDM: "flow:component-did-mount",
@@ -26,15 +29,15 @@ export class Block<ElementType extends HTMLElement = any> {
     eventBus: EventBus
     
     _baseTmplRender?: IBaseTemplateRender
-    _children?: IBlockChildren | Block[]
+    _children: IBlockChildren
     _element: ElementType | null = null
     _meta: IBlockMeta
-    props: IState
+    props: PropsType
 
     constructor(
         tagName: string, 
-        props = {} as IState, 
-        children?: IBlockChildren | Block[], 
+        props = {} as PropsType, 
+        children = {} as IBlockChildren, 
         baseTmplRender?: IBaseTemplateRender
     ) {
         this._meta = {
@@ -43,7 +46,7 @@ export class Block<ElementType extends HTMLElement = any> {
         }
 
         this._children = children
-        this.props = this._makePropsProxy(props)
+        this.props = this._makePropsProxy(props) as PropsType
         this._baseTmplRender = baseTmplRender
         this.eventBus = new EventBus()
         this._registerEvents(this.eventBus)
@@ -109,35 +112,20 @@ export class Block<ElementType extends HTMLElement = any> {
         const block = this.render()
         this._element.innerHTML = block
         
-        if (!this._children) return
+        Object.keys(this._children).map(componentKey => {
+            const components = this._children[componentKey]
 
-        if (!Array.isArray(this._children)) {
-            const children = this._children as IBlockChildren
+            if (!components) return
             
-            Object.keys(children).map(componentKey => {
-                const components = children[componentKey]
-
-                if (!components) return
-                
-                const componentsContainer = this._element?.querySelector(`[data-component="${componentKey}"]`)
-                const appendTarget = componentsContainer ? componentsContainer : this._element
-                
-                if (Array.isArray(components)) {
-                    components.map(el => appendTarget?.appendChild(el.content))
-                } else {
-                    appendTarget?.appendChild(components.content)
-                }
-            })
-        } else {
-            const componentContainer = this._element.querySelector('[data-component="children"]')
-            const appendTarget = componentContainer ? componentContainer : this._element
-    
-            const children = this._children.map(el => el.content)
-
-            children.forEach(el => {
-                appendTarget.appendChild(el)
-            })
-        }
+            const componentsContainer = this._element?.querySelector(`[data-component="${componentKey}"]`)
+            const appendTarget = componentsContainer ? componentsContainer : this._element
+            
+            if (Array.isArray(components)) {
+                components.map(el => appendTarget?.appendChild(el.content))
+            } else {
+                appendTarget?.appendChild(components.content)
+            }
+        })
     }
 
     render() {

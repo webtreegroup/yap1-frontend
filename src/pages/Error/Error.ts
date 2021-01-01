@@ -10,7 +10,7 @@ export class ErrorPage extends Block<HTMLDivElement> {
         super(
             'main', 
             { className: 'error-page' }, 
-            [link], 
+            { root: [link] }, 
             errorTmplRender
         )
     }

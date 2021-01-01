@@ -10,12 +10,16 @@ export class Signup extends Block<HTMLDivElement> {
         const SignupPopup = new Popup({
             title: 'Регистрация',
             isActive: true
-        }, [SignupForm.createBlock()])
+        }, {
+            root: [SignupForm.createBlock()]
+        })
 
         super(
             'main', 
             { className: 'signup-page' }, 
-            [SignupPopup, new Loader()], 
+            {
+                root: [SignupPopup, new Loader()]
+            }, 
         )
     }
 }

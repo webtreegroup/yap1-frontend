@@ -6,7 +6,7 @@ export class ProfileEditPassForm extends Form {
     constructor(props) {
         const fields = PROFILE_FORM_PASS_CONTROLS.map(el => new InputControl(el));
         const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' });
-        super(Object.assign(Object.assign({}, props), { className: 'profile-fields' }), [...fields, BtnSubmit]);
+        super(Object.assign(Object.assign({}, props), { className: 'profile-fields' }), { root: [...fields, BtnSubmit] });
     }
     onSubmit(request) {
         this.props.onProfilePasswordChange(request);

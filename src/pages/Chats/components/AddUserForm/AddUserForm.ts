@@ -7,5 +7,5 @@ const BtnSubmit = new Button({ text: 'Добавить', btnType: 'submit' })
 
 export const AddUserForm = new Form(
     { className: 'add-user-fields' }, 
-    [Loginfield, BtnSubmit], 
+    { root: [Loginfield, BtnSubmit] }, 
 )

@@ -15,7 +15,9 @@ export class Profile extends Block<HTMLDivElement> {
         const EditUserImgPopup = new Popup({ 
             title: 'Загрузите файл',
             isClosable: true
-        }, [EditUserImageForm.createBlock()])
+        }, {
+            root: [EditUserImageForm.createBlock()]
+        })
         
         const ToggleEditUserImgPopup = new Link({ 
             onClick: () => {

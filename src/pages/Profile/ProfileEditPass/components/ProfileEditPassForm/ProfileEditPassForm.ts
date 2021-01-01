@@ -15,7 +15,7 @@ export class ProfileEditPassForm extends Form {
                 ...props,
                 className: 'profile-fields',
             },
-            [...fields, BtnSubmit], 
+            { root: [...fields, BtnSubmit] },
         )
     }
 

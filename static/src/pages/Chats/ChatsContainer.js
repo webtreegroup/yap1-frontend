@@ -3,7 +3,7 @@ import { getChatsAction } from "../../core/store/actions.js";
 import { Chats } from "./Chats.js";
 export class ChatsContainer {
     onLoadChats() {
-        ChatAPI.request().then((xhr) => {
+        return ChatAPI.request().then((xhr) => {
             const response = JSON.parse(xhr.response);
             getChatsAction(response);
         });

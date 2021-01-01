@@ -4,7 +4,7 @@ import { Chats } from "./Chats.js"
 
 export class ChatsContainer {
     onLoadChats(){
-        ChatAPI.request().then((xhr) => {
+        return ChatAPI.request().then((xhr) => {
             const response: IChat[] = JSON.parse(xhr.response)
 
             getChatsAction(response)

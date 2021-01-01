@@ -10,7 +10,9 @@ export class ChatSingle extends Block<HTMLDivElement> {
             {
                 className: 'chats-page',
             }, 
-            [new ChatsAside(), new ChatHistory({ messages: MESSAGES })]
+            {
+                root: [new ChatsAside(), new ChatHistory({ messages: MESSAGES })]
+            }
         )
     }
 }

@@ -5,11 +5,15 @@ import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js";
 class ProfileForm extends Block {
     constructor() {
         const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl(Object.assign(Object.assign({}, el), { disabled: true, isTouched: true })));
-        super('div', { className: 'profile-fields' }, fields);
+        super('div', { className: 'profile-fields' }, {
+            root: fields
+        });
     }
     componentDidMount() {
+        const fields = this._children.root;
+        if (!fields)
+            return;
         store.subscribe(() => {
-            const fields = this._children;
             const fieldsValues = store.value.currentUser;
             fields.forEach(field => {
                 const fieldName = field.props.name;

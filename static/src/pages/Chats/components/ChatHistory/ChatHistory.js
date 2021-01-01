@@ -8,15 +8,15 @@ import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js";
 export class ChatHistory extends Block {
     constructor(props) {
         var _a;
-        const messages = (_a = props === null || props === void 0 ? void 0 : props.messages) === null || _a === void 0 ? void 0 : _a.map(el => new ChatMessage(el));
+        const messages = ((_a = props === null || props === void 0 ? void 0 : props.messages) === null || _a === void 0 ? void 0 : _a.map(el => new ChatMessage(el))) || [];
         const AddUserPopup = new Popup({
             title: 'Добавить пользователя',
             isClosable: true
-        }, [AddUserForm]);
+        }, { root: [AddUserForm] });
         const RemoveUserPopup = new Popup({
             title: 'Удалить пользователя',
             isClosable: true
-        }, [RemoveUserForm]);
+        }, { root: [RemoveUserForm] });
         const ToggleAddUserPopup = new Link({
             onClick: () => {
                 AddUserPopup.show();
@@ -37,7 +37,7 @@ export class ChatHistory extends Block {
         });
         super('main', Object.assign(Object.assign({}, props), { onAddUser: AddUserPopup.show }), {
             "messages": messages,
-            "Popups": messages && [AddUserPopup, RemoveUserPopup],
+            "Popups": messages.length ? [AddUserPopup, RemoveUserPopup] : undefined,
             "ToggleAddUserPopup": messages && ToggleAddUserPopup,
             "ToggleRemoveUserPopup": messages && ToggleRemoveUserPopup
         });

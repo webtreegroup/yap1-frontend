@@ -1,11 +1,11 @@
-import { Block } from "../../core/Block.js"
+import { Block, IBlockChildren } from "../../core/Block.js"
 import { classNames } from "../../utils/common.utils.js"
 import { Link } from "../Link/Link.js"
 import { IPopup } from "./Popup.types.js"
 import { popupTmplRender } from "./Popup.tmpl.js"
 
 export class Popup extends Block<HTMLDivElement> {
-    constructor(props: IPopup, children?: Block[]){
+    constructor(props: IPopup, children = {} as IBlockChildren){
         super("div", props, children)
 
         this.show = this.show.bind(this)
@@ -48,9 +48,12 @@ export class Popup extends Block<HTMLDivElement> {
         })
 
         if (this.props.isClosable) {
-            this._children = this._children 
-                ? [...this._children as Block[], ToggleAddPopupVisibility]
-                : [ToggleAddPopupVisibility]
+            this._children = {
+                ...this._children,
+                root: Array.isArray(this._children.root) ? [
+                    ...this._children.root, ToggleAddPopupVisibility
+                ] : this._children.root,
+            }
         }
         
 

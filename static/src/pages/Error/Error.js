@@ -5,6 +5,6 @@ import { errorTmplRender } from "./Error.tmpl.js";
 export class ErrorPage extends Block {
     constructor() {
         const link = new Link(ROUTES.HOME);
-        super('main', { className: 'error-page' }, [link], errorTmplRender);
+        super('main', { className: 'error-page' }, { root: [link] }, errorTmplRender);
     }
 }

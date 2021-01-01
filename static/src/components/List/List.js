@@ -5,9 +5,9 @@ export class List extends Block {
         var _a;
         const mappedLinks = (_a = props.list) === null || _a === void 0 ? void 0 : _a.map(route => {
             const link = new Link(route);
-            const result = new Block('li', {}, [link]);
+            const result = new Block('li', {}, { root: [link] });
             return result;
         });
-        super("ul", props, mappedLinks);
+        super("ul", props, { root: mappedLinks });
     }
 }

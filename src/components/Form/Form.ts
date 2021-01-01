@@ -3,7 +3,7 @@ import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/Block.js"
 import { IForm } from "./Form.types.js"
 
 export class Form extends Block<HTMLFormElement> {
-    constructor(props?: IForm, children?: IBlockChildren | Block[], baseTmplRender?: IBaseTemplateRender){
+    constructor(props?: IForm, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
         super("form", props, children, baseTmplRender)
         
         this._onSubmit = this._onSubmit.bind(this)

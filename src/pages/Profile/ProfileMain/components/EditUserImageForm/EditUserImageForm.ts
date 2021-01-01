@@ -11,7 +11,7 @@ export class EditUserImageForm extends Form {
                 ...props,
                 className: 'edit-user-image-fields' 
             }, 
-            [BtnSubmit],
+            { root: [BtnSubmit] },
             () => `
                 <input type="file" name="avatar" required>
                 <div data-component="children"></div>
