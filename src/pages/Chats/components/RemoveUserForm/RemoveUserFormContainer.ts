@@ -1,18 +1,18 @@
-import { CHAT_ADD_USER_FAIL_MESSAGE, CHAT_ADD_USER_SUCCESS_MESSAGE } from "../../../../core/api/api.consts.js"
+import { CHAT_REMOVE_USER_FAIL_MESSAGE, CHAT_REMOVE_USER_SUCCESS_MESSAGE } from "../../../../core/api/api.consts.js"
 import { ICurrentUserInfo } from "../../../../core/api/auth.api.js"
 import { ChatUsersAPI } from "../../../../core/api/chat-users.api.js"
 import { IUserSearch, UsersAPI } from "../../../../core/api/users.api.js"
 import { loaderOffAction, loaderOnAction } from "../../../../core/store/actions.js"
 import { store } from "../../../../core/store/store.js"
-import { AddUserForm } from "./AddUserForm.js"
+import { RemoveUserForm } from "./RemoveUserForm.js"
 
 
-export class AddUserFormContainer {
+export class RemoveUserFormContainer {
     constructor() {
-        this.onAddUser = this.onAddUser.bind(this)
+        this.onRemoveUser = this.onRemoveUser.bind(this)
     }
 
-    onAddUser(request: IUserSearch, currentChatId?: number){
+    onRemoveUser(request: IUserSearch, currentChatId?: number){
         loaderOnAction()
 
         UsersAPI.search(request).then((searchRespone) => {
@@ -22,7 +22,7 @@ export class AddUserFormContainer {
                     const users = usersJson.map(el => el.id)
 
                     if (!users.length || !currentChatId) {
-                        alert(CHAT_ADD_USER_FAIL_MESSAGE)
+                        alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
 
                         break
                     }
@@ -32,21 +32,21 @@ export class AddUserFormContainer {
                         chatId: currentChatId
                     }
                 default:
-                    alert(CHAT_ADD_USER_FAIL_MESSAGE)
+                    alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
             }
         })
         .then((addUserRequest) => {
             if (!addUserRequest) return
 
-            return ChatUsersAPI.addUser(addUserRequest)
+            return ChatUsersAPI.deleteUser(addUserRequest)
                 .then((response) => {
                     switch (response.status) {
                         case 200:
-                            alert(CHAT_ADD_USER_SUCCESS_MESSAGE)
+                            alert(CHAT_REMOVE_USER_SUCCESS_MESSAGE)
                             
                             break
                         default:
-                            alert(CHAT_ADD_USER_FAIL_MESSAGE)
+                            alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
                     }
                 })
         })
@@ -56,17 +56,17 @@ export class AddUserFormContainer {
     }
 
     createBlock() {
-        const AddUserFormWrapped = new AddUserForm({
-            onAddUser: this.onAddUser,
+        const RemoveUserFormWrapped = new RemoveUserForm({
+            onRemoveUser: this.onRemoveUser,
             currentChatId: store.value.currentChatId
         })
 
         store.subscribe((state) => {
-            AddUserFormWrapped.setProps({
+            RemoveUserFormWrapped.setProps({
                 currentChatId: state.currentChatId
             })
         })
 
-        return AddUserFormWrapped
+        return RemoveUserFormWrapped
     }
 }

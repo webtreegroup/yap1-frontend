@@ -2,16 +2,17 @@ import { Link } from "../../../../components/Link/Link.js";
 import { Popup } from "../../../../components/Popup/Popup.js";
 import { Block } from "../../../../core/Block.js";
 import { ChatMessage } from "../ChatMessage/ChatMessage.js";
-import { RemoveUserForm } from "../RemoveUserForm/RemoveUserForm.js";
 import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js";
 import { Loader } from "../../../../components/Loader/Loader.js";
 import { AddUserFormContainer } from "../AddUserForm/AddUserFormContainer.js";
+import { RemoveUserFormContainer } from "../RemoveUserForm/RemoveUserFormContainer.js";
 export class ChatHistory extends Block {
     constructor(props) {
         var _a;
         const messages = ((_a = props === null || props === void 0 ? void 0 : props.messages) === null || _a === void 0 ? void 0 : _a.map(el => new ChatMessage(el))) || [];
         const LoaderComponent = new Loader();
         const AddUserForm = new AddUserFormContainer();
+        const RemoveUserForm = new RemoveUserFormContainer();
         const AddUserPopup = new Popup({
             title: 'Добавить пользователя',
             isClosable: true
@@ -21,7 +22,7 @@ export class ChatHistory extends Block {
         const RemoveUserPopup = new Popup({
             title: 'Удалить пользователя',
             isClosable: true
-        }, { root: [RemoveUserForm] });
+        }, { root: [RemoveUserForm.createBlock()] });
         const ToggleAddUserPopup = new Link({
             onClick: () => {
                 AddUserPopup.show();
