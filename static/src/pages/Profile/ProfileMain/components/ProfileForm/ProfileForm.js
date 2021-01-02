@@ -1,25 +1,20 @@
 import { InputControl } from "../../../../../components/InputControl/InputControl.js";
 import { Block } from "../../../../../core/Block.js";
-import { store } from "../../../../../core/store/store.js";
 import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js";
 class ProfileForm extends Block {
-    constructor() {
-        const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl(Object.assign(Object.assign({}, el), { disabled: true, isTouched: true })));
-        super('div', { className: 'profile-fields' }, {
-            root: fields
-        });
+    constructor(props) {
+        super('div', Object.assign(Object.assign({}, props), { className: 'profile-fields' }));
     }
-    componentDidMount() {
-        const fields = this._children.root;
-        if (!fields)
+    render() {
+        const currentUserInfo = this.props.currentUserInfo;
+        if (!currentUserInfo)
             return;
-        store.subscribe(() => {
-            const fieldsValues = store.value.currentUser;
-            fields.forEach(field => {
-                const fieldName = field.props.name;
-                field.setProps({ value: fieldsValues[fieldName] || '-' });
-            });
+        const fields = PROFILE_FORM_CONTROLS.map(el => {
+            const valueKey = el.name;
+            const value = currentUserInfo[valueKey];
+            return new InputControl(Object.assign(Object.assign({}, el), { value: value || '-', disabled: true, isTouched: true }));
         });
+        this._children = Object.assign(Object.assign({}, this._children), { root: fields });
     }
 }
 export default new ProfileForm();

@@ -1,3 +1,5 @@
-export interface IProfileEdit {
-    onLoadProfile: () => void
+import { IComponent } from "../../../App.types";
+
+export interface IProfileEdit extends IComponent {
+    onLoadProfile: () => Promise<void>
 }

@@ -3,41 +3,45 @@ import { Form } from "../../../../../components/Form/Form.js"
 import { InputControl } from "../../../../../components/InputControl/InputControl.js"
 import { ICurrentUserInfo } from "../../../../../core/api/auth.api.js"
 import { IChangeProfile } from "../../../../../core/api/profile.api.js"
-import { Block } from "../../../../../core/Block.js"
-import { store } from "../../../../../core/store/store.js"
 import { PROFILE_FORM_CONTROLS } from "../../../ProfileMain/components/ProfileForm/ProfileForm.config.js"
 import { IProfileEditForm } from "./ProfileEditForm.types.js"
 
 export class ProfileEditForm extends Form<IProfileEditForm> {
     constructor(props: IProfileEditForm) {
-        const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl({ ...el, isTouched: true }))
-        const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' })
-
         super(
             { 
                 ...props,
                 className: 'profile-fields' 
-            }, 
-            { root: [...fields, BtnSubmit] }, 
+            }
         )
     }
 
-    componentDidMount(){
-        const fields = this._children.root as Block[]
+    render(){
+        const currentUserInfo = this.props.currentUserInfo
 
-        if (!fields) return
+        if (!currentUserInfo) return
 
-        store.subscribe(() => {
-            const fieldsValues = store.value.currentUser
-    
-            fields.forEach(field => {
-                const fieldName: keyof ICurrentUserInfo = field.props.name
-                field.setProps({ value: fieldsValues[fieldName] || undefined })
+        const fields = PROFILE_FORM_CONTROLS.map(el => {
+            const valueKey = el.name as keyof ICurrentUserInfo
+            const value = currentUserInfo[valueKey]
+
+            return new InputControl({ 
+                ...el,
+                value,
+                isTouched: value ? true : false
             })
         })
+
+        const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' })
+
+        this._children = {
+            ...this._children,
+            fields,
+            BtnSubmit
+        }
     }
 
     onSubmit(request: IChangeProfile){
-        this.props.onProfileChange(request)
+        this.props.onProfileChange?.(request)
     }
 }

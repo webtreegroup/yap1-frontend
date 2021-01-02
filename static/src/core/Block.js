@@ -61,7 +61,7 @@ export class Block {
         if (!this._element)
             return;
         const block = this.render();
-        this._element.innerHTML = block;
+        this._element.innerHTML = block || '';
         Object.keys(this._children).map(componentKey => {
             var _a;
             const components = this._children[componentKey];
@@ -79,7 +79,7 @@ export class Block {
     }
     render() {
         var _a;
-        return ((_a = this._baseTmplRender) === null || _a === void 0 ? void 0 : _a.call(this, this.props)) || '';
+        return (_a = this._baseTmplRender) === null || _a === void 0 ? void 0 : _a.call(this, this.props);
     }
     get content() {
         return this.element;

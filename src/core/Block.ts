@@ -1,4 +1,4 @@
-import { IState, IStateValue } from "../App.types.js"
+import { IComponent, IState, IStateValue } from "../App.types.js"
 import { isEqual, render } from "../utils/common.utils.js"
 import { EventBus } from "./EventBus.js"
 
@@ -17,7 +17,7 @@ export interface IBlockChildren {
 
 export class Block<
     ElementType extends HTMLElement = any, 
-    PropsType extends object = any
+    PropsType extends IComponent = any
 > {
     static EVENTS = {
         INIT: "init",
@@ -61,19 +61,19 @@ export class Block<
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     }
 
-    init(props: IState) {
+    init(props: PropsType) {
         this._createResources(props)
         this.eventBus.emit(Block.EVENTS.FLOW_CDM)
     }
 
-    _createResources(props: IState) {
+    _createResources(props: PropsType) {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
         if (props.className) this._element?.classList.add(props.className)
         this.createResources(props)
     }
 
-    createResources(_props: IState) {}
+    createResources(_props: PropsType) {}
 
     _createDocumentElement(tagName: string) {
         return document.createElement(tagName) as ElementType
@@ -96,7 +96,7 @@ export class Block<
         return !isEqual(oldProps, newProps)
     }
 
-    setProps = (nextProps?: IState) => {
+    setProps = (nextProps?: PropsType) => {
         if (!nextProps) return
 
         Object.assign(this.props, nextProps)
@@ -110,7 +110,7 @@ export class Block<
         if (!this._element) return
 
         const block = this.render()
-        this._element.innerHTML = block
+        this._element.innerHTML = block || ''
         
         Object.keys(this._children).map(componentKey => {
             const components = this._children[componentKey]
@@ -128,8 +128,8 @@ export class Block<
         })
     }
 
-    render() {
-        return this._baseTmplRender?.(this.props) || ''
+    render(): string | void | undefined {
+        return this._baseTmplRender?.(this.props)
     }
 
     get content() {

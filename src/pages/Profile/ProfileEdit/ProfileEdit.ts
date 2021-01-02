@@ -2,13 +2,16 @@ import { Link } from "../../../components/Link/Link.js"
 import { Loader } from "../../../components/Loader/Loader.js"
 import { Block } from "../../../core/Block.js"
 import { ROUTES } from "../../../core/router/Router.config.js"
+import { store } from "../../../core/store/store.js"
+import { IProfileEditForm } from "./components/ProfileEditForm/ProfileEditForm.types.js"
 import { ProfileEditFormContainer } from "./components/ProfileEditForm/ProfileEditFormContainer.js"
 import { profileEditTmplRender } from "./ProfileEdit.tmpl.js"
 import { IProfileEdit } from "./ProfileEdit.type.js"
 
-export class ProfileEdit extends Block<HTMLDivElement> {
-    constructor(props?: IProfileEdit) {  
-        const ProfileEditForm = new ProfileEditFormContainer()
+export class ProfileEdit extends Block<HTMLDivElement, IProfileEdit> {
+    constructor(props: IProfileEdit) {  
+        const ProfileFormContainer = new ProfileEditFormContainer()
+        const ProfileForm = ProfileFormContainer.createBlock()
         const LoaderComponent = new Loader()
         const ChatsLink = new Link({ 
             path: ROUTES.CHATS.path,
@@ -25,7 +28,7 @@ export class ProfileEdit extends Block<HTMLDivElement> {
             }, 
             {
                 ChatsLink,
-                ProfileEditForm: ProfileEditForm.createBlock(),
+                ProfileForm,
                 LoaderComponent
             }, 
             profileEditTmplRender
@@ -33,6 +36,14 @@ export class ProfileEdit extends Block<HTMLDivElement> {
     }
 
     componentDidMount(){
-        this.props?.onLoadProfile()
+        const ProfileForm = this._children.ProfileForm as Block<HTMLFormElement, IProfileEditForm>
+
+        this.props?.onLoadProfile().then(() => {
+            store.subscribe((state) => {
+                ProfileForm.setProps({
+                    currentUserInfo: state.currentUser
+                })
+            })
+        })
     }
 }

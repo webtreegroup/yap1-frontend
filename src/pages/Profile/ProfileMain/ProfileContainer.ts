@@ -11,7 +11,7 @@ export class ProfileContainer {
     }
 
     onLoadProfile(){
-        AuthAPI.getCurrentUserInfo().then((xhr) => {
+        return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
             getCurrentUserInfoAction(response)

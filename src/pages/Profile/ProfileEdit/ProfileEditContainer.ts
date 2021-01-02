@@ -5,7 +5,7 @@ import { ProfileEdit } from "./ProfileEdit.js"
 
 export class ProfileEditContainer {
     onLoadProfile(){
-        AuthAPI.getCurrentUserInfo().then((xhr) => {
+        return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
             getCurrentUserInfoAction(response)

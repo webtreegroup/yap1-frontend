@@ -8,7 +8,7 @@ export class ProfileContainer {
         AuthAPI.logout().then(() => Router.go(ROUTES.SIGNIN.path));
     }
     onLoadProfile() {
-        AuthAPI.getCurrentUserInfo().then((xhr) => {
+        return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response = JSON.parse(xhr.response);
             getCurrentUserInfoAction(response);
         });

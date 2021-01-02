@@ -1,4 +1,4 @@
 export interface IProfile {
     onLogout: () => void
-    onLoadProfile: () => void
+    onLoadProfile: () => Promise<void>
 }

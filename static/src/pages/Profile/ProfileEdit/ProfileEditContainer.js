@@ -3,7 +3,7 @@ import { getCurrentUserInfoAction } from "../../../core/store/actions.js";
 import { ProfileEdit } from "./ProfileEdit.js";
 export class ProfileEditContainer {
     onLoadProfile() {
-        AuthAPI.getCurrentUserInfo().then((xhr) => {
+        return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response = JSON.parse(xhr.response);
             getCurrentUserInfoAction(response);
         });

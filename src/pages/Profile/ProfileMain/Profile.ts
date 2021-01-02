@@ -3,6 +3,7 @@ import { Loader } from "../../../components/Loader/Loader.js"
 import { Popup } from "../../../components/Popup/Popup.js"
 import { Block } from "../../../core/Block.js"
 import { ROUTES } from "../../../core/router/Router.config.js"
+import { store } from "../../../core/store/store.js"
 import { EditUserImageFormContainer } from "./components/EditUserImageForm/EditUserImageFormContainer.js"
 import ProfileForm from "./components/ProfileForm/ProfileForm.js"
 import { profileTmplRender } from "./Profile.tmpl.js"
@@ -70,6 +71,12 @@ export class Profile extends Block<HTMLDivElement> {
     }
 
     componentDidMount(){
-        this.props?.onLoadProfile()
+        this.props?.onLoadProfile().then(() => {
+            store.subscribe((state) => {
+                ProfileForm.setProps({
+                    currentUserInfo: state.currentUser
+                })
+            })
+        })
     }
 }

@@ -1,35 +1,41 @@
 import { InputControl } from "../../../../../components/InputControl/InputControl.js"
 import { ICurrentUserInfo } from "../../../../../core/api/auth.api.js"
 import { Block } from "../../../../../core/Block.js"
-import { store } from "../../../../../core/store/store.js"
+import { IProfileEditForm } from "../../../ProfileEdit/components/ProfileEditForm/ProfileEditForm.types.js"
 import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js"
 
-class ProfileForm extends Block {
-    constructor() {
-        const fields = PROFILE_FORM_CONTROLS.map(el => new InputControl({ ...el, disabled: true, isTouched: true }))
-
+class ProfileForm extends Block<HTMLDivElement, IProfileEditForm> {
+    constructor(props?: IProfileEditForm) {
         super(
             'div', 
-            { className: 'profile-fields' }, 
-            {
-                root: fields
+            { 
+                ...props,
+                className: 'profile-fields' 
             }, 
         )
     }
 
-    componentDidMount(){
-        const fields = this._children.root as Block[]
-        
-        if (!fields) return
+    render(){
+        const currentUserInfo = this.props.currentUserInfo
 
-        store.subscribe(() => {
-            const fieldsValues = store.value.currentUser
-    
-            fields.forEach(field => {
-                const fieldName: keyof ICurrentUserInfo = field.props.name
-                field.setProps({ value: fieldsValues[fieldName] || '-' })
+        if (!currentUserInfo) return
+
+        const fields = PROFILE_FORM_CONTROLS.map(el => {
+            const valueKey = el.name as keyof ICurrentUserInfo
+            const value = currentUserInfo[valueKey]
+
+            return new InputControl({ 
+                ...el,
+                value: value || '-',
+                disabled: true, 
+                isTouched: true
             })
         })
+
+        this._children = {
+            ...this._children,
+            root: fields,
+        }
     }
 }
 
