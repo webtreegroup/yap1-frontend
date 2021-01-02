@@ -8,3 +8,5 @@ export enum METHOD {
 export const SIGNIN_FAIL_MESSAGE = 'Что то пошло не так!\nПроверьте правильность введенных данных.'
 export const PROFILE_CHANGE_SUCCESS_MESSAGE = 'Данные успешное обновлены!'
 export const PROFILE_CHANGE_FAIL_MESSAGE = 'Не удалось обновить данные.\nЧто то пошло не так!'
+export const CHAT_ADD_SUCCESS_MESSAGE = 'Чат успешно добавлен!'
+export const CHAT_ADD_FAIL_MESSAGE = 'Не удалось добавить чат!'

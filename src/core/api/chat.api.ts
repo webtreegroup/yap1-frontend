@@ -7,11 +7,15 @@ export interface IChat {
     avatar: string
 }
 
+export interface IAddChat {
+    title: string
+}
+
 const chatAPIInstance = new HTTP('/chats')
 
 export class ChatAPI extends BaseAPI {
-    static create(title: string) {
-        return chatAPIInstance.post('/', { data: { title }})
+    static create(data: IAddChat) {
+        return chatAPIInstance.post('/', { data })
     }
 
     static request() {

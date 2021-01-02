@@ -13,7 +13,10 @@ export class Chats extends Block<HTMLDivElement, IChats> {
                 className: 'chats-page',
             }, 
             {root: [
-                new ChatsAside({ className: 'chats', chats: store.value.chats }), 
+                new ChatsAside({ 
+                    className: 'chats', 
+                    chats: store.value.chats 
+                }), 
                 new ChatHistory()
             ]}
         )

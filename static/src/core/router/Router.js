@@ -61,6 +61,9 @@ export class Router {
         this.history.pushState({}, "", pathname);
         this._onRoute(pathname);
     }
+    static reload() {
+        this.history.go();
+    }
     static getRoute(pathname) {
         const route = this.routes.find(route => {
             const pattern = new RegExp(`^${route.pathname}$`, 'g');

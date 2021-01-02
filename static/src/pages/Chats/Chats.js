@@ -5,7 +5,10 @@ import { ChatsAside } from "./components/ChatsAside/ChatsAside.js";
 export class Chats extends Block {
     constructor(props) {
         super('main', Object.assign(Object.assign({}, props), { className: 'chats-page' }), { root: [
-                new ChatsAside({ className: 'chats', chats: store.value.chats }),
+                new ChatsAside({
+                    className: 'chats',
+                    chats: store.value.chats
+                }),
                 new ChatHistory()
             ] });
     }

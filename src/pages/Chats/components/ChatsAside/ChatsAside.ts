@@ -1,6 +1,9 @@
 import { Link } from "../../../../components/Link/Link.js"
+import { Loader } from "../../../../components/Loader/Loader.js"
+import { Popup } from "../../../../components/Popup/Popup.js"
 import { Block } from "../../../../core/Block.js"
 import { ROUTES } from "../../../../core/router/Router.config.js"
+import { AddChatFormContainer } from "../AddChatForm/AddChatFormContainer.js"
 import { ChatGroup } from "../ChatGroup/ChatGroup.js"
 import { chatsAsideTmplRender } from "./ChatsAside.tmpl.js"
 import { IChatsAside } from "./ChatsAside.types.js"
@@ -15,8 +18,33 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
             `,
         })
 
+        const LoaderComponent = new Loader()
+
+        const AddChatForm = new AddChatFormContainer()
+
+        const AddChatPopup = new Popup({ 
+            title: 'Добавить чат',
+            isClosable: true
+        }, {
+            root: [AddChatForm.createBlock()]
+        })
+
+        const AddChatPopupToggle = new Link({ 
+            onClick: () => {
+                AddChatPopup.show()
+            },
+            title: `
+                <svg height="16px" viewBox="0 0 512 512" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="m256 512C114.835938 512 0 397.164062.0 256S114.835938.0 256 0s256 114.835938 256 256-114.835938 256-256 256zm0-480C132.480469 32 32 132.480469 32 256s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0"/><path d="m368 272H144c-8.832031.0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031.0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"/><path d="m256 384c-8.832031.0-16-7.167969-16-16V144c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0"/></svg>
+                Добавить чат
+            `,
+            className: 'chats__add-button'
+        })
+
         super('aside', props, {
-            ProfileLink
+            ProfileLink,
+            LoaderComponent,
+            AddChatPopup,
+            AddChatPopupToggle
         })
     }
 

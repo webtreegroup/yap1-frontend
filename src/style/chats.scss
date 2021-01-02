@@ -17,6 +17,19 @@
         margin-bottom: 15px;
     }
 
+    &__add-button {
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        color: $input_label_color;
+        margin-top: 15px;
+        text-decoration: none;
+
+        svg {
+            margin-right: 5px;
+        }
+    }
+
     &__search {
         position: relative;
 
@@ -57,7 +70,7 @@
 
         a {
             font-size: 12px;
-            color: #999999;
+            color: $input_label_color;
             text-decoration: none;
             display: flex;
             align-items: center;
