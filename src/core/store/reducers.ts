@@ -1,4 +1,4 @@
-import { CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD } from "./actions.js"
+import { CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD, SET_CURRENT_CHAT } from "./actions.js"
 import { IStoreState } from "./store.config.js"
 import { IAction } from "./store.js"
 
@@ -40,8 +40,18 @@ export function chatsReducer(state: IStoreState, action: IAction) {
     return state
 }
 
+export function currentChatReducer(state: IStoreState, action: IAction) {
+    switch (action.type) {
+        case SET_CURRENT_CHAT:
+            return action.payload
+    }
+
+    return state
+}
+
 export const reducers = {
     loader: loaderReducer,
     currentUser: currentUserReducer,
-    chats: chatsReducer
+    chats: chatsReducer,
+    currentChatId: currentChatReducer
 }

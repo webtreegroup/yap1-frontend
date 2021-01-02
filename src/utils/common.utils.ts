@@ -1,6 +1,10 @@
 import { IState } from "../App.types"
 import { Block } from "../core/Block"
 
+export function getArrLastEl<T>(arr: T[]): T{
+    return arr[arr.length - 1]
+}
+
 export function render(query: string | HTMLElement | null, block: Block) {
     const appendBlock = block.content
 

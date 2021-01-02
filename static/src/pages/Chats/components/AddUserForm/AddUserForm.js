@@ -10,7 +10,7 @@ export class AddUserForm extends Form {
     }
     onSubmit(request) {
         var _a, _b;
-        (_b = (_a = this.props).onAddUser) === null || _b === void 0 ? void 0 : _b.call(_a, request);
+        (_b = (_a = this.props).onAddUser) === null || _b === void 0 ? void 0 : _b.call(_a, request, this.props.currentChatId);
     }
     render() {
         return addUserFormTmplRender();

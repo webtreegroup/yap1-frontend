@@ -20,7 +20,7 @@ export class AddUserForm extends Form<IAddUserForm> {
     }
 
     onSubmit(request: IUserSearch){
-        this.props.onAddUser?.(request)
+        this.props.onAddUser?.(request, this.props.currentChatId)
     }
 
     render() {

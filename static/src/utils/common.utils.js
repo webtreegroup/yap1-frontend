@@ -1,3 +1,6 @@
+export function getArrLastEl(arr) {
+    return arr[arr.length - 1];
+}
 export function render(query, block) {
     const appendBlock = block.content;
     if (!appendBlock)

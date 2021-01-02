@@ -4,6 +4,7 @@ import { ChatUsersAPI } from "../../../../core/api/chat-users.api.js"
 import { IUserSearch, UsersAPI } from "../../../../core/api/users.api.js"
 import { Router } from "../../../../core/router/Router.js"
 import { loaderOffAction, loaderOnAction } from "../../../../core/store/actions.js"
+import { store } from "../../../../core/store/store.js"
 import { AddUserForm } from "./AddUserForm.js"
 
 
@@ -12,7 +13,7 @@ export class AddUserFormContainer {
         this.onAddUser = this.onAddUser.bind(this)
     }
 
-    onAddUser(request: IUserSearch){
+    onAddUser(request: IUserSearch, currentChatId?: number){
         loaderOnAction()
 
         UsersAPI.search(request).then((searchRespone) => {
@@ -21,7 +22,7 @@ export class AddUserFormContainer {
                     const usersJson = JSON.parse(searchRespone.response) as ICurrentUserInfo[]
                     const users = usersJson.map(el => el.id)
 
-                    if (!users.length) {
+                    if (!users.length || !currentChatId) {
                         alert(CHAT_ADD_USER_FAIL_MESSAGE)
 
                         break
@@ -29,7 +30,7 @@ export class AddUserFormContainer {
 
                     return {
                         users,
-                        chatId: 0
+                        chatId: currentChatId
                     }
                 default:
                     alert(CHAT_ADD_USER_FAIL_MESSAGE)
@@ -56,8 +57,17 @@ export class AddUserFormContainer {
     }
 
     createBlock() {
-        return new AddUserForm({
-            onAddUser: this.onAddUser
+        const AddUserFormWrapped = new AddUserForm({
+            onAddUser: this.onAddUser,
+            currentChatId: store.value.currentChatId
         })
+
+        store.subscribe((state) => {
+            AddUserFormWrapped.setProps({
+                currentChatId: state.currentChatId
+            })
+        })
+
+        return AddUserFormWrapped
     }
 }
