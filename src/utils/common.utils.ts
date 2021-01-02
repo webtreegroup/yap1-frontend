@@ -1,6 +1,29 @@
 import { IState } from "../App.types"
 import { Block } from "../core/Block"
 
+interface IEntityMap {
+    [key: string]: string
+}
+
+export function escapeHtml (value: FormDataEntryValue) {
+    if (typeof value !== 'string') return value
+
+    const entityMap: IEntityMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+        '`': '&#x60;',
+        '=': '&#x3D;'
+    }
+
+    return value.replace(/[&<>"'`=\/]/g, function (char: string) {
+        return entityMap[char]
+    })
+}
+
 export function getArrLastEl<T>(arr: T[]): T{
     return arr[arr.length - 1]
 }

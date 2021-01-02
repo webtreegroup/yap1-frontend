@@ -1,5 +1,6 @@
 import { IState } from "../../App.types.js"
 import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/Block.js"
+import { escapeHtml } from "../../utils/common.utils.js"
 
 export class Form<PropType extends object> extends Block<HTMLFormElement, PropType> {
     constructor(props?: PropType, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
@@ -29,7 +30,7 @@ export class Form<PropType extends object> extends Block<HTMLFormElement, PropTy
         const formData = new FormData(this._element as HTMLFormElement)
 
         for(const [key, value] of formData.entries()) {
-            request[key] = value
+            request[key] = escapeHtml(value)
         }
 
         this.onSubmit(request, formData)

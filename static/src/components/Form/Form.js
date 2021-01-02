@@ -1,4 +1,5 @@
 import { Block } from "../../core/Block.js";
+import { escapeHtml } from "../../utils/common.utils.js";
 export class Form extends Block {
     constructor(props, children, baseTmplRender) {
         var _a;
@@ -20,7 +21,7 @@ export class Form extends Block {
         }
         const formData = new FormData(this._element);
         for (const [key, value] of formData.entries()) {
-            request[key] = value;
+            request[key] = escapeHtml(value);
         }
         this.onSubmit(request, formData);
     }

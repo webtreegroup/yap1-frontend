@@ -1,3 +1,20 @@
+export function escapeHtml(value) {
+    if (typeof value !== 'string')
+        return value;
+    const entityMap = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+        '/': '&#x2F;',
+        '`': '&#x60;',
+        '=': '&#x3D;'
+    };
+    return value.replace(/[&<>"'`=\/]/g, function (char) {
+        return entityMap[char];
+    });
+}
 export function getArrLastEl(arr) {
     return arr[arr.length - 1];
 }
