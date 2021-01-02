@@ -2,6 +2,7 @@ import { IComponent } from "../../../../App.types.js"
 
 // TODO: контракт под вопросом, т.к. в АПИ данные отличаются
 export interface IChatGroup extends IComponent {
+    id?: number
     name?: string
     lastMessage?: string
     time?: string

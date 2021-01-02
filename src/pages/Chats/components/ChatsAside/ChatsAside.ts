@@ -50,6 +50,7 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
 
     render() {
         const chats = this.props.chats.map(el => new ChatGroup({
+            id: el.id,
             name: el.title
         }))
 

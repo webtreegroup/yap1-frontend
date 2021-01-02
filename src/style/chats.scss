@@ -27,6 +27,10 @@
 
         svg {
             margin-right: 5px;
+
+            path {
+                fill: $link_color;
+            }
         }
     }
 
@@ -175,6 +179,34 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+
+    &__user-toolbar {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+
+            path {
+                fill: $link_color;
+            }
+        }
+
+        li:not(:last-child) {
+            margin-bottom: 5px;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: $input_label_color;
+        }
+    }
 
     &__time {
         margin-bottom: 20px;

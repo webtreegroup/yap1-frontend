@@ -42,6 +42,7 @@ export class ChatsAside extends Block {
     }
     render() {
         const chats = this.props.chats.map(el => new ChatGroup({
+            id: el.id,
             name: el.title
         }));
         this._children = Object.assign(Object.assign({}, this._children), { chats });

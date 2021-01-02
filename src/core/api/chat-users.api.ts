@@ -3,18 +3,17 @@ import { BaseAPI } from "./base.api.js"
 
 const chatUsersAPIInstance = new HTTP('/chats')
 
+export interface IAddAndRemoveUser {
+    users: number[]
+    chatId: number
+}
+
 export class ChatUsersAPI extends BaseAPI {
-    static addUser(users: number[], chatId: number) {
-        return chatUsersAPIInstance.put('/users', { data: {
-            users,
-            chatId
-        }})
+    static addUser(data: IAddAndRemoveUser) {
+        return chatUsersAPIInstance.put('/users', { data })
     }
 
-    static deleteUser(users: number[], chatId: number) {
-        return chatUsersAPIInstance.delete('/users', { data: {
-            users,
-            chatId
-        }})
+    static deleteUser(data: IAddAndRemoveUser) {
+        return chatUsersAPIInstance.delete('/users', { data })
     }
 }

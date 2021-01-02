@@ -5,7 +5,7 @@ export class UsersAPI extends BaseAPI {
     static getById(id) {
         return usersAPIInstance.get(`/${id}`);
     }
-    static search(login) {
-        return usersAPIInstance.get('/search', { data: { login } });
+    static search(data) {
+        return usersAPIInstance.post('/search', { data });
     }
 }
