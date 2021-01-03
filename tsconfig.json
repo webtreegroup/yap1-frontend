@@ -1,21 +1,27 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
-    "target": "es6",
     "rootDir": "./",
-    "outDir": "./static",
-    "esModuleInterop": true,
+    "target": "es6",
     "strict": true,
+    "declaration": false,
+    "strictNullChecks": true,
+    "sourceMap": true,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    // TODO:
-    // "sourceMap": true,
+    "alwaysStrict": true,
     "lib": [
-      "es2019",
       "dom",
-      "dom.iterable"
+      "es6",
+      "dom.iterable",
+      "es2017"
     ],
-    "downlevelIteration": true,
-    "watch": true
+    "outDir": "./static",
+    "plugins": [
+      {
+        "transform": "@zoltu/typescript-transformer-append-js-extension/output/index.js",
+        "after": true
+      }
+    ]
   }
 }
