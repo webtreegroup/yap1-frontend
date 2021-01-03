@@ -17,7 +17,7 @@ interface IResponse<T> extends Omit<XMLHttpRequest, 'response'> {
     response: T
 }
 
-const API_BASE_PATH = 'https://ya-praktikum.tech/api/v2'
+export const API_BASE_PATH = 'https://ya-praktikum.tech/api/v2'
 
 export function queryStringify<T extends object>(data: T): string {
     if (!data) return ''

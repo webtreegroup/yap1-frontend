@@ -59,7 +59,7 @@ describe("Block usage suite", () => {
         const Block1 = createBlock({ className: 'child-block-component' })
         const Block2 = createBlock({ className }, { root: Block1 }, tmplRender)
         render('body', Block2)
-
+        
         const childBlockNode = document.querySelector('.child-block-component')
         expect(childBlockNode).not.eql(null)
     })
