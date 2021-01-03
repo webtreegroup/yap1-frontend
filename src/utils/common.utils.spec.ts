@@ -1,8 +1,10 @@
 
-import { assert } from "chai"
+import chai from 'chai'
 import { getArrLastEl } from "./common.utils.js"
 
-describe("Typescript + Babel usage suite", () => {
+const { assert } = chai
+
+describe("Sommon utils usage suite", () => {
     const arr = [1, 5, 6, 2]
 
     it("should return last element of array", () => {
