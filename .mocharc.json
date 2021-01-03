@@ -1,4 +1,5 @@
 {
-    "extension": ["ts"],
-    "spec": "static/**/*.spec.js"
+    "extension": ["js"],
+    "spec": "static/**/*.spec.js",
+    "require": ["testsSetup/browser.js"]
 } 
