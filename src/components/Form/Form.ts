@@ -2,8 +2,8 @@ import { IState } from "../../App.types.js"
 import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/block/Block.js"
 import { escapeHtml } from "../../utils/common.utils.js"
 
-export class Form<PropType extends object> extends Block<HTMLFormElement, PropType> {
-    constructor(props?: PropType, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
+export class Form<PropsType extends object> extends Block<HTMLFormElement, PropsType> {
+    constructor(props?: PropsType, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
         super("form", props, children, baseTmplRender)
         
         this._onSubmit = this._onSubmit.bind(this)
