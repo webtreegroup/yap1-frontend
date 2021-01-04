@@ -1,0 +1,5 @@
+{
+    "extension": ["js"],
+    "spec": "static/**/*.spec.js",
+    "require": ["testsSetup/browser.js"]
+} 

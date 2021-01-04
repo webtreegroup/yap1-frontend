@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { IButton } from "./Button.types.js"
 import { buttonTmplRender } from "./Button.tmpl.js"
 

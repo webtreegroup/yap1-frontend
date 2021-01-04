@@ -1,7 +1,7 @@
 export function checkAllowedLengthAndTypeChar(value) {
     if (!value)
         return false;
-    const regexp = new RegExp(/^((?!\s).){3,15}$/);
+    const regexp = new RegExp(/^((?!\s).){3,20}$/);
     return regexp.test(value);
 }
 export function checkPhoneNumber(value) {

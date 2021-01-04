@@ -1,7 +1,6 @@
 import { IChatGroup } from "./ChatGroup.types.js"
 
 export const chatGroupTmplRender = ({
-    name = 'no name',
     lastMessage = '',
     time = '',
     unread = 0,
@@ -23,7 +22,7 @@ export const chatGroupTmplRender = ({
     return `
         ${img ? chatImg : chatImgEmpty}
         <div class="chats-item__body">
-            <h5 class="chats-item__title">${name}</h5>
+            <h5 class="chats-item__title" data-component="ChatSingleLink"></h5>
             <span class="chats-item__desc">
                 ${isOwnMessage ? '<b>Вы:</b>' : ''}
                 ${lastMessage}

@@ -15,5 +15,6 @@
       "dom.iterable"
     ],
     "downlevelIteration": true,
+    "watch": true
   }
 }

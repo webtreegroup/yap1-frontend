@@ -17,6 +17,23 @@
         margin-bottom: 15px;
     }
 
+    &__add-button {
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        color: $input_label_color;
+        margin-top: 15px;
+        text-decoration: none;
+
+        svg {
+            margin-right: 5px;
+
+            path {
+                fill: $link_color;
+            }
+        }
+    }
+
     &__search {
         position: relative;
 
@@ -57,7 +74,7 @@
 
         a {
             font-size: 12px;
-            color: #999999;
+            color: $input_label_color;
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -162,6 +179,34 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+
+    &__user-toolbar {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+
+            path {
+                fill: $link_color;
+            }
+        }
+
+        li:not(:last-child) {
+            margin-bottom: 5px;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: $input_label_color;
+        }
+    }
 
     &__time {
         margin-bottom: 20px;

@@ -1,6 +1,7 @@
+import { isEqual, render } from "../utils/common.utils.js";
 import { EventBus } from "./EventBus.js";
 export class Block {
-    constructor(tagName, props = {}, children, baseTmplRender) {
+    constructor(tagName, props = {}, children = {}, baseTmplRender) {
         this._element = null;
         this.setProps = (nextProps) => {
             if (!nextProps)
@@ -51,7 +52,7 @@ export class Block {
             this.eventBus.emit(Block.EVENTS.FLOW_RENDER);
     }
     componentDidUpdate(oldProps, newProps) {
-        return oldProps !== newProps;
+        return !isEqual(oldProps, newProps);
     }
     get element() {
         return this._element;
@@ -60,38 +61,25 @@ export class Block {
         if (!this._element)
             return;
         const block = this.render();
-        this._element.innerHTML = block;
-        if (!this._children)
-            return;
-        if (!Array.isArray(this._children)) {
-            const children = this._children;
-            Object.keys(children).map(componentKey => {
-                var _a;
-                const components = children[componentKey];
-                if (!components)
-                    return;
-                const componentsContainer = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(`[data-component="${componentKey}"]`);
-                const appendTarget = componentsContainer ? componentsContainer : this._element;
-                if (Array.isArray(components)) {
-                    components.map(el => appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(el.content));
-                }
-                else {
-                    appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(components.content);
-                }
-            });
-        }
-        else {
-            const componentContainer = this._element.querySelector('[data-component="children"]');
-            const appendTarget = componentContainer ? componentContainer : this._element;
-            const children = this._children.map(el => el.content);
-            children.forEach(el => {
-                appendTarget.appendChild(el);
-            });
-        }
+        this._element.innerHTML = block || '';
+        Object.keys(this._children).map(componentKey => {
+            var _a;
+            const components = this._children[componentKey];
+            if (!components)
+                return;
+            const componentsContainer = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelector(`[data-component="${componentKey}"]`);
+            const appendTarget = componentsContainer ? componentsContainer : this._element;
+            if (Array.isArray(components)) {
+                components.map(el => appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(el.content));
+            }
+            else {
+                appendTarget === null || appendTarget === void 0 ? void 0 : appendTarget.appendChild(components.content);
+            }
+        });
     }
     render() {
         var _a;
-        return ((_a = this._baseTmplRender) === null || _a === void 0 ? void 0 : _a.call(this, this.props)) || '';
+        return (_a = this._baseTmplRender) === null || _a === void 0 ? void 0 : _a.call(this, this.props);
     }
     get content() {
         return this.element;
@@ -106,13 +94,20 @@ export class Block {
             set(target, prop, value) {
                 const oldProps = Object.assign({}, self.props);
                 target[prop] = value;
-                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps[prop], value);
+                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target);
                 return true;
             },
             deleteProperty() {
                 throw new Error("Нет доступа");
             }
         });
+    }
+    hide() {
+        var _a;
+        (_a = this._element) === null || _a === void 0 ? void 0 : _a.remove();
+    }
+    show(rootQuery) {
+        render(rootQuery, this);
     }
 }
 Block.EVENTS = {

@@ -1,9 +1,20 @@
+import { Loader } from "../../components/Loader/Loader.js";
 import { Popup } from "../../components/Popup/Popup.js";
-import { render } from "../../utils/common.utils.js";
-import { SigninForm } from "./components/SigninForm/SigninForm.js";
-const SigninPopup = new Popup({
-    title: 'Регистрация',
-    isActive: true
-}, [new SigninForm()]);
-render(".signin-page", SigninPopup);
+import { Block } from "../../core/block/Block.js";
+import { ROUTES } from "../../core/router/Router.config.js";
+import { SigninFormContainer } from "./components/SigninForm/SigninFormContainer.js";
+export class Signin extends Block {
+    constructor() {
+        const SigninForm = new SigninFormContainer();
+        const SigninPopup = new Popup({
+            title: ROUTES.SIGNIN.title,
+            isActive: true
+        }, {
+            root: [SigninForm.createBlock()]
+        });
+        super('main', { className: 'signin-page' }, {
+            root: [SigninPopup, new Loader()]
+        });
+    }
+}
 //# sourceMappingURL=Signin.js.map

@@ -4,7 +4,7 @@ export interface IInputControl extends IComponent {
     name?: string
     label?: string
     inputType?: string
-    value?: string
+    value?: string | number
     disabled?: boolean
     required?: boolean
     isTouched?: boolean

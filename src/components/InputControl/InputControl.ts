@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { IValidationFn } from "../../utils/form.utils.js"
 import { IInputControl } from "./InputControl.types.js"
 import { inputControlTmplRender } from "./InputControl.tmpl.js"

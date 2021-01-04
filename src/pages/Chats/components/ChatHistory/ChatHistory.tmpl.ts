@@ -15,18 +15,10 @@ export const chatHistoryTmplRender = ({ messages }: IChatHistory): string => {
                 <span>Вадим</span>
             </div>
 
-            <nav class="chat-actions">
-                <button class="btn btn_no-style chat-actions__toggle-menu">
-                    <svg enable-background="new 0 0 515.555 515.555" height="512" viewBox="0 0 515.555 515.555" width="512" xmlns="http://www.w3.org/2000/svg"><path fill="#3369F3" d="m303.347 18.875c25.167 25.167 25.167 65.971.0 91.138s-65.971 25.167-91.138.0-25.167-65.971.0-91.138c25.166-25.167 65.97-25.167 91.138.0"/><path fill="#3369F3" d="m303.347 212.209c25.167 25.167 25.167 65.971.0 91.138s-65.971 25.167-91.138.0-25.167-65.971.0-91.138c25.166-25.167 65.97-25.167 91.138.0"/><path fill="#3369F3" d="m303.347 405.541c25.167 25.167 25.167 65.971.0 91.138s-65.971 25.167-91.138.0-25.167-65.971.0-91.138c25.166-25.167 65.97-25.167 91.138.0"/></svg>
-                </button>
-
-                <div class="menu">
-                    <ul>
-                        <li data-component="ToggleAddUserPopup"></li>
-                        <li data-component="ToggleRemoveUserPopup"></li>
-                    </ul>
-                </div>
-            </nav>
+            <ul class="chat-history__user-toolbar">
+                <li data-component="ToggleAddUserPopup"></li>
+                <li data-component="ToggleRemoveUserPopup"></li>
+            </ul>
         </header>
     `
 
@@ -34,7 +26,7 @@ export const chatHistoryTmplRender = ({ messages }: IChatHistory): string => {
         <footer>
             <nav class="chat-attachment">
                 <button class="btn btn_no-style chat-actions__toggle-menu">
-                    <svg enable-background="new 0 0 512 512" height="512" viewBox="0 0 512 512" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m226 512c-49.626.0-90-40.374-90-90V120c0-66.168 53.832-120 120-120s120 53.832 120 120v302h-30V120c0-49.626-40.374-90-90-90s-90 40.374-90 90v302c0 33.084 26.916 60 60 60s60-26.916 60-60V180c0-16.542-13.458-30-30-30s-30 13.458-30 30v242h-30V180c0-33.084 26.916-60 60-60s60 26.916 60 60v242c0 49.626-40.374 90-90 90z"/></svg>
+                    <svg enable-background="new 0 0 16 16" height="16px" viewBox="0 0 16 16" width="16px" xmlns="http://www.w3.org/2000/svg"><path d="m226 512c-49.626.0-90-40.374-90-90V120c0-66.168 53.832-120 120-120s120 53.832 120 120v302h-30V120c0-49.626-40.374-90-90-90s-90 40.374-90 90v302c0 33.084 26.916 60 60 60s60-26.916 60-60V180c0-16.542-13.458-30-30-30s-30 13.458-30 30v242h-30V180c0-33.084 26.916-60 60-60s60 26.916 60 60v242c0 49.626-40.374 90-90 90z"/></svg>
                 </button>
 
                 <div class="menu">
@@ -47,7 +39,7 @@ export const chatHistoryTmplRender = ({ messages }: IChatHistory): string => {
                         </li>
                         <li>
                             <a href="#">
-                                <svg  enable-background="new 0 0 510 510" height="512" viewBox="0 0 510 510" width="512" xmlns="http://www.w3.org/2000/svg"><g><path  fill="#3369F3" d="m405 60V0H60v465h60v45h231.213l98.787-98.787v-351.213zM90 435V30h285v30H120v375zm60-345h270v3e2h-90v90H150zm248.787 330-38.787 38.787V420z"/><path fill="#3369F3" d="m180 120h210v30H180z"/><path fill="#3369F3" d="m180 180h210v30H180z"/><path fill="#3369F3" d="m180 240h210v30H180z"/><path fill="#3369F3" d="m180 3e2h210v30H180z"/><path fill="#3369F3" d="m180 360h105v30H180z"/></g></svg>
+                                <svg  enable-background="new 0 0 510 510" height="16px" viewBox="0 0 510 510" width="16px" xmlns="http://www.w3.org/2000/svg"><g><path  fill="#3369F3" d="m405 60V0H60v465h60v45h231.213l98.787-98.787v-351.213zM90 435V30h285v30H120v375zm60-345h270v3e2h-90v90H150zm248.787 330-38.787 38.787V420z"/><path fill="#3369F3" d="m180 120h210v30H180z"/><path fill="#3369F3" d="m180 180h210v30H180z"/><path fill="#3369F3" d="m180 240h210v30H180z"/><path fill="#3369F3" d="m180 3e2h210v30H180z"/><path fill="#3369F3" d="m180 360h105v30H180z"/></g></svg>
                                 Файл
                             </a>
                         </li>

@@ -1,20 +1,24 @@
-import { Store } from "../../App.types.js"
-import { Block, IBaseTemplateRender } from "../../core/Block.js"
-import { IForm } from "./Form.types.js"
+import { IState } from "../../App.types.js"
+import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/block/Block.js"
+import { escapeHtml } from "../../utils/common.utils.js"
 
-export class Form extends Block<HTMLFormElement> {
-    constructor(props?: IForm, children?: Block[], baseTmplRender?: IBaseTemplateRender){
+export class Form<PropsType extends object> extends Block<HTMLFormElement, PropsType> {
+    constructor(props?: PropsType, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender){
         super("form", props, children, baseTmplRender)
         
-        this.handleSubmit = this.handleSubmit.bind(this)
+        this._onSubmit = this._onSubmit.bind(this)
 
-        this._element?.addEventListener('submit', this.handleSubmit)
+        this._element?.addEventListener('submit', this._onSubmit)
     }
 
-    handleSubmit(e: Event) {
+    onSubmit(request: IState, formData?: FormData){
+        console.log(request, formData)
+    }
+
+    _onSubmit(e: Event) {
         e.preventDefault()
         
-        const requestForConsole: Store = {}
+        const request: IState = {}
         const fieldsWithErrors = this._element?.querySelectorAll('input.error')
         
         if (fieldsWithErrors?.length) {
@@ -26,9 +30,9 @@ export class Form extends Block<HTMLFormElement> {
         const formData = new FormData(this._element as HTMLFormElement)
 
         for(const [key, value] of formData.entries()) {
-            requestForConsole[key] = value
+            request[key] = escapeHtml(value)
         }
 
-        console.log(requestForConsole)
+        this.onSubmit(request, formData)
     }
 }
