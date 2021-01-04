@@ -1,7 +1,7 @@
+// @ts-nocheck
 import chai from 'chai'
 import * as request from 'superagent'
 import { API_BASE_PATH } from './api.js'
-// @ts-ignore
 import chaiHttp from 'chai-http'
 
 chai.use(chaiHttp)
@@ -22,9 +22,7 @@ describe("Api usage suite", () => {
             .post('/auth/signin')
             .send({ login: 'test3', password: 'test3' })
             .end(function (_: any, res: request.Response) {
-                // @ts-ignore
                 expect(res).to.have.cookie('authCookie')
-                // @ts-ignore
                 expect(res).to.have.status(200)
                 done()
             })
@@ -34,7 +32,6 @@ describe("Api usage suite", () => {
         agent
             .get('/chats')
             .end(function (_:any, res: request.Response) {
-                // @ts-ignore
                 expect(res).to.have.status(200)
                 expect(res.body).to.be.an('array')
                 done()
@@ -53,7 +50,6 @@ describe("Api usage suite", () => {
                 phone: "333333333"}
             )
             .end(function (_: any, res: request.Response) {
-                // @ts-ignore
                 expect(res).to.have.status(200)
                 expect(res.body).to.have.property('id')
                 done()
@@ -64,13 +60,11 @@ describe("Api usage suite", () => {
         agent
             .get('/chats-not-valid')
             .then(function (res: request.Response) {
-                // @ts-ignore
                 expect(res).not.have.status(200)
                 
                 throw res
             })
             .catch(function (err: request.Response) {
-                // @ts-ignore
                 expect(err).to.have.status(404)
                 done()
             })
@@ -81,13 +75,11 @@ describe("Api usage suite", () => {
             .post('/chats')
             .send({ titleNotValid: '' })
             .then(function (res: request.Response) {
-                // @ts-ignore
                 expect(res).to.not.have.status(200)
                 
                 throw res
             })
             .catch(function (err: request.Response) {
-                // @ts-ignore
                 expect(err).not.have.status(200)
                 done()
             })
