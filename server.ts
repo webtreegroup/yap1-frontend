@@ -9,7 +9,7 @@ app.get('*', (req, res) => {
     const patternForStatic = new RegExp('\.(js|css)$', 'g')
 
     if (patternForStatic.test(req.path)) {
-        res.sendFile(__dirname + '/static' + req.path)
+        res.sendFile(__dirname + req.path)
     } else {
         res.sendFile(__dirname + '/index.html')
     }
