@@ -8,8 +8,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    // TODO:
-    // "sourceMap": true,
+    "sourceMap": true,
     "lib": [
       "es2019",
       "dom",

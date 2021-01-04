@@ -12,11 +12,6 @@ export class Loader extends Block<HTMLLinkElement> {
         )
 
         store.subscribe(() => {
-            /**
-             * TODO: в будущем перевести на внутренний стейт, т.к. изменять
-             * props компонента можно только снаружи компонента, они должны быть
-             * иммутабельны
-             */ 
             this.setProps(store.value.loader)
         })
     }
