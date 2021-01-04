@@ -180,6 +180,11 @@
     display: flex;
     flex-direction: column;
 
+    &__message {
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
     &__user-toolbar {
         list-style-type: none;
         padding: 0;
@@ -225,11 +230,6 @@
         border-top: $chats_list_border;
         padding-top: 20px;
         @include v_align();
-
-        .input-control {
-            flex-grow: 1;
-            margin: 0 10px;
-        }
     }
 
     &__body {
@@ -323,8 +323,8 @@
 
     .menu {
         position: absolute;
-        left: 0;
-        bottom: 35px;
+        left: 30px;
+        bottom: 65px;
         width: 160px;
     }
 }

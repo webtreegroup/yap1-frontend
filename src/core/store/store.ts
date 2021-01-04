@@ -53,3 +53,6 @@ export class Store {
 
 export const store = new Store(reducers, INITIAL_STATE)
 
+// TODO: для дебага Store
+const windowStore: any = 'store'
+window[windowStore] = store as any
