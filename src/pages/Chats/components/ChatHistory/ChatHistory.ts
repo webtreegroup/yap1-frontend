@@ -61,7 +61,7 @@ export class ChatHistory extends Block {
                 ToggleAddUserPopup: messages.length ? ToggleAddUserPopup : undefined,
                 ToggleRemoveUserPopup: messages.length ? ToggleRemoveUserPopup : undefined,
                 LoaderComponent,
-                MessageField
+                MessageField: messages.length ? MessageField : undefined
             }
         )
     }

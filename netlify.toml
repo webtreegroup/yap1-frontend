@@ -8,3 +8,9 @@
 [build]
   publish = "/"
   command = "npm run build:all"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
