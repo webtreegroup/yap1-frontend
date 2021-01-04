@@ -1,10 +1,12 @@
 import chai from 'chai';
-import { getArrLastEl } from "./common.utils.js";
+import { escapeHtml, getArrLastEl } from "./common.utils.js";
 const { assert } = chai;
 describe("Сommon utils usage suite", () => {
-    const arr = [1, 5, 6, 2];
     it("Should return last element of array", () => {
-        assert.equal(getArrLastEl(arr), 2);
+        assert.equal(getArrLastEl([1, 5, 6, 2]), 2);
+    });
+    it("Should escape HTML, return string protected from XSS", () => {
+        assert.equal(escapeHtml('I = love js&ts'), 'I &#x3D; love js&amp;ts');
     });
 });
 //# sourceMappingURL=common.utils.spec.js.map
