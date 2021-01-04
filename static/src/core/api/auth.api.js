@@ -1,4 +1,4 @@
-import { HTTP } from "./Api.js";
+import { HTTP } from "./api.js";
 import { BaseAPI } from "./base.api.js";
 const authAPIInstance = new HTTP('/auth');
 export class AuthAPI extends BaseAPI {

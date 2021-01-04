@@ -1,5 +1,5 @@
 import chai from 'chai';
-import { API_BASE_PATH } from './Api.js';
+import { API_BASE_PATH } from './api.js';
 // @ts-ignore
 import chaiHttp from 'chai-http';
 chai.use(chaiHttp);

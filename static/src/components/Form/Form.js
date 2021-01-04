@@ -14,9 +14,13 @@ export class Form extends Block {
         var _a;
         e.preventDefault();
         const request = {};
-        const fieldsWithErrors = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelectorAll('input.error');
+        const fieldsWithErrors = (_a = this._element) === null || _a === void 0 ? void 0 : _a.querySelectorAll('input.error + label');
+        const errors = [];
+        fieldsWithErrors === null || fieldsWithErrors === void 0 ? void 0 : fieldsWithErrors.forEach((label) => {
+            errors.push(label.innerHTML);
+        });
         if (fieldsWithErrors === null || fieldsWithErrors === void 0 ? void 0 : fieldsWithErrors.length) {
-            alert('Поля заполнены не правильно, проверьте форму еще раз...');
+            alert(`Следующие поля заполнены не правильно: ${errors.join(', ').toLowerCase()}.\nПроверьте форму еще раз...`);
             return;
         }
         const formData = new FormData(this._element);
