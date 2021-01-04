@@ -8,5 +8,6 @@ $RECYCLE.BIN/
 *.css.map
 .settings/
 .vscode/
+/static
 
 dist/css
