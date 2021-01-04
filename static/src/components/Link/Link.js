@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { linkTmplRender } from "./Link.tmpl.js";
 import { Router } from "../../core/router/Router.js";
 export class Link extends Block {
@@ -20,3 +20,4 @@ export class Link extends Block {
         return linkTmplRender(this.props);
     }
 }
+//# sourceMappingURL=Link.js.map

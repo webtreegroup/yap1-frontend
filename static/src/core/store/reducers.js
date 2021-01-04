@@ -35,3 +35,4 @@ export const reducers = {
     chats: chatsReducer,
     currentChatId: currentChatReducer
 };
+//# sourceMappingURL=reducers.js.map

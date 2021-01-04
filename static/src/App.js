@@ -20,3 +20,4 @@ Router
     .use("/signup", Signup)
     .use("/.*", ErrorPage)
     .start(store.value);
+//# sourceMappingURL=App.js.map

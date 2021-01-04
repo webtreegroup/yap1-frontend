@@ -1,4 +1,4 @@
-import { Block } from "../../../../core/Block.js"
+import { Block } from "../../../../core/block/Block.js"
 import { classNames } from "../../../../utils/common.utils.js"
 import { IChatGroup } from "./ChatGroup.types.js"
 import { chatGroupTmplRender } from "./ChatGroup.tmpl.js"

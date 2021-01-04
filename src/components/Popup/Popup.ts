@@ -1,4 +1,4 @@
-import { Block, IBlockChildren } from "../../core/Block.js"
+import { Block, IBlockChildren } from "../../core/block/Block.js"
 import { classNames } from "../../utils/common.utils.js"
 import { Link } from "../Link/Link.js"
 import { IPopup } from "./Popup.types.js"

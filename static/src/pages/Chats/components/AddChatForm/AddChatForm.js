@@ -19,3 +19,4 @@ export class AddChatForm extends Form {
         return addChatFormTmplRender();
     }
 }
+//# sourceMappingURL=AddChatForm.js.map

@@ -22,3 +22,4 @@ export const chatGroupTmplRender = ({ lastMessage = '', time = '', unread = 0, i
         ${unread ? `<div class="chats-item__unread">${unread}</div>` : ''}
     `;
 };
+//# sourceMappingURL=ChatGroup.tmpl.js.map

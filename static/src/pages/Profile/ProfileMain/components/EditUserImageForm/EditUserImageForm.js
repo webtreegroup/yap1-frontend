@@ -12,3 +12,4 @@ export class EditUserImageForm extends Form {
         this.props.onUserImageChange(formData);
     }
 }
+//# sourceMappingURL=EditUserImageForm.js.map

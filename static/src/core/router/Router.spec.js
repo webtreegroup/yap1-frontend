@@ -7,3 +7,4 @@ describe("Router usage suite", () => {
         assert.equal(window.location.pathname, '/chats');
     });
 });
+//# sourceMappingURL=Router.spec.js.map

@@ -15,3 +15,4 @@ export const chatMessageTmplRender = ({ time, text, check }) => {
         </div>
     `;
 };
+//# sourceMappingURL=ChatMessage.tmpl.js.map

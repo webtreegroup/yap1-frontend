@@ -5,3 +5,4 @@ export const signupFormTmplRender = () => {
         </div>    
     `;
 };
+//# sourceMappingURL=SignupForm.tmpl.js.map

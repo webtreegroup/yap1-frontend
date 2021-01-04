@@ -1,5 +1,5 @@
 import { InputControl } from "../../../../../components/InputControl/InputControl.js";
-import { Block } from "../../../../../core/Block.js";
+import { Block } from "../../../../../core/block/Block.js";
 import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js";
 class ProfileForm extends Block {
     constructor(props) {
@@ -18,3 +18,4 @@ class ProfileForm extends Block {
     }
 }
 export default new ProfileForm();
+//# sourceMappingURL=ProfileForm.js.map

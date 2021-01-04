@@ -9,3 +9,4 @@ export const profileEditTmplRender = () => `
         <section class="profile-options__fields" data-component="ProfileForm"></section>
     </main>
 `;
+//# sourceMappingURL=ProfileEdit.tmpl.js.map

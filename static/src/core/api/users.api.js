@@ -9,3 +9,4 @@ export class UsersAPI extends BaseAPI {
         return usersAPIInstance.post('/search', { data });
     }
 }
+//# sourceMappingURL=users.api.js.map

@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { loaderTmplRender } from "./Loader.tmpl.js"
 import { store } from "../../core/store/store.js"
 import { ILoader } from "./Loader.types.js"

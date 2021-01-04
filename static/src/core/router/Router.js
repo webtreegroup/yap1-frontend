@@ -77,3 +77,4 @@ Router._currentRoute = null;
 Router.history = window.history;
 Router.routes = [];
 Router._rootQuery = '.app';
+//# sourceMappingURL=Router.js.map

@@ -4,3 +4,4 @@ export const homeTmplRender = () => `
         <h4>Список доступных страниц</h4>
     </section>
 `;
+//# sourceMappingURL=Home.tmpl.js.map

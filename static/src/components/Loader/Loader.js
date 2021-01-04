@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { loaderTmplRender } from "./Loader.tmpl.js";
 import { store } from "../../core/store/store.js";
 import { isEqual } from "../../utils/common.utils.js";
@@ -6,11 +6,6 @@ export class Loader extends Block {
     constructor() {
         super("div", { className: 'loader' });
         store.subscribe(() => {
-            /**
-             * TODO: в будущем перевести на внутренний стейт, т.к. изменять
-             * props компонента можно только снаружи компонента, они должны быть
-             * иммутабельны
-             */
             this.setProps(store.value.loader);
         });
     }
@@ -26,3 +21,4 @@ export class Loader extends Block {
         return loaderTmplRender(this.props);
     }
 }
+//# sourceMappingURL=Loader.js.map

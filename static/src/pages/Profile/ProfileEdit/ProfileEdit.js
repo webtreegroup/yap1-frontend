@@ -1,6 +1,6 @@
 import { Link } from "../../../components/Link/Link.js";
 import { Loader } from "../../../components/Loader/Loader.js";
-import { Block } from "../../../core/Block.js";
+import { Block } from "../../../core/block/Block.js";
 import { ROUTES } from "../../../core/router/Router.config.js";
 import { store } from "../../../core/store/store.js";
 import { ProfileEditFormContainer } from "./components/ProfileEditForm/ProfileEditFormContainer.js";
@@ -34,3 +34,4 @@ export class ProfileEdit extends Block {
         });
     }
 }
+//# sourceMappingURL=ProfileEdit.js.map

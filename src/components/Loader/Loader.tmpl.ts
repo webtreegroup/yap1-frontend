@@ -1,4 +1,4 @@
-import { IBaseTemplateRender } from "../../core/Block.js"
+import { IBaseTemplateRender } from "../../core/block/Block.js"
 import { ILoader } from "./Loader.types.js"
 
 export const loaderTmplRender: IBaseTemplateRender<ILoader> = 

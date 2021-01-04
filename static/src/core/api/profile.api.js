@@ -12,3 +12,4 @@ export class ProfileAPI extends BaseAPI {
         return profileAPIInstance.put('/password', { data });
     }
 }
+//# sourceMappingURL=profile.api.js.map

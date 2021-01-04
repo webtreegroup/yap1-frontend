@@ -1,6 +1,6 @@
 import { Loader } from "../../components/Loader/Loader.js"
 import { Popup } from "../../components/Popup/Popup.js"
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { ROUTES } from "../../core/router/Router.config.js"
 import { SigninFormContainer } from "./components/SigninForm/SigninFormContainer.js"
 

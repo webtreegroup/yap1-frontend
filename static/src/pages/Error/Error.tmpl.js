@@ -4,3 +4,4 @@ export const errorTmplRender = () => `
         <h4>Не туда попали</h4>
     </section>
 `;
+//# sourceMappingURL=Error.tmpl.js.map

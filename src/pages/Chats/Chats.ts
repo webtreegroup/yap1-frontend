@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { store } from "../../core/store/store.js"
 import { IChats } from "./Chats.type.js"
 import { ChatHistory } from "./components/ChatHistory/ChatHistory.js"

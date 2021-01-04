@@ -1,5 +1,5 @@
 import { IState } from "../../App.types.js"
-import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/Block.js"
+import { Block, IBaseTemplateRender, IBlockChildren } from "../../core/block/Block.js"
 import { escapeHtml } from "../../utils/common.utils.js"
 
 export class Form<PropType extends object> extends Block<HTMLFormElement, PropType> {

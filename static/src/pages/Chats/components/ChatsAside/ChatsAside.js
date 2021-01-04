@@ -1,7 +1,7 @@
 import { Link } from "../../../../components/Link/Link.js";
 import { Loader } from "../../../../components/Loader/Loader.js";
 import { Popup } from "../../../../components/Popup/Popup.js";
-import { Block } from "../../../../core/Block.js";
+import { Block } from "../../../../core/block/Block.js";
 import { ROUTES } from "../../../../core/router/Router.config.js";
 import { AddChatFormContainer } from "../AddChatForm/AddChatFormContainer.js";
 import { ChatGroup } from "../ChatGroup/ChatGroup.js";
@@ -49,3 +49,4 @@ export class ChatsAside extends Block {
         return chatsAsideTmplRender();
     }
 }
+//# sourceMappingURL=ChatsAside.js.map

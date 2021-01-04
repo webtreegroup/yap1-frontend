@@ -12,3 +12,4 @@ export class ProfileEditPassForm extends Form {
         this.props.onProfilePasswordChange(request);
     }
 }
+//# sourceMappingURL=ProfileEditPassForm.js.map

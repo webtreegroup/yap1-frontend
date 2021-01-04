@@ -7,3 +7,4 @@ export const PROFILE_FORM_CONTROLS = [
     { name: 'display_name', label: 'Имя в чате', required: true, validationFn: [checkAllowedLengthAndTypeChar] },
     { name: 'phone', label: 'Телефон', required: true, validationFn: [checkPhoneNumber] },
 ];
+//# sourceMappingURL=ProfileForm.config.js.map

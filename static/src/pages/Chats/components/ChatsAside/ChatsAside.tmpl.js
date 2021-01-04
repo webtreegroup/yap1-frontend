@@ -7,3 +7,4 @@ export const chatsAsideTmplRender = () => {
         <section class="chats__body" data-component="chats"></section>
     `;
 };
+//# sourceMappingURL=ChatsAside.tmpl.js.map

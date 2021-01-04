@@ -18,3 +18,4 @@ export class RemoveUserForm extends Form {
         return removeUserFormTmplRender();
     }
 }
+//# sourceMappingURL=RemoveUserForm.js.map

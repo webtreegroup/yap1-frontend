@@ -8,3 +8,4 @@ export const SIGNUP_FORM_CONTROLS = [
     { name: 'password', label: 'Пароль', inputType: 'password', required: true, validationFn: [checkAllowedLengthAndTypeChar] },
     { name: 'password_confirm', label: 'Пароль (ещё раз)', inputType: 'password', required: true, validationFn: [checkAllowedLengthAndTypeChar] },
 ];
+//# sourceMappingURL=SignupForm.config.js.map

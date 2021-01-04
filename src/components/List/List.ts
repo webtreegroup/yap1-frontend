@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { IList } from "./List.types.js"
 import { Link } from "../Link/Link.js"
 

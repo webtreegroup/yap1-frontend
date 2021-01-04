@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { buttonTmplRender } from "./Button.tmpl.js";
 export class Button extends Block {
     constructor(props) {
@@ -13,3 +13,4 @@ export class Button extends Block {
         return buttonTmplRender(this.props);
     }
 }
+//# sourceMappingURL=Button.js.map

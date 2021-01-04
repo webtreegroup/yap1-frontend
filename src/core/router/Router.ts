@@ -1,6 +1,6 @@
 
 import { IState } from '../../App.types.js'
-import { Block } from '../Block.js'
+import { Block } from '../block/Block.js'
 
 export interface IBlockConstructor {
     new (): any

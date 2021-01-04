@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { classNames } from "../../utils/common.utils.js";
 import { Link } from "../Link/Link.js";
 import { popupTmplRender } from "./Popup.tmpl.js";
@@ -49,3 +49,4 @@ export class Popup extends Block {
         return popupTmplRender(this.props);
     }
 }
+//# sourceMappingURL=Popup.js.map

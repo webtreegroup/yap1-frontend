@@ -8,3 +8,4 @@ export const ROUTES = {
     PROFILE_EDIT: { path: '/profile/edit', title: 'Редактирование данных профиля' },
     PROFILE: { path: '/profile', title: 'Профиль пользователя' },
 };
+//# sourceMappingURL=Router.config.js.map

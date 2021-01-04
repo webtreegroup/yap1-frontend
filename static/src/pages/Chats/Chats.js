@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { store } from "../../core/store/store.js";
 import { ChatHistory } from "./components/ChatHistory/ChatHistory.js";
 import { ChatsAside } from "./components/ChatsAside/ChatsAside.js";
@@ -23,3 +23,4 @@ export class Chats extends Block {
         });
     }
 }
+//# sourceMappingURL=Chats.js.map

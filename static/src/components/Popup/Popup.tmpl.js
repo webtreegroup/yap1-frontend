@@ -6,3 +6,4 @@ export const popupTmplRender = ({ title, }) => {
         </div>
     `;
 };
+//# sourceMappingURL=Popup.tmpl.js.map

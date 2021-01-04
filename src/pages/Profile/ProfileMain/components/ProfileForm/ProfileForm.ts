@@ -1,6 +1,6 @@
 import { InputControl } from "../../../../../components/InputControl/InputControl.js"
 import { ICurrentUserInfo } from "../../../../../core/api/auth.api.js"
-import { Block } from "../../../../../core/Block.js"
+import { Block } from "../../../../../core/block/Block.js"
 import { IProfileEditForm } from "../../../ProfileEdit/components/ProfileEditForm/ProfileEditForm.types.js"
 import { PROFILE_FORM_CONTROLS } from "./ProfileForm.config.js"
 

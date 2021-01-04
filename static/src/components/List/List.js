@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { Link } from "../Link/Link.js";
 export class List extends Block {
     constructor(props) {
@@ -11,3 +11,4 @@ export class List extends Block {
         super("ul", props, { root: mappedLinks });
     }
 }
+//# sourceMappingURL=List.js.map

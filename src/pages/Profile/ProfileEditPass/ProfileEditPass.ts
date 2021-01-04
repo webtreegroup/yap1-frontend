@@ -1,7 +1,7 @@
 
 import { Link } from "../../../components/Link/Link.js"
 import { Loader } from "../../../components/Loader/Loader.js"
-import { Block } from "../../../core/Block.js"
+import { Block } from "../../../core/block/Block.js"
 import { ROUTES } from "../../../core/router/Router.config.js"
 import { ProfileEditPassFormContainer } from "./components/ProfileEditPassForm/ProfileEditPassFormContainer.js"
 import { profileEditPassTmplRender } from "./ProfileEditPass.tmpl.js"

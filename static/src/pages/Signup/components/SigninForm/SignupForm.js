@@ -26,3 +26,4 @@ export class SignupForm extends Form {
         return signupFormTmplRender();
     }
 }
+//# sourceMappingURL=SignupForm.js.map

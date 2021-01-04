@@ -1,6 +1,6 @@
 import { Link } from "../../../../components/Link/Link.js"
 import { Popup } from "../../../../components/Popup/Popup.js"
-import { Block } from "../../../../core/Block.js"
+import { Block } from "../../../../core/block/Block.js"
 import { ChatMessage } from "../ChatMessage/ChatMessage.js"
 import { IChatHistory } from "./ChatHistory.types.js"
 import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js"

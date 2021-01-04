@@ -7,3 +7,4 @@ describe("Сommon utils usage suite", () => {
         assert.equal(getArrLastEl(arr), 2);
     });
 });
+//# sourceMappingURL=common.utils.spec.js.map

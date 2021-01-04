@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { inputControlTmplRender } from "./InputControl.tmpl.js";
 export class InputControl extends Block {
     constructor(props) {
@@ -46,3 +46,4 @@ export class InputControl extends Block {
         return inputControlTmplRender(this.props);
     }
 }
+//# sourceMappingURL=InputControl.js.map

@@ -12,3 +12,4 @@ export class BaseAPI {
         throw new Error('Not implemented');
     }
 }
+//# sourceMappingURL=base.api.js.map

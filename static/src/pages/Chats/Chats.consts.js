@@ -11,3 +11,4 @@ export const MESSAGES = [
         isOwn: true
     }
 ];
+//# sourceMappingURL=Chats.consts.js.map

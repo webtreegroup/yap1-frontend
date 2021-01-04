@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js"
+import { Block } from "../../core/block/Block.js"
 import { ILink } from "./Link.types.js"
 import { linkTmplRender } from "./Link.tmpl.js"
 import { Router } from "../../core/router/Router.js"

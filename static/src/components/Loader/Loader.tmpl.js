@@ -55,3 +55,4 @@ export const loaderTmplRender = () => {
         </div>
     `;
 };
+//# sourceMappingURL=Loader.tmpl.js.map

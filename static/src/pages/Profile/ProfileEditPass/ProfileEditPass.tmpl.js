@@ -9,3 +9,4 @@ export const profileEditPassTmplRender = () => `
         <section class="profile-options__fields" data-component="ProfileEditPassForm"></section>
     </main>
 `;
+//# sourceMappingURL=ProfileEditPass.tmpl.js.map

@@ -1,4 +1,4 @@
-import { Block } from "../../core/Block.js";
+import { Block } from "../../core/block/Block.js";
 import { escapeHtml } from "../../utils/common.utils.js";
 export class Form extends Block {
     constructor(props, children, baseTmplRender) {
@@ -26,3 +26,4 @@ export class Form extends Block {
         this.onSubmit(request, formData);
     }
 }
+//# sourceMappingURL=Form.js.map

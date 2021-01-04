@@ -1,4 +1,4 @@
-import { Block } from "../../../../core/Block.js";
+import { Block } from "../../../../core/block/Block.js";
 import { classNames } from "../../../../utils/common.utils.js";
 import { chatMessageTmplRender } from "./ChatMessage.tmpl.js";
 export class ChatMessage extends Block {
@@ -19,3 +19,4 @@ export class ChatMessage extends Block {
         return chatMessageTmplRender(this.props);
     }
 }
+//# sourceMappingURL=ChatMessage.js.map

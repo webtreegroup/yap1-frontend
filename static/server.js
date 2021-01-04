@@ -15,3 +15,4 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Start in ${PORT}!`);
 });
+//# sourceMappingURL=server.js.map

@@ -64,3 +64,4 @@ export const chatHistoryTmplRender = ({ messages }) => {
         ? chatHeader + chatBody + chatFooter
         : chatEpty;
 };
+//# sourceMappingURL=ChatHistory.tmpl.js.map

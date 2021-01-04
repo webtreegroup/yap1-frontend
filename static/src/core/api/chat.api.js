@@ -12,3 +12,4 @@ export class ChatAPI extends BaseAPI {
         return chatAPIInstance.get('/', { data: { chatId } });
     }
 }
+//# sourceMappingURL=chat.api.js.map

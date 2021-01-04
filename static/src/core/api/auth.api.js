@@ -15,3 +15,4 @@ export class AuthAPI extends BaseAPI {
         return authAPIInstance.post('/logout');
     }
 }
+//# sourceMappingURL=auth.api.js.map

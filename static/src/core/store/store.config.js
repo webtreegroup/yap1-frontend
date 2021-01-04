@@ -5,3 +5,4 @@ export const INITIAL_STATE = {
     currentUser: {},
     chats: []
 };
+//# sourceMappingURL=store.config.js.map

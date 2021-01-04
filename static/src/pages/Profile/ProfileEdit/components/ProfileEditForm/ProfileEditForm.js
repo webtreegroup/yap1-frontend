@@ -24,3 +24,4 @@ export class ProfileEditForm extends Form {
         (_b = (_a = this.props).onProfileChange) === null || _b === void 0 ? void 0 : _b.call(_a, request);
     }
 }
+//# sourceMappingURL=ProfileEditForm.js.map

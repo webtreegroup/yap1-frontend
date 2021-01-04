@@ -16,3 +16,4 @@ export function checkEmail(value) {
     const regexp = new RegExp(/(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/);
     return regexp.test(value);
 }
+//# sourceMappingURL=form.utils.js.map

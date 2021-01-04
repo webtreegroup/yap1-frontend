@@ -5,3 +5,4 @@ export const addChatFormTmplRender = () => {
         </div>    
     `;
 };
+//# sourceMappingURL=AddChatForm.tmpl.js.map

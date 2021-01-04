@@ -1,4 +1,4 @@
-import { IBaseTemplateRender } from "../../core/Block.js"
+import { IBaseTemplateRender } from "../../core/block/Block.js"
 import { ILink } from "./Link.types.js"
 
 export const linkTmplRender: IBaseTemplateRender<ILink> = 

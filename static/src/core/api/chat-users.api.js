@@ -9,3 +9,4 @@ export class ChatUsersAPI extends BaseAPI {
         return chatUsersAPIInstance.delete('/users', { data });
     }
 }
+//# sourceMappingURL=chat-users.api.js.map
