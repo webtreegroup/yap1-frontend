@@ -7,6 +7,7 @@ import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js"
 import { Loader } from "../../../../components/Loader/Loader.js"
 import { AddUserFormContainer } from "../AddUserForm/AddUserFormContainer.js"
 import { RemoveUserFormContainer } from "../RemoveUserForm/RemoveUserFormContainer.js"
+import { InputControl } from "../../../../components/InputControl/InputControl.js"
 
 export class ChatHistory extends Block {
     constructor(props?: IChatHistory){
@@ -48,6 +49,8 @@ export class ChatHistory extends Block {
                 Удалить пользователя
             `
         })
+
+        const MessageField = new InputControl({ name: 'message', label: 'Сообщение', required: true })
         
         super(
             'main', 
@@ -57,7 +60,8 @@ export class ChatHistory extends Block {
                 Popups: messages.length ? [AddUserPopup, RemoveUserPopup] : undefined, 
                 ToggleAddUserPopup: messages.length ? ToggleAddUserPopup : undefined,
                 ToggleRemoveUserPopup: messages.length ? ToggleRemoveUserPopup : undefined,
-                LoaderComponent
+                LoaderComponent,
+                MessageField
             }
         )
     }

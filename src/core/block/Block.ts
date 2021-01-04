@@ -28,7 +28,7 @@ export class Block<
 
     eventBus: EventBus
     
-    _baseTmplRender?: IBaseTemplateRender
+    _baseTmplRender?: IBaseTemplateRender<PropsType>
     _children: IBlockChildren
     _element: ElementType | null = null
     _meta: IBlockMeta
@@ -38,7 +38,7 @@ export class Block<
         tagName: string, 
         props = {} as PropsType, 
         children = {} as IBlockChildren, 
-        baseTmplRender?: IBaseTemplateRender
+        baseTmplRender?: IBaseTemplateRender<PropsType>
     ) {
         this._meta = {
             tagName,

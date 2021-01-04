@@ -11,7 +11,7 @@ app.get('*', (req, res) => {
     if (patternForStatic.test(req.path)) {
         res.sendFile(__dirname + '/static/' + req.path)
     } else {
-        res.sendFile(__dirname + '/static/index.html')
+        res.sendFile(__dirname + '/index.html')
     }
 })
 

@@ -19,10 +19,16 @@ export class Form<PropsType extends object> extends Block<HTMLFormElement, Props
         e.preventDefault()
         
         const request: IState = {}
-        const fieldsWithErrors = this._element?.querySelectorAll('input.error')
+        const fieldsWithErrors = this._element?.querySelectorAll('input.error + label')
+        const errors: string[] = []
         
+        fieldsWithErrors?.forEach((label) => {
+            errors.push(label.innerHTML)
+        })
+
         if (fieldsWithErrors?.length) {
-            alert('Поля заполнены не правильно, проверьте форму еще раз...')
+            const errorsStr = errors.join(', ').toLowerCase()
+            alert(`Следующие поля заполнены не правильно: ${errorsStr}.\nПроверьте форму еще раз...`)
 
             return
         }

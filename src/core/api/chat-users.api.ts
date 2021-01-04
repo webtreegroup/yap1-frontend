@@ -1,4 +1,4 @@
-import { HTTP } from "./Api.js"
+import { HTTP } from "./api.js"
 import { BaseAPI } from "./base.api.js"
 
 const chatUsersAPIInstance = new HTTP('/chats')

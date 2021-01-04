@@ -52,4 +52,3 @@ export class Store {
 }
 
 export const store = new Store(reducers, INITIAL_STATE)
-

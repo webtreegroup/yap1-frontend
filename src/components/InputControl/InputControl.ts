@@ -4,6 +4,8 @@ import { IInputControl } from "./InputControl.types.js"
 import { inputControlTmplRender } from "./InputControl.tmpl.js"
 
 export class InputControl extends Block<HTMLInputElement> {
+    _inputElement: HTMLInputElement | null | undefined
+
     constructor(props: IInputControl) {
         super("div", props)
 
@@ -11,9 +13,11 @@ export class InputControl extends Block<HTMLInputElement> {
         this.handleControlBlur = this.handleControlBlur.bind(this)
         this.handleValidate = this.handleValidate.bind(this)
 
-        this._element?.querySelector('input')?.addEventListener('focus', this.handleControlChangeOrFocus)
-        this._element?.querySelector('input')?.addEventListener('input', this.handleControlChangeOrFocus)
-        this._element?.querySelector('input')?.addEventListener('blur', this.handleControlBlur)
+        this._inputElement = this._element?.querySelector('input')
+
+        this._inputElement?.addEventListener('focus', this.handleControlChangeOrFocus)
+        this._inputElement?.addEventListener('input', this.handleControlChangeOrFocus)
+        this._inputElement?.addEventListener('blur', this.handleControlBlur)
     }
 
     handleValidate(elem: HTMLInputElement, value: string) {
@@ -50,7 +54,7 @@ export class InputControl extends Block<HTMLInputElement> {
 
     createResources({ isTouched }: IInputControl) {
         this._element?.classList.add('input-control')
-        if (isTouched) this._element?.querySelector('input')?.classList.add('touched')
+        if (isTouched) this._inputElement?.classList.add('touched')
     }
 
     render() {
