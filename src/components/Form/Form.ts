@@ -27,7 +27,8 @@ export class Form<PropsType extends object> extends Block<HTMLFormElement, Props
         })
 
         if (fieldsWithErrors?.length) {
-            alert(`Следующие поля заполнены не правильно: ${errors.join(', ').toLowerCase()}.\nПроверьте форму еще раз...`)
+            const errorsStr = errors.join(', ').toLowerCase()
+            alert(`Следующие поля заполнены не правильно: ${errorsStr}.\nПроверьте форму еще раз...`)
 
             return
         }
