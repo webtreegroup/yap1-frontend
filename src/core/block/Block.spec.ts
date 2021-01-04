@@ -10,6 +10,10 @@ interface IBlockComponent extends IComponent {
 }
 
 describe("Block usage suite", () => {
+    beforeEach(function() { 
+        document.body.innerHTML = ''    
+    })
+
     function createBlock(
         props: IBlockComponent,
         children = {} as IBlockChildren, 

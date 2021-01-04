@@ -3,6 +3,9 @@ import { render } from '../../utils/common.utils.js';
 import { Block } from './Block.js';
 const { expect } = chai;
 describe("Block usage suite", () => {
+    beforeEach(function () {
+        document.body.innerHTML = '';
+    });
     function createBlock(props, children = {}, baseTmplRender) {
         return new Block('div', props, children, baseTmplRender);
     }
