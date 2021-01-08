@@ -1,8 +1,8 @@
-import { Block } from "../../core/block/Block.js"
-import { loaderTmplRender } from "./Loader.tmpl.js"
-import { store } from "../../core/store/store.js"
-import { ILoader } from "./Loader.types.js"
-import { isEqual } from "../../utils/common.utils.js"
+import { Block } from "../../core/block/Block"
+import { loaderTmplRender } from "./Loader.tmpl"
+import { store } from "../../core/store/store"
+import { ILoader } from "./Loader.types"
+import { isEqual } from "../../utils/common.utils"
 
 export class Loader extends Block<HTMLLinkElement> {
     constructor() {

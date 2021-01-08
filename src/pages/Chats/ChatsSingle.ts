@@ -1,9 +1,9 @@
-import { Block } from "../../core/block/Block.js"
-import { store } from "../../core/store/store.js"
-import { MESSAGES } from "./Chats.consts.js"
-import { IChats } from "./Chats.type.js"
-import { ChatHistory } from "./components/ChatHistory/ChatHistory.js"
-import { ChatsAside } from "./components/ChatsAside/ChatsAside.js"
+import { Block } from "../../core/block/Block"
+import { store } from "../../core/store/store"
+import { MESSAGES } from "./Chats.consts"
+import { IChats } from "./Chats.type"
+import { ChatHistory } from "./components/ChatHistory/ChatHistory"
+import { ChatsAside } from "./components/ChatsAside/ChatsAside"
 
 /**
  * TODO: когда очередь дойдет до интеграции с остальными частями АПИ

@@ -1,10 +1,10 @@
-import { CHAT_REMOVE_USER_FAIL_MESSAGE, CHAT_REMOVE_USER_SUCCESS_MESSAGE } from "../../../../core/api/api.consts.js"
-import { ICurrentUserInfo } from "../../../../core/api/auth.api.js"
-import { ChatUsersAPI } from "../../../../core/api/chat-users.api.js"
-import { IUserSearch, UsersAPI } from "../../../../core/api/users.api.js"
-import { loaderOffAction, loaderOnAction } from "../../../../core/store/actions.js"
-import { store } from "../../../../core/store/store.js"
-import { RemoveUserForm } from "./RemoveUserForm.js"
+import { CHAT_REMOVE_USER_FAIL_MESSAGE, CHAT_REMOVE_USER_SUCCESS_MESSAGE } from "../../../../core/api/api.consts"
+import { ICurrentUserInfo } from "../../../../core/api/auth.api"
+import { ChatUsersAPI } from "../../../../core/api/chat-users.api"
+import { IUserSearch, UsersAPI } from "../../../../core/api/users.api"
+import { loaderOffAction, loaderOnAction } from "../../../../core/store/actions"
+import { store } from "../../../../core/store/store"
+import { RemoveUserForm } from "./RemoveUserForm"
 
 
 export class RemoveUserFormContainer {

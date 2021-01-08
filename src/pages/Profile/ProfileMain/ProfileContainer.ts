@@ -1,10 +1,10 @@
 
-import { AuthAPI, ICurrentUserInfo } from "../../../core/api/auth.api.js"
-import { ROUTES } from "../../../core/router/Router.config.js"
-import { Router } from "../../../core/router/Router.js"
-import { getCurrentUserInfoAction } from "../../../core/store/actions.js"
-import { store } from "../../../core/store/store.js"
-import { Profile } from "./Profile.js"
+import { AuthAPI, ICurrentUserInfo } from "../../../core/api/auth.api"
+import { ROUTES } from "../../../core/router/Router.config"
+import { Router } from "../../../core/router/Router"
+import { getCurrentUserInfoAction } from "../../../core/store/actions"
+import { store } from "../../../core/store/store"
+import { Profile } from "./Profile"
 
 export class ProfileContainer {
     onLogout(){

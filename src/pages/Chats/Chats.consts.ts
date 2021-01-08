@@ -1,4 +1,4 @@
-import { IChatMessage } from "./components/ChatMessage/ChatMessage.types.js"
+import { IChatMessage } from "./components/ChatMessage/ChatMessage.types"
 
 export const MESSAGES: IChatMessage[] = [
     {

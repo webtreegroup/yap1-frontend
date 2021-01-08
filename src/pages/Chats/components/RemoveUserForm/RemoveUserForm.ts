@@ -1,8 +1,8 @@
-import { Button } from "../../../../components/Button/Button.js"
-import { Form } from "../../../../components/Form/Form.js"
-import { InputControl } from "../../../../components/InputControl/InputControl.js"
-import { removeUserFormTmplRender } from "./RemoveUserForm.tmpl.js"
-import { IRemoveUserForm } from "./RemoveUserForm.types.js"
+import { Button } from "../../../../components/Button/Button"
+import { Form } from "../../../../components/Form/Form"
+import { InputControl } from "../../../../components/InputControl/InputControl"
+import { removeUserFormTmplRender } from "./RemoveUserForm.tmpl"
+import { IRemoveUserForm } from "./RemoveUserForm.types"
 
 export class RemoveUserForm extends Form<IRemoveUserForm> {
     constructor(props?: IRemoveUserForm){

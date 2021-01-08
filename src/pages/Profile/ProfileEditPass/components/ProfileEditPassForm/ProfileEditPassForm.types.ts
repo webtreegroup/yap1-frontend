@@ -1,5 +1,5 @@
-import { IComponent } from "../../../../../App.types.js";
-import { IChangePassword } from "../../../../../core/api/profile.api.js"
+import { IComponent } from "../../../../../App.types";
+import { IChangePassword } from "../../../../../core/api/profile.api"
 
 export interface IProfileEditPass extends IComponent {
     onProfilePasswordChange: (request: IChangePassword) => void

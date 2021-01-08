@@ -1,6 +1,6 @@
-import { reducers } from "./reducers.js"
-import { IStateValue } from "../../App.types.js"
-import { INITIAL_STATE, IStoreState } from "./store.config.js"
+import { reducers } from "./reducers"
+import { IStateValue } from "../../App.types"
+import { INITIAL_STATE, IStoreState } from "./store.config"
 
 interface IReducers {
     [key: string]: Function

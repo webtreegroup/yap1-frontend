@@ -1,4 +1,4 @@
-import { ISignin } from "../../../../core/api/auth.api.js"
+import { ISignin } from "../../../../core/api/auth.api"
 
 export interface ISigninForm {
     onSignin?: (request: ISignin) => void

@@ -1,6 +1,6 @@
 
 import chai from 'chai'
-import { escapeHtml, getArrLastEl, tree } from "./common.utils.js"
+import { escapeHtml, getArrLastEl, tree } from "./common.utils"
 
 const { assert } = chai
 

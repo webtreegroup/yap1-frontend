@@ -1,6 +1,6 @@
-import { Button } from "../../../../../components/Button/Button.js"
-import { Form } from "../../../../../components/Form/Form.js"
-import { IEditUserImageForm } from "./EditUserImageForm.types.js"
+import { Button } from "../../../../../components/Button/Button"
+import { Form } from "../../../../../components/Form/Form"
+import { IEditUserImageForm } from "./EditUserImageForm.types"
 
 export class EditUserImageForm extends Form<IEditUserImageForm> {
     constructor(props: IEditUserImageForm){

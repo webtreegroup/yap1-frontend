@@ -1,5 +1,5 @@
-import { IComponent } from "../../../../App.types.js"
-import { IChatMessage } from "../ChatMessage/ChatMessage.types.js";
+import { IComponent } from "../../../../App.types"
+import { IChatMessage } from "../ChatMessage/ChatMessage.types";
 
 export interface IChatHistory extends IComponent {
     messages?: IChatMessage[]

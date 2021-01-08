@@ -1,4 +1,4 @@
-import { IChatGroup } from "./ChatGroup.types.js"
+import { IChatGroup } from "./ChatGroup.types"
 
 export const chatGroupTmplRender = ({
     lastMessage = '',

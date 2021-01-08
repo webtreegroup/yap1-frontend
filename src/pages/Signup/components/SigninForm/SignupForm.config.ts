@@ -1,5 +1,5 @@
-import { IInputControl } from "../../../../components/InputControl/InputControl.types.js"
-import { checkAllowedLengthAndTypeChar, checkEmail, checkPhoneNumber } from "../../../../utils/form.utils.js"
+import { IInputControl } from "../../../../components/InputControl/InputControl.types"
+import { checkAllowedLengthAndTypeChar, checkEmail, checkPhoneNumber } from "../../../../utils/form.utils"
 
 export const SIGNUP_FORM_CONTROLS: IInputControl[] = [
     { name: 'email', label: 'Почта', inputType: 'email', required: true, validationFn: [checkEmail] },

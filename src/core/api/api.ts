@@ -1,4 +1,4 @@
-import { METHOD } from './api.consts.js'
+import { METHOD } from './api.consts'
 
 type HeadersType = {
     [key: string]: string

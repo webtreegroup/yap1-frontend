@@ -1,7 +1,7 @@
 // @ts-nocheck
 import chai from 'chai'
 import * as request from 'superagent'
-import { API_BASE_PATH } from './api.js'
+import { API_BASE_PATH } from './api'
 import chaiHttp from 'chai-http'
 
 chai.use(chaiHttp)

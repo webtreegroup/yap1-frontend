@@ -1,9 +1,9 @@
-import { SIGNIN_FAIL_MESSAGE } from "../../../../core/api/api.consts.js"
-import { AuthAPI, ISignup } from "../../../../core/api/auth.api.js"
-import { ROUTES } from "../../../../core/router/Router.config.js"
-import { Router } from "../../../../core/router/Router.js"
-import { loaderOffAction, loaderOnAction } from "../../../../core/store/actions.js"
-import { SignupForm } from "./SignupForm.js"
+import { SIGNIN_FAIL_MESSAGE } from "../../../../core/api/api.consts"
+import { AuthAPI, ISignup } from "../../../../core/api/auth.api"
+import { ROUTES } from "../../../../core/router/Router.config"
+import { Router } from "../../../../core/router/Router"
+import { loaderOffAction, loaderOnAction } from "../../../../core/store/actions"
+import { SignupForm } from "./SignupForm"
 
 export class SignupFormContainer {
     constructor() {

@@ -1,7 +1,7 @@
 
-import { AuthAPI, ICurrentUserInfo } from "../../../core/api/auth.api.js"
-import { getCurrentUserInfoAction } from "../../../core/store/actions.js"
-import { ProfileEdit } from "./ProfileEdit.js"
+import { AuthAPI, ICurrentUserInfo } from "../../../core/api/auth.api"
+import { getCurrentUserInfoAction } from "../../../core/store/actions"
+import { ProfileEdit } from "./ProfileEdit"
 
 export class ProfileEditContainer {
     onLoadProfile(){

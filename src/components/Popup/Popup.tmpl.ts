@@ -1,4 +1,4 @@
-import { IPopup } from "./Popup.types.js"
+import { IPopup } from "./Popup.types"
 
 export const popupTmplRender = ({
     title,

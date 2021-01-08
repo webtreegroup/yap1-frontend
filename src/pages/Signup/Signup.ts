@@ -1,7 +1,7 @@
-import { Loader } from "../../components/Loader/Loader.js"
-import { Popup } from "../../components/Popup/Popup.js"
-import { Block } from "../../core/block/Block.js"
-import { SignupFormContainer } from "./components/SigninForm/SignupFormContainer.js"
+import { Loader } from "../../components/Loader/Loader"
+import { Popup } from "../../components/Popup/Popup"
+import { Block } from "../../core/block/Block"
+import { SignupFormContainer } from "./components/SigninForm/SignupFormContainer"
 
 export class Signup extends Block<HTMLDivElement> {
     constructor() {

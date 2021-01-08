@@ -1,13 +1,13 @@
-import { Link } from "../../../components/Link/Link.js"
-import { Loader } from "../../../components/Loader/Loader.js"
-import { Popup } from "../../../components/Popup/Popup.js"
-import { Block } from "../../../core/block/Block.js"
-import { ROUTES } from "../../../core/router/Router.config.js"
-import { store } from "../../../core/store/store.js"
-import { EditUserImageFormContainer } from "./components/EditUserImageForm/EditUserImageFormContainer.js"
-import ProfileForm from "./components/ProfileForm/ProfileForm.js"
-import { profileTmplRender } from "./Profile.tmpl.js"
-import { IProfile } from "./Profile.type.js"
+import { Link } from "../../../components/Link/Link"
+import { Loader } from "../../../components/Loader/Loader"
+import { Popup } from "../../../components/Popup/Popup"
+import { Block } from "../../../core/block/Block"
+import { ROUTES } from "../../../core/router/Router.config"
+import { store } from "../../../core/store/store"
+import { EditUserImageFormContainer } from "./components/EditUserImageForm/EditUserImageFormContainer"
+import ProfileForm from "./components/ProfileForm/ProfileForm"
+import { profileTmplRender } from "./Profile.tmpl"
+import { IProfile } from "./Profile.type"
 
 export class Profile extends Block<HTMLDivElement> {
     constructor(props?: IProfile) {

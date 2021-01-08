@@ -1,16 +1,14 @@
-import express from 'express'
-import path from 'path'
+const express = require('express')
 
-const app: express.Application = express()
+const app = express()
 const PORT = 3000
-const __dirname = path.resolve()
 
 app.get('*', (req, res) => {
     const patternForStatic = new RegExp('\.(js|css)$', 'g')
-
     if (patternForStatic.test(req.path)) {
         res.sendFile(__dirname + req.path)
-    } else {
+    }
+    else {
         res.sendFile(__dirname + '/index.html')
     }
 })

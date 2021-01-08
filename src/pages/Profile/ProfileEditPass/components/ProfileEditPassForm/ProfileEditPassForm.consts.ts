@@ -1,5 +1,5 @@
-import { IInputControl } from "../../../../../components/InputControl/InputControl.types.js"
-import { checkAllowedLengthAndTypeChar } from "../../../../../utils/form.utils.js"
+import { IInputControl } from "../../../../../components/InputControl/InputControl.types"
+import { checkAllowedLengthAndTypeChar } from "../../../../../utils/form.utils"
 
 export const PROFILE_FORM_PASS_CONTROLS: IInputControl[] = [
     { inputType: 'password', name: 'oldPassword', label: 'Старый пароль', required: true, validationFn: [checkAllowedLengthAndTypeChar] },

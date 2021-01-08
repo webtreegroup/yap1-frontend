@@ -1,8 +1,8 @@
-import { Button } from "../../../../components/Button/Button.js"
-import { Form } from "../../../../components/Form/Form.js"
-import { InputControl } from "../../../../components/InputControl/InputControl.js"
-import { addUserFormTmplRender } from "./AddUserForm.tmpl.js"
-import { IAddUserForm } from "./AddUserForm.types.js"
+import { Button } from "../../../../components/Button/Button"
+import { Form } from "../../../../components/Form/Form"
+import { InputControl } from "../../../../components/InputControl/InputControl"
+import { addUserFormTmplRender } from "./AddUserForm.tmpl"
+import { IAddUserForm } from "./AddUserForm.types"
 
 export class AddUserForm extends Form<IAddUserForm> {
     constructor(props?: IAddUserForm){

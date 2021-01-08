@@ -1,12 +1,12 @@
-import { Link } from "../../../../components/Link/Link.js"
-import { Loader } from "../../../../components/Loader/Loader.js"
-import { Popup } from "../../../../components/Popup/Popup.js"
-import { Block } from "../../../../core/block/Block.js"
-import { ROUTES } from "../../../../core/router/Router.config.js"
-import { AddChatFormContainer } from "../AddChatForm/AddChatFormContainer.js"
-import { ChatGroup } from "../ChatGroup/ChatGroup.js"
-import { chatsAsideTmplRender } from "./ChatsAside.tmpl.js"
-import { IChatsAside } from "./ChatsAside.types.js"
+import { Link } from "../../../../components/Link/Link"
+import { Loader } from "../../../../components/Loader/Loader"
+import { Popup } from "../../../../components/Popup/Popup"
+import { Block } from "../../../../core/block/Block"
+import { ROUTES } from "../../../../core/router/Router.config"
+import { AddChatFormContainer } from "../AddChatForm/AddChatFormContainer"
+import { ChatGroup } from "../ChatGroup/ChatGroup"
+import { chatsAsideTmplRender } from "./ChatsAside.tmpl"
+import { IChatsAside } from "./ChatsAside.types"
 
 export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
     constructor(props?: IChatsAside){

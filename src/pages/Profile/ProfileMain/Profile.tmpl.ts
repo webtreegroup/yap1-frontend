@@ -1,5 +1,5 @@
-import { API_HOST } from "../../../core/api/api.js"
-import { IProfile } from "./Profile.type.js"
+import { API_HOST } from "../../../core/api/api"
+import { IProfile } from "./Profile.type"
 
 export const profileTmplRender = (props?: IProfile): string => {
     const avatar = props?.avatar 

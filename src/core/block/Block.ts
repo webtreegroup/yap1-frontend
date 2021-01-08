@@ -1,6 +1,6 @@
-import { IComponent, IState, IStateValue } from "../../App.types.js"
-import { isEqual, render } from "../../utils/common.utils.js"
-import { EventBus } from "./EventBus.js"
+import { IComponent, IState, IStateValue } from "../../App.types"
+import { isEqual, render } from "../../utils/common.utils"
+import { EventBus } from "./EventBus"
 
 interface IBlockMeta {
     tagName: string

@@ -1,6 +1,6 @@
-import { Block } from "../../core/block/Block.js"
-import { IList } from "./List.types.js"
-import { Link } from "../Link/Link.js"
+import { Block } from "../../core/block/Block"
+import { IList } from "./List.types"
+import { Link } from "../Link/Link"
 
 export class List extends Block<HTMLUListElement> {
     constructor(props: IList) {

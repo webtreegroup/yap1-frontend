@@ -1,5 +1,5 @@
-import { IBaseTemplateRender } from "../../core/block/Block.js"
-import { ILoader } from "./Loader.types.js"
+import { IBaseTemplateRender } from "../../core/block/Block"
+import { ILoader } from "./Loader.types"
 
 export const loaderTmplRender: IBaseTemplateRender<ILoader> = 
     () => {

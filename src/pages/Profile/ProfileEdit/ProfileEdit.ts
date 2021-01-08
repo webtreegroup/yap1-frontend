@@ -1,12 +1,12 @@
-import { Link } from "../../../components/Link/Link.js"
-import { Loader } from "../../../components/Loader/Loader.js"
-import { Block } from "../../../core/block/Block.js"
-import { ROUTES } from "../../../core/router/Router.config.js"
-import { store } from "../../../core/store/store.js"
-import { IProfileEditForm } from "./components/ProfileEditForm/ProfileEditForm.types.js"
-import { ProfileEditFormContainer } from "./components/ProfileEditForm/ProfileEditFormContainer.js"
-import { profileEditTmplRender } from "./ProfileEdit.tmpl.js"
-import { IProfileEdit } from "./ProfileEdit.type.js"
+import { Link } from "../../../components/Link/Link"
+import { Loader } from "../../../components/Loader/Loader"
+import { Block } from "../../../core/block/Block"
+import { ROUTES } from "../../../core/router/Router.config"
+import { store } from "../../../core/store/store"
+import { IProfileEditForm } from "./components/ProfileEditForm/ProfileEditForm.types"
+import { ProfileEditFormContainer } from "./components/ProfileEditForm/ProfileEditFormContainer"
+import { profileEditTmplRender } from "./ProfileEdit.tmpl"
+import { IProfileEdit } from "./ProfileEdit.type"
 
 export class ProfileEdit extends Block<HTMLDivElement, IProfileEdit> {
     constructor(props: IProfileEdit) {  

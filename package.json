@@ -3,14 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
-  "type": "module",
   "scripts": {
     "scss": "node-sass --output-style expanded -o static/src/ src",
     "build:css": "npm run scss",
     "build:js": "npx tsc",
     "build:all": "npm run build:css && npm run build:js",
     "test": "./node_modules/.bin/mocha",
-    "start": "node static/server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",

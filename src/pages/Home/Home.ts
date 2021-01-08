@@ -1,7 +1,7 @@
-import { List } from "../../components/List/List.js"
-import { Block } from "../../core/block/Block.js"
-import { ROUTES } from "../../core/router/Router.config.js"
-import { homeTmplRender } from "./Home.tmpl.js"
+import { List } from "../../components/List/List"
+import { Block } from "../../core/block/Block"
+import { ROUTES } from "../../core/router/Router.config"
+import { homeTmplRender } from "./Home.tmpl"
 
 export class Home extends Block<HTMLDivElement> {
     constructor(){

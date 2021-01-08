@@ -1,4 +1,4 @@
-import { IButton } from "./Button.types.js"
+import { IButton } from "./Button.types"
 
 export const buttonTmplRender = ({
     text = 'Кнопка',

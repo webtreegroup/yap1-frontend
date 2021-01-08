@@ -1,10 +1,10 @@
-import { Button } from "../../../../components/Button/Button.js"
-import { Form } from "../../../../components/Form/Form.js"
-import { InputControl } from "../../../../components/InputControl/InputControl.js"
-import { ADD_CHAT_FORM_CONTROLS } from "./AddChatForm.config.js"
-import { addChatFormTmplRender } from "./AddChatForm.tmpl.js"
-import { IAddChatForm } from "./AddChatForm.types.js"
-import { IAddChat } from "../../../../core/api/chat.api.js"
+import { Button } from "../../../../components/Button/Button"
+import { Form } from "../../../../components/Form/Form"
+import { InputControl } from "../../../../components/InputControl/InputControl"
+import { ADD_CHAT_FORM_CONTROLS } from "./AddChatForm.config"
+import { addChatFormTmplRender } from "./AddChatForm.tmpl"
+import { IAddChatForm } from "./AddChatForm.types"
+import { IAddChat } from "../../../../core/api/chat.api"
 
 export class AddChatForm extends Form<IAddChatForm> {
     constructor(props?: IAddChatForm){

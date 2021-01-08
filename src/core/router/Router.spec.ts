@@ -1,5 +1,5 @@
 import chai from 'chai'
-import { Router } from './Router.js'
+import { Router } from './Router'
 
 const { assert } = chai
 

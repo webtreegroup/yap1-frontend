@@ -1,8 +1,8 @@
-import { Block } from "../../core/block/Block.js"
-import { store } from "../../core/store/store.js"
-import { IChats } from "./Chats.type.js"
-import { ChatHistory } from "./components/ChatHistory/ChatHistory.js"
-import { ChatsAside } from "./components/ChatsAside/ChatsAside.js"
+import { Block } from "../../core/block/Block"
+import { store } from "../../core/store/store"
+import { IChats } from "./Chats.type"
+import { ChatHistory } from "./components/ChatHistory/ChatHistory"
+import { ChatsAside } from "./components/ChatsAside/ChatsAside"
 
 export class Chats extends Block<HTMLDivElement, IChats> {
     constructor(props: IChats){

@@ -1,6 +1,6 @@
-import { ICurrentUserInfo } from "../api/auth.api.js"
-import { IChat } from "../api/chat.api.js"
-import { store } from "./store.js"
+import { ICurrentUserInfo } from "../api/auth.api"
+import { IChat } from "../api/chat.api"
+import { store } from "./store"
 
 export const LOADER_ON = 'LOADER_ON'
 export const LOADER_OFF = 'LOADER_OFF'

@@ -1,9 +1,9 @@
-import { Button } from "../../../../../components/Button/Button.js"
-import { Form } from "../../../../../components/Form/Form.js"
-import { InputControl } from "../../../../../components/InputControl/InputControl.js"
-import { IChangePassword } from "../../../../../core/api/profile.api.js"
-import { PROFILE_FORM_PASS_CONTROLS } from "./ProfileEditPassForm.consts.js"
-import { IProfileEditPass } from "./ProfileEditPassForm.types.js"
+import { Button } from "../../../../../components/Button/Button"
+import { Form } from "../../../../../components/Form/Form"
+import { InputControl } from "../../../../../components/InputControl/InputControl"
+import { IChangePassword } from "../../../../../core/api/profile.api"
+import { PROFILE_FORM_PASS_CONTROLS } from "./ProfileEditPassForm.consts"
+import { IProfileEditPass } from "./ProfileEditPassForm.types"
 
 export class ProfileEditPassForm extends Form<IProfileEditPass> {
     constructor(props: IProfileEditPass){

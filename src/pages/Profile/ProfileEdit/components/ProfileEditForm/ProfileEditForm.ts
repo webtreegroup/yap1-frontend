@@ -1,10 +1,10 @@
-import { Button } from "../../../../../components/Button/Button.js"
-import { Form } from "../../../../../components/Form/Form.js"
-import { InputControl } from "../../../../../components/InputControl/InputControl.js"
-import { ICurrentUserInfo } from "../../../../../core/api/auth.api.js"
-import { IChangeProfile } from "../../../../../core/api/profile.api.js"
-import { PROFILE_FORM_CONTROLS } from "../../../ProfileMain/components/ProfileForm/ProfileForm.config.js"
-import { IProfileEditForm } from "./ProfileEditForm.types.js"
+import { Button } from "../../../../../components/Button/Button"
+import { Form } from "../../../../../components/Form/Form"
+import { InputControl } from "../../../../../components/InputControl/InputControl"
+import { ICurrentUserInfo } from "../../../../../core/api/auth.api"
+import { IChangeProfile } from "../../../../../core/api/profile.api"
+import { PROFILE_FORM_CONTROLS } from "../../../ProfileMain/components/ProfileForm/ProfileForm.config"
+import { IProfileEditForm } from "./ProfileEditForm.types"
 
 export class ProfileEditForm extends Form<IProfileEditForm> {
     constructor(props: IProfileEditForm) {

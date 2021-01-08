@@ -1,7 +1,7 @@
-import { Block } from "../../core/block/Block.js"
-import { IValidationFn } from "../../utils/form.utils.js"
-import { IInputControl } from "./InputControl.types.js"
-import { inputControlTmplRender } from "./InputControl.tmpl.js"
+import { Block } from "../../core/block/Block"
+import { IValidationFn } from "../../utils/form.utils"
+import { IInputControl } from "./InputControl.types"
+import { inputControlTmplRender } from "./InputControl.tmpl"
 
 export class InputControl extends Block<HTMLInputElement> {
     _inputElement: HTMLInputElement | null | undefined

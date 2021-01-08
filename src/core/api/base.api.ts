@@ -1,4 +1,4 @@
-import { IStateValue } from "../../App.types.js"
+import { IStateValue } from "../../App.types"
 
 export class BaseAPI {
     create(_: IStateValue) { 

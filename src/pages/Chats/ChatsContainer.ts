@@ -1,6 +1,6 @@
-import { ChatAPI, IChat } from "../../core/api/chat.api.js"
-import { getChatsAction } from "../../core/store/actions.js"
-import { Chats } from "./Chats.js"
+import { ChatAPI, IChat } from "../../core/api/chat.api"
+import { getChatsAction } from "../../core/store/actions"
+import { Chats } from "./Chats"
 
 export class ChatsContainer {
     onLoadChats(){

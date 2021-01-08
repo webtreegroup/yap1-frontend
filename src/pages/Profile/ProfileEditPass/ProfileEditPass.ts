@@ -1,10 +1,10 @@
 
-import { Link } from "../../../components/Link/Link.js"
-import { Loader } from "../../../components/Loader/Loader.js"
-import { Block } from "../../../core/block/Block.js"
-import { ROUTES } from "../../../core/router/Router.config.js"
-import { ProfileEditPassFormContainer } from "./components/ProfileEditPassForm/ProfileEditPassFormContainer.js"
-import { profileEditPassTmplRender } from "./ProfileEditPass.tmpl.js"
+import { Link } from "../../../components/Link/Link"
+import { Loader } from "../../../components/Loader/Loader"
+import { Block } from "../../../core/block/Block"
+import { ROUTES } from "../../../core/router/Router.config"
+import { ProfileEditPassFormContainer } from "./components/ProfileEditPassForm/ProfileEditPassFormContainer"
+import { profileEditPassTmplRender } from "./ProfileEditPass.tmpl"
 
 export class ProfileEditPass extends Block<HTMLDivElement> {
     constructor() {

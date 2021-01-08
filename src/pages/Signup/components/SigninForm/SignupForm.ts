@@ -1,12 +1,12 @@
-import { Button } from "../../../../components/Button/Button.js"
-import { Form } from "../../../../components/Form/Form.js"
-import { InputControl } from "../../../../components/InputControl/InputControl.js"
-import { Link } from "../../../../components/Link/Link.js"
-import { ISignup } from "../../../../core/api/auth.api.js"
-import { ROUTES } from "../../../../core/router/Router.config.js"
-import { SIGNUP_FORM_CONTROLS } from "./SignupForm.config.js"
-import { signupFormTmplRender } from "./SignupForm.tmpl.js"
-import { ISignupForm } from "./SignupForm.types.js"
+import { Button } from "../../../../components/Button/Button"
+import { Form } from "../../../../components/Form/Form"
+import { InputControl } from "../../../../components/InputControl/InputControl"
+import { Link } from "../../../../components/Link/Link"
+import { ISignup } from "../../../../core/api/auth.api"
+import { ROUTES } from "../../../../core/router/Router.config"
+import { SIGNUP_FORM_CONTROLS } from "./SignupForm.config"
+import { signupFormTmplRender } from "./SignupForm.tmpl"
+import { ISignupForm } from "./SignupForm.types"
 
 export class SignupForm extends Form<ISignupForm> {
     constructor(props?: ISignupForm){

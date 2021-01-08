@@ -1,6 +1,6 @@
-import { CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD, SET_CURRENT_CHAT } from "./actions.js"
-import { IStoreState } from "./store.config.js"
-import { IAction } from "./store.js"
+import { CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD, SET_CURRENT_CHAT } from "./actions"
+import { IStoreState } from "./store.config"
+import { IAction } from "./store"
 
 export function loaderReducer(state: IStoreState, action: IAction) {
     switch (action.type) {

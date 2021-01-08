@@ -1,5 +1,5 @@
-import { HTTP } from "./api.js"
-import { BaseAPI } from "./base.api.js"
+import { HTTP } from "./api"
+import { BaseAPI } from "./base.api"
 
 export interface IChangeProfile {
     first_name: string

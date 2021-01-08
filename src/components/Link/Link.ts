@@ -1,7 +1,7 @@
-import { Block } from "../../core/block/Block.js"
-import { ILink } from "./Link.types.js"
-import { linkTmplRender } from "./Link.tmpl.js"
-import { Router } from "../../core/router/Router.js"
+import { Block } from "../../core/block/Block"
+import { ILink } from "./Link.types"
+import { linkTmplRender } from "./Link.tmpl"
+import { Router } from "../../core/router/Router"
 
 export class Link extends Block<HTMLLinkElement> {
     constructor(props: ILink) {

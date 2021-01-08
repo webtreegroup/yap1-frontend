@@ -1,8 +1,8 @@
-import { Loader } from "../../components/Loader/Loader.js"
-import { Popup } from "../../components/Popup/Popup.js"
-import { Block } from "../../core/block/Block.js"
-import { ROUTES } from "../../core/router/Router.config.js"
-import { SigninFormContainer } from "./components/SigninForm/SigninFormContainer.js"
+import { Loader } from "../../components/Loader/Loader"
+import { Popup } from "../../components/Popup/Popup"
+import { Block } from "../../core/block/Block"
+import { ROUTES } from "../../core/router/Router.config"
+import { SigninFormContainer } from "./components/SigninForm/SigninFormContainer"
 
 export class Signin extends Block<HTMLDivElement> {
     constructor() {

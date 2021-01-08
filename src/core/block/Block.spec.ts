@@ -1,7 +1,7 @@
 import chai from 'chai'
-import { IComponent } from '../../App.types.js'
-import { render } from '../../utils/common.utils.js'
-import { Block, IBaseTemplateRender, IBlockChildren } from './Block.js'
+import { IComponent } from '../../App.types'
+import { render } from '../../utils/common.utils'
+import { Block, IBaseTemplateRender, IBlockChildren } from './Block'
 
 const { expect } = chai
 

@@ -1,13 +1,13 @@
-import { Link } from "../../../../components/Link/Link.js"
-import { Popup } from "../../../../components/Popup/Popup.js"
-import { Block } from "../../../../core/block/Block.js"
-import { ChatMessage } from "../ChatMessage/ChatMessage.js"
-import { IChatHistory } from "./ChatHistory.types.js"
-import { chatHistoryTmplRender } from "./ChatHistory.tmpl.js"
-import { Loader } from "../../../../components/Loader/Loader.js"
-import { AddUserFormContainer } from "../AddUserForm/AddUserFormContainer.js"
-import { RemoveUserFormContainer } from "../RemoveUserForm/RemoveUserFormContainer.js"
-import { InputControl } from "../../../../components/InputControl/InputControl.js"
+import { Link } from "../../../../components/Link/Link"
+import { Popup } from "../../../../components/Popup/Popup"
+import { Block } from "../../../../core/block/Block"
+import { ChatMessage } from "../ChatMessage/ChatMessage"
+import { IChatHistory } from "./ChatHistory.types"
+import { chatHistoryTmplRender } from "./ChatHistory.tmpl"
+import { Loader } from "../../../../components/Loader/Loader"
+import { AddUserFormContainer } from "../AddUserForm/AddUserFormContainer"
+import { RemoveUserFormContainer } from "../RemoveUserForm/RemoveUserFormContainer"
+import { InputControl } from "../../../../components/InputControl/InputControl"
 
 export class ChatHistory extends Block {
     constructor(props?: IChatHistory){
