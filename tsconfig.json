@@ -9,6 +9,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "sourceMap": true,
+    "watch": true,
     "lib": [
       "es2019",
       "dom",
