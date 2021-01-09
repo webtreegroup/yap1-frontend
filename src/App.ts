@@ -1,5 +1,16 @@
 import './App.scss'
 
+const items = new Array();
+console.log(items)
+
+const someStack = [];
+
+// bad
+someStack[someStack.length] = 'abracadabra';
+
+// good
+someStack.push('abracadabra');
+
 import { store } from "./core/store/store"
 import { Router } from "./core/router/Router"
 import { ErrorPage } from "./pages/Error/Error"
