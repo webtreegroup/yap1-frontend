@@ -1,3 +1,5 @@
+import './Popup.scss'
+
 import { Block, IBlockChildren } from "../../core/block/Block"
 import { classNames } from "../../utils/common.utils"
 import { Link } from "../Link/Link"

@@ -1,3 +1,5 @@
+import '../Profile.scss'
+
 import { Link } from "../../../components/Link/Link"
 import { Loader } from "../../../components/Loader/Loader"
 import { Popup } from "../../../components/Popup/Popup"

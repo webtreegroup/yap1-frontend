@@ -1,10 +1,6 @@
-@import './reset-style';
-@import './consts';
-@import './mixins';
-@import './buttons';
-@import './controls';
-@import './popups';
-@import './loader';
+@import 'SharedStyles/reset-style';
+@import 'SharedStyles/consts';
+@import 'SharedStyles/mixins';
 
 .signin-page, .login-page {
     display: flex;

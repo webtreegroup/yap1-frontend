@@ -1,3 +1,5 @@
+import './InputControl.scss'
+
 import { Block } from "../../core/block/Block"
 import { IValidationFn } from "../../utils/form.utils"
 import { IInputControl } from "./InputControl.types"

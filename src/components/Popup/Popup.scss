@@ -1,5 +1,5 @@
-@import './consts.scss';
-@import './mixins.scss';
+@import 'SharedStyles/consts';
+@import 'SharedStyles/mixins';
 
 .popup {
     width: $popup_width_xs;

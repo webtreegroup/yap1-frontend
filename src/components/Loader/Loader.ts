@@ -1,3 +1,5 @@
+import './Loader.scss'
+
 import { Block } from "../../core/block/Block"
 import { loaderTmplRender } from "./Loader.tmpl"
 import { store } from "../../core/store/store"

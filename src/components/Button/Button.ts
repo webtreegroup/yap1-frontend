@@ -1,3 +1,5 @@
+import './Button.scss'
+
 import { Block } from "../../core/block/Block"
 import { IButton } from "./Button.types"
 import { buttonTmplRender } from "./Button.tmpl"

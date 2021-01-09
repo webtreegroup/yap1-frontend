@@ -1,3 +1,5 @@
+import './Chats.scss'
+
 import { Block } from "../../core/block/Block"
 import { store } from "../../core/store/store"
 import { IChats } from "./Chats.type"
