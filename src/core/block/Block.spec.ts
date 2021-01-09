@@ -9,21 +9,21 @@ interface IBlockComponent extends IComponent {
     desc?: string
 }
 
-describe("Block usage suite", () => {
-    beforeEach(function() { 
-        document.body.innerHTML = ''    
+describe('Block usage suite', () => {
+    beforeEach(() => {
+        document.body.innerHTML = ''
     })
 
     function createBlock(
         props: IBlockComponent,
-        children = {} as IBlockChildren, 
-        baseTmplRender?: IBaseTemplateRender
+        children = {} as IBlockChildren,
+        baseTmplRender?: IBaseTemplateRender,
     ) {
         return new Block<HTMLDivElement, IBlockComponent>(
-            'div', 
+            'div',
             props,
             children,
-            baseTmplRender
+            baseTmplRender,
         )
     }
 
@@ -33,7 +33,7 @@ describe("Block usage suite", () => {
         <div className="block-component__body" data-component="root"></div>
     `
 
-    it("Props should be change", () => {
+    it('Props should be change', () => {
         const Block = createBlock({ desc: 'description' })
         Block.setProps({ desc: 'description edit' })
 
@@ -41,7 +41,7 @@ describe("Block usage suite", () => {
         expect(Block.props).not.eql({ desc: 'description' })
     })
 
-    it("Block should be hide", () => {
+    it('Block should be hide', () => {
         const Block = createBlock({ className })
         render('body', Block)
 
@@ -51,7 +51,7 @@ describe("Block usage suite", () => {
         expect(blockNode).to.eql(null)
     })
 
-    it("Block should be show", () => {
+    it('Block should be show', () => {
         const Block = createBlock({ className })
         render('body', Block)
 
@@ -59,11 +59,11 @@ describe("Block usage suite", () => {
         expect(blockNode).not.eql(null)
     })
 
-    it("Block should be render like specify in template", () => {
+    it('Block should be render like specify in template', () => {
         const Block1 = createBlock({ className: 'child-block-component' })
         const Block2 = createBlock({ className }, { root: Block1 }, tmplRender)
         render('body', Block2)
-        
+
         const childBlockNode = document.querySelector('.child-block-component')
         expect(childBlockNode).not.eql(null)
     })

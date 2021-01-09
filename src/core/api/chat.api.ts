@@ -1,5 +1,5 @@
-import { HTTP } from "./api"
-import { BaseAPI } from "./base.api"
+import { HTTP } from './api'
+import { BaseAPI } from './base.api'
 
 export interface IChat {
     id: number
@@ -23,6 +23,6 @@ export class ChatAPI extends BaseAPI {
     }
 
     static delete(chatId: number) {
-        return chatAPIInstance.get('/', { data: { chatId }})
+        return chatAPIInstance.get('/', { data: { chatId } })
     }
 }

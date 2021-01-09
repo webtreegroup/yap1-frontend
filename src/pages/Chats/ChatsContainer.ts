@@ -1,9 +1,9 @@
-import { ChatAPI, IChat } from "../../core/api/chat.api"
-import { getChatsAction } from "../../core/store/actions"
-import { Chats } from "./Chats"
+import { ChatAPI, IChat } from '../../core/api/chat.api'
+import { getChatsAction } from '../../core/store/actions'
+import { Chats } from './Chats'
 
 export class ChatsContainer {
-    onLoadChats(){
+    onLoadChats() {
         return ChatAPI.request().then((xhr) => {
             const response: IChat[] = JSON.parse(xhr.response)
 

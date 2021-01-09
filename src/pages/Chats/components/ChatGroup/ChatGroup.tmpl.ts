@@ -1,11 +1,11 @@
-import { IChatGroup } from "./ChatGroup.types"
+import { IChatGroup } from './ChatGroup.types'
 
 export const chatGroupTmplRender = ({
     lastMessage = '',
     time = '',
     unread = 0,
     isOwnMessage,
-    img
+    img,
 }: IChatGroup): string => {
     const chatImgEmpty = `
         <div class="chats-item__img chats-item__img_empty">

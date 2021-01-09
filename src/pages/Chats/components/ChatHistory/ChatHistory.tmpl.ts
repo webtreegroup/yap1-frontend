@@ -1,4 +1,4 @@
-import { IChatHistory } from "./ChatHistory.types"
+import { IChatHistory } from './ChatHistory.types'
 
 export const chatHistoryTmplRender = ({ messages }: IChatHistory): string => {
     const chatEpty = `
@@ -63,7 +63,7 @@ export const chatHistoryTmplRender = ({ messages }: IChatHistory): string => {
         </section>
     `
 
-    return messages 
-        ? chatHeader + chatBody + chatFooter 
+    return messages
+        ? chatHeader + chatBody + chatFooter
         : chatEpty
 }

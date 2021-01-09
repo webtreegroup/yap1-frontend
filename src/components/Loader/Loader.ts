@@ -1,15 +1,15 @@
 import './Loader.scss'
 
-import { Block } from "../../core/block/Block"
-import { loaderTmplRender } from "./Loader.tmpl"
-import { store } from "../../core/store/store"
-import { ILoader } from "./Loader.types"
-import { isEqual } from "../../utils/common.utils"
+import { Block } from '../../core/block/Block'
+import { loaderTmplRender } from './Loader.tmpl'
+import { store } from '../../core/store/store'
+import { ILoader } from './Loader.types'
+import { isEqual } from '../../utils/common.utils'
 
 export class Loader extends Block<HTMLLinkElement> {
     constructor() {
         super(
-            "div", 
+            'div',
             { className: 'loader' },
         )
 
@@ -18,14 +18,14 @@ export class Loader extends Block<HTMLLinkElement> {
         })
     }
 
-    componentDidUpdate(oldProps: ILoader, newProps: ILoader){
+    componentDidUpdate(oldProps: ILoader, newProps: ILoader): boolean {
         if (newProps.active) this._element?.classList.add('loader_active')
         else this._element?.classList.remove('loader_active')
 
         return !isEqual(oldProps, newProps)
     }
 
-    render() {
+    render(): string {
         return loaderTmplRender(this.props)
     }
 }

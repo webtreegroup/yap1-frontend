@@ -1,3 +1,3 @@
-import { IComponent } from "../../App.types"
+import { IComponent } from '../../App.types'
 
-export interface IForm extends IComponent {}
+export type IForm = IComponent

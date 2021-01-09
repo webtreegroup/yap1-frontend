@@ -1,19 +1,19 @@
-import { Block } from "../../core/block/Block"
-import { ILink } from "./Link.types"
-import { linkTmplRender } from "./Link.tmpl"
-import { Router } from "../../core/router/Router"
+import { Block } from '../../core/block/Block'
+import { ILink } from './Link.types'
+import { linkTmplRender } from './Link.tmpl'
+import { Router } from '../../core/router/Router'
 
 export class Link extends Block<HTMLLinkElement> {
     constructor(props: ILink) {
         super(
-            "a", 
+            'a',
             props,
         )
     }
 
-    createResources({ onClick, path }: ILink) {
+    createResources({ onClick, path }: ILink): void {
         this._element?.setAttribute('href', path || '#')
-        
+
         function onClickWrapper(e: Event) {
             e.preventDefault()
 
@@ -25,7 +25,7 @@ export class Link extends Block<HTMLLinkElement> {
         this._element?.addEventListener('click', onClickWrapper)
     }
 
-    render() {
+    render(): string {
         return linkTmplRender(this.props)
     }
 }

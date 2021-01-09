@@ -1,57 +1,59 @@
-import { CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD, SET_CURRENT_CHAT } from "./actions"
-import { IStoreState } from "./store.config"
-import { IAction } from "./store"
+import {
+    CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD, SET_CURRENT_CHAT,
+} from './actions'
+import { IStoreState } from './store.config'
+import { IAction } from './store'
 
-export function loaderReducer(state: IStoreState, action: IAction) {
+export function loaderReducer(state: IStoreState, action: IAction): IStoreState {
     switch (action.type) {
-        case LOADER_ON:
-            return {
-                ...state,
-                active: true
-            }
-        case LOADER_OFF:
-            return {
-                ...state,
-                active: false
-            }
+    case LOADER_ON:
+        return {
+            ...state,
+            active: true,
+        }
+    case LOADER_OFF:
+        return {
+            ...state,
+            active: false,
+        }
+    default:
+        return state
     }
-
-    return state
 }
 
-export function currentUserReducer(state: IStoreState, action: IAction) {
+export function currentUserReducer(state: IStoreState, action: IAction): IStoreState {
     switch (action.type) {
-        case PROFILE_LOAD:
-            return {
-                ...state,
-                ...action.payload
-            }
+    case PROFILE_LOAD:
+        return {
+            ...state,
+            ...action.payload,
+        }
+    default:
+        return state
     }
-
-    return state
 }
 
-export function chatsReducer(state: IStoreState, action: IAction) {
+export function chatsReducer(state: IStoreState, action: IAction): IStoreState {
     switch (action.type) {
-        case CHATS_LOAD:
-            return action.payload
+    case CHATS_LOAD:
+        return action.payload
+    default:
+        return state
     }
-
-    return state
 }
 
-export function currentChatReducer(state: IStoreState, action: IAction) {
+export function currentChatReducer(state: IStoreState, action: IAction): IStoreState {
     switch (action.type) {
-        case SET_CURRENT_CHAT:
-            return action.payload
+    case SET_CURRENT_CHAT:
+        return action.payload
+    default:
+        return state
     }
-
-    return state
 }
 
 export const reducers = {
     loader: loaderReducer,
     currentUser: currentUserReducer,
     chats: chatsReducer,
-    currentChatId: currentChatReducer
+    currentChatId: currentChatReducer,
 }

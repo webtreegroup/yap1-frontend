@@ -1,4 +1,4 @@
-import { IComponent } from "../../../../App.types"
+import { IComponent } from '../../../../App.types'
 
 export interface IChatMessage extends IComponent {
     time?: string

@@ -1,6 +1,6 @@
-import { IState } from "../../App.types"
-import { ICurrentUserInfo } from "../api/auth.api"
-import { IChat } from "../api/chat.api"
+import { IState } from '../../App.types'
+import { ICurrentUserInfo } from '../api/auth.api'
+import { IChat } from '../api/chat.api'
 
 export interface IStoreState extends IState {
     loader: {
@@ -11,10 +11,10 @@ export interface IStoreState extends IState {
     currentChatId?: number
 }
 
-export const INITIAL_STATE = { 
+export const INITIAL_STATE = {
     loader: {
-        active: false
+        active: false,
     },
     currentUser: {} as ICurrentUserInfo,
-    chats: []
+    chats: [],
 }

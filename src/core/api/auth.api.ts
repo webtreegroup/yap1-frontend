@@ -1,5 +1,5 @@
-import { HTTP } from "./api"
-import { BaseAPI } from "./base.api"
+import { HTTP } from './api'
+import { BaseAPI } from './base.api'
 
 export interface ISignup {
     first_name: string
@@ -15,7 +15,7 @@ export interface ISignin {
     password: string
 }
 
-export interface ICurrentUserInfo {   
+export interface ICurrentUserInfo {
     id: number
     first_name: string
     second_name: string

@@ -10,9 +10,62 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+        "@typescript-eslint/no-this-alias": [
+            "error",
+            {
+                "allowDestructuring": true,
+                "allowedNames": ["self"] 
+            }
+        ],
+        "@typescript-eslint/no-empty-function": "off",
+        "no-use-before-define": "off",
+        "func-names": "off",
+        "camelcase": "off",
+        "import/first": "off",
+        "sort-imports": "off",
+        "@typescript-eslint/no-var-requires": "off",
+        "no-shadow": "off",
+        "no-restricted-syntax": "off",
+        "class-methods-use-this": "off",
+        "no-underscore-dangle": "off",
         "linebreak-style": ["error", "windows"],
         "semi": 0,
         "no-console": "off",
-        "indent": ["error", 4]
+        "no-alert": "off",
+        "indent": ["error", 4],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+                "js": "never",
+                "jsx": "never",
+                "ts": "never",
+                "tsx": "never"
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "max-len": "off",
+        "@typescript-eslint/ban-types": ["error",
+            {
+                "types": {
+                    "String": false,
+                    "Boolean": false,
+                    "Number": false,
+                    "Symbol": false,
+                    "{}": false,
+                    "Object": false,
+                    "object": false,
+                    "Function": false
+                },
+                "extendDefaults": true
+            }
+        ]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
     }
 }

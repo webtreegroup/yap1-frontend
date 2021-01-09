@@ -1,9 +1,9 @@
-import { IChatMessage } from "./ChatMessage.types"
+import { IChatMessage } from './ChatMessage.types'
 
 export const chatMessageTmplRender = ({
     time,
     text,
-    check
+    check,
 }: IChatMessage): string => {
     const isRead = `
         <div class="chat-history-item__is-read">
@@ -17,7 +17,7 @@ export const chatMessageTmplRender = ({
 
         <div class="chat-history-item__footer">
             <time>${time}</time>
-            ${ check ? isRead : '' }
+            ${check ? isRead : ''}
         </div>
     `
 }

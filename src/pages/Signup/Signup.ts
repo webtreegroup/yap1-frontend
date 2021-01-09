@@ -1,7 +1,7 @@
-import { Loader } from "../../components/Loader/Loader"
-import { Popup } from "../../components/Popup/Popup"
-import { Block } from "../../core/block/Block"
-import { SignupFormContainer } from "./components/SigninForm/SignupFormContainer"
+import { Loader } from '../../components/Loader/Loader'
+import { Popup } from '../../components/Popup/Popup'
+import { Block } from '../../core/block/Block'
+import { SignupFormContainer } from './components/SigninForm/SignupFormContainer'
 
 export class Signup extends Block<HTMLDivElement> {
     constructor() {
@@ -9,17 +9,17 @@ export class Signup extends Block<HTMLDivElement> {
 
         const SignupPopup = new Popup({
             title: 'Регистрация',
-            isActive: true
+            isActive: true,
         }, {
-            root: [SignupForm.createBlock()]
+            root: [SignupForm.createBlock()],
         })
 
         super(
-            'main', 
-            { className: 'signup-page' }, 
+            'main',
+            { className: 'signup-page' },
             {
-                root: [SignupPopup, new Loader()]
-            }, 
+                root: [SignupPopup, new Loader()],
+            },
         )
     }
 }

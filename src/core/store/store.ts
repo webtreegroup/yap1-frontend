@@ -1,6 +1,6 @@
-import { reducers } from "./reducers"
-import { IStateValue } from "../../App.types"
-import { INITIAL_STATE, IStoreState } from "./store.config"
+import { reducers } from './reducers'
+import { IStateValue } from '../../App.types'
+import { INITIAL_STATE, IStoreState } from './store.config'
 
 interface IReducers {
     [key: string]: Function
@@ -13,7 +13,9 @@ export interface IAction {
 
 export class Store {
     private subscribers: Function[]
+
     private reducers: IReducers
+
     private state: IStoreState
 
     constructor(reducers = {}, initialState = {} as IStoreState) {
@@ -22,29 +24,31 @@ export class Store {
         this.state = this.reduce(initialState, {})
     }
 
-    get value() {
+    get value(): IStoreState {
         return this.state
     }
 
-    subscribe(fn: (currentState: IStoreState) => void) {
+    subscribe(fn: (currentState: IStoreState) => void): Function {
         this.subscribers = [...this.subscribers, fn]
         fn(this.value)
 
         return () => {
-            this.subscribers = this.subscribers.filter(sub => sub !== fn)
+            this.subscribers = this.subscribers.filter((sub) => sub !== fn)
         }
     }
 
-    dispatch(action: IAction) {
+    dispatch(action: IAction): void {
         this.state = this.reduce(this.state, action)
-        this.subscribers.forEach(fn => fn(this.value))
+        this.subscribers.forEach((fn) => fn(this.value))
     }
 
     private reduce(state: IStoreState, action: IAction | {}) {
         const newState = {} as IStoreState
 
         for (const prop in this.reducers) {
-            newState[prop] = this.reducers[prop](state[prop], action)
+            if (Object.prototype.hasOwnProperty.call(newState, prop)) {
+                newState[prop] = this.reducers[prop](state[prop], action)
+            }
         }
 
         return newState
