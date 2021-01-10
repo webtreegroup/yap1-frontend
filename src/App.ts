@@ -1,6 +1,5 @@
 import './App.scss'
 
-import { store } from './core/store/store'
 import { Router } from './core/router/Router'
 import { ErrorPage } from './pages/Error/Error'
 import { Home } from './pages/Home/Home'

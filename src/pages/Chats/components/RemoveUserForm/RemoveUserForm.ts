@@ -18,13 +18,13 @@ export class RemoveUserForm extends Form<IRemoveUserForm> {
         )
     }
 
-    onSubmit({ loginForDelete }: { loginForDelete: string }) {
+    onSubmit({ loginForDelete }: { loginForDelete: string }): void {
         this.props.onRemoveUser?.({
             login: loginForDelete,
         }, this.props.currentChatId)
     }
 
-    render() {
+    render(): string {
         return removeUserFormTmplRender()
     }
 }

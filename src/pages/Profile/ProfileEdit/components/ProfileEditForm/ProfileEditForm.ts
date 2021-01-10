@@ -16,7 +16,7 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
         )
     }
 
-    render() {
+    render(): void {
         const { currentUserInfo } = this.props
 
         if (!currentUserInfo) return
@@ -41,7 +41,7 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
         }
     }
 
-    onSubmit(request: IChangeProfile) {
+    onSubmit(request: IChangeProfile): void {
         this.props.onProfileChange?.(request)
     }
 }

@@ -6,14 +6,14 @@ import { store } from '../../../core/store/store'
 import { Profile } from './Profile'
 
 export class ProfileContainer {
-    onLogout() {
+    onLogout(): void {
         AuthAPI.logout().then(() => {
             Router.go(ROUTES.SIGNIN.path)
             Router.reload()
         })
     }
 
-    onLoadProfile() {
+    onLoadProfile(): Promise<void> {
         return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
@@ -21,7 +21,7 @@ export class ProfileContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): Profile {
         const ProfileWrapped = new Profile({
             onLogout: this.onLogout,
             onLoadProfile: this.onLoadProfile,

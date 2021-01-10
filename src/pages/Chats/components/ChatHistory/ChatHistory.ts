@@ -66,11 +66,11 @@ export class ChatHistory extends Block {
         )
     }
 
-    createResources() {
+    createResources(): void {
         this._element?.classList.add('chat-history', 'chat-history_not-selected')
     }
 
-    render() {
+    render(): string {
         return chatHistoryTmplRender(this.props)
     }
 }

@@ -10,6 +10,7 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+        "consistent-return": "off",
         "@typescript-eslint/no-this-alias": [
             "error",
             {

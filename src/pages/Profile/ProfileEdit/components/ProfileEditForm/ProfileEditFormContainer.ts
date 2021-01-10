@@ -9,7 +9,7 @@ export class ProfileEditFormContainer {
         this.onProfileChange = this.onProfileChange.bind(this)
     }
 
-    onProfileChange(request: IChangeProfile) {
+    onProfileChange(request: IChangeProfile): void {
         loaderOnAction()
 
         ProfileAPI.change(request).then((response) => {
@@ -26,7 +26,7 @@ export class ProfileEditFormContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): ProfileEditForm {
         return new ProfileEditForm({
             onProfileChange: this.onProfileChange,
         })

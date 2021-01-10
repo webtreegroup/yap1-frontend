@@ -10,7 +10,7 @@ export class SigninFormContainer {
         this.onSignin = this.onSignin.bind(this)
     }
 
-    onSignin(request: ISignin) {
+    onSignin(request: ISignin): void {
         loaderOnAction()
 
         AuthAPI.signin(request).then((response) => {
@@ -26,7 +26,7 @@ export class SigninFormContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): SigninForm {
         return new SigninForm({
             onSignin: this.onSignin,
         })

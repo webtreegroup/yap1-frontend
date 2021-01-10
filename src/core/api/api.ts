@@ -13,7 +13,7 @@ type OptionsType = {
 
 type OptionsWithoutMethodType = Omit<OptionsType, 'method'>
 
-interface IResponse<T> extends Omit<XMLHttpRequest, 'response'> {
+export interface IResponse<T> extends Omit<XMLHttpRequest, 'response'> {
     response: T
 }
 
@@ -35,19 +35,19 @@ export class HTTP {
         this._path += path
     }
 
-    get<T = any>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    get<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.GET })
     }
 
-    post<T = any>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    post<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.POST })
     }
 
-    put<T = any>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    put<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.PUT })
     }
 
-    delete<T = any>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    delete<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.DELETE })
     }
 

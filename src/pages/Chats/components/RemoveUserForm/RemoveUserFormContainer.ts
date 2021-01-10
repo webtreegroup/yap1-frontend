@@ -11,29 +11,31 @@ export class RemoveUserFormContainer {
         this.onRemoveUser = this.onRemoveUser.bind(this)
     }
 
-    onRemoveUser(request: IUserSearch, currentChatId?: number) {
+    onRemoveUser(request: IUserSearch, currentChatId?: number): void {
         loaderOnAction()
 
-        UsersAPI.search(request).then((searchRespone) => {
-            switch (searchRespone.status) {
-            case 200:
-                const usersJson = JSON.parse(searchRespone.response) as ICurrentUserInfo[]
-                const users = usersJson.map((el) => el.id)
+        UsersAPI.search(request)
+            .then((searchRespone) => {
+                switch (searchRespone.status) {
+                case 200: {
+                    const usersJson = JSON.parse(searchRespone.response) as ICurrentUserInfo[]
+                    const users = usersJson.map((el) => el.id)
 
-                if (!users.length || !currentChatId) {
+                    if (!users.length || !currentChatId) {
+                        alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
+
+                        break
+                    }
+
+                    return {
+                        users,
+                        chatId: currentChatId,
+                    }
+                }
+                default:
                     alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
-
-                    break
                 }
-
-                return {
-                    users,
-                    chatId: currentChatId,
-                }
-            default:
-                alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
-            }
-        })
+            })
             .then((addUserRequest) => {
                 if (!addUserRequest) return
 
@@ -54,7 +56,7 @@ export class RemoveUserFormContainer {
             })
     }
 
-    createBlock() {
+    createBlock(): RemoveUserForm {
         const RemoveUserFormWrapped = new RemoveUserForm({
             onRemoveUser: this.onRemoveUser,
             currentChatId: store.value.currentChatId,

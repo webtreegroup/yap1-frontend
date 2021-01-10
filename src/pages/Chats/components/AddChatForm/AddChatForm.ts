@@ -19,11 +19,11 @@ export class AddChatForm extends Form<IAddChatForm> {
         )
     }
 
-    onSubmit(request: IAddChat) {
+    onSubmit(request: IAddChat): void {
         this.props.onAddChat?.(request)
     }
 
-    render() {
+    render(): string {
         return addChatFormTmplRender()
     }
 }

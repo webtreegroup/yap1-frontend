@@ -10,7 +10,7 @@ export class SignupFormContainer {
         this.onSignup = this.onSignup.bind(this)
     }
 
-    onSignup(request: ISignup) {
+    onSignup(request: ISignup): void {
         loaderOnAction()
 
         AuthAPI.signup(request).then((response) => {
@@ -26,7 +26,7 @@ export class SignupFormContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): SignupForm {
         return new SignupForm({
             onSignup: this.onSignup,
         })

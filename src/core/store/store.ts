@@ -46,7 +46,7 @@ export class Store {
         const newState = {} as IStoreState
 
         for (const prop in this.reducers) {
-            if (Object.prototype.hasOwnProperty.call(newState, prop)) {
+            if (Object.prototype.hasOwnProperty.call(this.reducers, prop)) {
                 newState[prop] = this.reducers[prop](state[prop], action)
             }
         }

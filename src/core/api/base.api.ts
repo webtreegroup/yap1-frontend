@@ -1,19 +1,17 @@
-import { IStateValue } from '../../App.types'
-
 export class BaseAPI {
-    create(_: IStateValue) {
+    create(): unknown {
         throw new Error('Not implemented')
     }
 
-    request() {
+    request(): unknown {
         throw new Error('Not implemented')
     }
 
-    update(_: IStateValue) {
+    update(): unknown {
         throw new Error('Not implemented')
     }
 
-    delete(_: IStateValue) {
+    delete(): unknown {
         throw new Error('Not implemented')
     }
 }

@@ -19,7 +19,7 @@ export class EditUserImageForm extends Form<IEditUserImageForm> {
         )
     }
 
-    onSubmit(_: IEditUserImageForm, formData: FormData) {
+    onSubmit(_: IEditUserImageForm, formData: FormData): void {
         this.props.onUserImageChange(formData)
     }
 }

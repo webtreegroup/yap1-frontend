@@ -2,7 +2,7 @@ export interface IValidationFn {
     (value?: string): boolean
 }
 
-export function checkAllowedLengthAndTypeChar(value?: string) {
+export function checkAllowedLengthAndTypeChar(value?: string): boolean {
     if (!value) return false
 
     const regexp = new RegExp(/^((?!\s).){3,20}$/)
@@ -10,7 +10,7 @@ export function checkAllowedLengthAndTypeChar(value?: string) {
     return regexp.test(value)
 }
 
-export function checkPhoneNumber(value?: string) {
+export function checkPhoneNumber(value?: string): boolean {
     if (!value) return false
 
     const regexp = new RegExp(/^\d{7,11}$/)
@@ -18,7 +18,7 @@ export function checkPhoneNumber(value?: string) {
     return regexp.test(value)
 }
 
-export function checkEmail(value?: string) {
+export function checkEmail(value?: string): boolean {
     if (!value) return false
 
     const regexp = new RegExp(/(\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6})/)

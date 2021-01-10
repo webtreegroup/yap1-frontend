@@ -8,33 +8,33 @@ export const PROFILE_LOAD = 'PROFILE_LOAD'
 export const CHATS_LOAD = 'CHATS_LOAD'
 export const SET_CURRENT_CHAT = 'SET_CURRENT_CHAT'
 
-export function loaderOnAction() {
+export function loaderOnAction(): void {
     store.dispatch({
         type: LOADER_ON,
     })
 }
 
-export function loaderOffAction() {
+export function loaderOffAction(): void {
     store.dispatch({
         type: LOADER_OFF,
     })
 }
 
-export function getCurrentUserInfoAction(payload: ICurrentUserInfo) {
+export function getCurrentUserInfoAction(payload: ICurrentUserInfo): void {
     store.dispatch({
         type: PROFILE_LOAD,
         payload,
     })
 }
 
-export function getChatsAction(payload: IChat[]) {
+export function getChatsAction(payload: IChat[]): void {
     store.dispatch({
         type: CHATS_LOAD,
         payload,
     })
 }
 
-export function setCurrentChatAction(payload?: number) {
+export function setCurrentChatAction(payload?: number): void {
     store.dispatch({
         type: SET_CURRENT_CHAT,
         payload,

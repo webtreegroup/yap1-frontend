@@ -22,7 +22,7 @@ export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
         })
     }
 
-    createResources({ isCurrent }: IChatGroup) {
+    createResources({ isCurrent }: IChatGroup): void {
         const classes = classNames([
             'chats-item',
             isCurrent ? 'chats-item_current' : undefined,
@@ -31,7 +31,7 @@ export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
         this._element?.classList.add(...classes)
     }
 
-    render() {
+    render(): string {
         return chatGroupTmplRender(this.props)
     }
 }

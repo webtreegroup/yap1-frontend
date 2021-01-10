@@ -9,7 +9,7 @@ export class ProfileEditPassFormContainer {
         this.onProfilePasswordChange = this.onProfilePasswordChange.bind(this)
     }
 
-    onProfilePasswordChange(request: IChangePassword) {
+    onProfilePasswordChange(request: IChangePassword): void {
         loaderOnAction()
 
         ProfileAPI.changePassword(request).then((response) => {
@@ -26,7 +26,7 @@ export class ProfileEditPassFormContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): ProfileEditPassForm {
         return new ProfileEditPassForm({
             onProfilePasswordChange: this.onProfilePasswordChange,
         })

@@ -9,7 +9,7 @@ export class AddChatFormContainer {
         this.onAddChat = this.onAddChat.bind(this)
     }
 
-    onAddChat(request: IAddChat) {
+    onAddChat(request: IAddChat): void {
         loaderOnAction()
 
         ChatAPI.create(request).then((response) => {
@@ -26,7 +26,7 @@ export class AddChatFormContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): AddChatForm {
         return new AddChatForm({
             onAddChat: this.onAddChat,
         })

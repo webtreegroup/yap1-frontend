@@ -26,7 +26,7 @@ export class Chats extends Block<HTMLDivElement, IChats> {
         )
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         const [aside] = this._children.root as Block[]
 
         this.props.onLoadChats().then(() => {

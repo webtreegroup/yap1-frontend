@@ -26,11 +26,11 @@ export class SignupForm extends Form<ISignupForm> {
         )
     }
 
-    onSubmit(request: ISignup) {
+    onSubmit(request: ISignup): void {
         this.props.onSignup?.(request)
     }
 
-    render() {
+    render(): string {
         return signupFormTmplRender()
     }
 }

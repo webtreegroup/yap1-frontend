@@ -26,7 +26,7 @@ export function getArrLastEl<T>(arr: T[]): T {
     return arr[arr.length - 1]
 }
 
-export function render(query: string | HTMLElement | null, block: Block) {
+export function render(query: string | HTMLElement | null, block: Block): undefined | void {
     const appendBlock = block.content
 
     if (!appendBlock) return
@@ -34,13 +34,15 @@ export function render(query: string | HTMLElement | null, block: Block) {
     if (typeof query === 'string') {
         const root = document.querySelector(query)
 
-        return root?.appendChild(appendBlock)
+        root?.appendChild(appendBlock)
+
+        return
     }
 
-    return query?.appendChild(appendBlock)
+    query?.appendChild(appendBlock)
 }
 
-export function classNames(classes: (string | undefined)[]) {
+export function classNames(classes: (string | undefined)[]): string[] {
     return classes.filter(Boolean) as string[]
 }
 
@@ -72,37 +74,6 @@ export function isEqual(firstArg?: IState, secondArg?: IState): boolean {
 }
 
 // TODO: оно не нада
-type Nullable<T> = T | null;
-
-const TYPE_ERROR = 'Something wrong with type of input param';
-
-export function tree(lvl: number | string): Nullable<string> {
-    if (typeof lvl !== 'number' && typeof lvl !== 'string') throw new Error(TYPE_ERROR)
-    if (isNaN(+lvl)) throw new Error(TYPE_ERROR)
-    if (+lvl < 3) return null
-
-    let result = ''
-    let tree = ''
-    let space = ''
-
-    for (let j = 0; j < +lvl - 2; j++) {
-        space += ' '
-    }
-
-    for (let i = 0; i < +lvl; i++) {
-        if (!i) tree += '*'
-        else if (i === +lvl - 1) {
-            const spaces = new Array(+lvl - 2).fill(' ').join('')
-            tree = `${spaces}|${spaces}`
-        } else tree += '**'
-
-        result += `${space}${tree}${space}\n`
-
-        space = space.substring(0, space.length - 1)
-    }
-
-    return result
-}
 
 // omit({ name: 'Benjy', age: 18 }, [ 'name' ]); // => { age: 18 }
 

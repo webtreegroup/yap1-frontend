@@ -1,4 +1,4 @@
-import { HTTP } from './api'
+import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
 export interface ISignup {
@@ -29,19 +29,19 @@ export interface ICurrentUserInfo {
 const authAPIInstance = new HTTP('/auth')
 
 export class AuthAPI extends BaseAPI {
-    static signup(data: ISignup) {
+    static signup(data: ISignup): Promise<XMLHttpRequest> {
         return authAPIInstance.post('/signup', { data })
     }
 
-    static signin(data: ISignin) {
+    static signin(data: ISignin): Promise<XMLHttpRequest> {
         return authAPIInstance.post('/signin', { data })
     }
 
-    static getCurrentUserInfo() {
+    static getCurrentUserInfo(): Promise<IResponse<string>> {
         return authAPIInstance.get<string>('/user')
     }
 
-    static logout() {
+    static logout(): Promise<XMLHttpRequest> {
         return authAPIInstance.post('/logout')
     }
 }

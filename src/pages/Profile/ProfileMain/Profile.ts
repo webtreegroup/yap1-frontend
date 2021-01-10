@@ -72,7 +72,7 @@ export class Profile extends Block<HTMLDivElement> {
         )
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         this.props?.onLoadProfile().then(() => {
             store.subscribe((state) => {
                 ProfileForm.setProps({

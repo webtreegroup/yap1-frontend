@@ -18,13 +18,13 @@ export class AddUserForm extends Form<IAddUserForm> {
         )
     }
 
-    onSubmit({ loginForAdd }: { loginForAdd: string }) {
+    onSubmit({ loginForAdd }: { loginForAdd: string }): void {
         this.props.onAddUser?.({
             login: loginForAdd,
         }, this.props.currentChatId)
     }
 
-    render() {
+    render(): string {
         return addUserFormTmplRender()
     }
 }

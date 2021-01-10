@@ -1,4 +1,4 @@
-import { HTTP } from './api'
+import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
 export interface IChat {
@@ -14,15 +14,15 @@ export interface IAddChat {
 const chatAPIInstance = new HTTP('/chats')
 
 export class ChatAPI extends BaseAPI {
-    static create(data: IAddChat) {
-        return chatAPIInstance.post('/', { data })
+    static create<T = IAddChat>(data: T): Promise<IResponse<T>> {
+        return chatAPIInstance.post<T>('/', { data })
     }
 
-    static request() {
+    static request(): Promise<IResponse<string>> {
         return chatAPIInstance.get<string>('/')
     }
 
-    static delete(chatId: number) {
+    static delete(chatId: number): Promise<IResponse<string>> {
         return chatAPIInstance.get('/', { data: { chatId } })
     }
 }

@@ -3,7 +3,7 @@ import { getCurrentUserInfoAction } from '../../../core/store/actions'
 import { ProfileEdit } from './ProfileEdit'
 
 export class ProfileEditContainer {
-    onLoadProfile() {
+    onLoadProfile(): Promise<void> {
         return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
@@ -11,7 +11,7 @@ export class ProfileEditContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): ProfileEdit {
         return new ProfileEdit({
             onLoadProfile: this.onLoadProfile,
         })

@@ -19,7 +19,7 @@ export class ProfileEditPassForm extends Form<IProfileEditPass> {
         )
     }
 
-    onSubmit(request: IChangePassword) {
+    onSubmit(request: IChangePassword): void {
         this.props.onProfilePasswordChange(request)
     }
 }

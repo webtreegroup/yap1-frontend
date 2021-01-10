@@ -3,7 +3,7 @@ import { getChatsAction } from '../../core/store/actions'
 import { Chats } from './Chats'
 
 export class ChatsContainer {
-    onLoadChats() {
+    onLoadChats(): Promise<void> {
         return ChatAPI.request().then((xhr) => {
             const response: IChat[] = JSON.parse(xhr.response)
 
@@ -11,7 +11,7 @@ export class ChatsContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): Chats {
         return new Chats({
             onLoadChats: this.onLoadChats,
         })

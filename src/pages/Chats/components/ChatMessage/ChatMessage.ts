@@ -8,7 +8,7 @@ export class ChatMessage extends Block<HTMLDivElement> {
         super('article', props)
     }
 
-    createResources() {
+    createResources(): void {
         const classes = classNames([
             'chat-history-item',
             this.props.isOwn
@@ -19,7 +19,7 @@ export class ChatMessage extends Block<HTMLDivElement> {
         this._element?.classList.add(...classes)
     }
 
-    render() {
+    render(): string {
         return chatMessageTmplRender(this.props)
     }
 }

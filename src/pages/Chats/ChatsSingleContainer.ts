@@ -4,7 +4,7 @@ import { getArrLastEl } from '../../utils/common.utils'
 import { ChatSingle } from './ChatsSingle'
 
 export class ChatsSingleContainer {
-    onLoadChats() {
+    onLoadChats(): Promise<void> {
         const currentChatPaths = window.location.pathname.split('/')
         const currentChatId = getArrLastEl(currentChatPaths)
 
@@ -17,7 +17,7 @@ export class ChatsSingleContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): ChatSingle {
         return new ChatSingle({
             onLoadChats: this.onLoadChats,
         })

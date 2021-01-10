@@ -1,4 +1,4 @@
-import { HTTP } from './api'
+import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
 export interface IChangeProfile {
@@ -22,15 +22,15 @@ export interface IChangePassword {
 const profileAPIInstance = new HTTP('/user')
 
 export class ProfileAPI extends BaseAPI {
-    static change(data: IChangeProfile) {
-        return profileAPIInstance.put('/profile', { data })
+    static change<T = IChangeProfile>(data: T): Promise<IResponse<T>> {
+        return profileAPIInstance.put<T>('/profile', { data })
     }
 
-    static changeAvatar(data: FormData) {
-        return profileAPIInstance.put('/profile/avatar', { data })
+    static changeAvatar<T = FormData>(data: T): Promise<IResponse<T>> {
+        return profileAPIInstance.put<T>('/profile/avatar', { data })
     }
 
-    static changePassword(data: IChangePassword) {
-        return profileAPIInstance.put('/password', { data })
+    static changePassword<T = IChangePassword>(data: T): Promise<IResponse<T>> {
+        return profileAPIInstance.put<T>('/password', { data })
     }
 }

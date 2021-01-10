@@ -11,12 +11,12 @@ export class AddUserFormContainer {
         this.onAddUser = this.onAddUser.bind(this)
     }
 
-    onAddUser(request: IUserSearch, currentChatId?: number) {
+    onAddUser(request: IUserSearch, currentChatId?: number): void {
         loaderOnAction()
 
         UsersAPI.search(request).then((searchRespone) => {
             switch (searchRespone.status) {
-            case 200:
+            case 200: {
                 const usersJson = JSON.parse(searchRespone.response) as ICurrentUserInfo[]
                 const users = usersJson.map((el) => el.id)
 
@@ -30,6 +30,7 @@ export class AddUserFormContainer {
                     users,
                     chatId: currentChatId,
                 }
+            }
             default:
                 alert(CHAT_ADD_USER_FAIL_MESSAGE)
             }
@@ -54,7 +55,7 @@ export class AddUserFormContainer {
             })
     }
 
-    createBlock() {
+    createBlock(): AddUserForm {
         const AddUserFormWrapped = new AddUserForm({
             onAddUser: this.onAddUser,
             currentChatId: store.value.currentChatId,

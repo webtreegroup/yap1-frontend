@@ -9,7 +9,7 @@ export class EditUserImageFormContainer {
         this.onUserImageChange = this.onUserImageChange.bind(this)
     }
 
-    onUserImageChange(request: FormData) {
+    onUserImageChange(request: FormData): void {
         loaderOnAction()
 
         ProfileAPI.changeAvatar(request).then((response) => {
@@ -26,7 +26,7 @@ export class EditUserImageFormContainer {
         })
     }
 
-    createBlock() {
+    createBlock(): EditUserImageForm {
         return new EditUserImageForm({
             onUserImageChange: this.onUserImageChange,
         })

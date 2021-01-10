@@ -27,7 +27,7 @@ export class ChatSingle extends Block<HTMLDivElement> {
         )
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         const [aside] = this._children.root as Block[]
 
         this.props.onLoadChats().then(() => {

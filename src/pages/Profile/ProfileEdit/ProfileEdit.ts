@@ -35,7 +35,7 @@ export class ProfileEdit extends Block<HTMLDivElement, IProfileEdit> {
         )
     }
 
-    componentDidMount() {
+    componentDidMount(): void {
         const ProfileForm = this._children.ProfileForm as Block<HTMLFormElement, IProfileEditForm>
 
         this.props?.onLoadProfile().then(() => {
