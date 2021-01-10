@@ -150,8 +150,8 @@ export class Block<
             },
             set(target, prop: string, value: IStateValue) {
                 const oldProps: IState = { ...self.props }
-                const newProps: IState = { ...target, [prop]: value }
-                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, newProps)
+                target[prop] = value
+                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target)
 
                 return true
             },

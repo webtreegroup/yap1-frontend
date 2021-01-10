@@ -1,12 +1,13 @@
 import { ICurrentUserInfo } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
 import { store } from './store'
-
-export const LOADER_ON = 'LOADER_ON'
-export const LOADER_OFF = 'LOADER_OFF'
-export const PROFILE_LOAD = 'PROFILE_LOAD'
-export const CHATS_LOAD = 'CHATS_LOAD'
-export const SET_CURRENT_CHAT = 'SET_CURRENT_CHAT'
+import {
+    CHATS_LOAD,
+    LOADER_OFF,
+    LOADER_ON,
+    PROFILE_LOAD,
+    SET_CURRENT_CHAT,
+} from './store.config'
 
 export function loaderOnAction(): void {
     store.dispatch({

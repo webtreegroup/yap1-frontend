@@ -1,7 +1,11 @@
 import {
-    CHATS_LOAD, LOADER_OFF, LOADER_ON, PROFILE_LOAD, SET_CURRENT_CHAT,
-} from './actions'
-import { IStoreState } from './store.config'
+    CHATS_LOAD,
+    IStoreState,
+    LOADER_OFF,
+    LOADER_ON,
+    PROFILE_LOAD,
+    SET_CURRENT_CHAT,
+} from './store.config'
 import { IAction } from './store'
 
 export function loaderReducer(state: IStoreState, action: IAction): IStoreState {

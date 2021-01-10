@@ -1,8 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "esnext",
+    "target": "ESNext",
     "rootDir": "./",
     "outDir": "./static",
     "esModuleInterop": true,

@@ -1,14 +1,11 @@
-import chai from 'chai'
 import { escapeHtml, getArrLastEl } from './common.utils'
-
-const { assert } = chai
 
 describe('Сommon utils usage suite', () => {
     it('Should return last element of array', () => {
-        assert.equal(getArrLastEl([1, 5, 6, 2]), 2)
+        expect(getArrLastEl([1, 5, 6, 2])).toBe(2)
     })
 
     it('Should escape HTML, return string protected from XSS', () => {
-        assert.equal(escapeHtml('I = love js&ts'), 'I &#x3D; love js&amp;ts')
+        expect(escapeHtml('I = love js&ts')).toBe('I &#x3D; love js&amp;ts')
     })
 })

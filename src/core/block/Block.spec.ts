@@ -1,9 +1,6 @@
-import chai from 'chai'
 import { IComponent } from '../../App.types'
 import { render } from '../../utils/common.utils'
 import { Block, IBaseTemplateRender, IBlockChildren } from './Block'
-
-const { expect } = chai
 
 interface IBlockComponent extends IComponent {
     desc?: string
@@ -37,8 +34,8 @@ describe('Block usage suite', () => {
         const Block = createBlock({ desc: 'description' })
         Block.setProps({ desc: 'description edit' })
 
-        expect(Block.props).to.eql({ desc: 'description edit' })
-        expect(Block.props).not.eql({ desc: 'description' })
+        expect(Block.props).toEqual({ desc: 'description edit' })
+        expect(Block.props).not.toEqual({ desc: 'description' })
     })
 
     it('Block should be hide', () => {
@@ -48,7 +45,7 @@ describe('Block usage suite', () => {
         Block.hide()
 
         const blockNode = document.querySelector(`.${className}`)
-        expect(blockNode).to.eql(null)
+        expect(blockNode).toEqual(null)
     })
 
     it('Block should be show', () => {
@@ -56,7 +53,7 @@ describe('Block usage suite', () => {
         render('body', Block)
 
         const blockNode = document.querySelector(`.${className}`)
-        expect(blockNode).not.eql(null)
+        expect(blockNode).not.toEqual(null)
     })
 
     it('Block should be render like specify in template', () => {
@@ -65,6 +62,6 @@ describe('Block usage suite', () => {
         render('body', Block2)
 
         const childBlockNode = document.querySelector('.child-block-component')
-        expect(childBlockNode).not.eql(null)
+        expect(childBlockNode).not.toEqual(null)
     })
 })
