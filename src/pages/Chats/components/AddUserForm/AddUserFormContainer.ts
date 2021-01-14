@@ -1,9 +1,12 @@
-import { CHAT_ADD_USER_FAIL_MESSAGE, CHAT_ADD_USER_SUCCESS_MESSAGE } from '../../../../core/api/api.consts'
-import { ICurrentUserInfo } from '../../../../core/api/auth.api'
-import { ChatUsersAPI } from '../../../../core/api/chat-users.api'
-import { IUserSearch, UsersAPI } from '../../../../core/api/users.api'
-import { loaderOffAction, loaderOnAction } from '../../../../core/store/actions'
-import { store } from '../../../../core/store/store'
+import {
+    CHAT_ADD_USER_FAIL_MESSAGE,
+    CHAT_ADD_USER_SUCCESS_MESSAGE,
+    ICurrentUserInfo,
+    ChatUsersAPI,
+    IUserSearch,
+    UsersAPI,
+} from 'core/api'
+import { loaderOffAction, loaderOnAction, store } from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {

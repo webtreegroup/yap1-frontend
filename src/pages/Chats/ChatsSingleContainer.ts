@@ -1,6 +1,6 @@
-import { ChatAPI, IChat } from '../../core/api/chat.api'
-import { getChatsAction, setCurrentChatAction } from '../../core/store/actions'
-import { getArrLastEl } from '../../utils/common.utils'
+import { ChatAPI, IChat } from 'core/api'
+import { getChatsAction, setCurrentChatAction } from 'core/store'
+import { getArrLastEl } from 'utils'
 import { ChatSingle } from './ChatsSingle'
 
 export class ChatsSingleContainer {

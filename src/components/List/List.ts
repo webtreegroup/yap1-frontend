@@ -1,4 +1,4 @@
-import { Block } from '../../core/block/Block'
+import { Block } from 'core/block'
 import { IList } from './List.types'
 import { Link } from '../Link/Link'
 

@@ -1,4 +1,4 @@
-import { IAddChat } from '../../../../core/api/chat.api'
+import { IAddChat } from 'core/api'
 
 export interface IAddChatForm {
     onAddChat?: (request: IAddChat) => void

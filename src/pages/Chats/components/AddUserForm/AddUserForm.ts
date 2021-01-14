@@ -1,6 +1,4 @@
-import { Button } from '../../../../components/Button/Button'
-import { Form } from '../../../../components/Form/Form'
-import { InputControl } from '../../../../components/InputControl/InputControl'
+import { Button, Form, InputControl } from 'components'
 import { addUserFormTmplRender } from './AddUserForm.tmpl'
 import { IAddUserForm } from './AddUserForm.types'
 

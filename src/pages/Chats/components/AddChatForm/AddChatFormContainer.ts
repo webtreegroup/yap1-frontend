@@ -1,7 +1,11 @@
-import { CHAT_ADD_FAIL_MESSAGE, CHAT_ADD_SUCCESS_MESSAGE } from '../../../../core/api/api.consts'
-import { ChatAPI, IAddChat } from '../../../../core/api/chat.api'
-import { Router } from '../../../../core/router/Router'
-import { loaderOffAction, loaderOnAction } from '../../../../core/store/actions'
+import {
+    CHAT_ADD_FAIL_MESSAGE,
+    CHAT_ADD_SUCCESS_MESSAGE,
+    ChatAPI,
+    IAddChat,
+} from 'core/api'
+import { Router } from 'core/router'
+import { loaderOffAction, loaderOnAction } from 'core/store'
 import { AddChatForm } from './AddChatForm'
 
 export class AddChatFormContainer {

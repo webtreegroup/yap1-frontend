@@ -1,11 +1,10 @@
-import { Block } from '../../../../core/block/Block'
-import { classNames } from '../../../../utils/common.utils'
+import { Block } from 'core/block'
+import { classNames } from 'utils'
+import { Link } from 'components'
+import { setCurrentChatAction } from 'core/store'
+import { ROUTES, Router } from 'core/router'
 import { IChatGroup } from './ChatGroup.types'
 import { chatGroupTmplRender } from './ChatGroup.tmpl'
-import { Link } from '../../../../components/Link/Link'
-import { ROUTES } from '../../../../core/router/Router.config'
-import { Router } from '../../../../core/router/Router'
-import { setCurrentChatAction } from '../../../../core/store/actions'
 
 export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
     constructor(props: IChatGroup) {

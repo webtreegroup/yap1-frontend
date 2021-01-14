@@ -1,15 +1,17 @@
 import './App.scss'
 
-import { Router } from './core/router/Router'
-import { ErrorPage } from './pages/Error/Error'
-import { Home } from './pages/Home/Home'
-import { ProfileContainer } from './pages/Profile/ProfileMain/ProfileContainer'
-import { ProfileEditPass } from './pages/Profile/ProfileEditPass/ProfileEditPass'
-import { Signin } from './pages/Signin/Signin'
-import { Signup } from './pages/Signup/Signup'
-import { ProfileEditContainer } from './pages/Profile/ProfileEdit/ProfileEditContainer'
-import { ChatsContainer } from './pages/Chats/ChatsContainer'
-import { ChatsSingleContainer } from './pages/Chats/ChatsSingleContainer'
+import { Router } from 'core/router'
+import {
+    ErrorPage,
+    Home,
+    ProfileContainer,
+    ProfileEditPass,
+    Signin,
+    Signup,
+    ProfileEditContainer,
+    ChatsContainer,
+    ChatsSingleContainer,
+} from 'pages'
 
 Router
     .use('/', Home)

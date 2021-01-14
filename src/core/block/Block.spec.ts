@@ -1,5 +1,5 @@
+import { render } from 'utils'
 import { IComponent } from '../../App.types'
-import { render } from '../../utils/common.utils'
 import { Block, IBaseTemplateRender, IBlockChildren } from './Block'
 
 interface IBlockComponent extends IComponent {

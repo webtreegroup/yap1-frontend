@@ -1,7 +1,7 @@
 import './Popup.scss'
 
-import { Block, IBlockChildren } from '../../core/block/Block'
-import { classNames } from '../../utils/common.utils'
+import { Block, IBlockChildren } from 'core/block'
+import { classNames } from 'utils'
 import { Link } from '../Link/Link'
 import { IPopup } from './Popup.types'
 import { popupTmplRender } from './Popup.tmpl'

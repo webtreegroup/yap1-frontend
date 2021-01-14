@@ -1,10 +1,10 @@
 import './Loader.scss'
 
-import { Block } from '../../core/block/Block'
+import { Block } from 'core/block'
+import { store } from 'core/store'
+import { isEqual } from 'utils'
 import { loaderTmplRender } from './Loader.tmpl'
-import { store } from '../../core/store/store'
 import { ILoader } from './Loader.types'
-import { isEqual } from '../../utils/common.utils'
 
 export class Loader extends Block<HTMLLinkElement> {
     constructor() {

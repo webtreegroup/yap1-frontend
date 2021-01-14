@@ -1,5 +1,5 @@
-import { ChatAPI, IChat } from '../../core/api/chat.api'
-import { getChatsAction } from '../../core/store/actions'
+import { ChatAPI, IChat } from 'core/api'
+import { getChatsAction } from 'core/store'
 import { Chats } from './Chats'
 
 export class ChatsContainer {

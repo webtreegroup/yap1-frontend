@@ -1,5 +1,5 @@
-import { Block } from '../../core/block/Block'
-import { store } from '../../core/store/store'
+import { Block } from 'core/block'
+import { store } from 'core/store'
 import { MESSAGES } from './Chats.consts'
 import { IChats } from './Chats.type'
 import { ChatHistory } from './components/ChatHistory/ChatHistory'

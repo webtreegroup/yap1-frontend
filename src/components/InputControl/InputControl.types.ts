@@ -1,4 +1,4 @@
-import { IComponent } from '../../App.types';
+import { IComponent } from '../../App.types'
 
 export interface IInputControl extends IComponent {
     name?: string
