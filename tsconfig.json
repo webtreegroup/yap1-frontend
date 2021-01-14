@@ -1,6 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "moduleResolution": "Node",
     "target": "ESNext",
     "rootDir": "./",
     "outDir": "./static",
@@ -13,8 +14,10 @@
     "lib": [
       "es2019",
       "dom",
-      "dom.iterable"
+      "dom.iterable",
+      "esnext"
     ],
     "downlevelIteration": true,
+    "baseUrl": "./src"
   }
 }

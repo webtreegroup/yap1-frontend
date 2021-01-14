@@ -72,25 +72,3 @@ export function isEqual(firstArg?: IState, secondArg?: IState): boolean {
             return isEqual(firstSubObject[i], secondSubObject[i])
         })
 }
-
-// TODO: оно не нада
-
-// omit({ name: 'Benjy', age: 18 }, [ 'name' ]); // => { age: 18 }
-
-// omit(obj: Object, fields: string[]): Object
-function omit<T extends object>(obj: T, fields: (keyof T)[]) {
-    const arr = Object.entries(obj)
-    const filtered = arr.filter(([key]) => !fields.includes(key as keyof T))
-
-    return Object.fromEntries(filtered)
-}
-
-omit({
-    prop1: 1,
-    prop2: 2,
-    prop3: 3,
-    prop4: 4,
-}, [
-    'prop2',
-    'prop4',
-])

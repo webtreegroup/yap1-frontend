@@ -1,7 +1,7 @@
 import './Chats.scss'
 
-import { Block } from '../../core/block/Block'
-import { store } from '../../core/store/store'
+import { store } from 'core/store'
+import { Block } from 'core/block'
 import { IChats } from './Chats.type'
 import { ChatHistory } from './components/ChatHistory/ChatHistory'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'

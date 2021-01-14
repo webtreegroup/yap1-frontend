@@ -45,6 +45,7 @@ module.exports = {
         alias: {
             SharedStyles: path.resolve(__dirname, './src/style'),
         },
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
     plugins: [
         new MiniCssExtractPlugin({
