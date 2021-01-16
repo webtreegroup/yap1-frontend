@@ -1,5 +1,4 @@
-import { Link } from 'components'
-import { Loader } from 'components'
+import { Link, Loader } from 'components'
 import { Block } from 'core/block'
 import { ROUTES } from 'core/router'
 import { ProfileEditPassFormContainer } from './components/ProfileEditPassForm/ProfileEditPassFormContainer'

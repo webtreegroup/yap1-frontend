@@ -1,4 +1,4 @@
-import { render } from 'utils'
+import { render } from 'shared/utils'
 import { IComponent } from 'App.types'
 import { Block, IBaseTemplateRender, IBlockChildren } from './Block'
 

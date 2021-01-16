@@ -1,4 +1,4 @@
-import { isEqual, render } from 'utils'
+import { isEqual, render } from 'shared/utils'
 import { IComponent, IState, IStateValue } from 'App.types'
 import { EventBus } from './EventBus'
 

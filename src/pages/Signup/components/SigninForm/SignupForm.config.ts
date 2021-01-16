@@ -1,5 +1,5 @@
 import { IInputControl } from 'components/InputControl/InputControl.types'
-import { checkAllowedLengthAndTypeChar, checkEmail, checkPhoneNumber } from 'utils'
+import { checkAllowedLengthAndTypeChar, checkEmail, checkPhoneNumber } from 'shared/utils'
 
 export const SIGNUP_FORM_CONTROLS: IInputControl[] = [
     {

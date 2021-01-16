@@ -1,5 +1,5 @@
 import { Block, IBaseTemplateRender, IBlockChildren } from 'core/block'
-import { escapeHtml } from 'utils'
+import { escapeHtml } from 'shared/utils'
 import { IState } from 'App.types'
 
 export class Form<PropsType extends object> extends Block<HTMLFormElement, PropsType> {
