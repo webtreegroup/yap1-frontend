@@ -1,4 +1,4 @@
-import { IComponent } from '../../App.types'
+import { IComponent } from 'App.types'
 
 export interface IButton extends IComponent {
     text?: string

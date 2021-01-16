@@ -1,4 +1,4 @@
-import { API_HOST } from '../../../core/api/api'
+import { API_HOST } from 'core/api'
 import { IProfile } from './Profile.type'
 
 export const profileTmplRender = (props?: IProfile): string => {

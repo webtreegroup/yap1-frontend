@@ -1,6 +1,5 @@
-import { Loader } from '../../components/Loader/Loader'
-import { Popup } from '../../components/Popup/Popup'
-import { Block } from '../../core/block/Block'
+import { Loader, Popup } from 'components'
+import { Block } from 'core/block'
 import { SignupFormContainer } from './components/SigninForm/SignupFormContainer'
 
 export class Signup extends Block<HTMLDivElement> {

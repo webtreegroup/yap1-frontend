@@ -1,7 +1,7 @@
-import { Link } from '../../../components/Link/Link'
-import { Loader } from '../../../components/Loader/Loader'
-import { Block } from '../../../core/block/Block'
-import { ROUTES } from '../../../core/router/Router.config'
+import { Link } from 'components'
+import { Loader } from 'components'
+import { Block } from 'core/block'
+import { ROUTES } from 'core/router'
 import { ProfileEditPassFormContainer } from './components/ProfileEditPassForm/ProfileEditPassFormContainer'
 import { profileEditPassTmplRender } from './ProfileEditPass.tmpl'
 

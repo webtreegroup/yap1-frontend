@@ -1,6 +1,6 @@
-import { List } from '../../components/List/List'
-import { Block } from '../../core/block/Block'
-import { ROUTES } from '../../core/router/Router.config'
+import { List } from 'components'
+import { Block } from 'core/block'
+import { ROUTES } from 'core/router'
 import { homeTmplRender } from './Home.tmpl'
 
 export class Home extends Block<HTMLDivElement> {

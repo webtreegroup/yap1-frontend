@@ -24,11 +24,11 @@ export class Router {
     static start(): void {
         window.onpopstate = (event: PopStateEvent) => {
             const target = event?.currentTarget as Window
-            this._onRoute(target?.location.pathname);
+            this._onRoute(target?.location.pathname)
         }
 
-        this._currentRoute = this.getRoute(window.location.pathname);
-        this._onRoute(window.location.pathname);
+        this._currentRoute = this.getRoute(window.location.pathname)
+        this._onRoute(window.location.pathname)
     }
 
     static _onRoute(pathname: string): void {

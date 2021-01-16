@@ -11,6 +11,7 @@
         "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
+        "import/order": "off",
         "no-param-reassign": "off",
         "consistent-return": "off",
         "@typescript-eslint/no-this-alias": [

@@ -1,3 +1,3 @@
-import { IComponent } from '../../App.types'
+import { IComponent } from 'App.types'
 
 export type IForm = IComponent

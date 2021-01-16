@@ -1,6 +1,6 @@
-import { Link } from '../../components/Link/Link'
-import { Block } from '../../core/block/Block'
-import { ROUTES } from '../../core/router/Router.config'
+import { Link } from 'components'
+import { Block } from 'core/block'
+import { ROUTES } from 'core/router'
 import { errorTmplRender } from './Error.tmpl'
 
 export class ErrorPage extends Block<HTMLDivElement> {

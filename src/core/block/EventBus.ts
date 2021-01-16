@@ -11,7 +11,7 @@ export class EventBus {
 
     on(event: string, callback: Function): void {
         if (!this.listeners[event]) {
-            this.listeners[event] = [];
+            this.listeners[event] = []
         }
 
         this.listeners[event].push(callback)

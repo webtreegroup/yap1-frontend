@@ -1,5 +1,5 @@
-import { AuthAPI, ICurrentUserInfo } from '../../../core/api/auth.api'
-import { getCurrentUserInfoAction } from '../../../core/store/actions'
+import { AuthAPI, ICurrentUserInfo } from 'core/api'
+import { getCurrentUserInfoAction } from 'core/store'
 import { ProfileEdit } from './ProfileEdit'
 
 export class ProfileEditContainer {

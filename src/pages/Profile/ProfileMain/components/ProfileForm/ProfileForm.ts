@@ -1,6 +1,6 @@
-import { InputControl } from '../../../../../components/InputControl/InputControl'
-import { ICurrentUserInfo } from '../../../../../core/api/auth.api'
-import { Block } from '../../../../../core/block/Block'
+import { InputControl } from 'components'
+import { ICurrentUserInfo } from 'core/api'
+import { Block } from 'core/block'
 import { IProfileEditForm } from '../../../ProfileEdit/components/ProfileEditForm/ProfileEditForm.types'
 import { PROFILE_FORM_CONTROLS } from './ProfileForm.config'
 

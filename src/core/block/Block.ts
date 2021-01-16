@@ -1,5 +1,5 @@
 import { isEqual, render } from 'utils'
-import { IComponent, IState, IStateValue } from '../../App.types'
+import { IComponent, IState, IStateValue } from 'App.types'
 import { EventBus } from './EventBus'
 
 interface IBlockMeta {

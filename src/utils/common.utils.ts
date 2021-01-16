@@ -1,5 +1,5 @@
-import { IState } from '../App.types'
-import { Block } from '../core/block/Block'
+import { IState } from 'App.types'
+import { Block } from 'core/block'
 
 interface IEntityMap {
     [key: string]: string

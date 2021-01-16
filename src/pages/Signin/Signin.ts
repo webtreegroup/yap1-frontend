@@ -1,7 +1,6 @@
-import { Loader } from '../../components/Loader/Loader'
-import { Popup } from '../../components/Popup/Popup'
-import { Block } from '../../core/block/Block'
-import { ROUTES } from '../../core/router/Router.config'
+import { Loader, Popup } from 'components'
+import { Block } from 'core/block'
+import { ROUTES } from 'core/router'
 import { SigninFormContainer } from './components/SigninForm/SigninFormContainer'
 
 export class Signin extends Block<HTMLDivElement> {

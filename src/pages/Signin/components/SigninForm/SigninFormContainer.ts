@@ -1,8 +1,6 @@
-import { SIGNIN_FAIL_MESSAGE } from '../../../../core/api/api.consts'
-import { AuthAPI, ISignin } from '../../../../core/api/auth.api'
-import { ROUTES } from '../../../../core/router/Router.config'
-import { Router } from '../../../../core/router/Router'
-import { loaderOffAction, loaderOnAction } from '../../../../core/store/actions'
+import { SIGNIN_FAIL_MESSAGE, AuthAPI, ISignin } from 'core/api'
+import { ROUTES, Router } from 'core/router'
+import { loaderOffAction, loaderOnAction } from 'core/store'
 import { SigninForm } from './SigninForm'
 
 export class SigninFormContainer {

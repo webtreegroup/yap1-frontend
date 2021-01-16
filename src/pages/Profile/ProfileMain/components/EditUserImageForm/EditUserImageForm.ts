@@ -1,5 +1,4 @@
-import { Button } from '../../../../../components/Button/Button'
-import { Form } from '../../../../../components/Form/Form'
+import { Button, Form } from 'components'
 import { IEditUserImageForm } from './EditUserImageForm.types'
 
 export class EditUserImageForm extends Form<IEditUserImageForm> {

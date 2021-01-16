@@ -1,7 +1,9 @@
 import { IAddChat } from 'core/api'
-import { Button } from '../../../../components/Button/Button'
-import { Form } from '../../../../components/Form/Form'
-import { InputControl } from '../../../../components/InputControl/InputControl'
+import {
+    Button,
+    Form,
+    InputControl,
+} from 'components'
 import { ADD_CHAT_FORM_CONTROLS } from './AddChatForm.config'
 import { addChatFormTmplRender } from './AddChatForm.tmpl'
 import { IAddChatForm } from './AddChatForm.types'

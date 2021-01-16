@@ -1,5 +1,5 @@
 import { reducers } from './reducers'
-import { IStateValue } from '../../App.types'
+import { IStateValue } from 'App.types'
 import { INITIAL_STATE, IStoreState } from './store.config'
 
 interface IReducers {

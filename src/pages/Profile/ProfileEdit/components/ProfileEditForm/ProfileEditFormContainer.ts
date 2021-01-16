@@ -1,7 +1,11 @@
-import { PROFILE_CHANGE_FAIL_MESSAGE, PROFILE_CHANGE_SUCCESS_MESSAGE } from '../../../../../core/api/api.consts'
-import { IChangeProfile, ProfileAPI } from '../../../../../core/api/profile.api'
-import { Router } from '../../../../../core/router/Router'
-import { loaderOffAction, loaderOnAction } from '../../../../../core/store/actions'
+import {
+    PROFILE_CHANGE_FAIL_MESSAGE,
+    PROFILE_CHANGE_SUCCESS_MESSAGE,
+    IChangeProfile,
+    ProfileAPI,
+} from 'core/api'
+import { Router } from 'core/router'
+import { loaderOffAction, loaderOnAction } from 'core/store'
 import { ProfileEditForm } from './ProfileEditForm'
 
 export class ProfileEditFormContainer {

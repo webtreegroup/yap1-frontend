@@ -1,11 +1,13 @@
 import '../Profile.scss'
 
-import { Link } from '../../../components/Link/Link'
-import { Loader } from '../../../components/Loader/Loader'
-import { Popup } from '../../../components/Popup/Popup'
-import { Block } from '../../../core/block/Block'
-import { ROUTES } from '../../../core/router/Router.config'
-import { store } from '../../../core/store/store'
+import {
+    Link,
+    Loader,
+    Popup,
+} from 'components'
+import { Block } from 'core/block'
+import { ROUTES } from 'core/router'
+import { store } from 'core/store'
 import { EditUserImageFormContainer } from './components/EditUserImageForm/EditUserImageFormContainer'
 import ProfileForm from './components/ProfileForm/ProfileForm'
 import { profileTmplRender } from './Profile.tmpl'

@@ -1,7 +1,9 @@
-import { Button } from '../../../../../components/Button/Button'
-import { Form } from '../../../../../components/Form/Form'
-import { InputControl } from '../../../../../components/InputControl/InputControl'
-import { IChangePassword } from '../../../../../core/api/profile.api'
+import {
+    Button,
+    Form,
+    InputControl,
+} from 'components'
+import { IChangePassword } from 'core/api'
 import { PROFILE_FORM_PASS_CONTROLS } from './ProfileEditPassForm.consts'
 import { IProfileEditPass } from './ProfileEditPassForm.types'
 

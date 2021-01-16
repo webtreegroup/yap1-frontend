@@ -1,8 +1,10 @@
-import { Link } from '../../../../components/Link/Link'
-import { Loader } from '../../../../components/Loader/Loader'
-import { Popup } from '../../../../components/Popup/Popup'
-import { Block } from '../../../../core/block/Block'
-import { ROUTES } from '../../../../core/router/Router.config'
+import {
+    Link,
+    Loader,
+    Popup,
+} from 'components'
+import { Block } from 'core/block'
+import { ROUTES } from 'core/router'
 import { AddChatFormContainer } from '../AddChatForm/AddChatFormContainer'
 import { ChatGroup } from '../ChatGroup/ChatGroup'
 import { chatsAsideTmplRender } from './ChatsAside.tmpl'

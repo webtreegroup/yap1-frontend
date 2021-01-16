@@ -1,9 +1,11 @@
-import { Button } from '../../../../components/Button/Button'
-import { Form } from '../../../../components/Form/Form'
-import { InputControl } from '../../../../components/InputControl/InputControl'
-import { Link } from '../../../../components/Link/Link'
-import { ISignin } from '../../../../core/api/auth.api'
-import { ROUTES } from '../../../../core/router/Router.config'
+import {
+    Button,
+    Form,
+    InputControl,
+    Link,
+} from 'components'
+import { ISignin } from 'core/api'
+import { ROUTES } from 'core/router'
 import { LOGIN_FORM_CONTROLS } from './SigninForm.config'
 import { loginFormTmplRender } from './SigninForm.tmpl'
 import { ISigninForm } from './SigninForm.types'

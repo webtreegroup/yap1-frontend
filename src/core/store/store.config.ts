@@ -1,4 +1,4 @@
-import { IState } from '../../App.types'
+import { IState } from 'App.types'
 import { ICurrentUserInfo } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
 

@@ -1,4 +1,4 @@
-import { IState } from '../../App.types'
+import { IState } from 'App.types'
 import { Block } from '../block/Block'
 import { IBlockConstructor } from './Router'
 
