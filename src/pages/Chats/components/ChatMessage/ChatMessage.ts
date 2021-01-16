@@ -1,5 +1,5 @@
 import { Block } from 'core/block'
-import { classNames } from 'shared/utils'
+import { classNames } from 'utils'
 import { IChatMessage } from './ChatMessage.types'
 import { chatMessageTmplRender } from './ChatMessage.tmpl'
 

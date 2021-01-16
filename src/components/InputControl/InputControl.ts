@@ -1,7 +1,7 @@
 import './InputControl.scss'
 
 import { Block } from 'core/block'
-import { IValidationFn } from 'shared/utils'
+import { IValidationFn } from 'utils'
 import { IInputControl } from './InputControl.types'
 import { inputControlTmplRender } from './InputControl.tmpl'
 

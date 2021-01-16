@@ -1,5 +1,5 @@
 import { IInputControl } from 'components/InputControl/InputControl.types'
-import { checkAllowedLengthAndTypeChar } from 'shared/utils'
+import { checkAllowedLengthAndTypeChar } from 'utils'
 
 export const LOGIN_FORM_CONTROLS: IInputControl[] = [
     {

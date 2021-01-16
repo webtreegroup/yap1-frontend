@@ -1,5 +1,5 @@
 import { Block } from 'core/block'
-import { classNames } from 'shared/utils'
+import { classNames } from 'utils'
 import { Link } from 'components'
 import { setCurrentChatAction } from 'core/store'
 import { ROUTES, Router } from 'core/router'

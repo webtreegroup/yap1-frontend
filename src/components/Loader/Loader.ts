@@ -2,7 +2,7 @@ import './Loader.scss'
 
 import { Block } from 'core/block'
 import { store } from 'core/store'
-import { isEqual } from 'shared/utils'
+import { isEqual } from 'utils'
 import { loaderTmplRender } from './Loader.tmpl'
 import { ILoader } from './Loader.types'
 
