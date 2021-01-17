@@ -8,8 +8,7 @@ export interface IChatConnectResponse {
 }
 
 export interface IChatMessage {
-    content: string
-    type: string
+    message: string
 }
 
 export class MessageChatAPI extends BaseAPI {

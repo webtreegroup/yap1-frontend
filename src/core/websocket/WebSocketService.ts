@@ -8,6 +8,7 @@ export class WebSocketService {
 
         this.socket.addEventListener('open', () => {
             console.log('Соединение установлено')
+            this.ping()
         })
 
         this.socket.addEventListener('close', (event) => {
@@ -17,7 +18,7 @@ export class WebSocketService {
                 console.log('Обрыв соединения')
             }
 
-            console.log(`Код: ${event.code} | Причина: ${event.reason}`)
+            console.log(`Код: ${event.code}`)
         })
 
         this.socket.addEventListener('message', (event) => {
@@ -27,5 +28,18 @@ export class WebSocketService {
         this.socket.addEventListener('error', (event) => {
             console.log('Ошибка', event)
         })
+    }
+
+    send(message: string): void {
+        this.socket.send(JSON.stringify({
+            content: message,
+            type: 'message',
+        }))
+    }
+
+    ping(): void {
+        setInterval(() => {
+            this.socket.send('__ping__')
+        }, 5000)
     }
 }

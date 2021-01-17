@@ -6,27 +6,36 @@ import {
 import { Block } from 'core/block'
 import {
     AddUserFormContainer,
-    ChatMessage,
     ChatMessageFormContainer,
     RemoveUserFormContainer,
 } from '..'
 import { chatHistoryTmplRender } from './ChatHistory.tmpl'
 import { IChatHistory } from './ChatHistory.types'
 
-export class ChatHistory extends Block {
+export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     constructor(props: IChatHistory = {}) {
-        const {
-            currentChatId,
-            messages: history,
-        } = props
+        super(
+            'main',
+            props,
+        )
+    }
 
-        const messages = history?.map((el) => new ChatMessage(el)) || []
+    createResources(): void {
+        this._element?.classList.add('chat-history', 'chat-history_not-selected')
+    }
+
+    componentDidUpdate(oldProps: IChatHistory, newProps: IChatHistory): boolean {
+        return oldProps.currentChatId !== newProps.currentChatId
+    }
+
+    render(): string {
+        this.props?.onChatConnect?.()
 
         const LoaderComponent = new Loader()
 
         const AddUserForm = new AddUserFormContainer()
         const RemoveUserForm = new RemoveUserFormContainer()
-        const ChatMessageForm = new ChatMessageFormContainer()
+        const ChatMessageForm = new ChatMessageFormContainer({ sendMessage: this.props.sendMessage })
 
         const AddUserPopup = new Popup({
             title: 'Добавить пользователя',
@@ -60,26 +69,14 @@ export class ChatHistory extends Block {
             `,
         })
 
-        super(
-            'main',
-            { ...props, onAddUser: AddUserPopup.show },
-            {
-                messages,
-                Popups: currentChatId ? [AddUserPopup, RemoveUserPopup] : undefined,
-                ToggleAddUserPopup: currentChatId ? ToggleAddUserPopup : undefined,
-                ToggleRemoveUserPopup: currentChatId ? ToggleRemoveUserPopup : undefined,
-                LoaderComponent,
-                ChatMessageForm: currentChatId ? ChatMessageForm.createBlock() : undefined,
-            },
-        )
-    }
+        this._children = this.props.currentChatId ? {
+            Popups: [AddUserPopup, RemoveUserPopup],
+            ToggleAddUserPopup,
+            ToggleRemoveUserPopup,
+            LoaderComponent,
+            ChatMessageForm: ChatMessageForm.createBlock(),
+        } : {}
 
-    createResources(): void {
-        this._element?.classList.add('chat-history', 'chat-history_not-selected')
-    }
-
-    render(): string {
-        console.log('render')
         return chatHistoryTmplRender(this.props)
     }
 }

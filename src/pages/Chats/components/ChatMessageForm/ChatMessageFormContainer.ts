@@ -1,12 +1,16 @@
 import { IChatMessage } from 'core/api'
 import { loaderOffAction, loaderOnAction } from 'core/store'
 import { ChatMessageForm } from './ChatMessageForm'
+import { IChatMessageFormContainer } from './ChatMessageForm.types'
 
 export class ChatMessageFormContainer {
     form: ChatMessageForm
 
-    constructor() {
+    props: IChatMessageFormContainer
+
+    constructor(props: IChatMessageFormContainer) {
         this.onMessageSend = this.onMessageSend.bind(this)
+        this.props = props
 
         this.form = new ChatMessageForm({
             onMessageSend: this.onMessageSend,
@@ -16,8 +20,7 @@ export class ChatMessageFormContainer {
     onMessageSend(request: IChatMessage): void {
         loaderOnAction()
 
-        // TODO: тут будем юзать WebSocket
-        console.log(request)
+        this.props.sendMessage?.(request.message)
         this.form.element?.reset()
 
         loaderOffAction()

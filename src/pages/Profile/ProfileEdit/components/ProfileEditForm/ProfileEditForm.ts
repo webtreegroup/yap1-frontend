@@ -24,7 +24,7 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
 
             return new InputControl({
                 ...el,
-                value,
+                value: value || undefined,
                 isTouched: !!value,
             })
         })
