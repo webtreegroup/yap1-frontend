@@ -4,11 +4,13 @@ import { store } from './store'
 import {
     CHATS_LOAD,
     IConnectedChats,
+    ISocketMessage,
     LOADER_OFF,
     LOADER_ON,
     PROFILE_LOAD,
     SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
+    SET_MESSAGES,
 } from './store.config'
 
 export function loaderOnAction(): void {
@@ -44,9 +46,16 @@ export function setCurrentChatAction(payload?: number): void {
     })
 }
 
-export function setConnectedChats(payload?: IConnectedChats): void {
+export function setConnectedChatsAction(payload?: IConnectedChats): void {
     store.dispatch({
         type: SET_CONNECTED_CHATS,
+        payload,
+    })
+}
+
+export function setMessagesAction(payload?: ISocketMessage): void {
+    store.dispatch({
+        type: SET_MESSAGES,
         payload,
     })
 }

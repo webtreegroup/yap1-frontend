@@ -5,7 +5,7 @@ import {
     MessageChatAPI,
 } from 'core/api'
 import {
-    setConnectedChats,
+    setConnectedChatsAction,
     store,
 } from 'core/store'
 import { WebSocketService } from 'core/websocket'
@@ -18,9 +18,9 @@ export class ChatHistoryContainer {
         this.chatSocket = null
     }
 
-    async onChatConnect(): Promise<void> {
+    async onChatConnect(currentChatId?: number): Promise<void> {
         try {
-            const { currentChatId, connectedChats } = store.value
+            const { connectedChats } = store.value
             const chatsIds = Object.keys(connectedChats)
 
             if (!currentChatId) return
@@ -38,8 +38,7 @@ export class ChatHistoryContainer {
             })
 
             if (!chatsIds.includes(String(currentChatId))) {
-                setConnectedChats({ [currentChatId]: token })
-
+                setConnectedChatsAction({ [currentChatId]: token })
                 this.chatSocket = new WebSocketService(
                     user.id,
                     currentChatId,

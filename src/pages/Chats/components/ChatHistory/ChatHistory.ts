@@ -29,7 +29,7 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     }
 
     render(): string {
-        this.props?.onChatConnect?.()
+        this.props?.onChatConnect?.(this.props.currentChatId)
 
         const LoaderComponent = new Loader()
 

@@ -1,4 +1,5 @@
 import { API_HOST } from 'core/api'
+import { setMessagesAction } from 'core/store'
 
 export class WebSocketService {
     socket: WebSocket
@@ -7,7 +8,6 @@ export class WebSocketService {
         this.socket = new WebSocket(`wss://${API_HOST}/ws/chats/${userId}/${chatId}/${token}`)
 
         this.socket.addEventListener('open', () => {
-            console.log('Соединение установлено')
             this.ping()
         })
 
@@ -22,7 +22,15 @@ export class WebSocketService {
         })
 
         this.socket.addEventListener('message', (event) => {
-            console.log('Получены данные', event.data)
+            const data = JSON.parse(event.data)
+
+            if (data.type !== 'message') return
+
+            setMessagesAction({
+                chatId,
+                userId: data.userId,
+                content: data.content,
+            })
         })
 
         this.socket.addEventListener('error', (event) => {

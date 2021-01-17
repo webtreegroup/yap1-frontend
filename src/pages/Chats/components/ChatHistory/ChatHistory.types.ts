@@ -3,7 +3,7 @@ import { IChatMessage } from '../ChatMessage/ChatMessage.types'
 
 export interface IChatHistory extends IComponent {
     currentChatId?: number
-    onChatConnect?: () => Promise<void> | undefined
+    onChatConnect?: (currentChatId?: number) => Promise<void> | undefined
     sendMessage?: (message: string) => void
     messages?: IChatMessage[]
     onAddUser?: () => void
