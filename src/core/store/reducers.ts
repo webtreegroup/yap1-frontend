@@ -6,7 +6,8 @@ import {
     PROFILE_LOAD,
     SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
-    SET_MESSAGES,
+    ADD_MESSAGE,
+    ADD_OLD_MESSAGES,
 } from './store.config'
 import { IAction } from './store'
 
@@ -71,10 +72,15 @@ export function connectedChatsReducer(state: IStoreState['connectedChats'], acti
 
 export function messagesReducer(state: IStoreState['messages'], action: IAction): IStoreState['messages'] {
     switch (action.type) {
-    case SET_MESSAGES:
+    case ADD_MESSAGE:
         return [
             ...state,
             action.payload,
+        ]
+    case ADD_OLD_MESSAGES:
+        return [
+            ...state,
+            ...action.payload,
         ]
     default:
         return state

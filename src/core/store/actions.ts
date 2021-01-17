@@ -10,7 +10,8 @@ import {
     PROFILE_LOAD,
     SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
-    SET_MESSAGES,
+    ADD_MESSAGE,
+    ADD_OLD_MESSAGES,
 } from './store.config'
 
 export function loaderOnAction(): void {
@@ -53,9 +54,16 @@ export function setConnectedChatsAction(payload?: IConnectedChats): void {
     })
 }
 
-export function setMessagesAction(payload?: ISocketMessage): void {
+export function addMessageAction(payload?: ISocketMessage): void {
     store.dispatch({
-        type: SET_MESSAGES,
+        type: ADD_MESSAGE,
+        payload,
+    })
+}
+
+export function addOldMessagesAction(payload?: ISocketMessage[]): void {
+    store.dispatch({
+        type: ADD_OLD_MESSAGES,
         payload,
     })
 }

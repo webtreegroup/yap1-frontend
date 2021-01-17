@@ -1,5 +1,5 @@
 import { API_HOST } from 'core/api'
-import { setMessagesAction } from 'core/store'
+import { addMessageAction, addOldMessagesAction, ISocketOldMessage } from 'core/store'
 
 export class WebSocketService {
     socket: WebSocket
@@ -8,6 +8,7 @@ export class WebSocketService {
         this.socket = new WebSocket(`wss://${API_HOST}/ws/chats/${userId}/${chatId}/${token}`)
 
         this.socket.addEventListener('open', () => {
+            this.getOld(0)
             this.ping()
         })
 
@@ -24,12 +25,26 @@ export class WebSocketService {
         this.socket.addEventListener('message', (event) => {
             const data = JSON.parse(event.data)
 
-            if (data.type !== 'message') return
+            if (event.type !== 'message' || data.type !== 'message') return
 
-            setMessagesAction({
+            if (Array.isArray(data)) {
+                const payload = data.map((el: ISocketOldMessage) => ({
+                    chatId: el.chat_id,
+                    userId: el.user_id,
+                    content: el.content,
+                    time: el.time,
+                }))
+
+                addOldMessagesAction(payload)
+
+                return
+            }
+
+            addMessageAction({
                 chatId,
                 userId: data.userId,
                 content: data.content,
+                time: data.time,
             })
         })
 
@@ -42,6 +57,13 @@ export class WebSocketService {
         this.socket.send(JSON.stringify({
             content: message,
             type: 'message',
+        }))
+    }
+
+    getOld(count: number): void {
+        return this.socket.send(JSON.stringify({
+            content: count,
+            type: 'get old',
         }))
     }
 

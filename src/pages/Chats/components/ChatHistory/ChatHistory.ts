@@ -29,7 +29,9 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     }
 
     render(): string {
-        this.props?.onChatConnect?.(this.props.currentChatId)
+        this.props.onChatConnect?.(this.props.currentChatId)?.then(() => {
+            this.props.getOldMessage?.()
+        })
 
         const LoaderComponent = new Loader()
 

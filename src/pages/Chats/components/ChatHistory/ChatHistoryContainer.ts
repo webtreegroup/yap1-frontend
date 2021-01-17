@@ -50,6 +50,11 @@ export class ChatHistoryContainer {
         }
     }
 
+    // getOldMessage(count = 0): void {
+    //     debugger
+    //     this.chatSocket?.getOld(count)
+    // }
+
     sendMessage(message: string): void {
         this.chatSocket?.send(message)
     }
@@ -58,6 +63,7 @@ export class ChatHistoryContainer {
         const ChatHistoryWrapped = new ChatHistory({
             onChatConnect: this.onChatConnect,
             sendMessage: this.sendMessage,
+            // getOldMessage: this.getOldMessage,
         })
 
         store.subscribe((state) => {
