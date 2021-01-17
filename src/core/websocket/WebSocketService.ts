@@ -25,7 +25,7 @@ export class WebSocketService {
         this.socket.addEventListener('message', (event) => {
             const data = JSON.parse(event.data)
 
-            if (event.type !== 'message' || data.type !== 'message') return
+            if (event.type !== 'message') return
 
             if (Array.isArray(data)) {
                 const payload = data.map((el: ISocketOldMessage) => ({
@@ -39,6 +39,8 @@ export class WebSocketService {
 
                 return
             }
+
+            if (data.type !== 'message') return
 
             addMessageAction({
                 chatId,

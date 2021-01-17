@@ -67,10 +67,9 @@ export class ChatHistoryContainer {
         })
 
         store.subscribe((state) => {
-            // TODO: вместо currentChatId сюда можно передавать список месседжей
-            // необходимо для обновления компонента и вызова повторного рендера
             ChatHistoryWrapped.setProps({
                 currentChatId: state.currentChatId,
+                messages: state.messages.filter(((el) => el.chatId === state.currentChatId)),
             })
         })
 

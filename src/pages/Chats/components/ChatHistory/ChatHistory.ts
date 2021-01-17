@@ -4,8 +4,10 @@ import {
     Loader,
 } from 'components'
 import { Block } from 'core/block'
+import { isEqual } from 'utils'
 import {
     AddUserFormContainer,
+    ChatMessage,
     ChatMessageFormContainer,
     RemoveUserFormContainer,
 } from '..'
@@ -25,7 +27,9 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     }
 
     componentDidUpdate(oldProps: IChatHistory, newProps: IChatHistory): boolean {
+        // TODO: вебсокет два раза открывается из за этой хуйни
         return oldProps.currentChatId !== newProps.currentChatId
+            || !isEqual(oldProps.messages, newProps.messages)
     }
 
     render(): string {
@@ -33,6 +37,7 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
             this.props.getOldMessage?.()
         })
 
+        const messages = this.props.messages?.map((el) => new ChatMessage(el))
         const LoaderComponent = new Loader()
 
         const AddUserForm = new AddUserFormContainer()
@@ -72,6 +77,7 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
         })
 
         this._children = this.props.currentChatId ? {
+            messages,
             Popups: [AddUserPopup, RemoveUserPopup],
             ToggleAddUserPopup,
             ToggleRemoveUserPopup,
