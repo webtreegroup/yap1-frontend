@@ -1,8 +1,7 @@
 import { Block } from 'core/block'
 import { store } from 'core/store'
-import { MESSAGES } from './Chats.consts'
 import { IChats } from './Chats.type'
-import { ChatHistory } from './components/ChatHistory/ChatHistory'
+import { ChatHistoryContainer } from './components'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
 
 /**
@@ -12,6 +11,8 @@ import { ChatsAside } from './components/ChatsAside/ChatsAside'
  */
 export class ChatSingle extends Block<HTMLDivElement> {
     constructor(props: IChats) {
+        const ChatHistory = new ChatHistoryContainer()
+
         super(
             'main',
             {
@@ -21,7 +22,7 @@ export class ChatSingle extends Block<HTMLDivElement> {
             {
                 root: [
                     new ChatsAside({ className: 'chats', chats: store.value.chats }),
-                    new ChatHistory({ messages: MESSAGES }),
+                    ChatHistory.createBlock(),
                 ],
             },
         )

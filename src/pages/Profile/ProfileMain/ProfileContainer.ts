@@ -1,6 +1,6 @@
 import { AuthAPI, ICurrentUserInfo } from 'core/api'
 import { ROUTES, Router } from 'core/router'
-import { getCurrentUserInfoAction, store } from 'core/store'
+import { setCurrentUserInfoAction, store } from 'core/store'
 import { Profile } from './Profile'
 
 export class ProfileContainer {
@@ -15,7 +15,7 @@ export class ProfileContainer {
         return AuthAPI.getCurrentUserInfo().then((xhr) => {
             const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
-            getCurrentUserInfoAction(response)
+            setCurrentUserInfoAction(response)
         })
     }
 

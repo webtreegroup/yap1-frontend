@@ -1,19 +1,26 @@
-import { ChatAPI, IChat } from 'core/api'
-import { getChatsAction, setCurrentChatAction } from 'core/store'
+import {
+    ChatAPI,
+    IChat,
+} from 'core/api'
+import { setChatsAction, setCurrentChatAction } from 'core/store'
 import { getArrLastEl } from 'utils'
 import { ChatSingle } from './ChatsSingle'
 
 export class ChatsSingleContainer {
-    onLoadChats(): Promise<void> {
+    currentChatId: number
+
+    constructor() {
         const currentChatPaths = window.location.pathname.split('/')
-        const currentChatId = getArrLastEl(currentChatPaths)
+        this.currentChatId = +getArrLastEl(currentChatPaths)
 
-        if (currentChatId) setCurrentChatAction(Number(currentChatId))
+        setCurrentChatAction(this.currentChatId)
+    }
 
+    async onLoadChats(): Promise<void> {
         return ChatAPI.request().then((xhr) => {
             const response: IChat[] = JSON.parse(xhr.response)
 
-            getChatsAction(response)
+            setChatsAction(response)
         })
     }
 

@@ -3,9 +3,11 @@ import { IChat } from '../api/chat.api'
 import { store } from './store'
 import {
     CHATS_LOAD,
+    IConnectedChats,
     LOADER_OFF,
     LOADER_ON,
     PROFILE_LOAD,
+    SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
 } from './store.config'
 
@@ -21,14 +23,14 @@ export function loaderOffAction(): void {
     })
 }
 
-export function getCurrentUserInfoAction(payload: ICurrentUserInfo): void {
+export function setCurrentUserInfoAction(payload: ICurrentUserInfo): void {
     store.dispatch({
         type: PROFILE_LOAD,
         payload,
     })
 }
 
-export function getChatsAction(payload: IChat[]): void {
+export function setChatsAction(payload: IChat[]): void {
     store.dispatch({
         type: CHATS_LOAD,
         payload,
@@ -38,6 +40,13 @@ export function getChatsAction(payload: IChat[]): void {
 export function setCurrentChatAction(payload?: number): void {
     store.dispatch({
         type: SET_CURRENT_CHAT,
+        payload,
+    })
+}
+
+export function setConnectedChats(payload?: IConnectedChats): void {
+    store.dispatch({
+        type: SET_CONNECTED_CHATS,
         payload,
     })
 }

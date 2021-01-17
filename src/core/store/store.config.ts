@@ -7,13 +7,18 @@ export const LOADER_OFF = 'LOADER_OFF'
 export const PROFILE_LOAD = 'PROFILE_LOAD'
 export const CHATS_LOAD = 'CHATS_LOAD'
 export const SET_CURRENT_CHAT = 'SET_CURRENT_CHAT'
+export const SET_CONNECTED_CHATS = 'SET_CONNECTED_CHATS'
 
+export interface IConnectedChats {
+    [key: string]: string
+}
 export interface IStoreState extends IState {
     loader: {
         active: boolean
     }
     currentUser: ICurrentUserInfo
     chats: IChat[],
+    connectedChats: IConnectedChats
     currentChatId?: number
 }
 
@@ -23,4 +28,5 @@ export const INITIAL_STATE = {
     },
     currentUser: {} as ICurrentUserInfo,
     chats: [],
+    connectedChats: {},
 }

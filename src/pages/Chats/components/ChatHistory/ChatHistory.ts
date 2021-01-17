@@ -14,8 +14,13 @@ import { chatHistoryTmplRender } from './ChatHistory.tmpl'
 import { IChatHistory } from './ChatHistory.types'
 
 export class ChatHistory extends Block {
-    constructor(props?: IChatHistory) {
-        const messages = props?.messages?.map((el) => new ChatMessage(el)) || []
+    constructor(props: IChatHistory = {}) {
+        const {
+            currentChatId,
+            messages: history,
+        } = props
+
+        const messages = history?.map((el) => new ChatMessage(el)) || []
 
         const LoaderComponent = new Loader()
 
@@ -60,11 +65,11 @@ export class ChatHistory extends Block {
             { ...props, onAddUser: AddUserPopup.show },
             {
                 messages,
-                Popups: messages.length ? [AddUserPopup, RemoveUserPopup] : undefined,
-                ToggleAddUserPopup: messages.length ? ToggleAddUserPopup : undefined,
-                ToggleRemoveUserPopup: messages.length ? ToggleRemoveUserPopup : undefined,
+                Popups: currentChatId ? [AddUserPopup, RemoveUserPopup] : undefined,
+                ToggleAddUserPopup: currentChatId ? ToggleAddUserPopup : undefined,
+                ToggleRemoveUserPopup: currentChatId ? ToggleRemoveUserPopup : undefined,
                 LoaderComponent,
-                ChatMessageForm: messages.length ? ChatMessageForm.createBlock() : undefined,
+                ChatMessageForm: currentChatId ? ChatMessageForm.createBlock() : undefined,
             },
         )
     }
@@ -74,6 +79,7 @@ export class ChatHistory extends Block {
     }
 
     render(): string {
+        console.log('render')
         return chatHistoryTmplRender(this.props)
     }
 }

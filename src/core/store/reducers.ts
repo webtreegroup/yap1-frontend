@@ -4,11 +4,12 @@ import {
     LOADER_OFF,
     LOADER_ON,
     PROFILE_LOAD,
+    SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
 } from './store.config'
 import { IAction } from './store'
 
-export function loaderReducer(state: IStoreState, action: IAction): IStoreState {
+export function loaderReducer(state: IStoreState['loader'], action: IAction): IStoreState['loader'] {
     switch (action.type) {
     case LOADER_ON:
         return {
@@ -25,7 +26,7 @@ export function loaderReducer(state: IStoreState, action: IAction): IStoreState 
     }
 }
 
-export function currentUserReducer(state: IStoreState, action: IAction): IStoreState {
+export function currentUserReducer(state: IStoreState['currentUser'], action: IAction): IStoreState['currentUser'] {
     switch (action.type) {
     case PROFILE_LOAD:
         return {
@@ -37,7 +38,7 @@ export function currentUserReducer(state: IStoreState, action: IAction): IStoreS
     }
 }
 
-export function chatsReducer(state: IStoreState, action: IAction): IStoreState {
+export function chatsReducer(state: IStoreState['chats'], action: IAction): IStoreState['chats'] {
     switch (action.type) {
     case CHATS_LOAD:
         return action.payload
@@ -46,10 +47,22 @@ export function chatsReducer(state: IStoreState, action: IAction): IStoreState {
     }
 }
 
-export function currentChatReducer(state: IStoreState, action: IAction): IStoreState {
+export function currentChatReducer(state: IStoreState['currentChatId'], action: IAction): IStoreState['currentChatId'] {
     switch (action.type) {
     case SET_CURRENT_CHAT:
         return action.payload
+    default:
+        return state
+    }
+}
+
+export function connectedChatsReducer(state: IStoreState['connectedChats'], action: IAction): IStoreState['connectedChats'] {
+    switch (action.type) {
+    case SET_CONNECTED_CHATS:
+        return {
+            ...state,
+            ...action.payload,
+        }
     default:
         return state
     }
@@ -60,4 +73,5 @@ export const reducers = {
     currentUser: currentUserReducer,
     chats: chatsReducer,
     currentChatId: currentChatReducer,
+    connectedChats: connectedChatsReducer,
 }
