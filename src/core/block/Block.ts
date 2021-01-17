@@ -73,7 +73,13 @@ export class Block<
     _createResources(props: PropsType): void {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
-        if (props.className) this._element?.classList.add(props.className)
+        if (props.className) {
+            const classes = Array.isArray(props.className)
+                ? props.className
+                : [props.className]
+
+            this._element?.classList.add(...classes)
+        }
         this.createResources(props)
     }
 

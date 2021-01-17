@@ -5,6 +5,6 @@ export type IState = {
 }
 
 export interface IComponent {
-    className?: string
+    className?: string | string[]
     children?: string | number | HTMLElement
 }

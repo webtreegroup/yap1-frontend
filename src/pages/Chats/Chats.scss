@@ -226,10 +226,17 @@
         @include v_align();
     }
 
-    footer {
-        border-top: $chats_list_border;
-        padding-top: 20px;
-        @include v_align();
+    footer { 
+        form {
+            border-top: $chats_list_border;
+            padding-top: 20px;
+            @include v_align();
+        }
+
+        .input-control {
+            flex-grow: 1;
+            margin: 0 10px 0 0;
+        }
     }
 
     &__body {

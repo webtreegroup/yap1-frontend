@@ -2,14 +2,16 @@ import {
     Link,
     Popup,
     Loader,
-    InputControl,
 } from 'components'
 import { Block } from 'core/block'
-import { ChatMessage } from '../ChatMessage/ChatMessage'
-import { IChatHistory } from './ChatHistory.types'
+import {
+    AddUserFormContainer,
+    ChatMessage,
+    ChatMessageFormContainer,
+    RemoveUserFormContainer,
+} from '..'
 import { chatHistoryTmplRender } from './ChatHistory.tmpl'
-import { AddUserFormContainer } from '../AddUserForm/AddUserFormContainer'
-import { RemoveUserFormContainer } from '../RemoveUserForm/RemoveUserFormContainer'
+import { IChatHistory } from './ChatHistory.types'
 
 export class ChatHistory extends Block {
     constructor(props?: IChatHistory) {
@@ -19,6 +21,7 @@ export class ChatHistory extends Block {
 
         const AddUserForm = new AddUserFormContainer()
         const RemoveUserForm = new RemoveUserFormContainer()
+        const ChatMessageForm = new ChatMessageFormContainer()
 
         const AddUserPopup = new Popup({
             title: 'Добавить пользователя',
@@ -52,8 +55,6 @@ export class ChatHistory extends Block {
             `,
         })
 
-        const MessageField = new InputControl({ name: 'message', label: 'Сообщение', required: true })
-
         super(
             'main',
             { ...props, onAddUser: AddUserPopup.show },
@@ -63,7 +64,7 @@ export class ChatHistory extends Block {
                 ToggleAddUserPopup: messages.length ? ToggleAddUserPopup : undefined,
                 ToggleRemoveUserPopup: messages.length ? ToggleRemoveUserPopup : undefined,
                 LoaderComponent,
-                MessageField: messages.length ? MessageField : undefined,
+                ChatMessageForm: messages.length ? ChatMessageForm.createBlock() : undefined,
             },
         )
     }
