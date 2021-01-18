@@ -1,4 +1,4 @@
-import { ICurrentUserInfo } from '../api/auth.api'
+import { IChatUser, ICurrentUserInfo } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
 import { store } from './store'
 import {
@@ -12,6 +12,7 @@ import {
     SET_CURRENT_CHAT,
     ADD_MESSAGE,
     ADD_OLD_MESSAGES,
+    SET_CURRENT_CHAT_USERS,
 } from './store.config'
 
 export function loaderOnAction(): void {
@@ -64,6 +65,13 @@ export function addMessageAction(payload?: ISocketMessage): void {
 export function addOldMessagesAction(payload?: ISocketMessage[]): void {
     store.dispatch({
         type: ADD_OLD_MESSAGES,
+        payload,
+    })
+}
+
+export function setCurrentChatUsers(payload?: IChatUser[]): void {
+    store.dispatch({
+        type: SET_CURRENT_CHAT_USERS,
         payload,
     })
 }

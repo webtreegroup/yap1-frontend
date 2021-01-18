@@ -8,6 +8,7 @@ import {
     SET_CURRENT_CHAT,
     ADD_MESSAGE,
     ADD_OLD_MESSAGES,
+    SET_CURRENT_CHAT_USERS,
 } from './store.config'
 import { IAction } from './store'
 
@@ -58,6 +59,15 @@ export function currentChatReducer(state: IStoreState['currentChatId'], action: 
     }
 }
 
+export function currentChatUsersReducer(state: IStoreState['currentChatUsers'], action: IAction): IStoreState['currentChatUsers'] {
+    switch (action.type) {
+    case SET_CURRENT_CHAT_USERS:
+        return action.payload
+    default:
+        return state
+    }
+}
+
 export function connectedChatsReducer(state: IStoreState['connectedChats'], action: IAction): IStoreState['connectedChats'] {
     switch (action.type) {
     case SET_CONNECTED_CHATS:
@@ -74,8 +84,8 @@ export function messagesReducer(state: IStoreState['messages'], action: IAction)
     switch (action.type) {
     case ADD_MESSAGE:
         return [
-            ...state,
             action.payload,
+            ...state,
         ]
     case ADD_OLD_MESSAGES:
         return [
@@ -94,4 +104,5 @@ export const reducers = {
     currentChatId: currentChatReducer,
     connectedChats: connectedChatsReducer,
     messages: messagesReducer,
+    currentChatUsers: currentChatUsersReducer,
 }

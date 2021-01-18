@@ -1,9 +1,11 @@
-import { ISocketMessage } from 'core/store'
+import { IChatMessage } from './ChatMessage.types'
 
 export const chatMessageTmplRender = ({
     time,
     content,
-}: ISocketMessage): string => `
+    userName,
+}: IChatMessage): string => `
+        <h4>${userName || 'no name'}</h4>
         <div class="chat-history-item__desc">
             ${content}
         </div>

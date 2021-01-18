@@ -26,6 +26,10 @@ export interface ICurrentUserInfo {
     avatar: string
 }
 
+export interface IChatUser extends ICurrentUserInfo {
+    role: string
+}
+
 const authAPIInstance = new HTTP('/auth')
 
 export class AuthAPI extends BaseAPI {

@@ -1,11 +1,14 @@
 import {
     AuthAPI,
+    ChatAPI,
     IChatConnectResponse,
+    IChatUser,
     ICurrentUserInfo,
     MessageChatAPI,
 } from 'core/api'
 import {
     setConnectedChatsAction,
+    setCurrentChatUsers,
     store,
 } from 'core/store'
 import { WebSocketService } from 'core/websocket'
@@ -53,6 +56,16 @@ export class ChatHistoryContainer {
         }
     }
 
+    onLoadUsers(currentChatId?: number): Promise<void> | undefined {
+        if (!currentChatId) return
+
+        return ChatAPI.getChatUsers(currentChatId).then((xhr) => {
+            const response: IChatUser[] = JSON.parse(xhr.response)
+
+            setCurrentChatUsers(response)
+        })
+    }
+
     sendMessage(message: string, chatId?: number): void {
         if (!chatId) return
 
@@ -63,6 +76,7 @@ export class ChatHistoryContainer {
         const ChatHistoryWrapped = new ChatHistory({
             onChatConnect: this.onChatConnect,
             sendMessage: this.sendMessage,
+            onLoadUsers: this.onLoadUsers,
             currentChatId: props?.currentChatId,
         })
 
@@ -70,6 +84,7 @@ export class ChatHistoryContainer {
             ChatHistoryWrapped.setProps({
                 currentChatId: state.currentChatId,
                 messages: state.messages.filter(((el) => el.chatId === state.currentChatId)),
+                currentChatUsers: state.currentChatUsers,
             })
         })
 
