@@ -3,17 +3,17 @@ import './App.scss'
 import { Router } from 'core/router'
 import {
     ErrorPage,
-    Home,
     ProfileContainer,
     ProfileEditPass,
     Signin,
     Signup,
     ProfileEditContainer,
     ChatsContainer,
+    HomeContainer,
 } from 'pages'
 
 Router
-    .use('/', Home)
+    .use('/', HomeContainer)
     .use('/profile/edit-pass', ProfileEditPass)
     .use('/profile/edit', ProfileEditContainer)
     .use('/profile', ProfileContainer)

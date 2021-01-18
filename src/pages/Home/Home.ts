@@ -1,17 +1,19 @@
-import { List } from 'components'
+import { Loader } from 'components'
 import { Block } from 'core/block'
-import { ROUTES } from 'core/router'
 import { homeTmplRender } from './Home.tmpl'
+import { IHome } from './Home.types'
 
-export class Home extends Block<HTMLDivElement> {
-    constructor() {
-        const MainNavigation = new List({ list: Object.values(ROUTES).filter((el) => el.path !== '/') })
-
+export class Home extends Block<HTMLDivElement, IHome> {
+    constructor(props: IHome) {
         super(
             'main',
-            { className: 'index-page' },
-            { MainNavigation },
+            { ...props, className: 'index-page' },
+            { root: new Loader() },
             homeTmplRender,
         )
+    }
+
+    componentDidMount(): void {
+        this.props.onLoadApp?.()
     }
 }
