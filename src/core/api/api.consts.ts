@@ -14,3 +14,5 @@ export const CHAT_ADD_USER_SUCCESS_MESSAGE = 'Пользователь успе�
 export const CHAT_ADD_USER_FAIL_MESSAGE = 'Не удалось добавить пользователя в чат!'
 export const CHAT_REMOVE_USER_SUCCESS_MESSAGE = 'Пользователь успешно удален из чата!'
 export const CHAT_REMOVE_USER_FAIL_MESSAGE = 'Не удалось удалить пользователя из чат!'
+export const FAIL_MESSAGE_500_DEFAULT = 'Ошибка сервера!'
+export const FAIL_MESSAGE_DEFAULT = 'Что то пошло не так!'

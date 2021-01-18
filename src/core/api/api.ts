@@ -1,4 +1,4 @@
-import { METHOD } from './api.consts'
+import { FAIL_MESSAGE_500_DEFAULT, FAIL_MESSAGE_DEFAULT, METHOD } from './api.consts'
 
 type HeadersType = {
     [key: string]: string
@@ -58,7 +58,15 @@ export class HTTP {
     ): Promise<IResponse<T>> {
         const { method, data } = options
 
-        return new Promise<IResponse<T>>((resolve, reject) => {
+        const defaultReject = (xhr: XMLHttpRequest) => {
+            if (xhr.status === 500) {
+                alert(FAIL_MESSAGE_500_DEFAULT)
+            } else {
+                alert(FAIL_MESSAGE_DEFAULT)
+            }
+        }
+
+        return new Promise<IResponse<T>>((resolve, reject = defaultReject) => {
             const xhr = new XMLHttpRequest()
             const basePath = `${this._path}${url}`
             const path = method === METHOD.GET
