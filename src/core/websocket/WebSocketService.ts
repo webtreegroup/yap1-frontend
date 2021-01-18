@@ -8,7 +8,6 @@ export class WebSocketService {
         this.socket = new WebSocket(`wss://${API_HOST}/ws/chats/${userId}/${chatId}/${token}`)
 
         this.socket.addEventListener('open', () => {
-            this.getOld(0)
             this.ping()
         })
 
@@ -63,10 +62,18 @@ export class WebSocketService {
     }
 
     getOld(count: number): void {
-        return this.socket.send(JSON.stringify({
+        const data = JSON.stringify({
             content: count,
             type: 'get old',
-        }))
+        })
+
+        if (!this.socket.readyState) {
+            setTimeout(() => {
+                this.socket.send(data)
+            }, 3000)
+        } else {
+            this.socket.send(data)
+        }
     }
 
     ping(): void {

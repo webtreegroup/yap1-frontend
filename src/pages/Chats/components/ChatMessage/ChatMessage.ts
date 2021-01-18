@@ -1,10 +1,10 @@
 import { Block } from 'core/block'
 import { classNames } from 'utils'
-import { IChatMessage } from './ChatMessage.types'
 import { chatMessageTmplRender } from './ChatMessage.tmpl'
+import { ISocketMessage } from 'core/store'
 
 export class ChatMessage extends Block<HTMLDivElement> {
-    constructor(props?: IChatMessage) {
+    constructor(props?: ISocketMessage) {
         super('article', props)
     }
 

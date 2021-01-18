@@ -179,6 +179,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
+    position: relative;
 
     &__message {
         flex-grow: 1;
@@ -226,7 +227,14 @@
         @include v_align();
     }
 
-    footer { 
+    footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        left: 0;
+        background: #fff;
+        padding: 20px;
+
         form {
             border-top: $chats_list_border;
             padding-top: 20px;
@@ -242,6 +250,8 @@
     &__body {
         padding: 40px 0;
         flex-grow: 1;
+        height: 100%;
+        overflow: auto;
     }
 
     &__placeholder {

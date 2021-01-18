@@ -29,7 +29,7 @@ export class Chats extends Block<HTMLDivElement, IChats> {
     componentDidMount(): void {
         const [aside] = this._children.root as Block[]
 
-        this.props.onLoadChats().then(() => {
+        this.props.onLoadChats?.().then(() => {
             store.subscribe((state) => {
                 aside.setProps({
                     chats: state.chats,

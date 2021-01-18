@@ -22,9 +22,7 @@ export const chatHistoryTmplRender = ({ currentChatId }: IChatHistory): string =
         </header>
 
         <section class="chat-history__body" data-component="Popups">
-            <div class="chat-history__group" data-component="messages">
-                <div class="chat-history__time">19 июня</div>
-            </div>
+            <div class="chat-history__group" data-component="messages"></div>
         </section>
 
         <footer data-component="ChatMessageForm"></footer>
