@@ -26,16 +26,12 @@ export class Chats extends Block<HTMLDivElement, IChats> {
     }
 
     componentDidMount(): void {
-        const [Aside, ChatHistory] = this._children.root as Block[]
+        const [Aside] = this._children.root as Block[]
 
         this.props.onLoadChats?.().then(() => {
             store.subscribe((state) => {
                 Aside.setProps({
                     chats: state.chats,
-                })
-
-                ChatHistory.setProps({
-                    chats: state.currentChatId,
                 })
             })
         })

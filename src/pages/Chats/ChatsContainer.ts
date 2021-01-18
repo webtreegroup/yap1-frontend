@@ -10,6 +10,8 @@ export class ChatsContainer {
         const currentChatPaths = window.location.pathname.split('/')
         this.currentChatId = +getArrLastEl(currentChatPaths)
 
+        if (Number.isNaN(this.currentChatId)) return
+
         setCurrentChatAction(this.currentChatId)
     }
 

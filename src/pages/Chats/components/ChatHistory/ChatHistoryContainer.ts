@@ -13,7 +13,6 @@ import {
 } from 'core/store'
 import { WebSocketService } from 'core/websocket'
 import { ChatHistory } from '.'
-import { IChatHistory } from './ChatHistory.types'
 
 export class ChatHistoryContainer {
     chatSocket: WebSocketService | null
@@ -72,12 +71,11 @@ export class ChatHistoryContainer {
         store.value.connectedChats[chatId].send(message)
     }
 
-    createBlock(props?: IChatHistory): ChatHistory {
+    createBlock(): ChatHistory {
         const ChatHistoryWrapped = new ChatHistory({
             onChatConnect: this.onChatConnect,
             sendMessage: this.sendMessage,
             onLoadUsers: this.onLoadUsers,
-            currentChatId: props?.currentChatId,
         })
 
         store.subscribe((state) => {

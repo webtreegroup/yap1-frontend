@@ -155,6 +155,7 @@ export class Block<
                 return typeof value === 'function' ? value.bind(target) : value
             },
             set(target, prop: string, value: IStateValue) {
+                console.log(self, prop, value)
                 const oldProps: IState = { ...self.props }
                 target[prop] = value
                 self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target)

@@ -4,7 +4,6 @@ import {
     Loader,
 } from 'components'
 import { Block } from 'core/block'
-import { store } from 'core/store'
 import { isEqual } from 'utils'
 import {
     AddUserFormContainer,
@@ -29,13 +28,15 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
 
     componentDidUpdate(oldProps: IChatHistory, newProps: IChatHistory): boolean {
         if (oldProps.currentChatId !== newProps.currentChatId) {
+            console.log('huy2')
+
             this.props.onLoadUsers?.(this.props.currentChatId)
             this.props.onChatConnect?.(newProps.currentChatId)
 
             return true
         }
 
-        return !isEqual(oldProps.messages, newProps.messages)
+        return !isEqual(oldProps, newProps)
     }
 
     render(): string {
