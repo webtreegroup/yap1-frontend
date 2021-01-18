@@ -13,7 +13,7 @@ export class ChatsContainer {
         setCurrentChatAction(this.currentChatId)
     }
 
-    async onLoadChats(): Promise<void> {
+    onLoadChats(): Promise<void> {
         return ChatAPI.request().then((xhr) => {
             const response: IChat[] = JSON.parse(xhr.response)
 
@@ -24,7 +24,6 @@ export class ChatsContainer {
     createBlock(): Chats {
         return new Chats({
             onLoadChats: this.onLoadChats,
-            currentChatId: this.currentChatId,
         })
     }
 }

@@ -10,6 +10,7 @@ import {
 } from 'core/store'
 import { WebSocketService } from 'core/websocket'
 import { ChatHistory } from '.'
+import { IChatHistory } from './ChatHistory.types'
 
 export class ChatHistoryContainer {
     chatSocket: WebSocketService | null
@@ -38,32 +39,31 @@ export class ChatHistoryContainer {
             })
 
             if (!chatsIds.includes(String(currentChatId))) {
-                setConnectedChatsAction({ [currentChatId]: token })
                 this.chatSocket = new WebSocketService(
                     user.id,
                     currentChatId,
                     token,
                 )
+                setConnectedChatsAction({ [currentChatId]: this.chatSocket })
+            } else {
+                this.chatSocket = connectedChats[currentChatId]
             }
         } catch (err) {
             alert(err)
         }
     }
 
-    // getOldMessage(count = 0): void {
-    //     debugger
-    //     this.chatSocket?.getOld(count)
-    // }
+    sendMessage(message: string, chatId?: number): void {
+        if (!chatId) return
 
-    sendMessage(message: string): void {
-        this.chatSocket?.send(message)
+        store.value.connectedChats[chatId].send(message)
     }
 
-    createBlock(): ChatHistory {
+    createBlock(props?: IChatHistory): ChatHistory {
         const ChatHistoryWrapped = new ChatHistory({
             onChatConnect: this.onChatConnect,
             sendMessage: this.sendMessage,
-            // getOldMessage: this.getOldMessage,
+            currentChatId: props?.currentChatId,
         })
 
         store.subscribe((state) => {

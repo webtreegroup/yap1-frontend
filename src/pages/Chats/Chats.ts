@@ -3,11 +3,13 @@ import './Chats.scss'
 import { store } from 'core/store'
 import { Block } from 'core/block'
 import { IChats } from './Chats.type'
-import { ChatHistory } from './components/ChatHistory/ChatHistory'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
+import { ChatHistoryContainer } from './components'
 
 export class Chats extends Block<HTMLDivElement, IChats> {
     constructor(props: IChats) {
+        const ChatHistory = new ChatHistoryContainer()
+
         super(
             'main',
             {
@@ -16,23 +18,24 @@ export class Chats extends Block<HTMLDivElement, IChats> {
             },
             {
                 root: [
-                    new ChatsAside({
-                        className: 'chats',
-                        chats: store.value.chats,
-                    }),
-                    new ChatHistory(),
+                    new ChatsAside({ className: 'chats', chats: store.value.chats }),
+                    ChatHistory.createBlock(),
                 ],
             },
         )
     }
 
     componentDidMount(): void {
-        const [aside] = this._children.root as Block[]
+        const [Aside, ChatHistory] = this._children.root as Block[]
 
         this.props.onLoadChats?.().then(() => {
             store.subscribe((state) => {
-                aside.setProps({
+                Aside.setProps({
                     chats: state.chats,
+                })
+
+                ChatHistory.setProps({
+                    chats: state.currentChatId,
                 })
             })
         })

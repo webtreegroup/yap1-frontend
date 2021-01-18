@@ -10,7 +10,6 @@ import {
     Signup,
     ProfileEditContainer,
     ChatsContainer,
-    ChatsSingleContainer,
 } from 'pages'
 
 Router
@@ -18,7 +17,7 @@ Router
     .use('/profile/edit-pass', ProfileEditPass)
     .use('/profile/edit', ProfileEditContainer)
     .use('/profile', ProfileContainer)
-    .use('/chats/[0-9]+', ChatsSingleContainer)
+    .use('/chats/[0-9]+', ChatsContainer)
     .use('/chats', ChatsContainer)
     .use('/signin', Signin)
     .use('/signup', Signup)

@@ -1,4 +1,5 @@
 import { IState } from 'App.types'
+import { WebSocketService } from 'core/websocket'
 import { ICurrentUserInfo } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
 
@@ -26,7 +27,7 @@ export interface ISocketOldMessage {
 }
 
 export interface IConnectedChats {
-    [key: string]: string
+    [key: string]: WebSocketService
 }
 export interface IStoreState extends IState {
     loader: {

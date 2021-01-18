@@ -27,22 +27,25 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     }
 
     componentDidUpdate(oldProps: IChatHistory, newProps: IChatHistory): boolean {
-        // TODO: вебсокет два раза открывается из за этой хуйни
-        return oldProps.currentChatId !== newProps.currentChatId
-            || !isEqual(oldProps.messages, newProps.messages)
+        console.log(newProps)
+        if (oldProps.currentChatId !== newProps.currentChatId) {
+            this.props.onChatConnect?.(newProps.currentChatId)
+
+            return true
+        }
+
+        return !isEqual(oldProps.messages, newProps.messages)
     }
 
     render(): string {
-        this.props.onChatConnect?.(this.props.currentChatId)?.then(() => {
-            this.props.getOldMessage?.()
-        })
-
         const messages = this.props.messages?.map((el) => new ChatMessage(el))
         const LoaderComponent = new Loader()
 
         const AddUserForm = new AddUserFormContainer()
         const RemoveUserForm = new RemoveUserFormContainer()
-        const ChatMessageForm = new ChatMessageFormContainer({ sendMessage: this.props.sendMessage })
+        const ChatMessageForm = new ChatMessageFormContainer({
+            sendMessage: (message: string) => this.props.sendMessage?.(message, this.props.currentChatId),
+        })
 
         const AddUserPopup = new Popup({
             title: 'Добавить пользователя',
