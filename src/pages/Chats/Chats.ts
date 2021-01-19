@@ -33,7 +33,7 @@ export class Chats extends Block<HTMLDivElement, IChats> {
                 Aside.setProps({
                     chats: state.chats,
                 })
-            })
+            }, [])
         })
     }
 }

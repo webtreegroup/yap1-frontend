@@ -15,7 +15,7 @@ export class Loader extends Block<HTMLLinkElement> {
 
         store.subscribe(() => {
             this.setProps(store.value.loader)
-        })
+        }, [])
     }
 
     componentDidUpdate(oldProps: ILoader, newProps: ILoader): boolean {

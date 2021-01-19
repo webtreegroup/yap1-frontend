@@ -42,7 +42,7 @@ export class ProfileEdit extends Block<HTMLDivElement, IProfileEdit> {
                 ProfileForm.setProps({
                     currentUserInfo: state.currentUser,
                 })
-            })
+            }, [])
         })
     }
 }

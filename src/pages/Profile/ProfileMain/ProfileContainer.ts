@@ -30,7 +30,7 @@ export class ProfileContainer {
             ProfileWrapped.setProps({
                 avatar: state.currentUser.avatar,
             })
-        })
+        }, [])
 
         return ProfileWrapped
     }

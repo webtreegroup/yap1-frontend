@@ -68,7 +68,7 @@ export class AddUserFormContainer {
             AddUserFormWrapped.setProps({
                 currentChatId: state.currentChatId,
             })
-        })
+        }, [])
 
         return AddUserFormWrapped
     }

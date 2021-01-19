@@ -12,7 +12,7 @@ export interface IAction {
 }
 
 export class Store {
-    private subscribers: Function[]
+    private subscribers: [Function, string[]][]
 
     private reducers: IReducers
 
@@ -28,18 +28,37 @@ export class Store {
         return this.state
     }
 
-    subscribe(fn: (currentState: IStoreState) => void): Function {
-        this.subscribers = [...this.subscribers, fn]
+    subscribe(fn: (currentState: IStoreState) => void, dependencies: string[]): Function {
+        this.subscribers.push([fn, dependencies])
         fn(this.value)
 
         return () => {
-            this.subscribers = this.subscribers.filter((sub) => sub !== fn)
+            this.subscribers = this.subscribers.filter(([sub]) => sub !== fn) || null
         }
     }
 
     dispatch(action: IAction): void {
         this.state = this.reduce(this.state, action)
-        this.subscribers.forEach((fn) => fn(this.value))
+        this.subscribers.forEach(([fn, dependencies]) => {
+            if (!dependencies.length) {
+                fn(this.value)
+
+                return
+            }
+
+            const result = Object.entries(this.value).reduce((acc, [key, value]) => {
+                if (dependencies.includes(key)) {
+                    return {
+                        ...acc,
+                        [key]: value,
+                    }
+                }
+
+                return acc
+            }, {})
+
+            fn(result)
+        })
     }
 
     private reduce(state: IStoreState, action: IAction | {}) {

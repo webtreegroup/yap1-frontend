@@ -79,12 +79,17 @@ export class ChatHistoryContainer {
         })
 
         store.subscribe((state) => {
+            console.log('set state')
             ChatHistoryWrapped.setProps({
                 currentChatId: state.currentChatId,
                 messages: state.messages.filter(((el) => el.chatId === state.currentChatId)),
                 currentChatUsers: state.currentChatUsers,
             })
-        })
+        }, [
+            'currentChatId',
+            'messages',
+            'currentChatUsers',
+        ])
 
         return ChatHistoryWrapped
     }

@@ -80,7 +80,7 @@ export class Profile extends Block<HTMLDivElement> {
                 ProfileForm.setProps({
                     currentUserInfo: state.currentUser,
                 })
-            })
+            }, [])
         })
     }
 }

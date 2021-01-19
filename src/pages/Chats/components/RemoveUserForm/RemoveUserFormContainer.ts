@@ -69,7 +69,7 @@ export class RemoveUserFormContainer {
             RemoveUserFormWrapped.setProps({
                 currentChatId: state.currentChatId,
             })
-        })
+        }, [])
 
         return RemoveUserFormWrapped
     }
