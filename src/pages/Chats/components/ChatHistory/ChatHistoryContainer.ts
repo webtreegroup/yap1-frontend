@@ -28,24 +28,25 @@ export class ChatHistoryContainer {
 
             if (!currentChatId) return
 
-            const token = await MessageChatAPI.connect(currentChatId).then((xhr) => {
-                const response: IChatConnectResponse = JSON.parse(xhr.response)
-
-                return response.token
-            })
-
-            const user = await AuthAPI.getCurrentUserInfo().then((xhr) => {
-                const response: ICurrentUserInfo = JSON.parse(xhr.response)
-
-                return response
-            })
-
             if (!chatsIds.includes(String(currentChatId))) {
+                const token = await MessageChatAPI.connect(currentChatId).then((xhr) => {
+                    const response: IChatConnectResponse = JSON.parse(xhr.response)
+
+                    return response.token
+                })
+
+                const user = await AuthAPI.getCurrentUserInfo().then((xhr) => {
+                    const response: ICurrentUserInfo = JSON.parse(xhr.response)
+
+                    return response
+                })
+
                 this.chatSocket = new WebSocketService(
                     user.id,
                     currentChatId,
                     token,
                 )
+
                 setConnectedChatsAction({ [currentChatId]: this.chatSocket })
             } else {
                 this.chatSocket = connectedChats[currentChatId]
@@ -79,7 +80,6 @@ export class ChatHistoryContainer {
         })
 
         store.subscribe((state) => {
-            console.log('set state')
             ChatHistoryWrapped.setProps({
                 currentChatId: state.currentChatId,
                 messages: state.messages.filter(((el) => el.chatId === state.currentChatId)),

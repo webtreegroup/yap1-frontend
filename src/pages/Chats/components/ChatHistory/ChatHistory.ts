@@ -28,10 +28,8 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
 
     componentDidUpdate(oldProps: IChatHistory, newProps: IChatHistory): boolean {
         if (oldProps.currentChatId !== newProps.currentChatId) {
-            console.log('huy2')
-
             this.props.onLoadUsers?.(this.props.currentChatId)
-            this.props.onChatConnect?.(newProps.currentChatId)
+            this.props.onChatConnect?.(this.props.currentChatId)
 
             return true
         }

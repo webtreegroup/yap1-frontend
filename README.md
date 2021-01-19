@@ -61,4 +61,15 @@
 Роутинг осуществляется на стороне клиента, все маршруты завернуты на стр. `./index.html`
 
 ## deploy
+https://ya-practicum.herokuapp.com/
+
+## Тестовые данные
+Для удобства были созданы 2 юзера, у которых есть общие чаты и сообщения:
+```
+login: testuser1
+pass: testuser1
+
+login: testuser2
+pass: testuser2
+```
 

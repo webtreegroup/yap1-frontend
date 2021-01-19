@@ -9,6 +9,13 @@ import { ChatHistoryContainer } from './components'
 export class Chats extends Block<HTMLDivElement, IChats> {
     constructor(props: IChats) {
         const ChatHistory = new ChatHistoryContainer()
+        const ChatHistoryPlaceholder = new Block('main', {
+            className: ['chat-history', 'chat-history_not-selected'],
+        }, {}, () => `
+            <div class="chat-history__placeholder">
+                Выберите чат чтобы отправить сообщение
+            </div>
+        `)
 
         super(
             'main',
@@ -19,7 +26,7 @@ export class Chats extends Block<HTMLDivElement, IChats> {
             {
                 root: [
                     new ChatsAside({ className: 'chats', chats: store.value.chats }),
-                    ChatHistory.createBlock(),
+                    store.value.currentChatId ? ChatHistory.createBlock() : ChatHistoryPlaceholder,
                 ],
             },
         )

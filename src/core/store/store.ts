@@ -42,22 +42,11 @@ export class Store {
         this.subscribers.forEach(([fn, dependencies]) => {
             if (!dependencies.length) {
                 fn(this.value)
-
-                return
             }
 
-            const result = Object.entries(this.value).reduce((acc, [key, value]) => {
-                if (dependencies.includes(key)) {
-                    return {
-                        ...acc,
-                        [key]: value,
-                    }
-                }
-
-                return acc
-            }, {})
-
-            fn(result)
+            if (Object.keys(this.value).some((key) => dependencies.includes(key))) {
+                fn(this.value)
+            }
         })
     }
 
@@ -75,7 +64,3 @@ export class Store {
 }
 
 export const store = new Store(reducers, INITIAL_STATE)
-
-// TODO: для дебага Store
-const windowStore: any = 'store'
-window[windowStore] = store as any

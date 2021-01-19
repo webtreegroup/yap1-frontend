@@ -5,12 +5,6 @@ export const chatHistoryTmplRender = ({ currentChatId }: IChatHistory): string =
     const { chats } = store.value
     const currentChatName = chats.find((chat) => chat.id === currentChatId)?.title
 
-    const chatEpty = `
-        <div class="chat-history__placeholder">
-            Выберите чат чтобы отправить сообщение
-        </div>
-    `
-
     const history = `
         <header>
             <div class="chat-history__chat-name">
@@ -30,7 +24,5 @@ export const chatHistoryTmplRender = ({ currentChatId }: IChatHistory): string =
         <footer data-component="ChatMessageForm"></footer>
     `
 
-    return currentChatId
-        ? history
-        : chatEpty
+    return history
 }
