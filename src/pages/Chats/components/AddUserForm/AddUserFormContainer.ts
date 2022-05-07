@@ -17,41 +17,43 @@ export class AddUserFormContainer {
     onAddUser(request: IUserSearch, currentChatId?: number): void {
         loaderOnAction()
 
-        UsersAPI.search(request).then((searchRespone) => {
-            switch (searchRespone.status) {
-            case 200: {
-                const usersJson = JSON.parse(searchRespone.response) as ICurrentUserInfo[]
-                const users = usersJson.map((el) => el.id)
+        UsersAPI.search(request)
+            .then((searchRespone) => {
+                switch (searchRespone.status) {
+                    case 200: {
+                        const usersJson = JSON.parse(
+                            searchRespone.response,
+                        ) as ICurrentUserInfo[]
+                        const users = usersJson.map((el) => el.id)
 
-                if (!users.length || !currentChatId) {
-                    alert(CHAT_ADD_USER_FAIL_MESSAGE)
+                        if (!users.length || !currentChatId) {
+                            alert(CHAT_ADD_USER_FAIL_MESSAGE)
 
-                    break
+                            break
+                        }
+
+                        return {
+                            users,
+                            chatId: currentChatId,
+                        }
+                    }
+                    default:
+                        alert(CHAT_ADD_USER_FAIL_MESSAGE)
                 }
-
-                return {
-                    users,
-                    chatId: currentChatId,
-                }
-            }
-            default:
-                alert(CHAT_ADD_USER_FAIL_MESSAGE)
-            }
-        })
+            })
             .then((addUserRequest) => {
                 if (!addUserRequest) return
 
-                return ChatUsersAPI.addUser(addUserRequest)
-                    .then((response) => {
-                        switch (response.status) {
+                return ChatUsersAPI.addUser(addUserRequest).then((response) => {
+                    switch (response.status) {
                         case 200:
                             alert(CHAT_ADD_USER_SUCCESS_MESSAGE)
 
                             break
                         default:
                             alert(CHAT_ADD_USER_FAIL_MESSAGE)
-                        }
-                    })
+                    }
+                })
             })
             .finally(() => {
                 loaderOffAction()

@@ -34,9 +34,12 @@
         "no-underscore-dangle": "off",
         "linebreak-style": ["error", "windows"],
         "semi": 0,
+        "implicit-arrow-linebreak": "off",
+        "operator-linebreak": "off",
+        "function-paren-newline": "off",
         "no-console": "off",
         "no-alert": "off",
-        "indent": ["error", 4],
+        "indent": "off",
         "import/extensions": [
             "error",
             "ignorePackages",

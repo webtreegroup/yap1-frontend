@@ -13,8 +13,8 @@
   },
   "husky": {
     "hooks": {
-        "pre-commit": "npm run validate",
-        "pre-push": "npm run validate"
+      "pre-commit": "npm run validate",
+      "pre-push": "npm run validate"
     }
   },
   "repository": {

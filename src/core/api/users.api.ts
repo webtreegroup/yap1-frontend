@@ -8,10 +8,6 @@ export interface IUserSearch {
 }
 
 export class UsersAPI extends BaseAPI {
-    static getById(id: number): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>(`/${id}`)
-    }
-
     static search(data: IUserSearch): Promise<IResponse<string>> {
         return usersAPIInstance.post<string>('/search', { data })
     }

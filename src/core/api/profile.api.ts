@@ -2,9 +2,8 @@ import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
 export interface IChangeProfile {
-    first_name: string
-    second_name: string
-    display_name: string
+    firstName: string
+    secondName: string
     login: string
     email: string
     phone: string

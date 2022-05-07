@@ -1,4 +1,8 @@
-import { FAIL_MESSAGE_500_DEFAULT, FAIL_MESSAGE_DEFAULT, METHOD } from './api.consts'
+import {
+    FAIL_MESSAGE_500_DEFAULT,
+    FAIL_MESSAGE_DEFAULT,
+    METHOD,
+} from './api.consts'
 
 type HeadersType = {
     [key: string]: string
@@ -17,13 +21,15 @@ export interface IResponse<T> extends Omit<XMLHttpRequest, 'response'> {
     response: T
 }
 
-export const API_HOST = 'ya-praktikum.tech'
-export const API_BASE_PATH = `https://${API_HOST}/api/v2`
+export const API_HOST = 'localhost:5000'
+export const API_BASE_PATH = `http://${API_HOST}`
 
 export function queryStringify<T extends object>(data: T): string {
     if (!data) return ''
 
-    const queryArr = Object.entries(data).map(([key, value]) => `${key}=${value}`)
+    const queryArr = Object.entries(data).map(
+        ([key, value]) => `${key}=${value}`,
+    )
 
     return `?${queryArr.join('&')}`
 }
@@ -35,19 +41,31 @@ export class HTTP {
         this._path += path
     }
 
-    get<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    get<T>(
+        url: string,
+        options: OptionsWithoutMethodType = {},
+    ): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.GET })
     }
 
-    post<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    post<T>(
+        url: string,
+        options: OptionsWithoutMethodType = {},
+    ): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.POST })
     }
 
-    put<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    put<T>(
+        url: string,
+        options: OptionsWithoutMethodType = {},
+    ): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.PUT })
     }
 
-    delete<T>(url: string, options: OptionsWithoutMethodType = {}): Promise<IResponse<T>> {
+    delete<T>(
+        url: string,
+        options: OptionsWithoutMethodType = {},
+    ): Promise<IResponse<T>> {
         return this.request<T>(url, { ...options, method: METHOD.DELETE })
     }
 
@@ -69,14 +87,17 @@ export class HTTP {
         return new Promise<IResponse<T>>((resolve, reject = defaultReject) => {
             const xhr = new XMLHttpRequest()
             const basePath = `${this._path}${url}`
-            const path = method === METHOD.GET
-                ? `${basePath}${queryStringify(data)}`
-                : basePath
+            const path =
+                method === METHOD.GET
+                    ? `${basePath}${queryStringify(data)}`
+                    : basePath
 
             xhr.open(method, path, true)
 
             if (options.headers) {
-                Object.entries(options.headers).forEach(([key, value]) => xhr.setRequestHeader(key, value))
+                Object.entries(options.headers).forEach(([key, value]) =>
+                    xhr.setRequestHeader(key, value),
+                )
             }
 
             xhr.onload = function () {

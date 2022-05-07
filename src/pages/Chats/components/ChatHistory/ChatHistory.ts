@@ -1,8 +1,4 @@
-import {
-    Link,
-    Popup,
-    Loader,
-} from 'components'
+import { Link, Popup, Loader } from 'components'
 import { Block } from 'core/block'
 import { isEqual } from 'utils'
 import {
@@ -16,17 +12,20 @@ import { IChatHistory } from './ChatHistory.types'
 
 export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     constructor(props: IChatHistory = {}) {
-        super(
-            'main',
-            props,
-        )
+        super('main', props)
     }
 
     createResources(): void {
-        this._element?.classList.add('chat-history', 'chat-history_not-selected')
+        this._element?.classList.add(
+            'chat-history',
+            'chat-history_not-selected',
+        )
     }
 
-    componentDidUpdate(oldProps: IChatHistory, newProps: IChatHistory): boolean {
+    componentDidUpdate(
+        oldProps: IChatHistory,
+        newProps: IChatHistory,
+    ): boolean {
         if (oldProps.currentChatId !== newProps.currentChatId) {
             this.props.onLoadUsers?.(this.props.currentChatId)
             this.props.onChatConnect?.(this.props.currentChatId)
@@ -38,29 +37,41 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     }
 
     render(): string {
-        const messages = this.props.messages?.map((message) => new ChatMessage({
-            ...message,
-            userName: this.props.currentChatUsers?.find((user) => user.id === message.userId)?.display_name,
-        }))
+        const messages = this.props.messages?.map(
+            (message) =>
+                new ChatMessage({
+                    ...message,
+                    userName: this.props.currentChatUsers?.find(
+                        (user) => user.id === message.userId,
+                    )?.login,
+                }),
+        )
         const LoaderComponent = new Loader()
 
         const AddUserForm = new AddUserFormContainer()
         const RemoveUserForm = new RemoveUserFormContainer()
         const ChatMessageForm = new ChatMessageFormContainer({
-            sendMessage: (message: string) => this.props.sendMessage?.(message, this.props.currentChatId),
+            sendMessage: (message: string) =>
+                this.props.sendMessage?.(message, this.props.currentChatId),
         })
 
-        const AddUserPopup = new Popup({
-            title: 'Добавить пользователя',
-            isClosable: true,
-        }, {
-            root: [AddUserForm.createBlock()],
-        })
+        const AddUserPopup = new Popup(
+            {
+                title: 'Добавить пользователя',
+                isClosable: true,
+            },
+            {
+                root: [AddUserForm.createBlock()],
+            },
+        )
 
-        const RemoveUserPopup = new Popup({
-            title: 'Удалить пользователя',
-            isClosable: true,
-        }, { root: [RemoveUserForm.createBlock()] })
+        const RemoveUserPopup = new Popup(
+            {
+                title: 'Удалить пользователя',
+                isClosable: true,
+            },
+            { root: [RemoveUserForm.createBlock()] },
+        )
 
         const ToggleAddUserPopup = new Link({
             onClick: () => {
@@ -82,14 +93,16 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
             `,
         })
 
-        this._children = this.props.currentChatId ? {
-            messages,
-            Popups: [AddUserPopup, RemoveUserPopup],
-            ToggleAddUserPopup,
-            ToggleRemoveUserPopup,
-            LoaderComponent,
-            ChatMessageForm: ChatMessageForm.createBlock(),
-        } : {}
+        this._children = this.props.currentChatId
+            ? {
+                  messages,
+                  Popups: [AddUserPopup, RemoveUserPopup],
+                  ToggleAddUserPopup,
+                  ToggleRemoveUserPopup,
+                  LoaderComponent,
+                  ChatMessageForm: ChatMessageForm.createBlock(),
+              }
+            : {}
 
         return chatHistoryTmplRender(this.props)
     }

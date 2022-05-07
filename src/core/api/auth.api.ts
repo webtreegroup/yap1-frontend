@@ -2,12 +2,12 @@ import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
 export interface ISignup {
-    first_name: string
-    second_name: string
+    firstName: string
+    secondName: string
     login: string
     email: string
-    password: string
     phone: string
+    password: string
 }
 
 export interface ISignin {
@@ -17,9 +17,8 @@ export interface ISignin {
 
 export interface ICurrentUserInfo {
     id: number
-    first_name: string
-    second_name: string
-    display_name: string
+    firstName: string
+    secondName: string
     login: string
     email: string
     phone: string
