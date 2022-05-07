@@ -1,16 +1,12 @@
 import {
-    AuthAPI,
     ChatAPI,
     IChatConnectResponse,
     IChatUser,
     ICurrentUserInfo,
     MessageChatAPI,
+    UsersAPI,
 } from 'core/api'
-import {
-    setConnectedChatsAction,
-    setCurrentChatUsers,
-    store,
-} from 'core/store'
+import { setConnectedChatsAction, setCurrentChatUsers, store } from 'core/store'
 import { WebSocketService } from 'core/websocket'
 import { ChatHistory } from '.'
 
@@ -29,13 +25,17 @@ export class ChatHistoryContainer {
             if (!currentChatId) return
 
             if (!chatsIds.includes(String(currentChatId))) {
-                const token = await MessageChatAPI.connect(currentChatId).then((xhr) => {
-                    const response: IChatConnectResponse = JSON.parse(xhr.response)
+                const token = await MessageChatAPI.connect(currentChatId).then(
+                    (xhr) => {
+                        const response: IChatConnectResponse = JSON.parse(
+                            xhr.response,
+                        )
 
-                    return response.token
-                })
+                        return response.token
+                    },
+                )
 
-                const user = await AuthAPI.getCurrentUserInfo().then((xhr) => {
+                const user = await UsersAPI.getCurrentUser().then((xhr) => {
                     const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
                     return response
@@ -79,17 +79,18 @@ export class ChatHistoryContainer {
             onLoadUsers: this.onLoadUsers,
         })
 
-        store.subscribe((state) => {
-            ChatHistoryWrapped.setProps({
-                currentChatId: state.currentChatId,
-                messages: state.messages.filter(((el) => el.chatId === state.currentChatId)),
-                currentChatUsers: state.currentChatUsers,
-            })
-        }, [
-            'currentChatId',
-            'messages',
-            'currentChatUsers',
-        ])
+        store.subscribe(
+            (state) => {
+                ChatHistoryWrapped.setProps({
+                    currentChatId: state.currentChatId,
+                    messages: state.messages.filter(
+                        (el) => el.chatId === state.currentChatId,
+                    ),
+                    currentChatUsers: state.currentChatUsers,
+                })
+            },
+            ['currentChatId', 'messages', 'currentChatUsers'],
+        )
 
         return ChatHistoryWrapped
     }

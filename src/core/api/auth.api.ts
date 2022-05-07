@@ -1,4 +1,4 @@
-import { HTTP, IResponse } from './api'
+import { HTTP } from './api'
 import { BaseAPI } from './base.api'
 
 export interface ISignup {
@@ -38,10 +38,6 @@ export class AuthAPI extends BaseAPI {
 
     static signin(data: ISignin): Promise<XMLHttpRequest> {
         return authAPIInstance.post('/signin', { data })
-    }
-
-    static getCurrentUserInfo(): Promise<IResponse<string>> {
-        return authAPIInstance.get<string>('/user')
     }
 
     static logout(): Promise<XMLHttpRequest> {

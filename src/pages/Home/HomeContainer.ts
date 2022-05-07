@@ -1,4 +1,4 @@
-import { AuthAPI, FAIL_MESSAGE_DEFAULT } from 'core/api'
+import { FAIL_MESSAGE_DEFAULT, UsersAPI } from 'core/api'
 import { Router, ROUTES } from 'core/router'
 import { loaderOffAction, loaderOnAction } from 'core/store'
 import { Home } from '.'
@@ -7,7 +7,7 @@ export class HomeContainer {
     onLoadApp(): Promise<void> {
         loaderOnAction()
 
-        return AuthAPI.getCurrentUserInfo()
+        return UsersAPI.getCurrentUser()
             .then((xhr) => {
                 if (xhr.status === 200) {
                     Router.go(ROUTES.CHATS.path)
