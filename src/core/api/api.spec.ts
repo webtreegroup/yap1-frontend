@@ -37,7 +37,9 @@ describe('API usage suite', () => {
 
         mockFetch(200, JSON.stringify(chats))
 
-        const response = await ChatAPI.request().then((xhr) => JSON.parse(xhr.response))
+        const response = await ChatAPI.getAll().then((xhr) =>
+            JSON.parse(xhr.response),
+        )
 
         expect(response).toEqual(chats)
     })
@@ -47,7 +49,11 @@ describe('API usage suite', () => {
 
         await ChatAPI.getChatUsers(1)
 
-        expect(xhrMock.open).toBeCalledWith('GET', `${API_BASE_PATH}/chats/1/users`, true)
+        expect(xhrMock.open).toBeCalledWith(
+            'GET',
+            `${API_BASE_PATH}/chats/1/users`,
+            true,
+        )
     })
 
     it('it should to be 400 error, when pass wrong arguments', async () => {

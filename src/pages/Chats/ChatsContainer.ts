@@ -18,7 +18,7 @@ export class ChatsContainer {
 
     onLoadChats(): Promise<void> {
         return checkAuth().then(() =>
-            ChatAPI.request()
+            ChatAPI.getAll()
                 .then((xhr) => {
                     const response: IChat[] = JSON.parse(xhr.response)
 

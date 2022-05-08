@@ -9,6 +9,7 @@ export interface IChat {
 
 export interface IAddChat {
     title: string
+    avatar: string
 }
 
 const chatAPIInstance = new HTTP('/chats')
@@ -18,7 +19,7 @@ export class ChatAPI extends BaseAPI {
         return chatAPIInstance.post<T>('/', { data })
     }
 
-    static request(): Promise<IResponse<string>> {
+    static getAll(): Promise<IResponse<string>> {
         return chatAPIInstance.get<string>('/')
     }
 

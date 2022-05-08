@@ -11,9 +11,7 @@ export function checkAuth(): Promise<void> {
 
     return UsersAPI.getCurrentUser()
         .then((xhr) => {
-            if (xhr.status === 200) {
-                Router.go(ROUTES.CHATS.path)
-            } else {
+            if (xhr.status !== 200) {
                 Router.go(ROUTES.SIGNIN.path)
 
                 throw new Error(ACCESS_FORBIDDEN)
