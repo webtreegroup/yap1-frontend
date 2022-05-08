@@ -1,10 +1,10 @@
+import { IComponent } from 'App.types'
 import { Loader } from 'components'
 import { Block } from 'core/block'
 import { homeTmplRender } from './Home.tmpl'
-import { IHome } from './Home.types'
 
-export class Home extends Block<HTMLDivElement, IHome> {
-    constructor(props: IHome) {
+export class Home extends Block<HTMLDivElement, IComponent> {
+    constructor(props: IComponent) {
         super(
             'main',
             { ...props, className: 'index-page' },
@@ -14,6 +14,6 @@ export class Home extends Block<HTMLDivElement, IHome> {
     }
 
     componentDidMount(): void {
-        this.props.onLoadApp?.()
+        this.props.onLoadComponent?.()
     }
 }

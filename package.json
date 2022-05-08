@@ -4,9 +4,11 @@
   "description": "",
   "main": "server.ts",
   "scripts": {
-    "test": "jest",
-    "start": "node server.js",
+    "start:build": "node server.js",
+    "start:app": "npx webpack --watch",
+    "start": "npm-run-all --parallel start:*",
     "build": "npx webpack",
+    "test": "jest",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "validate": "npm-run-all --parallel test lint"

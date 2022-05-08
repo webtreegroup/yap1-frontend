@@ -1,6 +1,7 @@
 import { ChatAPI, IChat } from 'core/api'
 import { setChatsAction, setCurrentChatAction } from 'core/store'
 import { getArrLastEl } from 'utils'
+import { checkAuth } from 'utils/auth.utils'
 import { Chats } from './Chats'
 
 export class ChatsContainer {
@@ -16,16 +17,22 @@ export class ChatsContainer {
     }
 
     onLoadChats(): Promise<void> {
-        return ChatAPI.request().then((xhr) => {
-            const response: IChat[] = JSON.parse(xhr.response)
+        return checkAuth().then(() =>
+            ChatAPI.request()
+                .then((xhr) => {
+                    const response: IChat[] = JSON.parse(xhr.response)
 
-            setChatsAction(response)
-        })
+                    setChatsAction(response)
+                })
+                .catch((err) => {
+                    alert(err)
+                }),
+        )
     }
 
     createBlock(): Chats {
         return new Chats({
-            onLoadChats: this.onLoadChats,
+            onLoadComponent: this.onLoadChats,
         })
     }
 }

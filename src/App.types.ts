@@ -7,4 +7,5 @@ export type IState = {
 export interface IComponent {
     className?: string | string[]
     children?: string | number | HTMLElement
+    onLoadComponent?: () => Promise<void>
 }
