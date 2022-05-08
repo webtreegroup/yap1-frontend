@@ -1,1 +1,1 @@
-export * from './ProfileEditPass'
+export * from './ProfileEditPassContainer'

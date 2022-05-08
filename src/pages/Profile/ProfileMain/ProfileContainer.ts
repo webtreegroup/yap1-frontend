@@ -1,6 +1,7 @@
-import { AuthAPI, ICurrentUserInfo, UsersAPI } from 'core/api'
+import { AuthAPI } from 'core/api'
 import { ROUTES, Router } from 'core/router'
-import { setCurrentUserInfoAction, store } from 'core/store'
+import { store } from 'core/store'
+import { checkAuth, getCurrentUser } from 'utils/auth.utils'
 import { Profile } from './Profile'
 
 export class ProfileContainer {
@@ -12,11 +13,7 @@ export class ProfileContainer {
     }
 
     onLoadProfile(): Promise<void> {
-        return UsersAPI.getCurrentUser().then((xhr) => {
-            const response: ICurrentUserInfo = JSON.parse(xhr.response)
-
-            setCurrentUserInfoAction(response)
-        })
+        return checkAuth().then(getCurrentUser)
     }
 
     createBlock(): Profile {

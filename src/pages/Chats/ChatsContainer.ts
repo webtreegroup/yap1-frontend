@@ -24,9 +24,7 @@ export class ChatsContainer {
 
                     setChatsAction(response)
                 })
-                .catch((err) => {
-                    alert(err)
-                }),
+                .catch(alert),
         )
     }
 

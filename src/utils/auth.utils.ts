@@ -1,6 +1,10 @@
-import { ACCESS_FORBIDDEN, UsersAPI } from 'core/api'
+import { ACCESS_FORBIDDEN, ICurrentUserInfo, UsersAPI } from 'core/api'
 import { Router, ROUTES } from 'core/router'
-import { loaderOffAction, loaderOnAction } from 'core/store'
+import {
+    loaderOffAction,
+    loaderOnAction,
+    setCurrentUserInfoAction,
+} from 'core/store'
 
 export function checkAuth(): Promise<void> {
     loaderOnAction()
@@ -9,13 +13,23 @@ export function checkAuth(): Promise<void> {
         .then((xhr) => {
             if (xhr.status === 200) {
                 Router.go(ROUTES.CHATS.path)
+            } else {
+                Router.go(ROUTES.SIGNIN.path)
+
+                throw new Error(ACCESS_FORBIDDEN)
             }
-
-            Router.go(ROUTES.SIGNIN.path)
-
-            throw new Error(ACCESS_FORBIDDEN)
         })
         .finally(() => {
             loaderOffAction()
         })
+}
+
+export function getCurrentUser(): void {
+    UsersAPI.getCurrentUser()
+        .then((xhr) => {
+            const response: ICurrentUserInfo = JSON.parse(xhr.response)
+
+            setCurrentUserInfoAction(response)
+        })
+        .catch(alert)
 }

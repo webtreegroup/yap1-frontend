@@ -1,3 +1,4 @@
+import { IComponent } from 'App.types'
 import { Link, Loader } from 'components'
 import { Block } from 'core/block'
 import { ROUTES } from 'core/router'
@@ -5,7 +6,7 @@ import { ProfileEditPassFormContainer } from './components/ProfileEditPassForm/P
 import { profileEditPassTmplRender } from './ProfileEditPass.tmpl'
 
 export class ProfileEditPass extends Block<HTMLDivElement> {
-    constructor() {
+    constructor(props: IComponent) {
         const ProfileEditPassForm = new ProfileEditPassFormContainer()
         const LoaderComponent = new Loader()
         const ChatsLink = new Link({
@@ -17,7 +18,10 @@ export class ProfileEditPass extends Block<HTMLDivElement> {
 
         super(
             'main',
-            { className: 'profile-page' },
+            {
+                ...props,
+                className: 'profile-page',
+            },
             {
                 ChatsLink,
                 ProfileEditPassForm: ProfileEditPassForm.createBlock(),
@@ -25,5 +29,9 @@ export class ProfileEditPass extends Block<HTMLDivElement> {
             },
             profileEditPassTmplRender,
         )
+    }
+
+    componentDidMount(): void {
+        this.props?.onLoadComponent?.().catch(alert)
     }
 }

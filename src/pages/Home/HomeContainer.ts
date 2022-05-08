@@ -3,9 +3,7 @@ import { Home } from '.'
 
 export class HomeContainer {
     onLoadApp(): Promise<void> {
-        return checkAuth().catch((err) => {
-            alert(err)
-        })
+        return checkAuth().catch(alert)
     }
 
     createBlock(): Home {

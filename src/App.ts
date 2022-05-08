@@ -4,17 +4,16 @@ import { Router } from 'core/router'
 import {
     ErrorPage,
     ProfileContainer,
-    ProfileEditPass,
     Signin,
     Signup,
     ProfileEditContainer,
+    ProfileEditPassContainer,
     ChatsContainer,
     HomeContainer,
 } from 'pages'
 
-Router
-    .use('/', HomeContainer)
-    .use('/profile/edit-pass', ProfileEditPass)
+Router.use('/', HomeContainer)
+    .use('/profile/edit-pass', ProfileEditPassContainer)
     .use('/profile/edit', ProfileEditContainer)
     .use('/profile', ProfileContainer)
     .use('/chats/[0-9]+', ChatsContainer)

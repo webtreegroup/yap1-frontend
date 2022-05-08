@@ -1,3 +1,4 @@
+import { IComponent } from 'App.types'
 import { Link, Loader } from 'components'
 import { Block } from 'core/block'
 import { ROUTES } from 'core/router'
@@ -5,10 +6,9 @@ import { store } from 'core/store'
 import { IProfileEditForm } from './components/ProfileEditForm/ProfileEditForm.types'
 import { ProfileEditFormContainer } from './components/ProfileEditForm/ProfileEditFormContainer'
 import { profileEditTmplRender } from './ProfileEdit.tmpl'
-import { IProfileEdit } from './ProfileEdit.type'
 
-export class ProfileEdit extends Block<HTMLDivElement, IProfileEdit> {
-    constructor(props: IProfileEdit) {
+export class ProfileEdit extends Block<HTMLDivElement, IComponent> {
+    constructor(props: IComponent) {
         const ProfileFormContainer = new ProfileEditFormContainer()
         const ProfileForm = ProfileFormContainer.createBlock()
         const LoaderComponent = new Loader()
@@ -35,9 +35,12 @@ export class ProfileEdit extends Block<HTMLDivElement, IProfileEdit> {
     }
 
     componentDidMount(): void {
-        const ProfileForm = this._children.ProfileForm as Block<HTMLFormElement, IProfileEditForm>
+        const ProfileForm = this._children.ProfileForm as Block<
+            HTMLFormElement,
+            IProfileEditForm
+        >
 
-        this.props?.onLoadProfile().then(() => {
+        this.props?.onLoadComponent?.().then(() => {
             store.subscribe((state) => {
                 ProfileForm.setProps({
                     currentUserInfo: state.currentUser,
