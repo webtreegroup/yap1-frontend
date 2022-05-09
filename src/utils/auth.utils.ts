@@ -29,5 +29,5 @@ export function getCurrentUser(): void {
 
             setCurrentUserInfoAction(response)
         })
-        .catch(alert)
+        .catch(console.error)
 }

@@ -41,7 +41,7 @@ export function setChatsAction(payload: IChat[]): void {
     })
 }
 
-export function setCurrentChatAction(payload?: number): void {
+export function setCurrentChatAction(payload?: string): void {
     store.dispatch({
         type: SET_CURRENT_CHAT,
         payload,

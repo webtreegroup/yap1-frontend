@@ -14,7 +14,7 @@ export class AddUserFormContainer {
         this.onAddUser = this.onAddUser.bind(this)
     }
 
-    onAddUser(request: IUserSearch, currentChatId?: number): void {
+    onAddUser(request: IUserSearch, currentChatId?: string): void {
         loaderOnAction()
 
         UsersAPI.search(request)

@@ -16,13 +16,13 @@ export const SET_CURRENT_CHAT_USERS = 'SET_CURRENT_CHAT_USERS'
 export interface ISocketMessage {
     content: string
     userId: number
-    chatId: number
+    chatId: string
     time: string
 }
 
 export interface ISocketOldMessage {
     content: string
-    chat_id: number
+    chat_id: string
     user_id: number
     time: string
 }
@@ -35,9 +35,9 @@ export interface IStoreState extends IState {
         active: boolean
     }
     currentUser: ICurrentUserInfo
-    chats: IChat[],
+    chats: IChat[]
     connectedChats: IConnectedChats
-    currentChatId?: number
+    currentChatId?: string
     messages: ISocketMessage[]
     currentChatUsers: IChatUser[]
 }

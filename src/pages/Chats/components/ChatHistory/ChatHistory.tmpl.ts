@@ -1,9 +1,13 @@
 import { store } from 'core/store'
 import { IChatHistory } from './ChatHistory.types'
 
-export const chatHistoryTmplRender = ({ currentChatId }: IChatHistory): string => {
+export const chatHistoryTmplRender = ({
+    currentChatId,
+}: IChatHistory): string => {
     const { chats } = store.value
-    const currentChatName = chats.find((chat) => chat.id === currentChatId)?.title
+    const currentChatName = chats.find(
+        (chat) => chat.id === currentChatId,
+    )?.name
 
     const history = `
         <header>

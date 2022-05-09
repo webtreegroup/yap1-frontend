@@ -1,7 +1,7 @@
 import { IComponent } from 'App.types'
 
 export interface IChatGroup extends IComponent {
-    id?: number
+    id?: string
     name?: string
     lastMessage?: string
     time?: string

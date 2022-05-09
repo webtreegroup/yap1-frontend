@@ -14,45 +14,48 @@ export class RemoveUserFormContainer {
         this.onRemoveUser = this.onRemoveUser.bind(this)
     }
 
-    onRemoveUser(request: IUserSearch, currentChatId?: number): void {
+    onRemoveUser(request: IUserSearch, currentChatId?: string): void {
         loaderOnAction()
 
         UsersAPI.search(request)
             .then((searchRespone) => {
                 switch (searchRespone.status) {
-                case 200: {
-                    const usersJson = JSON.parse(searchRespone.response) as ICurrentUserInfo[]
-                    const users = usersJson.map((el) => el.id)
+                    case 200: {
+                        const usersJson = JSON.parse(
+                            searchRespone.response,
+                        ) as ICurrentUserInfo[]
+                        const users = usersJson.map((el) => el.id)
 
-                    if (!users.length || !currentChatId) {
+                        if (!users.length || !currentChatId) {
+                            alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
+
+                            break
+                        }
+
+                        return {
+                            users,
+                            chatId: currentChatId,
+                        }
+                    }
+                    default:
                         alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
-
-                        break
-                    }
-
-                    return {
-                        users,
-                        chatId: currentChatId,
-                    }
-                }
-                default:
-                    alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
                 }
             })
             .then((addUserRequest) => {
                 if (!addUserRequest) return
 
-                return ChatUsersAPI.deleteUser(addUserRequest)
-                    .then((response) => {
+                return ChatUsersAPI.deleteUser(addUserRequest).then(
+                    (response) => {
                         switch (response.status) {
-                        case 200:
-                            alert(CHAT_REMOVE_USER_SUCCESS_MESSAGE)
+                            case 200:
+                                alert(CHAT_REMOVE_USER_SUCCESS_MESSAGE)
 
-                            break
-                        default:
-                            alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
+                                break
+                            default:
+                                alert(CHAT_REMOVE_USER_FAIL_MESSAGE)
                         }
-                    })
+                    },
+                )
             })
             .finally(() => {
                 loaderOffAction()

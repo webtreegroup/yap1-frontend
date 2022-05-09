@@ -12,7 +12,7 @@ export interface IChatMessage {
 }
 
 export class MessageChatAPI extends BaseAPI {
-    static connect(chatId: number): Promise<IResponse<string>> {
+    static connect(chatId: string): Promise<IResponse<string>> {
         return chatMessageAPIInstance.post(`/token/${chatId}`)
     }
 }

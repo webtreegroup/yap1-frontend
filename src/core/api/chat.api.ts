@@ -2,14 +2,13 @@ import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
 export interface IChat {
-    id: number
-    title: string
+    id: string
+    name: string
     avatar: string
 }
 
 export interface IAddChat {
-    title: string
-    avatar: string
+    name: string
 }
 
 const chatAPIInstance = new HTTP('/chats')
@@ -23,11 +22,11 @@ export class ChatAPI extends BaseAPI {
         return chatAPIInstance.get<string>('/')
     }
 
-    static getChatUsers(chatId: number): Promise<IResponse<string>> {
+    static getChatUsers(chatId: string): Promise<IResponse<string>> {
         return chatAPIInstance.get<string>(`/${chatId}/users`)
     }
 
-    static delete(chatId: number): Promise<IResponse<string>> {
+    static delete(chatId: string): Promise<IResponse<string>> {
         return chatAPIInstance.get('/', { data: { chatId } })
     }
 }

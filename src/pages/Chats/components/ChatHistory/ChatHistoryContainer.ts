@@ -17,7 +17,7 @@ export class ChatHistoryContainer {
         this.chatSocket = null
     }
 
-    async onChatConnect(currentChatId?: number): Promise<void> {
+    async onChatConnect(currentChatId?: string): Promise<void> {
         try {
             const { connectedChats } = store.value
             const chatsIds = Object.keys(connectedChats)
@@ -56,7 +56,7 @@ export class ChatHistoryContainer {
         }
     }
 
-    onLoadUsers(currentChatId?: number): Promise<void> | undefined {
+    onLoadUsers(currentChatId?: string): Promise<void> | undefined {
         if (!currentChatId) return
 
         return ChatAPI.getChatUsers(currentChatId).then((xhr) => {
@@ -66,7 +66,7 @@ export class ChatHistoryContainer {
         })
     }
 
-    sendMessage(message: string, chatId?: number): void {
+    sendMessage(message: string, chatId?: string): void {
         if (!chatId) return
 
         store.value.connectedChats[chatId].send(message)

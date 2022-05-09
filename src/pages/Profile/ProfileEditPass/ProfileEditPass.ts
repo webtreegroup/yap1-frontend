@@ -32,6 +32,6 @@ export class ProfileEditPass extends Block<HTMLDivElement> {
     }
 
     componentDidMount(): void {
-        this.props?.onLoadComponent?.().catch(alert)
+        this.props?.onLoadComponent?.().catch(console.error)
     }
 }

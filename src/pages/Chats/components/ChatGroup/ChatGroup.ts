@@ -14,7 +14,7 @@ export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
                     setCurrentChatAction(props.id)
                 }
 
-                Router.go(`${ROUTES.CHATS.path}/${props.id}`)
+                Router.go(`${ROUTES.CHATS.path}/?chatId=${props.id}`)
             },
             title: props.name,
         })

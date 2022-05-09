@@ -1,8 +1,4 @@
-import {
-    Link,
-    Loader,
-    Popup,
-} from 'components'
+import { Link, Loader, Popup } from 'components'
 import { Block } from 'core/block'
 import { ROUTES } from 'core/router'
 import { AddChatFormContainer } from '../AddChatForm/AddChatFormContainer'
@@ -24,12 +20,15 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
 
         const AddChatForm = new AddChatFormContainer()
 
-        const AddChatPopup = new Popup({
-            title: 'Добавить чат',
-            isClosable: true,
-        }, {
-            root: [AddChatForm.createBlock()],
-        })
+        const AddChatPopup = new Popup(
+            {
+                title: 'Добавить чат',
+                isClosable: true,
+            },
+            {
+                root: [AddChatForm.createBlock()],
+            },
+        )
 
         const AddChatPopupToggle = new Link({
             onClick: () => {
@@ -51,10 +50,13 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
     }
 
     render(): string {
-        const chats = this.props.chats.map((el) => new ChatGroup({
-            id: el.id,
-            name: el.title,
-        }))
+        const chats = this.props.chats.map(
+            (el) =>
+                new ChatGroup({
+                    id: el.id,
+                    name: el.name,
+                }),
+        )
 
         this._children = {
             ...this._children,

@@ -1,9 +1,14 @@
+import { Router, ROUTES } from 'core/router'
 import { checkAuth } from 'utils/auth.utils'
 import { Home } from '.'
 
 export class HomeContainer {
     onLoadApp(): Promise<void> {
-        return checkAuth().catch(alert)
+        return checkAuth()
+            .then(() => {
+                Router.go(ROUTES.CHATS.path)
+            })
+            .catch(console.error)
     }
 
     createBlock(): Home {
