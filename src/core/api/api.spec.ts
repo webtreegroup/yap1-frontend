@@ -47,7 +47,7 @@ describe('API usage suite', () => {
     it('it should to be called with specific arguments', async () => {
         const xhrMock = mockFetch(200)
 
-        await ChatAPI.getChatUsers(1)
+        await ChatAPI.getChatUsers('1')
 
         expect(xhrMock.open).toBeCalledWith(
             'GET',
@@ -59,7 +59,7 @@ describe('API usage suite', () => {
     it('it should to be 400 error, when pass wrong arguments', async () => {
         mockFetch(400)
 
-        const response = await ChatAPI.getChatUsers(0)
+        const response = await ChatAPI.getChatUsers('0')
 
         expect(response.status).toEqual(400)
     })

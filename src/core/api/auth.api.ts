@@ -16,7 +16,7 @@ export interface ISignin {
 }
 
 export interface ICurrentUserInfo {
-    id: number
+    id: string
     firstName: string
     secondName: string
     login: string

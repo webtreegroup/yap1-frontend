@@ -1,6 +1,5 @@
 import {
     ChatAPI,
-    IChatConnectResponse,
     IChatUser,
     ICurrentUserInfo,
     MessageChatAPI,
@@ -25,27 +24,20 @@ export class ChatHistoryContainer {
             if (!currentChatId) return
 
             if (!chatsIds.includes(String(currentChatId))) {
-                const token = await MessageChatAPI.connect(currentChatId).then(
-                    (xhr) => {
-                        const response: IChatConnectResponse = JSON.parse(
-                            xhr.response,
-                        )
-
-                        return response.token
-                    },
-                )
-
                 const user = await UsersAPI.getCurrentUser().then((xhr) => {
                     const response: ICurrentUserInfo = JSON.parse(xhr.response)
 
                     return response
                 })
 
-                this.chatSocket = new WebSocketService(
+                const response = await MessageChatAPI.connect(
                     user.id,
                     currentChatId,
-                    token,
                 )
+
+                console.log('Connect to chat response - ', response)
+
+                this.chatSocket = new WebSocketService(user.id, currentChatId)
 
                 setConnectedChatsAction({ [currentChatId]: this.chatSocket })
             } else {

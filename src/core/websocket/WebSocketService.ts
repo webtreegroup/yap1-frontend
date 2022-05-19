@@ -8,10 +8,8 @@ import {
 export class WebSocketService {
     socket: WebSocket
 
-    constructor(userId: number, chatId: string, token: string) {
-        this.socket = new WebSocket(
-            `wss://${API_HOST}/ws/chats/${userId}/${chatId}/${token}`,
-        )
+    constructor(userId: string, chatId: string) {
+        this.socket = new WebSocket(`ws://${API_HOST}/ws/${userId}/${chatId}`)
 
         this.socket.addEventListener('open', () => {
             this.getOld(0)
@@ -74,7 +72,7 @@ export class WebSocketService {
         return this.socket.send(
             JSON.stringify({
                 content: count,
-                type: 'get old',
+                type: 'oldMessages',
             }),
         )
     }
