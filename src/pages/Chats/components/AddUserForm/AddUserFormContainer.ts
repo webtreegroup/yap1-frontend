@@ -9,11 +9,8 @@ import { loaderOffAction, loaderOnAction, setUsers, store } from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {
-    constructor() {
-        this.onAddUser = this.onAddUser.bind(this)
-    }
-
-    onLoadUsers(): Promise<void> {
+    async onLoadUsers(): Promise<void> {
+        console.log('okokok')
         return UsersAPI.getAll()
             .then((xhr) => {
                 const response: UserContract[] = JSON.parse(xhr.response)

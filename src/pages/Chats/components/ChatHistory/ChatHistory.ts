@@ -1,7 +1,6 @@
 import './ChatHistory.scss'
 import { Link, Popup, Loader } from 'components'
 import { Block } from 'core/block'
-import { isEqual } from 'utils'
 import {
     AddUserFormContainer,
     ChatMessage,
@@ -10,6 +9,7 @@ import {
 } from '..'
 import { chatHistoryTmplRender } from './ChatHistory.tmpl'
 import { IChatHistory } from './ChatHistory.types'
+import isEqual from 'lodash/isEqual'
 
 export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     constructor(props: IChatHistory = {}) {

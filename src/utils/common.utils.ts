@@ -55,7 +55,9 @@ export function isEqual(firstArg?: StoreType, secondArg?: StoreType): boolean {
         return firstArg === secondArg
     }
     if (firstArg.constructor !== secondArg.constructor) return false
-    if (firstArg instanceof Function) return firstArg === secondArg
+    if (firstArg instanceof Function) {
+        return firstArg.toString() === secondArg.toString()
+    }
     if (firstArg instanceof RegExp) return firstArg === secondArg
     if (firstArg === secondArg || firstArg.valueOf() === secondArg.valueOf()) {
         return true

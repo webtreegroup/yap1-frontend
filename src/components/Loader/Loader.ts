@@ -2,9 +2,9 @@ import './Loader.scss'
 
 import { Block } from 'core/block'
 import { store } from 'core/store'
-import { isEqual } from 'utils'
 import { loaderTmplRender } from './Loader.tmpl'
 import { LoaderProps } from './Loader.types'
+import isEqual from 'lodash/isEqual'
 
 export class Loader extends Block<HTMLLinkElement> {
     constructor() {

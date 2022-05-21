@@ -1,6 +1,7 @@
-import { isEqual, render } from 'utils'
+import { render } from 'utils'
 import { ComponentProps, StoreType } from 'App.types'
 import { EventBus } from './EventBus'
+import isEqual from 'lodash/isEqual'
 
 interface BlockMetaProps {
     tagName: string
