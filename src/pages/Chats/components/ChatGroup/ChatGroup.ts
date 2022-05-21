@@ -3,11 +3,11 @@ import { classNames } from 'utils'
 import { Link } from 'components'
 import { setCurrentChatAction, store } from 'core/store'
 import { ROUTES, Router } from 'core/router'
-import { IChatGroup } from './ChatGroup.types'
+import { ChatGroupProps } from './ChatGroup.types'
 import { chatGroupTmplRender } from './ChatGroup.tmpl'
 
-export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
-    constructor(props: IChatGroup) {
+export class ChatGroup extends Block<HTMLDivElement, ChatGroupProps> {
+    constructor(props: ChatGroupProps) {
         const ChatSingleLink = new Link({
             onClick: () => {
                 if (store?.value?.currentChatId) {
@@ -24,7 +24,7 @@ export class ChatGroup extends Block<HTMLDivElement, IChatGroup> {
         })
     }
 
-    createResources({ isCurrent }: IChatGroup): void {
+    createResources({ isCurrent }: ChatGroupProps): void {
         const classes = classNames([
             'chats-item',
             isCurrent ? 'chats-item_current' : undefined,

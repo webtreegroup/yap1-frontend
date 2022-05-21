@@ -1,6 +1,6 @@
 import { StoreType } from 'App.types'
 import { reducers } from './reducers'
-import { INITIAL_STATE, IStoreState } from './store.config'
+import { INITIAL_STATE, StoreProps } from './store.config'
 
 export interface IAction {
     type: string
@@ -12,20 +12,20 @@ export class Store {
 
     private reducers: StoreType<Function>
 
-    private state: IStoreState
+    private state: StoreProps
 
-    constructor(reducers = {}, initialState = {} as IStoreState) {
+    constructor(reducers = {}, initialState = {} as StoreProps) {
         this.subscribers = []
         this.reducers = reducers
         this.state = this.reduce(initialState, {})
     }
 
-    get value(): IStoreState {
+    get value(): StoreProps {
         return this.state
     }
 
     subscribe(
-        fn: (currentState: IStoreState) => void,
+        fn: (currentState: StoreProps) => void,
         dependencies: string[],
     ): Function {
         this.subscribers.push([fn, dependencies])
@@ -54,8 +54,8 @@ export class Store {
         })
     }
 
-    private reduce(state: IStoreState, action: IAction | {}) {
-        const newState = {} as IStoreState
+    private reduce(state: StoreProps, action: IAction | {}) {
+        const newState = {} as StoreProps
 
         for (const prop in this.reducers) {
             if (Object.prototype.hasOwnProperty.call(this.reducers, prop)) {

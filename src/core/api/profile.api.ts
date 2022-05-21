@@ -25,10 +25,6 @@ export class ProfileAPI extends BaseAPI {
         return profileAPIInstance.put<T>('/profile', { data })
     }
 
-    static changeAvatar<T = FormData>(data: T): Promise<IResponse<T>> {
-        return profileAPIInstance.put<T>('/profile/avatar', { data })
-    }
-
     static changePassword<T = IChangePassword>(data: T): Promise<IResponse<T>> {
         return profileAPIInstance.put<T>('/password', { data })
     }

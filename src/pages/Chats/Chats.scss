@@ -149,22 +149,6 @@
         bottom: 10px;
     }
 
-    &__img {
-        width: 47px;
-        height: 47px;
-        flex-shrink: 0;
-        border-radius: 50%;
-        border: $chats_list_border;
-        position: relative;
-        z-index: 1;
-
-        &_empty {
-            svg {
-                opacity: 0.2;
-            }
-        }
-    }
-
     &__body {
         padding-left: 10px;
         padding-right: 45px;

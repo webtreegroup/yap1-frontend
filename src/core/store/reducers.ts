@@ -1,6 +1,6 @@
 import {
     CHATS_LOAD,
-    IStoreState,
+    StoreProps,
     LOADER_OFF,
     LOADER_ON,
     PROFILE_LOAD,
@@ -9,91 +9,119 @@ import {
     ADD_MESSAGE,
     ADD_OLD_MESSAGES,
     SET_CURRENT_CHAT_USERS,
+    SET_USERS,
 } from './store.config'
 import { IAction } from './store'
 
-export function loaderReducer(state: IStoreState['loader'], action: IAction): IStoreState['loader'] {
+export function loaderReducer(
+    state: StoreProps['loader'],
+    action: IAction,
+): StoreProps['loader'] {
     switch (action.type) {
-    case LOADER_ON:
-        return {
-            ...state,
-            active: true,
-        }
-    case LOADER_OFF:
-        return {
-            ...state,
-            active: false,
-        }
-    default:
-        return state
+        case LOADER_ON:
+            return {
+                ...state,
+                active: true,
+            }
+        case LOADER_OFF:
+            return {
+                ...state,
+                active: false,
+            }
+        default:
+            return state
     }
 }
 
-export function currentUserReducer(state: IStoreState['currentUser'], action: IAction): IStoreState['currentUser'] {
+export function currentUserReducer(
+    state: StoreProps['currentUser'],
+    action: IAction,
+): StoreProps['currentUser'] {
     switch (action.type) {
-    case PROFILE_LOAD:
-        return {
-            ...state,
-            ...action.payload,
-        }
-    default:
-        return state
+        case PROFILE_LOAD:
+            return {
+                ...state,
+                ...action.payload,
+            }
+        default:
+            return state
     }
 }
 
-export function chatsReducer(state: IStoreState['chats'], action: IAction): IStoreState['chats'] {
+export function chatsReducer(
+    state: StoreProps['chats'],
+    action: IAction,
+): StoreProps['chats'] {
     switch (action.type) {
-    case CHATS_LOAD:
-        return action.payload
-    default:
-        return state
+        case CHATS_LOAD:
+            return action.payload
+        default:
+            return state
     }
 }
 
-export function currentChatReducer(state: IStoreState['currentChatId'], action: IAction): IStoreState['currentChatId'] {
+export function currentChatReducer(
+    state: StoreProps['currentChatId'],
+    action: IAction,
+): StoreProps['currentChatId'] {
     switch (action.type) {
-    case SET_CURRENT_CHAT:
-        return action.payload
-    default:
-        return state
+        case SET_CURRENT_CHAT:
+            return action.payload
+        default:
+            return state
     }
 }
 
-export function currentChatUsersReducer(state: IStoreState['currentChatUsers'], action: IAction): IStoreState['currentChatUsers'] {
+export function currentChatUsersReducer(
+    state: StoreProps['currentChatUsers'],
+    action: IAction,
+): StoreProps['currentChatUsers'] {
     switch (action.type) {
-    case SET_CURRENT_CHAT_USERS:
-        return action.payload
-    default:
-        return state
+        case SET_CURRENT_CHAT_USERS:
+            return action.payload
+        default:
+            return state
     }
 }
 
-export function connectedChatsReducer(state: IStoreState['connectedChats'], action: IAction): IStoreState['connectedChats'] {
+export function usersReducer(
+    state: StoreProps['users'],
+    action: IAction,
+): StoreProps['users'] {
     switch (action.type) {
-    case SET_CONNECTED_CHATS:
-        return {
-            ...state,
-            ...action.payload,
-        }
-    default:
-        return state
+        case SET_USERS:
+            return action.payload
+        default:
+            return state
     }
 }
 
-export function messagesReducer(state: IStoreState['messages'], action: IAction): IStoreState['messages'] {
+export function connectedChatsReducer(
+    state: StoreProps['connectedChats'],
+    action: IAction,
+): StoreProps['connectedChats'] {
     switch (action.type) {
-    case ADD_MESSAGE:
-        return [
-            action.payload,
-            ...state,
-        ]
-    case ADD_OLD_MESSAGES:
-        return [
-            ...state,
-            ...action.payload,
-        ]
-    default:
-        return state
+        case SET_CONNECTED_CHATS:
+            return {
+                ...state,
+                ...action.payload,
+            }
+        default:
+            return state
+    }
+}
+
+export function messagesReducer(
+    state: StoreProps['messages'],
+    action: IAction,
+): StoreProps['messages'] {
+    switch (action.type) {
+        case ADD_MESSAGE:
+            return [action.payload, ...state]
+        case ADD_OLD_MESSAGES:
+            return [...state, ...action.payload]
+        default:
+            return state
     }
 }
 

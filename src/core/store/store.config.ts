@@ -1,4 +1,3 @@
-import { StoreType } from 'App.types'
 import { WebSocketService } from 'core/websocket'
 import { UserContract } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
@@ -12,6 +11,7 @@ export const SET_CONNECTED_CHATS = 'SET_CONNECTED_CHATS'
 export const ADD_MESSAGE = 'ADD_MESSAGE'
 export const ADD_OLD_MESSAGES = 'ADD_OLD_MESSAGES'
 export const SET_CURRENT_CHAT_USERS = 'SET_CURRENT_CHAT_USERS'
+export const SET_USERS = 'SET_USERS'
 
 export interface ISocketMessage {
     content: string
@@ -30,7 +30,7 @@ export interface ISocketOldMessage {
 export interface IConnectedChats {
     [key: string]: WebSocketService
 }
-export interface IStoreState extends StoreType {
+export interface StoreProps {
     loader: {
         active: boolean
     }
@@ -40,6 +40,7 @@ export interface IStoreState extends StoreType {
     currentChatId?: string
     messages: ISocketMessage[]
     currentChatUsers: UserContract[]
+    users: UserContract[]
 }
 
 export const INITIAL_STATE = {
@@ -51,4 +52,5 @@ export const INITIAL_STATE = {
     connectedChats: {},
     messages: [],
     currentChatUsers: [],
+    users: [],
 }

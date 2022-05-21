@@ -3,10 +3,9 @@ import {
     CHAT_ADD_USER_SUCCESS_MESSAGE,
     UserContract,
     ChatUsersAPI,
-    IUserSearch,
     UsersAPI,
 } from 'core/api'
-import { loaderOffAction, loaderOnAction, store } from 'core/store'
+import { loaderOffAction, loaderOnAction, setUsers, store } from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {
@@ -14,10 +13,21 @@ export class AddUserFormContainer {
         this.onAddUser = this.onAddUser.bind(this)
     }
 
-    onAddUser(request: IUserSearch, currentChatId?: string): void {
+    onLoadUsers(): Promise<void> {
+        return UsersAPI.getAll()
+            .then((xhr) => {
+                const response: UserContract[] = JSON.parse(xhr.response)
+
+                console.log(response)
+                // setUsers(response)
+            })
+            .catch(console.error)
+    }
+
+    onAddUser(login: string, currentChatId?: string): void {
         loaderOnAction()
 
-        UsersAPI.search(request)
+        UsersAPI.getByLogin(login)
             .then((searchRespone) => {
                 switch (searchRespone.status) {
                     case 200: {
@@ -63,6 +73,7 @@ export class AddUserFormContainer {
     createBlock(): AddUserForm {
         const AddUserFormWrapped = new AddUserForm({
             onAddUser: this.onAddUser,
+            onLoadComponent: this.onLoadUsers,
             currentChatId: store.value.currentChatId,
         })
 

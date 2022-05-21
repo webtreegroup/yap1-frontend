@@ -1,6 +1,6 @@
 import { ComponentProps } from 'App.types'
 
-export interface IChatGroup extends ComponentProps {
+export interface ChatGroupProps extends ComponentProps {
     id?: string
     name?: string
     lastMessage?: string
@@ -8,5 +8,4 @@ export interface IChatGroup extends ComponentProps {
     unread?: number
     isOwnMessage?: boolean
     isCurrent?: boolean
-    img?: string
 }

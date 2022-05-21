@@ -1,7 +1,6 @@
 import {
     ChatUsersAPI,
     UserContract,
-    IUserSearch,
     UsersAPI,
     CHAT_REMOVE_USER_FAIL_MESSAGE,
     CHAT_REMOVE_USER_SUCCESS_MESSAGE,
@@ -14,10 +13,10 @@ export class RemoveUserFormContainer {
         this.onRemoveUser = this.onRemoveUser.bind(this)
     }
 
-    onRemoveUser(request: IUserSearch, currentChatId?: string): void {
+    onRemoveUser(login: string, currentChatId?: string): void {
         loaderOnAction()
 
-        UsersAPI.search(request)
+        UsersAPI.getByLogin(login)
             .then((searchRespone) => {
                 switch (searchRespone.status) {
                     case 200: {

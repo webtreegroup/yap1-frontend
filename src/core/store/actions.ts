@@ -75,3 +75,10 @@ export function setCurrentChatUsers(payload?: UserContract[]): void {
         payload,
     })
 }
+
+export function setUsers(payload?: UserContract[]): void {
+    store.dispatch({
+        type: SET_CURRENT_CHAT_USERS,
+        payload,
+    })
+}

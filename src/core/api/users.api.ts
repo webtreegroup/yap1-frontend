@@ -3,13 +3,13 @@ import { BaseAPI } from './base.api'
 
 const usersAPIInstance = new HTTP('/users')
 
-export interface IUserSearch {
-    login: string
-}
-
 export class UsersAPI extends BaseAPI {
-    static search(data: IUserSearch): Promise<IResponse<string>> {
-        return usersAPIInstance.post<string>('/search', { data })
+    static getAll(): Promise<IResponse<string>> {
+        return usersAPIInstance.get<string>('/')
+    }
+
+    static getByLogin(login: string): Promise<IResponse<string>> {
+        return usersAPIInstance.get<string>(`/search/${login}`)
     }
 
     static getCurrentUser(): Promise<IResponse<string>> {

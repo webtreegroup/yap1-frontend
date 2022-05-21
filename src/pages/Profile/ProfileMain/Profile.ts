@@ -1,36 +1,15 @@
 import '../Profile.scss'
 
-import {
-    Link,
-    Loader,
-    Popup,
-} from 'components'
+import { Link } from 'components'
 import { Block } from 'core/block'
 import { ROUTES } from 'core/router'
 import { store } from 'core/store'
-import { EditUserImageFormContainer } from './components/EditUserImageForm/EditUserImageFormContainer'
 import ProfileForm from './components/ProfileForm/ProfileForm'
 import { profileTmplRender } from './Profile.tmpl'
 import { IProfile } from './Profile.type'
 
 export class Profile extends Block<HTMLDivElement> {
     constructor(props?: IProfile) {
-        const EditUserImageForm = new EditUserImageFormContainer()
-
-        const EditUserImgPopup = new Popup({
-            title: 'Загрузите файл',
-            isClosable: true,
-        }, {
-            root: [EditUserImageForm.createBlock()],
-        })
-
-        const ToggleEditUserImgPopup = new Link({
-            onClick: () => {
-                EditUserImgPopup.show()
-            },
-            title: 'Изменить изображение',
-        })
-
         const ProfileEditLink = new Link({
             path: ROUTES.PROFILE_EDIT.path,
             title: ROUTES.PROFILE_EDIT.title,
@@ -53,8 +32,6 @@ export class Profile extends Block<HTMLDivElement> {
             `,
         })
 
-        const LoaderComponent = new Loader()
-
         super(
             'main',
             {
@@ -63,8 +40,6 @@ export class Profile extends Block<HTMLDivElement> {
             },
             {
                 ProfileForm,
-                EditUserImgPopup: [EditUserImgPopup, LoaderComponent],
-                ToggleEditUserImgPopup,
                 ProfileEditLink,
                 ProfileEditPasswordLink,
                 ProfileLogout,
