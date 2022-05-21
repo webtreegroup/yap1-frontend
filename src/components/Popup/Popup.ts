@@ -1,13 +1,13 @@
 import './Popup.scss'
 
-import { Block, IBlockChildren } from 'core/block'
+import { Block, BlockChildrenProps } from 'core/block'
 import { classNames } from 'utils'
 import { Link } from '../Link/Link'
-import { IPopup } from './Popup.types'
+import { PopupProps } from './Popup.types'
 import { popupTmplRender } from './Popup.tmpl'
 
 export class Popup extends Block<HTMLDivElement> {
-    constructor(props: IPopup, children = {} as IBlockChildren) {
+    constructor(props: PopupProps, children = {} as BlockChildrenProps) {
         super('div', props, children)
 
         this.show = this.show.bind(this)
@@ -27,12 +27,10 @@ export class Popup extends Block<HTMLDivElement> {
         this._element?.classList.toggle('popup-wrap_active')
     }
 
-    createResources({ isActive }: IPopup): void {
+    createResources({ isActive }: PopupProps): void {
         const classes = classNames([
             'popup-wrap',
-            isActive
-                ? 'popup-wrap_active'
-                : undefined,
+            isActive ? 'popup-wrap_active' : undefined,
         ])
 
         this._element?.classList.add(...classes)
@@ -52,9 +50,9 @@ export class Popup extends Block<HTMLDivElement> {
         if (this.props.isClosable) {
             this._children = {
                 ...this._children,
-                root: Array.isArray(this._children.root) ? [
-                    ...this._children.root, ToggleAddPopupVisibility,
-                ] : this._children.root,
+                root: Array.isArray(this._children.root)
+                    ? [...this._children.root, ToggleAddPopupVisibility]
+                    : this._children.root,
             }
         }
 

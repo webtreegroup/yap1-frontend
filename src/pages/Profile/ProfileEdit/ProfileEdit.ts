@@ -1,4 +1,4 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 import { Link, Loader } from 'components'
 import { Block } from 'core/block'
 import { ROUTES } from 'core/router'
@@ -7,8 +7,8 @@ import { IProfileEditForm } from './components/ProfileEditForm/ProfileEditForm.t
 import { ProfileEditFormContainer } from './components/ProfileEditForm/ProfileEditFormContainer'
 import { profileEditTmplRender } from './ProfileEdit.tmpl'
 
-export class ProfileEdit extends Block<HTMLDivElement, IComponent> {
-    constructor(props: IComponent) {
+export class ProfileEdit extends Block<HTMLDivElement, ComponentProps> {
+    constructor(props: ComponentProps) {
         const ProfileFormContainer = new ProfileEditFormContainer()
         const ProfileForm = ProfileFormContainer.createBlock()
         const LoaderComponent = new Loader()

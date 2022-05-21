@@ -4,10 +4,10 @@ import { store } from 'core/store'
 import { Block } from 'core/block'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
 import { ChatHistoryContainer } from './components'
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export class Chats extends Block<HTMLDivElement, IComponent> {
-    constructor(props: IComponent) {
+export class Chats extends Block<HTMLDivElement, ComponentProps> {
+    constructor(props: ComponentProps) {
         const ChatHistory = new ChatHistoryContainer()
         const ChatHistoryPlaceholder = new Block(
             'main',

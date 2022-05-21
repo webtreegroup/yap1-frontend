@@ -1,6 +1,6 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface ILink extends IComponent {
+export interface LinkProps extends ComponentProps {
     title?: string
     path?: string
     onClick?: () => void

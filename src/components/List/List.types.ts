@@ -1,10 +1,10 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface IListLink {
+export interface ListLinkProps {
     path: string
     title: string
 }
 
-export interface IList extends IComponent {
-    list?: IListLink[]
+export interface ListProps extends ComponentProps {
+    list?: ListLinkProps[]
 }

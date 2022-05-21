@@ -1,10 +1,10 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 import { Loader } from 'components'
 import { Block } from 'core/block'
 import { homeTmplRender } from './Home.tmpl'
 
-export class Home extends Block<HTMLDivElement, IComponent> {
-    constructor(props: IComponent) {
+export class Home extends Block<HTMLDivElement, ComponentProps> {
+    constructor(props: ComponentProps) {
         super(
             'main',
             { ...props, className: 'index-page' },

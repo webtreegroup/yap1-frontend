@@ -1,20 +1,16 @@
+import { StoreType } from 'App.types'
 import { reducers } from './reducers'
-import { IStateValue } from 'App.types'
 import { INITIAL_STATE, IStoreState } from './store.config'
-
-interface IReducers {
-    [key: string]: Function
-}
 
 export interface IAction {
     type: string
-    payload?: IStateValue
+    payload?: any
 }
 
 export class Store {
     private subscribers: [Function, string[]][]
 
-    private reducers: IReducers
+    private reducers: StoreType<Function>
 
     private state: IStoreState
 
@@ -28,12 +24,16 @@ export class Store {
         return this.state
     }
 
-    subscribe(fn: (currentState: IStoreState) => void, dependencies: string[]): Function {
+    subscribe(
+        fn: (currentState: IStoreState) => void,
+        dependencies: string[],
+    ): Function {
         this.subscribers.push([fn, dependencies])
         fn(this.value)
 
         return () => {
-            this.subscribers = this.subscribers.filter(([sub]) => sub !== fn) || null
+            this.subscribers =
+                this.subscribers.filter(([sub]) => sub !== fn) || null
         }
     }
 
@@ -44,7 +44,11 @@ export class Store {
                 fn(this.value)
             }
 
-            if (Object.keys(this.value).some((key) => dependencies.includes(key))) {
+            if (
+                Object.keys(this.value).some((key) =>
+                    dependencies.includes(key),
+                )
+            ) {
                 fn(this.value)
             }
         })

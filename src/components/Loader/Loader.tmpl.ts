@@ -1,7 +1,7 @@
-import { IBaseTemplateRender } from 'core/block'
-import { ILoader } from './Loader.types'
+import { BaseTemplateRenderProps } from 'core/block'
+import { LoaderProps } from './Loader.types'
 
-export const loaderTmplRender: IBaseTemplateRender<ILoader> = () => `
+export const loaderTmplRender: BaseTemplateRenderProps<LoaderProps> = () => `
         <?xml version="1.0" encoding="utf-8"?>
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin: auto; background: rgb(255, 255, 255); display: block; shape-rendering: auto;" width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
             <g transform="rotate(0 50 50)">

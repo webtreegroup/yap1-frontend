@@ -1,6 +1,6 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface IButton extends IComponent {
+export interface ButtonProps extends ComponentProps {
     text?: string
     btnType?: string
 }

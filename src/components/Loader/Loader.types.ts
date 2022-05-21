@@ -1,5 +1,5 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface ILoader extends IComponent {
+export interface LoaderProps extends ComponentProps {
     active?: boolean
 }

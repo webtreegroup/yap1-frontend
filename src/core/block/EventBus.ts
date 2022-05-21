@@ -1,9 +1,7 @@
-type EventBusListenersType = {
-    [key: string]: Function[]
-}
+import { StoreType } from 'App.types'
 
 export class EventBus {
-    listeners: EventBusListenersType
+    listeners: StoreType<Function[]>
 
     constructor() {
         this.listeners = {}

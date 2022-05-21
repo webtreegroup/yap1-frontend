@@ -1,6 +1,6 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface IPopup extends IComponent {
+export interface PopupProps extends ComponentProps {
     title?: string
     isActive?: boolean
     isClosable?: boolean

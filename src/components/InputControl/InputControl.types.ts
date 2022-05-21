@@ -1,6 +1,6 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface IInputControl extends IComponent {
+export interface InputControlProps extends ComponentProps {
     name?: string
     label?: string
     inputType?: string

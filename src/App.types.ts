@@ -1,10 +1,8 @@
-export type IStateValue = any
-
-export type IState = {
-    [key: string]: IStateValue
+export type StoreType<T = any> = {
+    [key: string]: T
 }
 
-export interface IComponent {
+export interface ComponentProps {
     className?: string | string[]
     children?: string | number | HTMLElement
     onLoadComponent?: () => Promise<void>

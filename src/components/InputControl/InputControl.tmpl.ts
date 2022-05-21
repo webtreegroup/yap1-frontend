@@ -1,4 +1,4 @@
-import { IInputControl } from './InputControl.types'
+import { InputControlProps } from './InputControl.types'
 
 export const inputControlTmplRender = ({
     inputType = 'text',
@@ -8,7 +8,11 @@ export const inputControlTmplRender = ({
     label,
     isTouched,
     required,
-}: IInputControl): string => `
-    <input class="${isTouched ? 'touched' : ''}" type="${inputType}" name="${name}" id="${name}" value="${value}" ${disabled ? 'disabled' : ''} ${required ? 'required' : ''}>
+}: InputControlProps): string => `
+    <input class="${
+        isTouched ? 'touched' : ''
+    }" type="${inputType}" name="${name}" id="${name}" value="${value}" ${
+    disabled ? 'disabled' : ''
+} ${required ? 'required' : ''}>
     <label for="${name}">${label}</label>
 `

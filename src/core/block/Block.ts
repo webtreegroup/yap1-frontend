@@ -1,23 +1,23 @@
 import { isEqual, render } from 'utils'
-import { IComponent, IState, IStateValue } from 'App.types'
+import { ComponentProps, StoreType } from 'App.types'
 import { EventBus } from './EventBus'
 
-interface IBlockMeta {
+interface BlockMetaProps {
     tagName: string
-    props: IState
+    props: StoreType
 }
 
-export interface IBaseTemplateRender<T = IState> {
+export interface BaseTemplateRenderProps<T = StoreType> {
     (props?: T): string
 }
 
-export interface IBlockChildren {
+export interface BlockChildrenProps {
     [key: string]: Block | Block[] | undefined
 }
 
 export class Block<
     ElementType extends HTMLElement = any,
-    PropsType extends IComponent = any
+    PropsType extends ComponentProps = any,
 > {
     static EVENTS = {
         INIT: 'init',
@@ -28,21 +28,21 @@ export class Block<
 
     eventBus: EventBus
 
-    _baseTmplRender?: IBaseTemplateRender<PropsType>
+    _baseTmplRender?: BaseTemplateRenderProps<PropsType>
 
-    _children: IBlockChildren
+    _children: BlockChildrenProps
 
     _element: ElementType | null = null
 
-    _meta: IBlockMeta
+    _meta: BlockMetaProps
 
     props: PropsType
 
     constructor(
         tagName: string,
         props = {} as PropsType,
-        children = {} as IBlockChildren,
-        baseTmplRender?: IBaseTemplateRender<PropsType>,
+        children = {} as BlockChildrenProps,
+        baseTmplRender?: BaseTemplateRenderProps<PropsType>,
     ) {
         this._meta = {
             tagName,
@@ -96,13 +96,13 @@ export class Block<
 
     componentDidMount(): void {}
 
-    _componentDidUpdate(oldProps: IStateValue, newProps: IStateValue): void {
+    _componentDidUpdate(oldProps: any, newProps: any): void {
         const response = this.componentDidUpdate(oldProps, newProps)
 
         if (response) this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
     }
 
-    componentDidUpdate(oldProps: IStateValue, newProps: IStateValue): boolean {
+    componentDidUpdate(oldProps: any, newProps: any): boolean {
         return !isEqual(oldProps, newProps)
     }
 
@@ -127,7 +127,9 @@ export class Block<
 
             if (!components) return
 
-            const componentsContainer = this._element?.querySelector(`[data-component="${componentKey}"]`)
+            const componentsContainer = this._element?.querySelector(
+                `[data-component="${componentKey}"]`,
+            )
             const appendTarget = componentsContainer || this._element
 
             if (Array.isArray(components)) {
@@ -146,7 +148,7 @@ export class Block<
         return this.element
     }
 
-    _makePropsProxy(props: IState): IState {
+    _makePropsProxy(props: StoreType): StoreType {
         const self = this
 
         return new Proxy(props, {
@@ -154,8 +156,8 @@ export class Block<
                 const value = target[prop]
                 return typeof value === 'function' ? value.bind(target) : value
             },
-            set(target, prop: string, value: IStateValue) {
-                const oldProps: IState = { ...self.props }
+            set(target, prop: string, value: any) {
+                const oldProps: StoreType = { ...self.props }
                 target[prop] = value
                 self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target)
 

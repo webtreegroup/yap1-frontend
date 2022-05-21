@@ -1,17 +1,21 @@
-import { IState } from 'App.types'
+import { StoreType } from 'App.types'
 import { Block } from '../block/Block'
-import { IBlockConstructor } from './Router'
+import { BlockConstructorProps } from './Router'
 
 export class Route {
     _pathname: string
 
-    _blockClass: IBlockConstructor
+    _blockClass: BlockConstructorProps
 
     _block: Block | null
 
-    _props: IState
+    _props: StoreType
 
-    constructor(pathname: string, view: IBlockConstructor, props: IState) {
+    constructor(
+        pathname: string,
+        view: BlockConstructorProps,
+        props: StoreType,
+    ) {
         this._pathname = pathname
         this._blockClass = view
         this._block = null
@@ -40,9 +44,10 @@ export class Route {
     render(): void {
         if (!this._block) {
             const instance = new this._blockClass()
-            this._block = instance && 'createBlock' in instance
-                ? instance.createBlock()
-                : instance
+            this._block =
+                instance && 'createBlock' in instance
+                    ? instance.createBlock()
+                    : instance
         }
 
         this._block?.show(this._props.rootQuery)

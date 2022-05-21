@@ -1,8 +1,8 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 import { UserContract } from 'core/api'
 import { ISocketMessage } from 'core/store'
 
-export interface IChatHistory extends IComponent {
+export interface IChatHistory extends ComponentProps {
     currentChatId?: string
     currentChatUsers?: UserContract[]
     onLoadUsers?: (currentChatId?: string) => Promise<void> | undefined

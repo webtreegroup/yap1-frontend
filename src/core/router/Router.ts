@@ -1,6 +1,6 @@
 import { Route } from './Route'
 
-export interface IBlockConstructor {
+export interface BlockConstructorProps {
     new (): any
 }
 
@@ -13,7 +13,7 @@ export class Router {
 
     static _rootQuery = '.app'
 
-    static use(pathname: string, block: IBlockConstructor): typeof Router {
+    static use(pathname: string, block: BlockConstructorProps): typeof Router {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery })
 
         this.routes.push(route)

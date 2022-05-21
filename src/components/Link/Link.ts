@@ -1,17 +1,14 @@
 import { Block } from 'core/block'
 import { Router } from 'core/router'
-import { ILink } from './Link.types'
+import { LinkProps } from './Link.types'
 import { linkTmplRender } from './Link.tmpl'
 
 export class Link extends Block<HTMLLinkElement> {
-    constructor(props: ILink) {
-        super(
-            'a',
-            props,
-        )
+    constructor(props: LinkProps) {
+        super('a', props)
     }
 
-    createResources({ onClick, path }: ILink): void {
+    createResources({ onClick, path }: LinkProps): void {
         this._element?.setAttribute('href', path || '#')
 
         function onClickWrapper(e: Event) {

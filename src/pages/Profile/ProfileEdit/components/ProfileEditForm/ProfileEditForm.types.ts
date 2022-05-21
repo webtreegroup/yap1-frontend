@@ -1,7 +1,7 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 import { UserContract, IChangeProfile } from 'core/api'
 
-export interface IProfileEditForm extends IComponent {
+export interface IProfileEditForm extends ComponentProps {
     currentUserInfo?: UserContract
     onProfileChange?: (request: IChangeProfile) => void
 }

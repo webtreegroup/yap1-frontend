@@ -1,11 +1,11 @@
-import { IInputControl } from 'components/InputControl/InputControl.types'
+import { InputControlProps } from 'components/InputControl/InputControl.types'
 import {
     checkAllowedLengthAndTypeChar,
     checkEmail,
     checkPhoneNumber,
 } from 'utils'
 
-export const SIGNUP_FORM_CONTROLS: IInputControl[] = [
+export const SIGNUP_FORM_CONTROLS: InputControlProps[] = [
     {
         name: 'email',
         label: 'Почта',

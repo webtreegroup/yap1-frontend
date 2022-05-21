@@ -1,5 +1,5 @@
-import { IInputControl } from 'components/InputControl/InputControl.types'
+import { InputControlProps } from 'components/InputControl/InputControl.types'
 
-export const ADD_CHAT_FORM_CONTROLS: IInputControl[] = [
+export const ADD_CHAT_FORM_CONTROLS: InputControlProps[] = [
     { name: 'name', label: 'Название', required: true },
 ]

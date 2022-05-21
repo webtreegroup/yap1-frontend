@@ -1,14 +1,10 @@
-import { IState } from 'App.types'
+import { StoreType } from 'App.types'
 import { Block } from 'core/block'
-
-interface IEntityMap {
-    [key: string]: string
-}
 
 export function escapeHtml(value: FormDataEntryValue): FormDataEntryValue {
     if (typeof value !== 'string') return value
 
-    const entityMap: IEntityMap = {
+    const entityMap: StoreType<string> = {
         '&': '&amp;',
         '<': '&lt;',
         '>': '&gt;',
@@ -49,7 +45,7 @@ export function classNames(classes: (string | undefined)[]): string[] {
     return classes.filter(Boolean) as string[]
 }
 
-export function isEqual(firstArg?: IState, secondArg?: IState): boolean {
+export function isEqual(firstArg?: StoreType, secondArg?: StoreType): boolean {
     if (
         firstArg === null ||
         firstArg === undefined ||
@@ -77,8 +73,8 @@ export function isEqual(firstArg?: IState, secondArg?: IState): boolean {
     return (
         secondObjectKeys.every((i) => firstObjectKeys.indexOf(i) !== -1) &&
         firstObjectKeys.every((i) => {
-            const firstSubObject = <IState>firstArg
-            const secondSubObject = <IState>secondArg
+            const firstSubObject = <StoreType>firstArg
+            const secondSubObject = <StoreType>secondArg
             return isEqual(firstSubObject[i], secondSubObject[i])
         })
     )

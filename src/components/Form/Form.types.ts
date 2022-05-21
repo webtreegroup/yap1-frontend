@@ -1,3 +1,3 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export type IForm = IComponent
+export type IForm = ComponentProps

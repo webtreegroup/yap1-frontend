@@ -1,4 +1,4 @@
-export interface IValidationFn {
+export interface ValidationFnProps {
     (value?: string): boolean
 }
 

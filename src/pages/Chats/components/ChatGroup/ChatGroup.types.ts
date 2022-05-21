@@ -1,6 +1,6 @@
-import { IComponent } from 'App.types'
+import { ComponentProps } from 'App.types'
 
-export interface IChatGroup extends IComponent {
+export interface IChatGroup extends ComponentProps {
     id?: string
     name?: string
     lastMessage?: string

@@ -1,4 +1,5 @@
-import { IBaseTemplateRender } from 'core/block'
-import { ILink } from './Link.types'
+import { BaseTemplateRenderProps } from 'core/block'
+import { LinkProps } from './Link.types'
 
-export const linkTmplRender: IBaseTemplateRender<ILink> = (props) => `${props?.title || 'Ссылка'}`
+export const linkTmplRender: BaseTemplateRenderProps<LinkProps> = (props) =>
+    `${props?.title || 'Ссылка'}`

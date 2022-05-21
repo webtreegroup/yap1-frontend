@@ -1,17 +1,14 @@
+import { StoreType } from 'App.types'
 import {
     FAIL_MESSAGE_500_DEFAULT,
     FAIL_MESSAGE_DEFAULT,
     METHOD,
 } from './api.consts'
 
-type HeadersType = {
-    [key: string]: string
-}
-
 type OptionsType = {
     method: METHOD
     data?: any
-    headers?: HeadersType
+    headers?: StoreType<string>
     timeout?: number
 }
 

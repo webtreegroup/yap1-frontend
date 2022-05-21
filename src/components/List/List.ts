@@ -1,9 +1,9 @@
 import { Block } from 'core/block'
-import { IList } from './List.types'
+import { ListProps } from './List.types'
 import { Link } from '../Link/Link'
 
 export class List extends Block<HTMLUListElement> {
-    constructor(props: IList) {
+    constructor(props: ListProps) {
         const mappedLinks = props.list?.map((route) => {
             const link = new Link(route)
 
@@ -12,10 +12,6 @@ export class List extends Block<HTMLUListElement> {
             return result
         })
 
-        super(
-            'ul',
-            props,
-            { root: mappedLinks },
-        )
+        super('ul', props, { root: mappedLinks })
     }
 }

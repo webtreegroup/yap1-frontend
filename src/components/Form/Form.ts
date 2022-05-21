@@ -1,9 +1,16 @@
-import { Block, IBaseTemplateRender, IBlockChildren } from 'core/block'
+import { Block, BaseTemplateRenderProps, BlockChildrenProps } from 'core/block'
 import { escapeHtml } from 'utils'
-import { IState } from 'App.types'
+import { StoreType } from 'App.types'
 
-export class Form<PropsType extends object> extends Block<HTMLFormElement, PropsType> {
-    constructor(props?: PropsType, children?: IBlockChildren, baseTmplRender?: IBaseTemplateRender) {
+export class Form<PropsType extends object> extends Block<
+    HTMLFormElement,
+    PropsType
+> {
+    constructor(
+        props?: PropsType,
+        children?: BlockChildrenProps,
+        baseTmplRender?: BaseTemplateRenderProps,
+    ) {
         super('form', props, children, baseTmplRender)
 
         this._onSubmit = this._onSubmit.bind(this)
@@ -11,15 +18,17 @@ export class Form<PropsType extends object> extends Block<HTMLFormElement, Props
         this._element?.addEventListener('submit', this._onSubmit)
     }
 
-    onSubmit(request: IState, formData?: FormData): void {
+    onSubmit(request: StoreType, formData?: FormData): void {
         console.log(request, formData)
     }
 
     _onSubmit(e: Event): void {
         e.preventDefault()
 
-        const request: IState = {}
-        const fieldsWithErrors = this._element?.querySelectorAll('input.error + label')
+        const request: StoreType = {}
+        const fieldsWithErrors = this._element?.querySelectorAll(
+            'input.error + label',
+        )
         const errors: string[] = []
 
         fieldsWithErrors?.forEach((label) => {
@@ -28,7 +37,9 @@ export class Form<PropsType extends object> extends Block<HTMLFormElement, Props
 
         if (fieldsWithErrors?.length) {
             const errorsStr = errors.join(', ').toLowerCase()
-            alert(`Следующие поля заполнены не правильно: ${errorsStr}.\nПроверьте форму еще раз...`)
+            alert(
+                `Следующие поля заполнены не правильно: ${errorsStr}.\nПроверьте форму еще раз...`,
+            )
 
             return
         }
