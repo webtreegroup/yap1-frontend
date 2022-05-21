@@ -1,7 +1,7 @@
 import { IComponent } from 'App.types'
-import { ICurrentUserInfo, IChangeProfile } from 'core/api'
+import { UserContract, IChangeProfile } from 'core/api'
 
 export interface IProfileEditForm extends IComponent {
-    currentUserInfo?: ICurrentUserInfo
+    currentUserInfo?: UserContract
     onProfileChange?: (request: IChangeProfile) => void
 }

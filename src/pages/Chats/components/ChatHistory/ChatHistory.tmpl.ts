@@ -4,10 +4,13 @@ import { IChatHistory } from './ChatHistory.types'
 export const chatHistoryTmplRender = ({
     currentChatId,
 }: IChatHistory): string => {
-    const { chats } = store.value
+    const { chats, currentChatUsers } = store.value
     const currentChatName = chats.find(
         (chat) => chat.id === currentChatId,
     )?.name
+    const usersStr = currentChatUsers
+        .map((el) => `${el.firstName} ${el.secondName}`)
+        .join(', ')
 
     const history = `
         <header>
@@ -20,6 +23,10 @@ export const chatHistoryTmplRender = ({
                 <li data-component="ToggleRemoveUserPopup"></li>
             </ul>
         </header>
+
+        <div class="chat-history__chat-users">
+            <span>${usersStr}</span>
+        </div>
 
         <section class="chat-history__body" data-component="Popups">
             <div class="chat-history__group" data-component="messages"></div>

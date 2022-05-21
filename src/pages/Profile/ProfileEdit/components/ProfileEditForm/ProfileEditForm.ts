@@ -1,16 +1,14 @@
 import { Button, InputControl, Form } from 'components'
-import { ICurrentUserInfo, IChangeProfile } from 'core/api'
+import { UserContract, IChangeProfile } from 'core/api'
 import { PROFILE_FORM_CONTROLS } from '../../../ProfileMain/components/ProfileForm/ProfileForm.config'
 import { IProfileEditForm } from './ProfileEditForm.types'
 
 export class ProfileEditForm extends Form<IProfileEditForm> {
     constructor(props: IProfileEditForm) {
-        super(
-            {
-                ...props,
-                className: 'profile-fields',
-            },
-        )
+        super({
+            ...props,
+            className: 'profile-fields',
+        })
     }
 
     render(): void {
@@ -19,7 +17,7 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
         if (!currentUserInfo) return
 
         const fields = PROFILE_FORM_CONTROLS.map((el) => {
-            const valueKey = el.name as keyof ICurrentUserInfo
+            const valueKey = el.name as keyof UserContract
             const value = currentUserInfo[valueKey]
 
             return new InputControl({

@@ -1,3 +1,4 @@
+import './ChatHistory.scss'
 import { Link, Popup, Loader } from 'components'
 import { Block } from 'core/block'
 import { isEqual } from 'utils'

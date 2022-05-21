@@ -1,6 +1,6 @@
 import {
     ChatUsersAPI,
-    ICurrentUserInfo,
+    UserContract,
     IUserSearch,
     UsersAPI,
     CHAT_REMOVE_USER_FAIL_MESSAGE,
@@ -23,7 +23,7 @@ export class RemoveUserFormContainer {
                     case 200: {
                         const usersJson = JSON.parse(
                             searchRespone.response,
-                        ) as ICurrentUserInfo[]
+                        ) as UserContract[]
                         const users = usersJson.map((el) => el.id)
 
                         if (!users.length || !currentChatId) {

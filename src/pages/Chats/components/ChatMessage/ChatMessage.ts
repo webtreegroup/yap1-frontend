@@ -1,3 +1,4 @@
+import './ChatMessage.scss'
 import { Block } from 'core/block'
 import { classNames } from 'utils'
 import { chatMessageTmplRender } from './ChatMessage.tmpl'
@@ -10,10 +11,8 @@ export class ChatMessage extends Block<HTMLDivElement> {
 
     createResources(): void {
         const classes = classNames([
-            'chat-history-item',
-            this.props.isOwn
-                ? 'chat-history-item_own'
-                : undefined,
+            'chat-message',
+            this.props.isOwn ? 'chat-message_own' : undefined,
         ])
 
         this._element?.classList.add(...classes)

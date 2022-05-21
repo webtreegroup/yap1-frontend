@@ -1,6 +1,6 @@
 import { IState } from 'App.types'
 import { WebSocketService } from 'core/websocket'
-import { IChatUser, ICurrentUserInfo } from '../api/auth.api'
+import { UserContract } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
 
 export const LOADER_ON = 'LOADER_ON'
@@ -15,7 +15,7 @@ export const SET_CURRENT_CHAT_USERS = 'SET_CURRENT_CHAT_USERS'
 
 export interface ISocketMessage {
     content: string
-    userId: number
+    userId: string
     chatId: string
     time: string
 }
@@ -34,19 +34,19 @@ export interface IStoreState extends IState {
     loader: {
         active: boolean
     }
-    currentUser: ICurrentUserInfo
+    currentUser: UserContract
     chats: IChat[]
     connectedChats: IConnectedChats
     currentChatId?: string
     messages: ISocketMessage[]
-    currentChatUsers: IChatUser[]
+    currentChatUsers: UserContract[]
 }
 
 export const INITIAL_STATE = {
     loader: {
         active: false,
     },
-    currentUser: {} as ICurrentUserInfo,
+    currentUser: {} as UserContract,
     chats: [],
     connectedChats: {},
     messages: [],

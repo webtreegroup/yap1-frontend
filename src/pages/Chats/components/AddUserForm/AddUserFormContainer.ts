@@ -1,7 +1,7 @@
 import {
     CHAT_ADD_USER_FAIL_MESSAGE,
     CHAT_ADD_USER_SUCCESS_MESSAGE,
-    ICurrentUserInfo,
+    UserContract,
     ChatUsersAPI,
     IUserSearch,
     UsersAPI,
@@ -23,7 +23,7 @@ export class AddUserFormContainer {
                     case 200: {
                         const usersJson = JSON.parse(
                             searchRespone.response,
-                        ) as ICurrentUserInfo[]
+                        ) as UserContract[]
                         const users = usersJson.map((el) => el.id)
 
                         if (!users.length || !currentChatId) {

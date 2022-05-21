@@ -15,18 +15,19 @@ export interface ISignin {
     password: string
 }
 
-export interface ICurrentUserInfo {
+export interface UserContract {
     id: string
     firstName: string
     secondName: string
     login: string
     email: string
     phone: string
-    avatar: string
 }
 
-export interface IChatUser extends ICurrentUserInfo {
-    role: string
+export interface ChatUsersContract {
+    name: string
+    ownerId: string
+    users: UserContract[]
 }
 
 const authAPIInstance = new HTTP('/auth')

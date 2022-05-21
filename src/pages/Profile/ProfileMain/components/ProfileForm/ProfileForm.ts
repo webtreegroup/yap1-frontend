@@ -1,18 +1,15 @@
 import { InputControl } from 'components'
-import { ICurrentUserInfo } from 'core/api'
+import { UserContract } from 'core/api'
 import { Block } from 'core/block'
 import { IProfileEditForm } from '../../../ProfileEdit/components/ProfileEditForm/ProfileEditForm.types'
 import { PROFILE_FORM_CONTROLS } from './ProfileForm.config'
 
 class ProfileForm extends Block<HTMLDivElement, IProfileEditForm> {
     constructor(props?: IProfileEditForm) {
-        super(
-            'div',
-            {
-                ...props,
-                className: 'profile-fields',
-            },
-        )
+        super('div', {
+            ...props,
+            className: 'profile-fields',
+        })
     }
 
     render() {
@@ -21,7 +18,7 @@ class ProfileForm extends Block<HTMLDivElement, IProfileEditForm> {
         if (!currentUserInfo) return
 
         const fields = PROFILE_FORM_CONTROLS.map((el) => {
-            const valueKey = el.name as keyof ICurrentUserInfo
+            const valueKey = el.name as keyof UserContract
             const value = currentUserInfo[valueKey]
 
             return new InputControl({

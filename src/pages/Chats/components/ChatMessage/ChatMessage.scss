@@ -1,0 +1,26 @@
+@import 'SharedStyles/consts';
+@import 'SharedStyles/mixins';
+
+.chat-message {
+    max-width: 400px;
+    background: $chats_list_item_bg_color;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    margin-bottom: 20px;
+
+    &_own {
+        float: right;
+        background-color: $chats_list_item_current_bg_color;
+    }
+
+    &__is-read {
+        @include svg_sizes();
+        margin-left: 20px;
+    }
+
+    &__footer {
+        display: flex;
+        @include v_align();
+    }
+}

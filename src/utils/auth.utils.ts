@@ -1,4 +1,4 @@
-import { ACCESS_FORBIDDEN, ICurrentUserInfo, UsersAPI } from 'core/api'
+import { ACCESS_FORBIDDEN, UserContract, UsersAPI } from 'core/api'
 import { Router, ROUTES } from 'core/router'
 import {
     loaderOffAction,
@@ -25,7 +25,7 @@ export function checkAuth(): Promise<void> {
 export function getCurrentUser(): void {
     UsersAPI.getCurrentUser()
         .then((xhr) => {
-            const response: ICurrentUserInfo = JSON.parse(xhr.response)
+            const response: UserContract = JSON.parse(xhr.response)
 
             setCurrentUserInfoAction(response)
         })
