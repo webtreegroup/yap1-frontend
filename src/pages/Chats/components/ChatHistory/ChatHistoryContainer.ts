@@ -1,10 +1,4 @@
-import {
-    ChatAPI,
-    IChatUser,
-    ICurrentUserInfo,
-    MessageChatAPI,
-    UsersAPI,
-} from 'core/api'
+import { ChatAPI, IChatUser, ICurrentUserInfo, UsersAPI } from 'core/api'
 import { setConnectedChatsAction, setCurrentChatUsers, store } from 'core/store'
 import { WebSocketService } from 'core/websocket'
 import { ChatHistory } from '.'
@@ -29,13 +23,6 @@ export class ChatHistoryContainer {
 
                     return response
                 })
-
-                const response = await MessageChatAPI.connect(
-                    user.id,
-                    currentChatId,
-                )
-
-                console.log('Connect to chat response - ', response)
 
                 this.chatSocket = new WebSocketService(user.id, currentChatId)
 

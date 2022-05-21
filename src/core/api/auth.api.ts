@@ -41,6 +41,6 @@ export class AuthAPI extends BaseAPI {
     }
 
     static logout(): Promise<XMLHttpRequest> {
-        return authAPIInstance.post('/logout')
+        return authAPIInstance.get('/logout')
     }
 }
