@@ -5,7 +5,7 @@ import {
     ChatUsersAPI,
     UsersAPI,
 } from 'core/api'
-import { loaderOffAction, loaderOnAction, setUsers, store } from 'core/store'
+import { loaderOffAction, loaderOnAction, setUsers } from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {
@@ -66,21 +66,9 @@ export class AddUserFormContainer {
     }
 
     createBlock(): AddUserForm {
-        const AddUserFormWrapped = new AddUserForm({
+        return new AddUserForm({
             onAddUser: this.onAddUser,
             onLoadComponent: this.onLoadUsers,
-            currentChatId: store.value.currentChatId,
         })
-
-        store.subscribe(
-            (state) => {
-                AddUserFormWrapped.setProps({
-                    currentChatId: state.currentChatId,
-                })
-            },
-            ['currentChatId'],
-        )
-
-        return AddUserFormWrapped
     }
 }

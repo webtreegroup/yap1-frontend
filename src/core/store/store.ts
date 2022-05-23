@@ -63,6 +63,12 @@ export class Store {
             }
         }
 
+        Object.keys(this._reducers).forEach((key) => {
+            if (Object.prototype.hasOwnProperty.call(this._reducers, key)) {
+                newState[key] = this._reducers[key](state[key], action)
+            }
+        })
+
         return newState
     }
 }

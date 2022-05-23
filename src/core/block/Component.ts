@@ -38,7 +38,8 @@ export class Component<
         return document.createElement(tagName) as ElementType
     }
 
-    public createResources(props: PropsType): void {}
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    public createResources(_props: PropsType): void {}
 
     private _createResources(props: PropsType): void {
         const { tagName } = this._meta

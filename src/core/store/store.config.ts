@@ -1,3 +1,4 @@
+import { StoreType } from 'App.types'
 import { WebSocketService } from 'core/websocket'
 import { UserContract } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
@@ -31,7 +32,7 @@ export interface ISocketOldMessage {
 export interface IConnectedChats {
     [key: string]: WebSocketService
 }
-export interface StoreProps {
+export interface StoreProps extends StoreType {
     loader: {
         active: boolean
     }

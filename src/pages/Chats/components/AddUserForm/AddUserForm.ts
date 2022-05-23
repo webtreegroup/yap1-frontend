@@ -1,4 +1,5 @@
 import { Button, Form, InputControl } from 'components'
+import { store } from 'core/store'
 import { addUserFormTmplRender } from './AddUserForm.tmpl'
 import { AddUserFormProps } from './AddUserForm.types'
 
@@ -21,7 +22,7 @@ export class AddUserForm extends Form<AddUserFormProps> {
     }
 
     onSubmit({ loginForAdd }: { loginForAdd: string }): void {
-        this.props.onAddUser?.(loginForAdd, this.props.currentChatId)
+        this.props.onAddUser?.(loginForAdd, store.value.currentChatId)
     }
 
     componentDidMount(): void {
