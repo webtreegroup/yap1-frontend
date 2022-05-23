@@ -18,7 +18,7 @@ export class ChatMessage extends Component<HTMLDivElement> {
         this.element?.classList.add(...classes)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return chatMessageTmplRender(this.props)
     }
 }

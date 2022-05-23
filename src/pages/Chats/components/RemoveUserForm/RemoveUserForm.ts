@@ -24,7 +24,7 @@ export class RemoveUserForm extends Form<IRemoveUserForm> {
         this.props.onRemoveUser?.(loginForDelete, this.props.currentChatId)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return removeUserFormTmplRender()
     }
 }

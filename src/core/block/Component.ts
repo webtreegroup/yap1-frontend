@@ -38,9 +38,7 @@ export class Component<
         return document.createElement(tagName) as ElementType
     }
 
-    public createResources(props: PropsType): void {
-        console.log('createResources - ', props)
-    }
+    public createResources(props: PropsType): void {}
 
     private _createResources(props: PropsType): void {
         const { tagName } = this._meta
@@ -52,8 +50,8 @@ export class Component<
         this.createResources(props)
     }
 
-    private _init(props: PropsType): void {
-        this._createResources(props)
+    private _init(): void {
+        this._createResources(this.props)
         this._eventBus.emit(EVENTS.COMPONENT_DID_MOUNT)
     }
 
@@ -64,48 +62,54 @@ export class Component<
         this._eventBus.emit(EVENTS.COMPONENT_RENDER)
     }
 
-    public setHtmlTemplate(): string | undefined {
+    public componentShouldRender(): string | undefined {
         return this._baseTmplRender?.(this.props)
     }
 
     private _render(): void {
         if (!this._documentElement) return
 
-        this._documentElement.innerHTML = this.setHtmlTemplate() || ''
+        this._documentElement.innerHTML = this.componentShouldRender() || ''
 
         Object.keys(this.children).forEach((componentKey) => {
-            const components = this.children[componentKey]
+            const childComponents = this.children[componentKey]
 
-            if (!components) return
+            if (!childComponents) return
 
             const componentsContainer = this._documentElement?.querySelector(
                 `[data-component="${componentKey}"]`,
             )
             const appendTarget = componentsContainer || this._documentElement
 
-            if (Array.isArray(components)) {
-                components.map((el) => appendTarget?.appendChild(el.element))
+            if (Array.isArray(childComponents)) {
+                childComponents.map((component) =>
+                    appendTarget?.appendChild(component.element),
+                )
             } else {
-                appendTarget?.appendChild(components.element)
+                appendTarget?.appendChild(childComponents.element)
             }
         })
+
+        this._eventBus.emit(EVENTS.COMPONENT_DID_UPDATE)
     }
 
-    public componentDidUpdate(
+    public componentShouldUpdate(
         oldProps: PropsType,
         newProps: PropsType,
     ): boolean {
         return !isEqual(oldProps, newProps)
     }
 
-    private _componentDidUpdate(
+    private _componentShouldUpdate(
         oldProps: PropsType,
         newProps: PropsType,
     ): void {
-        const response = this.componentDidUpdate(oldProps, newProps)
+        const response = this.componentShouldUpdate(oldProps, newProps)
 
         if (response) this._eventBus.emit(EVENTS.COMPONENT_RENDER)
     }
+
+    public componentDidUpdate(): void {}
 
     private _registerEvents(events: EventBus): void {
         events.on(EVENTS.COMPONENT_INIT, this._init.bind(this))
@@ -115,8 +119,12 @@ export class Component<
         )
         events.on(EVENTS.COMPONENT_RENDER, this._render.bind(this))
         events.on(
+            EVENTS.COMPONENT_SHOULD_UPDATE,
+            this._componentShouldUpdate.bind(this),
+        )
+        events.on(
             EVENTS.COMPONENT_DID_UPDATE,
-            this._componentDidUpdate.bind(this),
+            this.componentDidUpdate.bind(this),
         )
     }
 
@@ -134,7 +142,7 @@ export class Component<
                 target[prop] = value
 
                 self._eventBus.emit(
-                    EVENTS.COMPONENT_DID_UPDATE,
+                    EVENTS.COMPONENT_SHOULD_UPDATE,
                     oldProps,
                     target,
                 )
@@ -167,7 +175,7 @@ export class Component<
 
         this.props = this._makePropsProxy(props) as PropsType
 
-        this._eventBus.emit(EVENTS.COMPONENT_INIT, this.props)
+        this._eventBus.emit(EVENTS.COMPONENT_INIT)
     }
 
     public setProps(nextProps?: PropsType): void {

@@ -33,7 +33,7 @@ export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
         this.element?.classList.add(...classes)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return chatGroupTmplRender(this.props)
     }
 }

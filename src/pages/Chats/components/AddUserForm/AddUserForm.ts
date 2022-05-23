@@ -1,5 +1,4 @@
 import { Button, Form, InputControl } from 'components'
-import isEqual from 'lodash/isEqual'
 import { addUserFormTmplRender } from './AddUserForm.tmpl'
 import { AddUserFormProps } from './AddUserForm.types'
 
@@ -29,19 +28,7 @@ export class AddUserForm extends Form<AddUserFormProps> {
         this.props.onLoadComponent?.()
     }
 
-    // componentDidUpdate(oldProps: any, newProps: any): boolean {
-    //     console.log('--------------------')
-    //     console.log(isEqual(oldProps, newProps))
-    //     console.log('JSON.stringify(oldProps) - ', JSON.stringify(oldProps))
-    //     console.log('JSON.stringify(newProps) - ', JSON.stringify(newProps))
-    //     console.log(JSON.stringify(oldProps) === JSON.stringify(newProps))
-    //     console.log('--------------------')
-    //     return !isEqual(oldProps, newProps)
-    // }
-
-    setHtmlTemplate(): string {
-        console.log('render AddUserForm')
-
+    componentShouldRender(): string {
         return addUserFormTmplRender()
     }
 }

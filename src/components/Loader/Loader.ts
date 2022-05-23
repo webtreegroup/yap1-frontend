@@ -15,14 +15,17 @@ export class Loader extends Component<HTMLLinkElement> {
         }, [])
     }
 
-    componentDidUpdate(oldProps: LoaderProps, newProps: LoaderProps): boolean {
+    componentShouldUpdate(
+        oldProps: LoaderProps,
+        newProps: LoaderProps,
+    ): boolean {
         if (newProps.active) this.element?.classList.add('loader_active')
         else this.element?.classList.remove('loader_active')
 
         return !isEqual(oldProps, newProps)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return loaderTmplRender(this.props)
     }
 }

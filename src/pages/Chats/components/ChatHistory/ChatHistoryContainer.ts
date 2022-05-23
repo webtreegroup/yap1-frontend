@@ -52,25 +52,10 @@ export class ChatHistoryContainer {
     }
 
     createBlock(): ChatHistory {
-        const ChatHistoryWrapped = new ChatHistory({
+        return new ChatHistory({
             onChatConnect: this.onChatConnect,
             sendMessage: this.sendMessage,
             onLoadUsers: this.onLoadUsers,
         })
-
-        store.subscribe(
-            (state) => {
-                ChatHistoryWrapped.setProps({
-                    currentChatId: state.currentChatId,
-                    messages: state.messages.filter(
-                        (el) => el.chatId === state.currentChatId,
-                    ),
-                    currentChatUsers: state.currentChatUsers,
-                })
-            },
-            ['currentChatId', 'messages', 'currentChatUsers'],
-        )
-
-        return ChatHistoryWrapped
     }
 }

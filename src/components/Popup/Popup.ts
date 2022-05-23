@@ -36,7 +36,7 @@ export class Popup extends Component<HTMLDivElement> {
         this.element?.classList.add(...classes)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         const ToggleAddPopupVisibility = new Link({
             onClick: () => {
                 this.hide()

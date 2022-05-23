@@ -20,7 +20,7 @@ export class AddChatForm extends Form<IAddChatForm> {
         this.props.onAddChat?.(request)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return addChatFormTmplRender()
     }
 }

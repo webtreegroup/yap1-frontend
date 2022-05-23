@@ -27,7 +27,7 @@ export class SignupForm extends Form<ISignupForm> {
         this.props.onSignup?.(request)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return signupFormTmplRender()
     }
 }

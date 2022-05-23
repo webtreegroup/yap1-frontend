@@ -67,7 +67,7 @@ export class InputControl extends Component<HTMLInputElement> {
         if (isTouched) this._inputElement?.classList.add('touched')
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return inputControlTmplRender(this.props)
     }
 }

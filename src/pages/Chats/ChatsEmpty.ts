@@ -3,12 +3,22 @@ import './Chats.scss'
 import { store } from 'core/store'
 import { Component } from 'core/block'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
-import { ChatHistoryContainer } from './components'
 import { ComponentProps } from 'core/block/Component.types'
 
-export class Chats extends Component<HTMLDivElement, ComponentProps> {
+export class ChatsEmpty extends Component<HTMLDivElement, ComponentProps> {
     constructor(props: ComponentProps) {
-        const ChatHistory = new ChatHistoryContainer()
+        const ChatHistoryPlaceholder = new Component(
+            'main',
+            {
+                className: ['chat-history', 'chat-history_not-selected'],
+            },
+            {},
+            () => `
+            <div class="chat-history__placeholder">
+                Выберите чат чтобы отправить сообщение
+            </div>
+        `,
+        )
 
         super(
             'main',
@@ -22,7 +32,7 @@ export class Chats extends Component<HTMLDivElement, ComponentProps> {
                         className: 'chats',
                         chats: store.value.chats,
                     }),
-                    ChatHistory.createBlock(),
+                    ChatHistoryPlaceholder,
                 ],
             },
         )

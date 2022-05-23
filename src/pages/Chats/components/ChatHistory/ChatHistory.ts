@@ -8,11 +8,11 @@ import {
     RemoveUserFormContainer,
 } from '..'
 import { chatHistoryTmplRender } from './ChatHistory.tmpl'
-import { IChatHistory } from './ChatHistory.types'
-import isEqual from 'lodash/isEqual'
+import { ChatHistoryProps } from './ChatHistory.types'
+import { store } from 'core/store'
 
-export class ChatHistory extends Component<HTMLDivElement, IChatHistory> {
-    constructor(props: IChatHistory = {}) {
+export class ChatHistory extends Component<HTMLDivElement, ChatHistoryProps> {
+    constructor(props: ChatHistoryProps = {}) {
         super('main', props)
     }
 
@@ -20,28 +20,17 @@ export class ChatHistory extends Component<HTMLDivElement, IChatHistory> {
         this.element?.classList.add('chat-history', 'chat-history_not-selected')
     }
 
-    componentDidUpdate(
-        oldProps: IChatHistory,
-        newProps: IChatHistory,
-    ): boolean {
-        if (oldProps.currentChatId !== newProps.currentChatId) {
-            this.props.onLoadUsers?.(this.props.currentChatId)
-            this.props.onChatConnect?.(this.props.currentChatId)
-
-            return true
-        }
-
-        return !isEqual(oldProps, newProps)
+    public componentDidUpdate(): void {
+        this.props.onLoadUsers?.(store.value.currentChatId)
+        this.props.onChatConnect?.(store.value.currentChatId)
     }
 
-    setHtmlTemplate(): string {
-        console.log('render ChatHistory')
-
-        const messages = this.props.messages?.map(
+    public componentShouldRender(): string {
+        const messages = store.value.messages?.map(
             (message) =>
                 new ChatMessage({
                     ...message,
-                    userName: this.props.currentChatUsers?.find(
+                    userName: store.value.currentChatUsers?.find(
                         (user) => user.id === message.userId,
                     )?.login,
                 }),
@@ -52,7 +41,7 @@ export class ChatHistory extends Component<HTMLDivElement, IChatHistory> {
         const RemoveUserForm = new RemoveUserFormContainer()
         const ChatMessageForm = new ChatMessageFormContainer({
             sendMessage: (message: string) =>
-                this.props.sendMessage?.(message, this.props.currentChatId),
+                this.props.sendMessage?.(message, store.value.currentChatId),
         })
 
         const AddUserPopup = new Popup(
@@ -93,7 +82,7 @@ export class ChatHistory extends Component<HTMLDivElement, IChatHistory> {
             `,
         })
 
-        this.children = this.props.currentChatId
+        this.children = store.value.currentChatId
             ? {
                   messages,
                   Popups: [AddUserPopup, RemoveUserPopup],
@@ -104,6 +93,6 @@ export class ChatHistory extends Component<HTMLDivElement, IChatHistory> {
               }
             : {}
 
-        return chatHistoryTmplRender(this.props)
+        return chatHistoryTmplRender()
     }
 }

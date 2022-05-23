@@ -22,7 +22,7 @@ export class Link extends Component<HTMLLinkElement> {
         this.element?.addEventListener('click', onClickWrapper)
     }
 
-    setHtmlTemplate(): string {
+    componentShouldRender(): string {
         return linkTmplRender(this.props)
     }
 }
