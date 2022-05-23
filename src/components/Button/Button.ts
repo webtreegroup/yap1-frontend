@@ -13,11 +13,11 @@ export class Button extends Block<HTMLButtonElement> {
         className = 'btn_primary',
         btnType = 'button',
     }: ButtonProps): void {
-        this._element?.classList.add('btn', className)
-        this._element?.setAttribute('type', btnType)
+        this.element?.classList.add('btn', className)
+        this.element?.setAttribute('type', btnType)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         return buttonTmplRender(this.props)
     }
 }

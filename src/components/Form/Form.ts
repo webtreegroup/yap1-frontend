@@ -15,7 +15,7 @@ export class Form<PropsType extends object> extends Block<
 
         this._onSubmit = this._onSubmit.bind(this)
 
-        this._element?.addEventListener('submit', this._onSubmit)
+        this.element?.addEventListener('submit', this._onSubmit)
     }
 
     onSubmit(request: StoreType, formData?: FormData): void {
@@ -26,7 +26,7 @@ export class Form<PropsType extends object> extends Block<
         e.preventDefault()
 
         const request: StoreType = {}
-        const fieldsWithErrors = this._element?.querySelectorAll(
+        const fieldsWithErrors = this.element?.querySelectorAll(
             'input.error + label',
         )
         const errors: string[] = []
@@ -44,7 +44,7 @@ export class Form<PropsType extends object> extends Block<
             return
         }
 
-        const formData = new FormData(this._element as HTMLFormElement)
+        const formData = new FormData(this.element as HTMLFormElement)
 
         for (const [key, value] of formData.entries()) {
             request[key] = escapeHtml(value)

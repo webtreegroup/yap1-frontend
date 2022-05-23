@@ -43,7 +43,7 @@ export class Chats extends Block<HTMLDivElement, ComponentProps> {
     }
 
     componentDidMount(): void {
-        const [Aside] = this._children.root as Block[]
+        const [Aside] = this.children.root as Block[]
 
         this.props.onLoadComponent?.().then(() => {
             store.subscribe((state) => {

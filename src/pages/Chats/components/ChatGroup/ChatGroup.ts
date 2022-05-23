@@ -30,10 +30,10 @@ export class ChatGroup extends Block<HTMLDivElement, ChatGroupProps> {
             isCurrent ? 'chats-item_current' : undefined,
         ])
 
-        this._element?.classList.add(...classes)
+        this.element?.classList.add(...classes)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         return chatGroupTmplRender(this.props)
     }
 }

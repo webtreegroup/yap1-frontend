@@ -3,10 +3,16 @@ import { Router, ROUTES } from 'core/router'
 import {
     loaderOffAction,
     loaderOnAction,
+    setAuth,
     setCurrentUserInfoAction,
+    store,
 } from 'core/store'
 
 export function checkAuth(): Promise<void> {
+    if (store.value.auth) {
+        return Promise.resolve()
+    }
+
     loaderOnAction()
 
     return UsersAPI.getCurrentUser()
@@ -16,6 +22,8 @@ export function checkAuth(): Promise<void> {
 
                 throw new Error(ACCESS_FORBIDDEN)
             }
+
+            setAuth(true)
         })
         .finally(() => {
             loaderOffAction()

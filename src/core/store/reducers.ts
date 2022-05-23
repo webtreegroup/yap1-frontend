@@ -10,6 +10,7 @@ import {
     ADD_OLD_MESSAGES,
     SET_CURRENT_CHAT_USERS,
     SET_USERS,
+    SET_AUTH,
 } from './store.config'
 import { IAction } from './store'
 
@@ -96,6 +97,18 @@ export function usersReducer(
     }
 }
 
+export function authReducer(
+    state: StoreProps['auth'],
+    action: IAction,
+): StoreProps['auth'] {
+    switch (action.type) {
+        case SET_AUTH:
+            return action.payload
+        default:
+            return state
+    }
+}
+
 export function connectedChatsReducer(
     state: StoreProps['connectedChats'],
     action: IAction,
@@ -133,4 +146,6 @@ export const reducers = {
     connectedChats: connectedChatsReducer,
     messages: messagesReducer,
     currentChatUsers: currentChatUsersReducer,
+    users: usersReducer,
+    auth: authReducer,
 }

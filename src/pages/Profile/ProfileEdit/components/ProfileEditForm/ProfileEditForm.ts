@@ -11,7 +11,7 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
         })
     }
 
-    render(): void {
+    setHtmlTemplate(): void {
         const { currentUserInfo } = this.props
 
         if (!currentUserInfo) return
@@ -29,8 +29,8 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
 
         const BtnSubmit = new Button({ text: 'Сохранить', btnType: 'submit' })
 
-        this._children = {
-            ...this._children,
+        this.children = {
+            ...this.children,
             fields,
             BtnSubmit,
         }

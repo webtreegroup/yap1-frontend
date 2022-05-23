@@ -8,38 +8,38 @@ export interface IAction {
 }
 
 export class Store {
-    private subscribers: [Function, string[]][]
+    private _subscribers: [Function, string[]][]
 
-    private reducers: StoreType<Function>
+    private _reducers: StoreType<Function>
 
-    private state: StoreProps
+    private _state: StoreProps
 
     constructor(reducers = {}, initialState = {} as StoreProps) {
-        this.subscribers = []
-        this.reducers = reducers
-        this.state = this.reduce(initialState, {})
+        this._subscribers = []
+        this._reducers = reducers
+        this._state = this.reduce(initialState, {})
     }
 
     get value(): StoreProps {
-        return this.state
+        return this._state
     }
 
     subscribe(
         fn: (currentState: StoreProps) => void,
         dependencies: string[],
     ): Function {
-        this.subscribers.push([fn, dependencies])
+        this._subscribers.push([fn, dependencies])
         fn(this.value)
 
         return () => {
-            this.subscribers =
-                this.subscribers.filter(([sub]) => sub !== fn) || null
+            this._subscribers =
+                this._subscribers.filter(([sub]) => sub !== fn) || null
         }
     }
 
     dispatch(action: IAction): void {
-        this.state = this.reduce(this.state, action)
-        this.subscribers.forEach(([fn, dependencies]) => {
+        this._state = this.reduce(this._state, action)
+        this._subscribers.forEach(([fn, dependencies]) => {
             if (!dependencies.length) {
                 fn(this.value)
             }
@@ -57,9 +57,9 @@ export class Store {
     private reduce(state: StoreProps, action: IAction | {}) {
         const newState = {} as StoreProps
 
-        for (const prop in this.reducers) {
-            if (Object.prototype.hasOwnProperty.call(this.reducers, prop)) {
-                newState[prop] = this.reducers[prop](state[prop], action)
+        for (const prop in this._reducers) {
+            if (Object.prototype.hasOwnProperty.call(this._reducers, prop)) {
+                newState[prop] = this._reducers[prop](state[prop], action)
             }
         }
 
@@ -68,3 +68,5 @@ export class Store {
 }
 
 export const store = new Store(reducers, INITIAL_STATE)
+
+window.store = store

@@ -15,10 +15,10 @@ export class ChatMessage extends Block<HTMLDivElement> {
             this.props.isOwn ? 'chat-message_own' : undefined,
         ])
 
-        this._element?.classList.add(...classes)
+        this.element?.classList.add(...classes)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         return chatMessageTmplRender(this.props)
     }
 }

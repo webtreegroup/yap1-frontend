@@ -9,7 +9,7 @@ export class Link extends Block<HTMLLinkElement> {
     }
 
     createResources({ onClick, path }: LinkProps): void {
-        this._element?.setAttribute('href', path || '#')
+        this.element?.setAttribute('href', path || '#')
 
         function onClickWrapper(e: Event) {
             e.preventDefault()
@@ -19,10 +19,10 @@ export class Link extends Block<HTMLLinkElement> {
             onClick?.()
         }
 
-        this._element?.addEventListener('click', onClickWrapper)
+        this.element?.addEventListener('click', onClickWrapper)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         return linkTmplRender(this.props)
     }
 }

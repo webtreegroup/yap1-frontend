@@ -12,7 +12,7 @@ class ProfileForm extends Block<HTMLDivElement, IProfileEditForm> {
         })
     }
 
-    render() {
+    setHtmlTemplate() {
         const { currentUserInfo } = this.props
 
         if (!currentUserInfo) return
@@ -29,8 +29,8 @@ class ProfileForm extends Block<HTMLDivElement, IProfileEditForm> {
             })
         })
 
-        this._children = {
-            ...this._children,
+        this.children = {
+            ...this.children,
             root: fields,
         }
     }

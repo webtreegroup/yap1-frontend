@@ -1,24 +1,24 @@
 import { StoreType } from 'App.types'
 import { Block } from '../block/Block'
-import { BlockConstructorProps } from './Router'
+import { ComponentConstructorProps } from './Router'
 
 export class Route {
     _pathname: string
 
-    _blockClass: BlockConstructorProps
+    _component: ComponentConstructorProps
 
-    _block: Block | null
+    _componentInstance: Block | null
 
     _props: StoreType
 
     constructor(
         pathname: string,
-        view: BlockConstructorProps,
+        component: ComponentConstructorProps,
         props: StoreType,
     ) {
         this._pathname = pathname
-        this._blockClass = view
-        this._block = null
+        this._component = component
+        this._componentInstance = null
         this._props = props
     }
 
@@ -34,7 +34,7 @@ export class Route {
     }
 
     leave(): void {
-        this._block?.hide()
+        this._componentInstance?.hide()
     }
 
     match(pathname: string): boolean {
@@ -42,14 +42,15 @@ export class Route {
     }
 
     render(): void {
-        if (!this._block) {
-            const instance = new this._blockClass()
-            this._block =
+        if (!this._componentInstance) {
+            const instance = new this._component()
+
+            this._componentInstance =
                 instance && 'createBlock' in instance
                     ? instance.createBlock()
                     : instance
         }
 
-        this._block?.show(this._props.rootQuery)
+        this._componentInstance?.show(this._props.rootQuery)
     }
 }

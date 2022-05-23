@@ -13,6 +13,7 @@ import {
     ADD_MESSAGE,
     ADD_OLD_MESSAGES,
     SET_CURRENT_CHAT_USERS,
+    SET_AUTH,
 } from './store.config'
 
 export function loaderOnAction(): void {
@@ -79,6 +80,13 @@ export function setCurrentChatUsers(payload?: UserContract[]): void {
 export function setUsers(payload?: UserContract[]): void {
     store.dispatch({
         type: SET_CURRENT_CHAT_USERS,
+        payload,
+    })
+}
+
+export function setAuth(payload: boolean): void {
+    store.dispatch({
+        type: SET_AUTH,
         payload,
     })
 }

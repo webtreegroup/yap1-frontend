@@ -17,10 +17,7 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
     }
 
     createResources(): void {
-        this._element?.classList.add(
-            'chat-history',
-            'chat-history_not-selected',
-        )
+        this.element?.classList.add('chat-history', 'chat-history_not-selected')
     }
 
     componentDidUpdate(
@@ -37,7 +34,9 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
         return !isEqual(oldProps, newProps)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
+        console.log('render ChatHistory')
+
         const messages = this.props.messages?.map(
             (message) =>
                 new ChatMessage({
@@ -94,7 +93,7 @@ export class ChatHistory extends Block<HTMLDivElement, IChatHistory> {
             `,
         })
 
-        this._children = this.props.currentChatId
+        this.children = this.props.currentChatId
             ? {
                   messages,
                   Popups: [AddUserPopup, RemoveUserPopup],

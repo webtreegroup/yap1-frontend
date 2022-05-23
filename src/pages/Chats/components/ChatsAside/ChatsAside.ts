@@ -49,7 +49,7 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
         })
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         const chats = this.props.chats.map(
             (el) =>
                 new ChatGroup({
@@ -58,8 +58,8 @@ export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
                 }),
         )
 
-        this._children = {
-            ...this._children,
+        this.children = {
+            ...this.children,
             chats,
         }
 

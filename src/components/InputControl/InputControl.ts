@@ -16,7 +16,7 @@ export class InputControl extends Block<HTMLInputElement> {
         this.handleControlBlur = this.handleControlBlur.bind(this)
         this.handleValidate = this.handleValidate.bind(this)
 
-        this._inputElement = this._element?.querySelector('input')
+        this._inputElement = this.element?.querySelector('input')
 
         this._inputElement?.addEventListener(
             'focus',
@@ -63,11 +63,11 @@ export class InputControl extends Block<HTMLInputElement> {
     }
 
     createResources({ isTouched }: InputControlProps): void {
-        this._element?.classList.add('input-control')
+        this.element?.classList.add('input-control')
         if (isTouched) this._inputElement?.classList.add('touched')
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         return inputControlTmplRender(this.props)
     }
 }

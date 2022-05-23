@@ -3,7 +3,7 @@ export type StoreType<T = any> = {
 }
 
 export interface ComponentProps {
-    className?: string | string[]
+    className?: string
     children?: string | number | HTMLElement
     onLoadComponent?: () => Promise<void>
 }

@@ -1,4 +1,4 @@
-import { render } from 'utils'
+import { renderComponent } from 'utils'
 import { ComponentProps } from 'App.types'
 import { Block, BaseTemplateRenderProps, BlockChildrenProps } from './Block'
 
@@ -40,7 +40,7 @@ describe('Block usage suite', () => {
 
     it('Block should be hide', () => {
         const Block = createBlock({ className })
-        render('body', Block)
+        renderComponent(Block, 'body')
 
         Block.hide()
 
@@ -50,7 +50,7 @@ describe('Block usage suite', () => {
 
     it('Block should be show', () => {
         const Block = createBlock({ className })
-        render('body', Block)
+        renderComponent(Block, 'body')
 
         const blockNode = document.querySelector(`.${className}`)
         expect(blockNode).not.toEqual(null)
@@ -59,7 +59,7 @@ describe('Block usage suite', () => {
     it('Block should be render like specify in template', () => {
         const Block1 = createBlock({ className: 'child-block-component' })
         const Block2 = createBlock({ className }, { root: Block1 }, tmplRender)
-        render('body', Block2)
+        renderComponent(Block2, 'body')
 
         const childBlockNode = document.querySelector('.child-block-component')
         expect(childBlockNode).not.toEqual(null)

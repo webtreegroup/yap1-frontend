@@ -1,6 +1,6 @@
 import { Route } from './Route'
 
-export interface BlockConstructorProps {
+export interface ComponentConstructorProps {
     new (): any
 }
 
@@ -13,8 +13,13 @@ export class Router {
 
     static _rootQuery = '.app'
 
-    static use(pathname: string, block: BlockConstructorProps): typeof Router {
-        const route = new Route(pathname, block, { rootQuery: this._rootQuery })
+    static use(
+        pathname: string,
+        component: ComponentConstructorProps,
+    ): typeof Router {
+        const route = new Route(pathname, component, {
+            rootQuery: this._rootQuery,
+        })
 
         this.routes.push(route)
 
@@ -33,9 +38,8 @@ export class Router {
 
     static _onRoute(pathname: string): void {
         const route = Router.getRoute(pathname)
-        if (!route) {
-            return
-        }
+
+        if (!route) return
 
         if (this._currentRoute) {
             this._currentRoute.leave()

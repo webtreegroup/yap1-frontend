@@ -1,7 +1,8 @@
-import { render } from 'utils'
+import { renderComponent } from 'utils'
 import { ComponentProps, StoreType } from 'App.types'
 import { EventBus } from './EventBus'
 import isEqual from 'lodash/isEqual'
+import { EVENTS } from './Block.config'
 
 interface BlockMetaProps {
     tagName: string
@@ -20,133 +21,108 @@ export class Block<
     ElementType extends HTMLElement = any,
     PropsType extends ComponentProps = any,
 > {
-    static EVENTS = {
-        INIT: 'init',
-        FLOW_CDM: 'flow:component-did-mount',
-        FLOW_RENDER: 'flow:render',
-        FLOW_CDU: 'flow:component-did-update',
+    private _eventBus: EventBus
+
+    private _baseTmplRender?: BaseTemplateRenderProps<PropsType>
+
+    private _documentElement: ElementType | null = null
+
+    private _meta: BlockMetaProps
+
+    public children: BlockChildrenProps
+
+    public props: PropsType
+
+    private _createDocumentElement(tagName: string): ElementType {
+        return document.createElement(tagName) as ElementType
     }
 
-    eventBus: EventBus
-
-    _baseTmplRender?: BaseTemplateRenderProps<PropsType>
-
-    _children: BlockChildrenProps
-
-    _element: ElementType | null = null
-
-    _meta: BlockMetaProps
-
-    props: PropsType
-
-    constructor(
-        tagName: string,
-        props = {} as PropsType,
-        children = {} as BlockChildrenProps,
-        baseTmplRender?: BaseTemplateRenderProps<PropsType>,
-    ) {
-        this._meta = {
-            tagName,
-            props,
-        }
-
-        this._children = children
-        this.props = this._makePropsProxy(props) as PropsType
-        this._baseTmplRender = baseTmplRender
-        this.eventBus = new EventBus()
-        this._registerEvents(this.eventBus)
-
-        this.eventBus.emit(Block.EVENTS.INIT, this.props)
+    public createResources(props: PropsType): void {
+        console.log('createResources - ', props)
     }
 
-    _registerEvents(eventBus: EventBus): void {
-        eventBus.on(Block.EVENTS.INIT, this.init.bind(this))
-        eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
-        eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this))
-        eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
-    }
-
-    init(props: PropsType): void {
-        this._createResources(props)
-        this.eventBus.emit(Block.EVENTS.FLOW_CDM)
-    }
-
-    _createResources(props: PropsType): void {
+    private _createResources(props: PropsType): void {
         const { tagName } = this._meta
-        this._element = this._createDocumentElement(tagName)
+
+        this._documentElement = this._createDocumentElement(tagName)
+
         if (props.className) {
             const classes = Array.isArray(props.className)
                 ? props.className
                 : [props.className]
 
-            this._element?.classList.add(...classes)
+            this._documentElement?.classList.add(...classes)
         }
+
         this.createResources(props)
     }
 
-    createResources(_props: PropsType): void {}
-
-    _createDocumentElement(tagName: string): ElementType {
-        return document.createElement(tagName) as ElementType
+    private _init(props: PropsType): void {
+        this._createResources(props)
+        this._eventBus.emit(EVENTS.COMPONENT_DID_MOUNT)
     }
 
-    _componentDidMount(): void {
+    public componentDidMount(): void {}
+
+    private _componentDidMount(): void {
         this.componentDidMount()
-        this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
+        this._eventBus.emit(EVENTS.COMPONENT_RENDER)
     }
 
-    componentDidMount(): void {}
-
-    _componentDidUpdate(oldProps: any, newProps: any): void {
-        const response = this.componentDidUpdate(oldProps, newProps)
-
-        if (response) this.eventBus.emit(Block.EVENTS.FLOW_RENDER)
+    public setHtmlTemplate(): string | undefined {
+        return this._baseTmplRender?.(this.props)
     }
 
-    componentDidUpdate(oldProps: any, newProps: any): boolean {
-        return !isEqual(oldProps, newProps)
-    }
+    private _render(): void {
+        if (!this._documentElement) return
 
-    setProps(nextProps?: PropsType): void {
-        if (!nextProps) return
+        this._documentElement.innerHTML = this.setHtmlTemplate() || ''
 
-        Object.assign(this.props, nextProps)
-    }
-
-    get element(): ElementType | null {
-        return this._element
-    }
-
-    _render(): void {
-        if (!this._element) return
-
-        const block = this.render()
-        this._element.innerHTML = block || ''
-
-        Object.keys(this._children).forEach((componentKey) => {
-            const components = this._children[componentKey]
+        Object.keys(this.children).forEach((componentKey) => {
+            const components = this.children[componentKey]
 
             if (!components) return
 
-            const componentsContainer = this._element?.querySelector(
+            const componentsContainer = this._documentElement?.querySelector(
                 `[data-component="${componentKey}"]`,
             )
-            const appendTarget = componentsContainer || this._element
+            const appendTarget = componentsContainer || this._documentElement
 
             if (Array.isArray(components)) {
-                components.map((el) => appendTarget?.appendChild(el.content))
+                components.map((el) => appendTarget?.appendChild(el.element))
             } else {
-                appendTarget?.appendChild(components.content)
+                appendTarget?.appendChild(components.element)
             }
         })
     }
 
-    render(): string | void | undefined {
-        return this._baseTmplRender?.(this.props)
+    public componentDidUpdate(
+        oldProps: PropsType,
+        newProps: PropsType,
+    ): boolean {
+        return !isEqual(oldProps, newProps)
     }
 
-    get content(): ElementType | null {
-        return this.element
+    private _componentDidUpdate(
+        oldProps: PropsType,
+        newProps: PropsType,
+    ): void {
+        const response = this.componentDidUpdate(oldProps, newProps)
+
+        if (response) this._eventBus.emit(EVENTS.COMPONENT_RENDER)
+    }
+
+    private _registerEvents(events: EventBus): void {
+        events.on(EVENTS.COMPONENT_INIT, this._init.bind(this))
+        events.on(
+            EVENTS.COMPONENT_DID_MOUNT,
+            this._componentDidMount.bind(this),
+        )
+        events.on(EVENTS.COMPONENT_RENDER, this._render.bind(this))
+        events.on(
+            EVENTS.COMPONENT_DID_UPDATE,
+            this._componentDidUpdate.bind(this),
+        )
     }
 
     _makePropsProxy(props: StoreType): StoreType {
@@ -159,8 +135,14 @@ export class Block<
             },
             set(target, prop: string, value: any) {
                 const oldProps: StoreType = { ...self.props }
+
                 target[prop] = value
-                self.eventBus.emit(Block.EVENTS.FLOW_CDU, oldProps, target)
+
+                self._eventBus.emit(
+                    EVENTS.COMPONENT_DID_UPDATE,
+                    oldProps,
+                    target,
+                )
 
                 return true
             },
@@ -170,11 +152,44 @@ export class Block<
         })
     }
 
-    hide(): void {
-        this._element?.remove()
+    constructor(
+        tagName: string,
+        props = {} as PropsType,
+        children = {} as BlockChildrenProps,
+        baseTmplRender?: BaseTemplateRenderProps<PropsType>,
+    ) {
+        this._meta = {
+            tagName,
+            props,
+        }
+
+        this._baseTmplRender = baseTmplRender
+        this._eventBus = new EventBus()
+
+        this._registerEvents(this._eventBus)
+
+        this.children = children
+
+        this.props = this._makePropsProxy(props) as PropsType
+
+        this._eventBus.emit(EVENTS.COMPONENT_INIT, this.props)
     }
 
-    show(rootQuery: string): void {
-        render(rootQuery, this)
+    public setProps(nextProps?: PropsType): void {
+        if (!nextProps) return
+
+        Object.assign(this.props, nextProps)
+    }
+
+    public get element(): ElementType | null {
+        return this._documentElement
+    }
+
+    public hide(): void {
+        this._documentElement?.remove()
+    }
+
+    public show(parentNode: string): void {
+        renderComponent(this, parentNode)
     }
 }

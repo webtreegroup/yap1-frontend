@@ -1,4 +1,3 @@
-import { IChatMessage } from 'core/api'
 import { loaderOffAction, loaderOnAction } from 'core/store'
 import { ChatMessageForm } from './ChatMessageForm'
 import { IChatMessageFormContainer } from './ChatMessageForm.types'
@@ -17,7 +16,7 @@ export class ChatMessageFormContainer {
         })
     }
 
-    onMessageSend(request: IChatMessage): void {
+    onMessageSend(request: any): void {
         loaderOnAction()
 
         this.props.sendMessage?.(request.message)

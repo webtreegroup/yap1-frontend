@@ -16,15 +16,15 @@ export class Popup extends Block<HTMLDivElement> {
     }
 
     show(): void {
-        this._element?.classList.add('popup-wrap_active')
+        this.element?.classList.add('popup-wrap_active')
     }
 
     hide(): void {
-        this._element?.classList.remove('popup-wrap_active')
+        this.element?.classList.remove('popup-wrap_active')
     }
 
     toggle(): void {
-        this._element?.classList.toggle('popup-wrap_active')
+        this.element?.classList.toggle('popup-wrap_active')
     }
 
     createResources({ isActive }: PopupProps): void {
@@ -33,10 +33,10 @@ export class Popup extends Block<HTMLDivElement> {
             isActive ? 'popup-wrap_active' : undefined,
         ])
 
-        this._element?.classList.add(...classes)
+        this.element?.classList.add(...classes)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         const ToggleAddPopupVisibility = new Link({
             onClick: () => {
                 this.hide()
@@ -48,11 +48,11 @@ export class Popup extends Block<HTMLDivElement> {
         })
 
         if (this.props.isClosable) {
-            this._children = {
-                ...this._children,
-                root: Array.isArray(this._children.root)
-                    ? [...this._children.root, ToggleAddPopupVisibility]
-                    : this._children.root,
+            this.children = {
+                ...this.children,
+                root: Array.isArray(this.children.root)
+                    ? [...this.children.root, ToggleAddPopupVisibility]
+                    : this.children.root,
             }
         }
 

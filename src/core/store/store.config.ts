@@ -12,6 +12,7 @@ export const ADD_MESSAGE = 'ADD_MESSAGE'
 export const ADD_OLD_MESSAGES = 'ADD_OLD_MESSAGES'
 export const SET_CURRENT_CHAT_USERS = 'SET_CURRENT_CHAT_USERS'
 export const SET_USERS = 'SET_USERS'
+export const SET_AUTH = 'SET_AUTH'
 
 export interface ISocketMessage {
     content: string
@@ -41,6 +42,7 @@ export interface StoreProps {
     messages: ISocketMessage[]
     currentChatUsers: UserContract[]
     users: UserContract[]
+    auth: boolean
 }
 
 export const INITIAL_STATE = {
@@ -53,4 +55,5 @@ export const INITIAL_STATE = {
     messages: [],
     currentChatUsers: [],
     users: [],
+    auth: false,
 }

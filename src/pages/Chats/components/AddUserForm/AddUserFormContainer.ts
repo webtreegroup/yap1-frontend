@@ -9,17 +9,15 @@ import { loaderOffAction, loaderOnAction, setUsers, store } from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {
-    async onLoadUsers(): Promise<void> {
-        console.log('okokok')
-        return UsersAPI.getAll()
-            .then((xhr) => {
-                const response: UserContract[] = JSON.parse(xhr.response)
+    // async onLoadUsers(): Promise<void> {
+    //     return UsersAPI.getAll()
+    //         .then((xhr) => {
+    //             const response: UserContract[] = JSON.parse(xhr.response)
 
-                console.log(response)
-                // setUsers(response)
-            })
-            .catch(console.error)
-    }
+    //             setUsers(response)
+    //         })
+    //         .catch(console.error)
+    // }
 
     onAddUser(login: string, currentChatId?: string): void {
         loaderOnAction()
@@ -68,17 +66,22 @@ export class AddUserFormContainer {
     }
 
     createBlock(): AddUserForm {
+        console.log('createBlock AddUserForm')
+
         const AddUserFormWrapped = new AddUserForm({
             onAddUser: this.onAddUser,
-            onLoadComponent: this.onLoadUsers,
+            // onLoadComponent: this.onLoadUsers,
             currentChatId: store.value.currentChatId,
         })
 
-        store.subscribe((state) => {
-            AddUserFormWrapped.setProps({
-                currentChatId: state.currentChatId,
-            })
-        }, [])
+        store.subscribe(
+            (state) => {
+                AddUserFormWrapped.setProps({
+                    currentChatId: state.currentChatId,
+                })
+            },
+            ['currentChatId'],
+        )
 
         return AddUserFormWrapped
     }

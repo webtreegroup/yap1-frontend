@@ -16,13 +16,13 @@ export class Loader extends Block<HTMLLinkElement> {
     }
 
     componentDidUpdate(oldProps: LoaderProps, newProps: LoaderProps): boolean {
-        if (newProps.active) this._element?.classList.add('loader_active')
-        else this._element?.classList.remove('loader_active')
+        if (newProps.active) this.element?.classList.add('loader_active')
+        else this.element?.classList.remove('loader_active')
 
         return !isEqual(oldProps, newProps)
     }
 
-    render(): string {
+    setHtmlTemplate(): string {
         return loaderTmplRender(this.props)
     }
 }
