@@ -1,12 +1,12 @@
 import './Loader.scss'
 
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { store } from 'core/store'
 import { loaderTmplRender } from './Loader.tmpl'
 import { LoaderProps } from './Loader.types'
 import isEqual from 'lodash/isEqual'
 
-export class Loader extends Block<HTMLLinkElement> {
+export class Loader extends Component<HTMLLinkElement> {
     constructor() {
         super('div', { className: 'loader' })
 

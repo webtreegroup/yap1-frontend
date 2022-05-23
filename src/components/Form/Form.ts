@@ -1,8 +1,12 @@
-import { Block, BaseTemplateRenderProps, BlockChildrenProps } from 'core/block'
+import {
+    Component,
+    BaseTemplateRenderProps,
+    BlockChildrenProps,
+} from 'core/block'
 import { escapeHtml } from 'utils'
 import { StoreType } from 'App.types'
 
-export class Form<PropsType extends object> extends Block<
+export class Form<PropsType extends object> extends Component<
     HTMLFormElement,
     PropsType
 > {

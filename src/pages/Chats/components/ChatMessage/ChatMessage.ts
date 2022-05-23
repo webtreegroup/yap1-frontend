@@ -1,10 +1,10 @@
 import './ChatMessage.scss'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { classNames } from 'utils'
 import { chatMessageTmplRender } from './ChatMessage.tmpl'
 import { IChatMessage } from './ChatMessage.types'
 
-export class ChatMessage extends Block<HTMLDivElement> {
+export class ChatMessage extends Component<HTMLDivElement> {
     constructor(props?: IChatMessage) {
         super('article', props)
     }

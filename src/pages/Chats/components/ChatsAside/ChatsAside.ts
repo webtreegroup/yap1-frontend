@@ -1,12 +1,12 @@
 import { Link, Loader, Popup } from 'components'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ROUTES } from 'core/router'
 import { AddChatFormContainer } from '../AddChatForm/AddChatFormContainer'
 import { ChatGroup } from '../ChatGroup/ChatGroup'
 import { chatsAsideTmplRender } from './ChatsAside.tmpl'
 import { IChatsAside } from './ChatsAside.types'
 
-export class ChatsAside extends Block<HTMLDivElement, IChatsAside> {
+export class ChatsAside extends Component<HTMLDivElement, IChatsAside> {
     constructor(props?: IChatsAside) {
         const ProfileLink = new Link({
             path: ROUTES.PROFILE.path,

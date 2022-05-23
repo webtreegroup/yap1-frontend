@@ -1,10 +1,11 @@
 import './Button.scss'
 
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ButtonProps } from './Button.types'
 import { buttonTmplRender } from './Button.tmpl'
+import { addclassNames } from 'utils'
 
-export class Button extends Block<HTMLButtonElement> {
+export class Button extends Component<HTMLButtonElement> {
     constructor(props: ButtonProps) {
         super('button', props)
     }
@@ -13,7 +14,8 @@ export class Button extends Block<HTMLButtonElement> {
         className = 'btn_primary',
         btnType = 'button',
     }: ButtonProps): void {
-        this.element?.classList.add('btn', className)
+        this.element?.classList.add('btn')
+        addclassNames(this.element, className)
         this.element?.setAttribute('type', btnType)
     }
 

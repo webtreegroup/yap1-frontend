@@ -1,14 +1,14 @@
 import '../Profile.scss'
 
 import { Link } from 'components'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ROUTES } from 'core/router'
 import { store } from 'core/store'
 import ProfileForm from './components/ProfileForm/ProfileForm'
 import { profileTmplRender } from './Profile.tmpl'
 import { IProfile } from './Profile.type'
 
-export class Profile extends Block<HTMLDivElement> {
+export class Profile extends Component<HTMLDivElement> {
     constructor(props?: IProfile) {
         const ProfileEditLink = new Link({
             path: ROUTES.PROFILE_EDIT.path,

@@ -1,4 +1,4 @@
-import { ComponentProps } from 'App.types'
+import { ComponentProps } from 'core/block/Component.types'
 
 export interface LoaderProps extends ComponentProps {
     active?: boolean

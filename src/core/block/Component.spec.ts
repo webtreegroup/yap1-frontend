@@ -1,6 +1,10 @@
 import { renderComponent } from 'utils'
-import { ComponentProps } from 'App.types'
-import { Block, BaseTemplateRenderProps, BlockChildrenProps } from './Block'
+import { ComponentProps } from 'core/block/Component.types'
+import {
+    Component,
+    BaseTemplateRenderProps,
+    BlockChildrenProps,
+} from './Component'
 
 interface IBlockComponent extends ComponentProps {
     desc?: string
@@ -16,7 +20,7 @@ describe('Block usage suite', () => {
         children = {} as BlockChildrenProps,
         baseTmplRender?: BaseTemplateRenderProps,
     ) {
-        return new Block<HTMLDivElement, IBlockComponent>(
+        return new Component<HTMLDivElement, IBlockComponent>(
             'div',
             props,
             children,

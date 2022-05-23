@@ -1,11 +1,11 @@
-import { ComponentProps } from 'App.types'
+import { ComponentProps } from 'core/block/Component.types'
 import { Link, Loader } from 'components'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ROUTES } from 'core/router'
 import { ProfileEditPassFormContainer } from './components/ProfileEditPassForm/ProfileEditPassFormContainer'
 import { profileEditPassTmplRender } from './ProfileEditPass.tmpl'
 
-export class ProfileEditPass extends Block<HTMLDivElement> {
+export class ProfileEditPass extends Component<HTMLDivElement> {
     constructor(props: ComponentProps) {
         const ProfileEditPassForm = new ProfileEditPassFormContainer()
         const LoaderComponent = new Loader()

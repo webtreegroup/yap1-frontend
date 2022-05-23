@@ -1,4 +1,4 @@
-import { ComponentProps } from 'App.types'
+import { ComponentProps } from 'core/block/Component.types'
 import { IChangePassword } from 'core/api'
 
 export interface IProfileEditPass extends ComponentProps {

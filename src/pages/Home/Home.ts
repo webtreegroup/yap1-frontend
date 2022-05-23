@@ -1,9 +1,9 @@
-import { ComponentProps } from 'App.types'
+import { ComponentProps } from 'core/block/Component.types'
 import { Loader } from 'components'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { homeTmplRender } from './Home.tmpl'
 
-export class Home extends Block<HTMLDivElement, ComponentProps> {
+export class Home extends Component<HTMLDivElement, ComponentProps> {
     constructor(props: ComponentProps) {
         super(
             'main',

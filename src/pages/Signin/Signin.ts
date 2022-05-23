@@ -1,18 +1,21 @@
 import { Loader, Popup } from 'components'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ROUTES } from 'core/router'
 import { SigninFormContainer } from './components/SigninForm/SigninFormContainer'
 
-export class Signin extends Block<HTMLDivElement> {
+export class Signin extends Component<HTMLDivElement> {
     constructor() {
         const SigninForm = new SigninFormContainer()
 
-        const SigninPopup = new Popup({
-            title: ROUTES.SIGNIN.title,
-            isActive: true,
-        }, {
-            root: [SigninForm.createBlock()],
-        })
+        const SigninPopup = new Popup(
+            {
+                title: ROUTES.SIGNIN.title,
+                isActive: true,
+            },
+            {
+                root: [SigninForm.createBlock()],
+            },
+        )
 
         super(
             'main',

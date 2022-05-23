@@ -1,8 +1,9 @@
-import { renderComponent } from 'utils'
-import { ComponentProps, StoreType } from 'App.types'
+import { addclassNames, renderComponent } from 'utils'
+import { StoreType } from 'App.types'
 import { EventBus } from './EventBus'
 import isEqual from 'lodash/isEqual'
-import { EVENTS } from './Block.config'
+import { EVENTS } from './Component.config'
+import { ComponentProps } from './Component.types'
 
 interface BlockMetaProps {
     tagName: string
@@ -14,10 +15,10 @@ export interface BaseTemplateRenderProps<T = StoreType> {
 }
 
 export interface BlockChildrenProps {
-    [key: string]: Block | Block[] | undefined
+    [key: string]: Component | Component[] | undefined
 }
 
-export class Block<
+export class Component<
     ElementType extends HTMLElement = any,
     PropsType extends ComponentProps = any,
 > {
@@ -46,13 +47,7 @@ export class Block<
 
         this._documentElement = this._createDocumentElement(tagName)
 
-        if (props.className) {
-            const classes = Array.isArray(props.className)
-                ? props.className
-                : [props.className]
-
-            this._documentElement?.classList.add(...classes)
-        }
+        addclassNames(this._documentElement, props.className)
 
         this.createResources(props)
     }

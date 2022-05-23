@@ -1,15 +1,15 @@
 import './Chats.scss'
 
 import { store } from 'core/store'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
 import { ChatHistoryContainer } from './components'
-import { ComponentProps } from 'App.types'
+import { ComponentProps } from 'core/block/Component.types'
 
-export class Chats extends Block<HTMLDivElement, ComponentProps> {
+export class Chats extends Component<HTMLDivElement, ComponentProps> {
     constructor(props: ComponentProps) {
         const ChatHistory = new ChatHistoryContainer()
-        const ChatHistoryPlaceholder = new Block(
+        const ChatHistoryPlaceholder = new Component(
             'main',
             {
                 className: ['chat-history', 'chat-history_not-selected'],
@@ -43,7 +43,7 @@ export class Chats extends Block<HTMLDivElement, ComponentProps> {
     }
 
     componentDidMount(): void {
-        const [Aside] = this.children.root as Block[]
+        const [Aside] = this.children.root as Component[]
 
         this.props.onLoadComponent?.().then(() => {
             store.subscribe((state) => {

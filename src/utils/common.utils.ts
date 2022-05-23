@@ -1,5 +1,5 @@
 import { StoreType } from 'App.types'
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 
 export function escapeHtml(value: FormDataEntryValue): FormDataEntryValue {
     if (typeof value !== 'string') return value
@@ -23,7 +23,7 @@ export function getArrLastEl<T>(arr: T[]): T {
 }
 
 export function renderComponent(
-    component: Block,
+    component: Component,
     parentNode?: string | HTMLElement,
 ): undefined | void {
     const { element } = component
@@ -50,4 +50,15 @@ export function getUrlParam(paramKey: string): string | null {
     const paramValue = url.searchParams.get(paramKey)
 
     return paramValue
+}
+
+export function addclassNames(
+    element?: HTMLElement | null,
+    className?: string | string[],
+): void | undefined {
+    if (!element || !className) return
+
+    const classes = Array.isArray(className) ? className : [className]
+
+    element?.classList.add(...classes)
 }

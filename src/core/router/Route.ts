@@ -1,5 +1,5 @@
 import { StoreType } from 'App.types'
-import { Block } from '../block/Block'
+import { Component } from '../block/Component'
 import { ComponentConstructorProps } from './Router'
 
 export class Route {
@@ -7,7 +7,7 @@ export class Route {
 
     _component: ComponentConstructorProps
 
-    _componentInstance: Block | null
+    _componentInstance: Component | null
 
     _props: StoreType
 
@@ -43,12 +43,12 @@ export class Route {
 
     render(): void {
         if (!this._componentInstance) {
-            const instance = new this._component()
+            const componentInstance = new this._component()
 
             this._componentInstance =
-                instance && 'createBlock' in instance
-                    ? instance.createBlock()
-                    : instance
+                componentInstance && 'createBlock' in componentInstance
+                    ? componentInstance.createBlock()
+                    : componentInstance
         }
 
         this._componentInstance?.show(this._props.rootQuery)

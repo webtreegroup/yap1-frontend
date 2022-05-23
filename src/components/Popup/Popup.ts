@@ -1,12 +1,12 @@
 import './Popup.scss'
 
-import { Block, BlockChildrenProps } from 'core/block'
+import { Component, BlockChildrenProps } from 'core/block'
 import { classNames } from 'utils'
 import { Link } from '../Link/Link'
 import { PopupProps } from './Popup.types'
 import { popupTmplRender } from './Popup.tmpl'
 
-export class Popup extends Block<HTMLDivElement> {
+export class Popup extends Component<HTMLDivElement> {
     constructor(props: PopupProps, children = {} as BlockChildrenProps) {
         super('div', props, children)
 

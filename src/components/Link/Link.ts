@@ -1,9 +1,9 @@
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { Router } from 'core/router'
 import { LinkProps } from './Link.types'
 import { linkTmplRender } from './Link.tmpl'
 
-export class Link extends Block<HTMLLinkElement> {
+export class Link extends Component<HTMLLinkElement> {
     constructor(props: LinkProps) {
         super('a', props)
     }

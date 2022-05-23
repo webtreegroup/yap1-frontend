@@ -1,11 +1,11 @@
 import './InputControl.scss'
 
-import { Block } from 'core/block'
+import { Component } from 'core/block'
 import { ValidationFnProps } from 'utils'
 import { InputControlProps } from './InputControl.types'
 import { inputControlTmplRender } from './InputControl.tmpl'
 
-export class InputControl extends Block<HTMLInputElement> {
+export class InputControl extends Component<HTMLInputElement> {
     _inputElement: HTMLInputElement | null | undefined
 
     constructor(props: InputControlProps) {
