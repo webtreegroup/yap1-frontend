@@ -25,7 +25,7 @@ export class AddUserForm extends Form<AddUserFormProps> {
         this.props.onAddUser?.(loginForAdd, store.value.currentChatId)
     }
 
-    componentDidMount(): void {
+    public componentDidMount(): void {
         this.props.onLoadComponent?.()
     }
 

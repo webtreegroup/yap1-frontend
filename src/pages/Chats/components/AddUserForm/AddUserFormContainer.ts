@@ -5,7 +5,7 @@ import {
     ChatUsersAPI,
     UsersAPI,
 } from 'core/api'
-import { loaderOffAction, loaderOnAction, setUsers } from 'core/store'
+import { loaderOffAction, loaderOnAction, setUsers, store } from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {
@@ -66,9 +66,15 @@ export class AddUserFormContainer {
     }
 
     createBlock(): AddUserForm {
-        return new AddUserForm({
+        const component = new AddUserForm({
             onAddUser: this.onAddUser,
             onLoadComponent: this.onLoadUsers,
         })
+
+        store.subscribe(() => {
+            component.eventBus.emit(component.events.COMPONENT_RENDER)
+        }, ['users'])
+
+        return component
     }
 }

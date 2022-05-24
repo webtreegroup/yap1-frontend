@@ -22,13 +22,15 @@ export class Component<
     ElementType extends HTMLElement = any,
     PropsType extends ComponentProps = any,
 > {
-    private _eventBus: EventBus
-
     private _baseTmplRender?: BaseTemplateRenderProps<PropsType>
 
     private _documentElement: ElementType | null = null
 
     private _meta: BlockMetaProps
+
+    public events = EVENTS
+
+    public eventBus: EventBus
 
     public children: BlockChildrenProps
 
@@ -53,14 +55,14 @@ export class Component<
 
     private _init(): void {
         this._createResources(this.props)
-        this._eventBus.emit(EVENTS.COMPONENT_DID_MOUNT)
+        this.eventBus.emit(this.events.COMPONENT_DID_MOUNT)
     }
 
     public componentDidMount(): void {}
 
     private _componentDidMount(): void {
         this.componentDidMount()
-        this._eventBus.emit(EVENTS.COMPONENT_RENDER)
+        this.eventBus.emit(this.events.COMPONENT_RENDER)
     }
 
     public componentShouldRender(): string | undefined {
@@ -91,7 +93,7 @@ export class Component<
             }
         })
 
-        this._eventBus.emit(EVENTS.COMPONENT_DID_UPDATE)
+        this.eventBus.emit(this.events.COMPONENT_DID_UPDATE)
     }
 
     public componentShouldUpdate(
@@ -107,24 +109,24 @@ export class Component<
     ): void {
         const response = this.componentShouldUpdate(oldProps, newProps)
 
-        if (response) this._eventBus.emit(EVENTS.COMPONENT_RENDER)
+        if (response) this.eventBus.emit(this.events.COMPONENT_RENDER)
     }
 
     public componentDidUpdate(): void {}
 
     private _registerEvents(events: EventBus): void {
-        events.on(EVENTS.COMPONENT_INIT, this._init.bind(this))
+        events.on(this.events.COMPONENT_INIT, this._init.bind(this))
         events.on(
-            EVENTS.COMPONENT_DID_MOUNT,
+            this.events.COMPONENT_DID_MOUNT,
             this._componentDidMount.bind(this),
         )
-        events.on(EVENTS.COMPONENT_RENDER, this._render.bind(this))
+        events.on(this.events.COMPONENT_RENDER, this._render.bind(this))
         events.on(
-            EVENTS.COMPONENT_SHOULD_UPDATE,
+            this.events.COMPONENT_SHOULD_UPDATE,
             this._componentShouldUpdate.bind(this),
         )
         events.on(
-            EVENTS.COMPONENT_DID_UPDATE,
+            this.events.COMPONENT_DID_UPDATE,
             this.componentDidUpdate.bind(this),
         )
     }
@@ -142,8 +144,8 @@ export class Component<
 
                 target[prop] = value
 
-                self._eventBus.emit(
-                    EVENTS.COMPONENT_SHOULD_UPDATE,
+                self.eventBus.emit(
+                    self.events.COMPONENT_SHOULD_UPDATE,
                     oldProps,
                     target,
                 )
@@ -168,15 +170,15 @@ export class Component<
         }
 
         this._baseTmplRender = baseTmplRender
-        this._eventBus = new EventBus()
+        this.eventBus = new EventBus()
 
-        this._registerEvents(this._eventBus)
+        this._registerEvents(this.eventBus)
 
         this.children = children
 
         this.props = this._makePropsProxy(props) as PropsType
 
-        this._eventBus.emit(EVENTS.COMPONENT_INIT)
+        this.eventBus.emit(this.events.COMPONENT_INIT)
     }
 
     public setProps(nextProps?: PropsType): void {
