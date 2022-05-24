@@ -29,7 +29,6 @@ export class Store {
         dependencies: string[],
     ): Function {
         this._subscribers.push([fn, dependencies])
-        fn(this.value)
 
         return () => {
             this._subscribers =

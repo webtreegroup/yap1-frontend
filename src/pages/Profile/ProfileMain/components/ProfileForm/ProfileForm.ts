@@ -1,11 +1,11 @@
 import { InputControl } from 'components'
 import { UserContract } from 'core/api'
 import { Component } from 'core/block'
-import { IProfileEditForm } from '../../../ProfileEdit/components/ProfileEditForm/ProfileEditForm.types'
+import { ProfileEditFormProps } from '../../../ProfileEdit/components/ProfileEditForm/ProfileEditForm.types'
 import { PROFILE_FORM_CONTROLS } from './ProfileForm.config'
 
-class ProfileForm extends Component<HTMLDivElement, IProfileEditForm> {
-    constructor(props?: IProfileEditForm) {
+class ProfileForm extends Component<HTMLDivElement, ProfileEditFormProps> {
+    constructor(props?: ProfileEditFormProps) {
         super('div', {
             ...props,
             className: 'profile-fields',

@@ -1,9 +1,9 @@
-import { checkAuth, getCurrentUser } from 'utils/auth.utils'
+import { checkAuth } from 'utils/auth.utils'
 import { ProfileEditPass } from './ProfileEditPass'
 
 export class ProfileEditPassContainer {
     onLoadProfile(): Promise<void> {
-        return checkAuth().then(getCurrentUser)
+        return checkAuth().catch(console.error)
     }
 
     createBlock(): ProfileEditPass {

@@ -23,19 +23,13 @@ export function checkAuth(): Promise<void> {
                 throw new Error(ACCESS_FORBIDDEN)
             }
 
-            setAuth(true)
-        })
-        .finally(() => {
-            loaderOffAction()
-        })
-}
-
-export function getCurrentUser(): void {
-    UsersAPI.getCurrentUser()
-        .then((xhr) => {
             const response: UserContract = JSON.parse(xhr.response)
 
+            setAuth(true)
             setCurrentUserInfoAction(response)
         })
         .catch(console.error)
+        .finally(() => {
+            loaderOffAction()
+        })
 }

@@ -27,13 +27,7 @@ export class ChatsEmpty extends Component<HTMLDivElement, ComponentProps> {
                 className: 'chats-page',
             },
             {
-                root: [
-                    new ChatsAside({
-                        className: 'chats',
-                        chats: store.value.chats,
-                    }),
-                    ChatHistoryPlaceholder,
-                ],
+                root: [new ChatsAside(), ChatHistoryPlaceholder],
             },
         )
     }

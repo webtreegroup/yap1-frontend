@@ -4,10 +4,9 @@ import { ROUTES } from 'core/router'
 import { AddChatFormContainer } from '../AddChatForm/AddChatFormContainer'
 import { ChatGroup } from '../ChatGroup/ChatGroup'
 import { chatsAsideTmplRender } from './ChatsAside.tmpl'
-import { IChatsAside } from './ChatsAside.types'
 
-export class ChatsAside extends Component<HTMLDivElement, IChatsAside> {
-    constructor(props?: IChatsAside) {
+export class ChatsAside extends Component<HTMLDivElement> {
+    constructor() {
         const ProfileLink = new Link({
             path: ROUTES.PROFILE.path,
             title: `
@@ -41,7 +40,7 @@ export class ChatsAside extends Component<HTMLDivElement, IChatsAside> {
             className: 'chats__add-button',
         })
 
-        super('aside', props, {
+        super('aside', undefined, {
             ProfileLink,
             LoaderComponent,
             AddChatPopup,

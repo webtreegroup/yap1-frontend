@@ -2,8 +2,6 @@ import { ComponentProps } from 'core/block/Component.types'
 import { Link, Loader } from 'components'
 import { Component } from 'core/block'
 import { ROUTES } from 'core/router'
-import { store } from 'core/store'
-import { IProfileEditForm } from './components/ProfileEditForm/ProfileEditForm.types'
 import { ProfileEditFormContainer } from './components/ProfileEditForm/ProfileEditFormContainer'
 import { profileEditTmplRender } from './ProfileEdit.tmpl'
 
@@ -34,18 +32,7 @@ export class ProfileEdit extends Component<HTMLDivElement, ComponentProps> {
         )
     }
 
-    componentDidMount(): void {
-        const ProfileForm = this.children.ProfileForm as Component<
-            HTMLFormElement,
-            IProfileEditForm
-        >
-
-        this.props?.onLoadComponent?.().then(() => {
-            store.subscribe((state) => {
-                ProfileForm.setProps({
-                    currentUserInfo: state.currentUser,
-                })
-            }, [])
-        })
+    public componentDidMount(): void {
+        this.props.onLoadComponent?.()
     }
 }

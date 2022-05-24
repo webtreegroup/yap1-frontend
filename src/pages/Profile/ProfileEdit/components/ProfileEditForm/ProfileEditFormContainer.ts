@@ -5,7 +5,7 @@ import {
     ProfileAPI,
 } from 'core/api'
 import { Router } from 'core/router'
-import { loaderOffAction, loaderOnAction } from 'core/store'
+import { loaderOffAction, loaderOnAction, store } from 'core/store'
 import { ProfileEditForm } from './ProfileEditForm'
 
 export class ProfileEditFormContainer {
@@ -16,23 +16,31 @@ export class ProfileEditFormContainer {
     onProfileChange(request: IChangeProfile): void {
         loaderOnAction()
 
-        ProfileAPI.change(request).then((response) => {
-            switch (response.status) {
-            case 200:
-                alert(PROFILE_CHANGE_SUCCESS_MESSAGE)
-                Router.reload()
-                break
-            default:
-                alert(PROFILE_CHANGE_FAIL_MESSAGE)
-            }
-        }).finally(() => {
-            loaderOffAction()
-        })
+        ProfileAPI.change(request)
+            .then((response) => {
+                switch (response.status) {
+                    case 200:
+                        alert(PROFILE_CHANGE_SUCCESS_MESSAGE)
+                        Router.reload()
+                        break
+                    default:
+                        alert(PROFILE_CHANGE_FAIL_MESSAGE)
+                }
+            })
+            .finally(() => {
+                loaderOffAction()
+            })
     }
 
     createBlock(): ProfileEditForm {
-        return new ProfileEditForm({
+        const component = new ProfileEditForm({
             onProfileChange: this.onProfileChange,
         })
+
+        store.subscribe(() => {
+            component.eventBus.emit(component.events.COMPONENT_RENDER)
+        }, ['currentUser'])
+
+        return component
     }
 }

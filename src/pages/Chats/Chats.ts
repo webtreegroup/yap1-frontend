@@ -17,13 +17,7 @@ export class Chats extends Component<HTMLDivElement, ComponentProps> {
                 className: 'chats-page',
             },
             {
-                root: [
-                    new ChatsAside({
-                        className: 'chats',
-                        chats: store.value.chats,
-                    }),
-                    ChatHistory.createBlock(),
-                ],
+                root: [new ChatsAside(), ChatHistory.createBlock()],
             },
         )
     }
