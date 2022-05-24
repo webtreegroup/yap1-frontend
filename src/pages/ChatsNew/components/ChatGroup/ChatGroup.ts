@@ -1,5 +1,4 @@
 import { Component } from 'core/block'
-import { classNames } from 'utils'
 import { Link } from 'components'
 import { setCurrentChatAction, store } from 'core/store'
 import { ROUTES, Router } from 'core/router'
@@ -19,18 +18,13 @@ export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
             title: props.name,
         })
 
-        super('div', props, {
-            ChatSingleLink,
-        })
-    }
-
-    createResources({ isCurrent }: ChatGroupProps): void {
-        const classes = classNames([
-            'chats-item',
-            isCurrent ? 'chats-item_current' : undefined,
-        ])
-
-        this.element?.classList.add(...classes)
+        super(
+            'li',
+            { ...props, className: 'list-group-item' },
+            {
+                ChatSingleLink,
+            },
+        )
     }
 
     setComponentTemplate(): string {
