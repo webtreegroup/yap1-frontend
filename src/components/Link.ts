@@ -1,7 +1,12 @@
 import { Component } from 'core/block'
+import { ComponentProps } from 'core/block/Component.types'
 import { Router } from 'core/router'
-import { LinkProps } from './Link.types'
-import { linkTmplRender } from './Link.tmpl'
+
+export interface LinkProps extends ComponentProps {
+    title?: string
+    path?: string
+    onClick?: () => void
+}
 
 export class Link extends Component<HTMLLinkElement> {
     constructor(props: LinkProps) {
@@ -14,7 +19,11 @@ export class Link extends Component<HTMLLinkElement> {
         function onClickWrapper(e: Event) {
             e.preventDefault()
 
-            if (path) Router.go(path)
+            if (path) {
+                Router.go(path)
+
+                return
+            }
 
             onClick?.()
         }
@@ -23,6 +32,6 @@ export class Link extends Component<HTMLLinkElement> {
     }
 
     setComponentTemplate(): string {
-        return linkTmplRender(this.props)
+        return `${this.props?.title || 'Ссылка'}`
     }
 }

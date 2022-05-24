@@ -2,7 +2,7 @@ import './Popup.scss'
 
 import { Component, ComponentChildrenProps } from 'core/block'
 import { classNames } from 'utils'
-import { Link } from '../Link/Link'
+import { Link } from '../Link'
 import { PopupProps } from './Popup.types'
 import { popupTmplRender } from './Popup.tmpl'
 

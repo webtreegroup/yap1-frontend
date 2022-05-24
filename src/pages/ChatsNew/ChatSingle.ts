@@ -1,3 +1,4 @@
+import { Header } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
@@ -17,10 +18,18 @@ interface ChatSingleProps extends ComponentProps {
 
 export class ChatSingle extends Component<HTMLDivElement, ChatSingleProps> {
     constructor(props: ChatSingleProps = {}) {
-        super('div', {
-            ...props,
-            className: 'ChatSingle',
-        })
+        const HeaderComponent = new Header()
+
+        super(
+            'div',
+            {
+                ...props,
+                className: 'ChatSingle',
+            },
+            {
+                HeaderComponent,
+            },
+        )
     }
 
     public componentDidMount(): void {
@@ -43,6 +52,8 @@ export class ChatSingle extends Component<HTMLDivElement, ChatSingleProps> {
         }
 
         return `
+            <div data-component="HeaderComponent"></div>
+
             <div class="container pt-5">
                 <h1 class="text-center">Чат</h1>
                 

@@ -9,13 +9,12 @@ import {
     ProfileEditContainer,
     ProfileEditPassContainer,
     ChatsContainer,
-    HomeContainer,
 } from 'pages'
 import { ChatsEmptyContainer } from 'pages/Chats/ChatsEmptyContainer'
 import { ChatsNewContainer } from 'pages/ChatsNew/ChatsNew'
 import { ChatSingleContainer } from 'pages/ChatsNew/ChatSingle'
 
-Router.use('/', HomeContainer)
+Router.use('/', ChatsNewContainer)
     .use('/chats-new', ChatsNewContainer)
     .use('/chats-new/.+', ChatSingleContainer)
     .use('/profile/edit-pass', ProfileEditPassContainer)

@@ -35,17 +35,4 @@ export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
             },
         )
     }
-
-    setComponentTemplate(): string {
-        const { lastMessage = '', time = '', isOwnMessage } = this.props
-
-        return `
-            <div data-component="ChatSingleLink"></div>
-            <div>
-                ${isOwnMessage ? '<b>Вы:</b>' : ''}
-                ${lastMessage}
-            </div>
-            <time>${time}</time>
-        `
-    }
 }

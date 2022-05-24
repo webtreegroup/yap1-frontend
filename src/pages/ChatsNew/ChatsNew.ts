@@ -1,3 +1,4 @@
+import { Header } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
@@ -11,10 +12,18 @@ interface ChatsNewProps extends ComponentProps {
 
 export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
     constructor(props: ChatsNewProps = {}) {
-        super('div', {
-            ...props,
-            className: 'ChatsNew',
-        })
+        const HeaderComponent = new Header()
+
+        super(
+            'div',
+            {
+                ...props,
+                className: 'ChatsNew',
+            },
+            {
+                HeaderComponent,
+            },
+        )
     }
 
     public componentDidMount(): void {
@@ -33,46 +42,12 @@ export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
         )
 
         this.children = {
+            ...this.children,
             chats,
         }
 
         return `
-            <header>
-                <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                    <div class="container-fluid">
-
-                        <a class="navbar-brand" href="#"><- чатик -></a>
-
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse" id="navbarCollapse">
-                            <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Главная</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Чаты</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Пользователи</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Личный кабинет</a>
-                                </li>
-                            </ul>
-
-                            <div class="d-flex">
-                                <a class="nav-link text-white" href="#">Текущий юзер</a>
-                            </div>
-                        </div>
-                    </div>
-                </nav>
-            </header>
+            <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
                 <h1 class="text-center">Чаты</h1>
