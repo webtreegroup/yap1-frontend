@@ -5,7 +5,7 @@ import isEqual from 'lodash/isEqual'
 import { EVENTS } from './Component.config'
 import { ComponentProps } from './Component.types'
 
-interface BlockMetaProps {
+interface ComponentMetaProps {
     tagName: string
     props: StoreType
 }
@@ -14,7 +14,7 @@ export interface BaseTemplateRenderProps<T = StoreType> {
     (props?: T): string
 }
 
-export interface BlockChildrenProps {
+export interface ComponentChildrenProps {
     [key: string]: Component | Component[] | undefined
 }
 
@@ -26,13 +26,13 @@ export class Component<
 
     private _documentElement: ElementType | null = null
 
-    private _meta: BlockMetaProps
+    private _meta: ComponentMetaProps
 
     public events = EVENTS
 
     public eventBus: EventBus
 
-    public children: BlockChildrenProps
+    public children: ComponentChildrenProps
 
     public props: PropsType
 
@@ -65,14 +65,14 @@ export class Component<
         this.eventBus.emit(this.events.COMPONENT_RENDER)
     }
 
-    public componentShouldRender(): string | undefined {
+    public setComponentTemplate(): string | undefined {
         return this._baseTmplRender?.(this.props)
     }
 
     private _render(): void {
         if (!this._documentElement) return
 
-        this._documentElement.innerHTML = this.componentShouldRender() || ''
+        this._documentElement.innerHTML = this.setComponentTemplate() || ''
 
         Object.keys(this.children).forEach((componentKey) => {
             const childComponents = this.children[componentKey]
@@ -161,7 +161,7 @@ export class Component<
     constructor(
         tagName: string,
         props = {} as PropsType,
-        children = {} as BlockChildrenProps,
+        children = {} as ComponentChildrenProps,
         baseTmplRender?: BaseTemplateRenderProps<PropsType>,
     ) {
         this._meta = {

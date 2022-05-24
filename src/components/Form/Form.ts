@@ -1,7 +1,7 @@
 import {
     Component,
     BaseTemplateRenderProps,
-    BlockChildrenProps,
+    ComponentChildrenProps,
 } from 'core/block'
 import { escapeHtml } from 'utils'
 import { StoreType } from 'App.types'
@@ -12,7 +12,7 @@ export class Form<PropsType extends object> extends Component<
 > {
     constructor(
         props?: PropsType,
-        children?: BlockChildrenProps,
+        children?: ComponentChildrenProps,
         baseTmplRender?: BaseTemplateRenderProps,
     ) {
         super('form', props, children, baseTmplRender)

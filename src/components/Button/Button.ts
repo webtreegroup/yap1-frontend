@@ -19,7 +19,7 @@ export class Button extends Component<HTMLButtonElement> {
         this.element?.setAttribute('type', btnType)
     }
 
-    componentShouldRender(): string {
+    setComponentTemplate(): string {
         return buttonTmplRender(this.props)
     }
 }

@@ -11,7 +11,7 @@ export class ProfileEditForm extends Form<IProfileEditForm> {
         })
     }
 
-    componentShouldRender(): void {
+    setComponentTemplate(): void {
         const { currentUserInfo } = this.props
 
         if (!currentUserInfo) return

@@ -49,7 +49,7 @@ export class ChatsAside extends Component<HTMLDivElement, IChatsAside> {
         })
     }
 
-    componentShouldRender(): string {
+    setComponentTemplate(): string {
         const chats = this.props.chats.map(
             (el) =>
                 new ChatGroup({

@@ -29,7 +29,7 @@ export class AddUserForm extends Form<AddUserFormProps> {
         this.props.onLoadComponent?.()
     }
 
-    componentShouldRender(): string {
+    setComponentTemplate(): string {
         return addUserFormTmplRender()
     }
 }

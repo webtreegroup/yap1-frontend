@@ -27,7 +27,7 @@ export class SigninForm extends Form<ISigninForm> {
         this.props.onSignin?.(request)
     }
 
-    componentShouldRender(): string {
+    setComponentTemplate(): string {
         return loginFormTmplRender()
     }
 }

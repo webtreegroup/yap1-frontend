@@ -25,7 +25,7 @@ export class Loader extends Component<HTMLLinkElement> {
         return !isEqual(oldProps, newProps)
     }
 
-    componentShouldRender(): string {
+    setComponentTemplate(): string {
         return loaderTmplRender(this.props)
     }
 }

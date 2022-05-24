@@ -52,10 +52,16 @@ export class ChatHistoryContainer {
     }
 
     createBlock(): ChatHistory {
-        return new ChatHistory({
+        const component = new ChatHistory({
             onChatConnect: this.onChatConnect,
             sendMessage: this.sendMessage,
             onLoadUsers: this.onLoadUsers,
         })
+
+        store.subscribe(() => {
+            component.eventBus.emit(component.events.COMPONENT_RENDER)
+        }, ['chats', 'currentChatUsers', 'currentChatId'])
+
+        return component
     }
 }

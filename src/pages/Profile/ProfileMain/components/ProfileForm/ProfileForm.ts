@@ -12,7 +12,7 @@ class ProfileForm extends Component<HTMLDivElement, IProfileEditForm> {
         })
     }
 
-    componentShouldRender() {
+    setComponentTemplate() {
         const { currentUserInfo } = this.props
 
         if (!currentUserInfo) return

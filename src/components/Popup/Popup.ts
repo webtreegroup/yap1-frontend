@@ -1,13 +1,13 @@
 import './Popup.scss'
 
-import { Component, BlockChildrenProps } from 'core/block'
+import { Component, ComponentChildrenProps } from 'core/block'
 import { classNames } from 'utils'
 import { Link } from '../Link/Link'
 import { PopupProps } from './Popup.types'
 import { popupTmplRender } from './Popup.tmpl'
 
 export class Popup extends Component<HTMLDivElement> {
-    constructor(props: PopupProps, children = {} as BlockChildrenProps) {
+    constructor(props: PopupProps, children = {} as ComponentChildrenProps) {
         super('div', props, children)
 
         this.show = this.show.bind(this)
@@ -36,7 +36,7 @@ export class Popup extends Component<HTMLDivElement> {
         this.element?.classList.add(...classes)
     }
 
-    componentShouldRender(): string {
+    setComponentTemplate(): string {
         const ToggleAddPopupVisibility = new Link({
             onClick: () => {
                 this.hide()

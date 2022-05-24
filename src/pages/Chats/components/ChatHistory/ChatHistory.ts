@@ -13,19 +13,6 @@ import { store } from 'core/store'
 
 export class ChatHistory extends Component<HTMLDivElement, ChatHistoryProps> {
     constructor(props: ChatHistoryProps = {}) {
-        super('main', props)
-    }
-
-    createResources(): void {
-        this.element?.classList.add('chat-history', 'chat-history_not-selected')
-    }
-
-    public componentDidUpdate(): void {
-        this.props.onLoadUsers?.(store.value.currentChatId)
-        this.props.onChatConnect?.(store.value.currentChatId)
-    }
-
-    public componentShouldRender(): string {
         const messages = store.value.messages?.map(
             (message) =>
                 new ChatMessage({
@@ -82,17 +69,26 @@ export class ChatHistory extends Component<HTMLDivElement, ChatHistoryProps> {
             `,
         })
 
-        this.children = store.value.currentChatId
-            ? {
-                  messages,
-                  Popups: [AddUserPopup, RemoveUserPopup],
-                  ToggleAddUserPopup,
-                  ToggleRemoveUserPopup,
-                  LoaderComponent,
-                  ChatMessageForm: ChatMessageForm.createBlock(),
-              }
-            : {}
+        super('main', props, {
+            messages,
+            Popups: [AddUserPopup, RemoveUserPopup],
+            ToggleAddUserPopup,
+            ToggleRemoveUserPopup,
+            LoaderComponent,
+            ChatMessageForm: ChatMessageForm.createBlock(),
+        })
+    }
 
+    createResources(): void {
+        this.element?.classList.add('chat-history', 'chat-history_not-selected')
+    }
+
+    public componentDidMount(): void {
+        this.props.onLoadUsers?.(store.value.currentChatId)
+        this.props.onChatConnect?.(store.value.currentChatId)
+    }
+
+    public setComponentTemplate(): string {
         return chatHistoryTmplRender()
     }
 }

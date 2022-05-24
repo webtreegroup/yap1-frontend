@@ -3,7 +3,7 @@ import { ComponentProps } from 'core/block/Component.types'
 import {
     Component,
     BaseTemplateRenderProps,
-    BlockChildrenProps,
+    ComponentChildrenProps,
 } from './Component'
 
 interface IBlockComponent extends ComponentProps {
@@ -17,7 +17,7 @@ describe('Block usage suite', () => {
 
     function createBlock(
         props: IBlockComponent,
-        children = {} as BlockChildrenProps,
+        children = {} as ComponentChildrenProps,
         baseTmplRender?: BaseTemplateRenderProps,
     ) {
         return new Component<HTMLDivElement, IBlockComponent>(

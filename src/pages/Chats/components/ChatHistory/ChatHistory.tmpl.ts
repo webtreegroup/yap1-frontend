@@ -5,7 +5,7 @@ export const chatHistoryTmplRender = (): string => {
     const currentChatName = chats.find(
         (chat) => chat.id === currentChatId,
     )?.name
-    const usersStr = currentChatUsers
+    const chatUsers = currentChatUsers
         .map((el) => `${el.firstName} ${el.secondName}`)
         .join(', ')
 
@@ -22,7 +22,7 @@ export const chatHistoryTmplRender = (): string => {
         </header>
 
         <div class="chat-history__chat-users">
-            <span>${usersStr}</span>
+            <span>${chatUsers}</span>
         </div>
 
         <section class="chat-history__body" data-component="Popups">
