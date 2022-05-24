@@ -1,4 +1,4 @@
-import { ChatAPI, IChat } from 'core/api'
+import { ChatAPI, ChatContract } from 'core/api'
 import { setChatsAction, setCurrentChatAction } from 'core/store'
 import { getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
@@ -19,7 +19,7 @@ export class ChatsContainer {
         return checkAuth().then(() =>
             ChatAPI.getAll()
                 .then((xhr) => {
-                    const response: IChat[] = JSON.parse(xhr.response)
+                    const response: ChatContract[] = JSON.parse(xhr.response)
 
                     setChatsAction(response)
                 })

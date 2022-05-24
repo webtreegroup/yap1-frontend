@@ -1,5 +1,5 @@
 import { UserContract } from '../api/auth.api'
-import { IChat } from '../api/chat.api'
+import { ChatContract } from '../api/chat.api'
 import { store } from './store'
 import {
     SET_CHATS,
@@ -36,7 +36,7 @@ export function setCurrentUserInfoAction(payload: UserContract): void {
     })
 }
 
-export function setChatsAction(payload: IChat[]): void {
+export function setChatsAction(payload: ChatContract[]): void {
     store.dispatch({
         type: SET_CHATS,
         payload,

@@ -1,7 +1,7 @@
 import { StoreType } from 'App.types'
 import { WebSocketService } from 'core/websocket'
 import { UserContract } from '../api/auth.api'
-import { IChat } from '../api/chat.api'
+import { ChatContract } from '../api/chat.api'
 
 export const LOADER_ON = 'LOADER_ON'
 export const LOADER_OFF = 'LOADER_OFF'
@@ -37,7 +37,7 @@ export interface StoreProps extends StoreType {
         active: boolean
     }
     currentUser: UserContract
-    chats: IChat[]
+    chats: ChatContract[]
     connectedChats: IConnectedChats
     currentChatId?: string
     messages: ISocketMessage[]

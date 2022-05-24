@@ -2,7 +2,7 @@ import {
     CHAT_ADD_FAIL_MESSAGE,
     CHAT_ADD_SUCCESS_MESSAGE,
     ChatAPI,
-    IAddChat,
+    AddChatContract,
 } from 'core/api'
 import { Router } from 'core/router'
 import { loaderOffAction, loaderOnAction } from 'core/store'
@@ -13,21 +13,23 @@ export class AddChatFormContainer {
         this.onAddChat = this.onAddChat.bind(this)
     }
 
-    onAddChat(request: IAddChat): void {
+    onAddChat(request: AddChatContract): void {
         loaderOnAction()
 
-        ChatAPI.create(request).then((response) => {
-            switch (response.status) {
-            case 200:
-                alert(CHAT_ADD_SUCCESS_MESSAGE)
-                Router.reload()
-                break
-            default:
-                alert(CHAT_ADD_FAIL_MESSAGE)
-            }
-        }).finally(() => {
-            loaderOffAction()
-        })
+        ChatAPI.create(request)
+            .then((response) => {
+                switch (response.status) {
+                    case 200:
+                        alert(CHAT_ADD_SUCCESS_MESSAGE)
+                        Router.reload()
+                        break
+                    default:
+                        alert(CHAT_ADD_FAIL_MESSAGE)
+                }
+            })
+            .finally(() => {
+                loaderOffAction()
+            })
     }
 
     createBlock(): AddChatForm {

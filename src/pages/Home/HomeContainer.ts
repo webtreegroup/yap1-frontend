@@ -6,7 +6,7 @@ export class HomeContainer {
     onLoadApp(): Promise<void> {
         return checkAuth()
             .then(() => {
-                Router.go(ROUTES.CHATS.path)
+                Router.go(ROUTES.CHATS_NEW.path)
             })
             .catch(console.error)
     }

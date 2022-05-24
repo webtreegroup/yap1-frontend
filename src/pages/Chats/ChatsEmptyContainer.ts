@@ -1,4 +1,4 @@
-import { ChatAPI, IChat } from 'core/api'
+import { ChatAPI, ChatContract } from 'core/api'
 import { setChatsAction } from 'core/store'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatsEmpty } from './ChatsEmpty'
@@ -8,7 +8,7 @@ export class ChatsEmptyContainer {
         return checkAuth().then(() =>
             ChatAPI.getAll()
                 .then((xhr) => {
-                    const response: IChat[] = JSON.parse(xhr.response)
+                    const response: ChatContract[] = JSON.parse(xhr.response)
 
                     setChatsAction(response)
                 })

@@ -2,8 +2,17 @@ import { Component } from 'core/block'
 import { Link } from 'components'
 import { setCurrentChatAction, store } from 'core/store'
 import { ROUTES, Router } from 'core/router'
-import { ChatGroupProps } from './ChatGroup.types'
-import { chatGroupTmplRender } from './ChatGroup.tmpl'
+import { ComponentProps } from 'core/block/Component.types'
+
+export interface ChatGroupProps extends ComponentProps {
+    id?: string
+    name?: string
+    lastMessage?: string
+    time?: string
+    unread?: number
+    isOwnMessage?: boolean
+    isCurrent?: boolean
+}
 
 export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
     constructor(props: ChatGroupProps) {
@@ -13,7 +22,7 @@ export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
                     setCurrentChatAction(props.id)
                 }
 
-                Router.go(`${ROUTES.CHATS.path}/?chatId=${props.id}`)
+                Router.go(`${ROUTES.CHATS_NEW.path}/?chatId=${props.id}`)
             },
             title: props.name,
         })
@@ -28,6 +37,15 @@ export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
     }
 
     setComponentTemplate(): string {
-        return chatGroupTmplRender(this.props)
+        const { lastMessage = '', time = '', isOwnMessage } = this.props
+
+        return `
+            <div data-component="ChatSingleLink"></div>
+            <div>
+                ${isOwnMessage ? '<b>Вы:</b>' : ''}
+                ${lastMessage}
+            </div>
+            <time>${time}</time>
+        `
     }
 }

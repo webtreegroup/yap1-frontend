@@ -1,20 +1,25 @@
 import { HTTP, IResponse } from './api'
 import { BaseAPI } from './base.api'
 
-export interface IChat {
+export interface ChatContract {
     id: string
     name: string
-    avatar: string
+    ownerId: string
 }
 
-export interface IAddChat {
+export interface ChatModel {
+    name: string
+    ownerId: string
+}
+
+export interface AddChatContract {
     name: string
 }
 
 const chatAPIInstance = new HTTP('/chats')
 
 export class ChatAPI extends BaseAPI {
-    static create<T = IAddChat>(data: T): Promise<IResponse<T>> {
+    static create<T = AddChatContract>(data: T): Promise<IResponse<T>> {
         return chatAPIInstance.post<T>('/', { data })
     }
 
