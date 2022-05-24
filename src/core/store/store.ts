@@ -40,15 +40,11 @@ export class Store {
         this._state = this.reduce(this._state, action)
         this._subscribers.forEach(([fn, dependencies]) => {
             if (!dependencies.length) {
-                fn(this.value)
+                fn(this._state)
             }
 
-            if (
-                Object.keys(this.value).some((key) =>
-                    dependencies.includes(key),
-                )
-            ) {
-                fn(this.value)
+            if (dependencies.includes(action.type)) {
+                fn(this._state)
             }
         })
     }

@@ -1,5 +1,5 @@
 import {
-    CHATS_LOAD,
+    SET_CHATS,
     StoreProps,
     LOADER_OFF,
     LOADER_ON,
@@ -54,7 +54,7 @@ export function chatsReducer(
     action: IAction,
 ): StoreProps['chats'] {
     switch (action.type) {
-        case CHATS_LOAD:
+        case SET_CHATS:
             return action.payload
         default:
             return state

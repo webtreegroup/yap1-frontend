@@ -1,8 +1,9 @@
 import { ChatAPI, IChat } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
-import { setChatsAction, store } from 'core/store'
+import { SET_CHATS, setChatsAction, store } from 'core/store'
 import { checkAuth } from 'utils/auth.utils'
+import { ChatGroup } from './components/ChatGroup'
 
 interface ChatsNewProps extends ComponentProps {
     chats?: IChat[]
@@ -23,6 +24,17 @@ export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
     }
 
     public setComponentTemplate(): string | undefined {
+        const chats = this.props.chats?.map(
+            (el) =>
+                new ChatGroup({
+                    id: el.id,
+                    name: el.name,
+                }),
+        )
+
+        console.log(this.props.chats)
+        console.log(chats)
+
         return `
             <div class="container pt-5">
                 <div class="row">
@@ -69,7 +81,7 @@ export class ChatsNewContainer {
                     chats: state.chats,
                 })
             },
-            ['chats'],
+            [SET_CHATS],
         )
 
         return component

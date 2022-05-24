@@ -2,7 +2,7 @@ import { UserContract } from '../api/auth.api'
 import { IChat } from '../api/chat.api'
 import { store } from './store'
 import {
-    CHATS_LOAD,
+    SET_CHATS,
     IConnectedChats,
     ISocketMessage,
     LOADER_OFF,
@@ -38,7 +38,7 @@ export function setCurrentUserInfoAction(payload: UserContract): void {
 
 export function setChatsAction(payload: IChat[]): void {
     store.dispatch({
-        type: CHATS_LOAD,
+        type: SET_CHATS,
         payload,
     })
 }
