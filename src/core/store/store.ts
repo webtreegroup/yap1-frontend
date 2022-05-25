@@ -30,6 +30,8 @@ export class Store {
     ): Function {
         this._subscribers.push([fn, dependencies])
 
+        fn(this.value)
+
         return () => {
             this._subscribers =
                 this._subscribers.filter(([sub]) => sub !== fn) || null
