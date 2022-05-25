@@ -1,24 +1,30 @@
-import { Header } from 'components/Header'
+import { HeaderContainer } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
-import { SET_CHATS, setChatsAction, store } from 'core/store'
+import {
+    SET_CHATS,
+    setChatsAction,
+    store,
+    setCurrentChatAction,
+} from 'core/store'
+import { getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
-import { ChatGroup } from './ChatGroup'
+import { ChatsItem } from './ChatsItem'
 
-interface ChatsNewProps extends ComponentProps {
+interface ChatsSingleProps extends ComponentProps {
     chats?: ChatContract[]
 }
 
-export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
-    constructor(props: ChatsNewProps = {}) {
-        const HeaderComponent = new Header()
+export class ChatsSingle extends Component<HTMLDivElement, ChatsSingleProps> {
+    constructor(props: ChatsSingleProps = {}) {
+        const HeaderComponent = new HeaderContainer().createBlock()
 
         super(
             'div',
             {
                 ...props,
-                className: 'ChatsNew',
+                className: 'ChatSingle',
             },
             {
                 HeaderComponent,
@@ -35,7 +41,7 @@ export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
     public setComponentTemplate(): string | undefined {
         const chats = this.props.chats?.map(
             (el) =>
-                new ChatGroup({
+                new ChatsItem({
                     id: el.id,
                     name: el.name,
                 }),
@@ -50,8 +56,8 @@ export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">Чаты</h1>
-
+                <h1 class="text-center">Чат</h1>
+                
                 <hr />
 
                 <div class="row">
@@ -61,7 +67,7 @@ export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
 
                     <div class="col-sm-8">
                         <div class="border p-3 bg-light text-center">
-                            <h5 class="m-0">Выберите чат</h5>
+                            <h5 class="m-0">Конкретный чат</h5>
                         </div>
                     </div>
                 </div>
@@ -70,7 +76,7 @@ export class ChatsNew extends Component<HTMLDivElement, ChatsNewProps> {
     }
 }
 
-export class ChatsNewContainer {
+export class ChatsSingleContainer {
     loadChats(): void {
         ChatAPI.getAll()
             .then((xhr) => {
@@ -81,10 +87,19 @@ export class ChatsNewContainer {
             .catch(console.error)
     }
 
-    createBlock(): ChatsNew {
-        const component = new ChatsNew({
+    setCurrentChat(): void {
+        const chatId = getUrlParam('chatId')
+
+        if (!chatId) return
+
+        setCurrentChatAction(chatId)
+    }
+
+    createBlock(): ChatsSingle {
+        const component = new ChatsSingle({
             onLoadComponent: async () => {
                 this.loadChats()
+                this.setCurrentChat()
             },
         })
 

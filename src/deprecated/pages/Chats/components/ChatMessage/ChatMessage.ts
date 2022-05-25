@@ -1,4 +1,3 @@
-import './ChatMessage.scss'
 import { Component } from 'core/block'
 import { classNames } from 'utils'
 import { chatMessageTmplRender } from './ChatMessage.tmpl'

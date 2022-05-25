@@ -1,5 +1,3 @@
-import './Loader.scss'
-
 import { Component } from 'core/block'
 import { store } from 'core/store'
 import { loaderTmplRender } from './Loader.tmpl'

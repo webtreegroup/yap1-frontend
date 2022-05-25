@@ -1,5 +1,3 @@
-import './InputControl.scss'
-
 import { Component } from 'core/block'
 import { ValidationFnProps } from 'utils'
 import { InputControlProps } from './InputControl.types'

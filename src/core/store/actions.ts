@@ -7,7 +7,7 @@ import {
     ISocketMessage,
     LOADER_OFF,
     LOADER_ON,
-    PROFILE_LOAD,
+    SET_CURRENT_USER,
     SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
     ADD_MESSAGE,
@@ -29,9 +29,9 @@ export function loaderOffAction(): void {
     })
 }
 
-export function setCurrentUserInfoAction(payload: UserContract): void {
+export function setCurrentUserAction(payload: UserContract): void {
     store.dispatch({
-        type: PROFILE_LOAD,
+        type: SET_CURRENT_USER,
         payload,
     })
 }
@@ -71,21 +71,21 @@ export function addOldMessagesAction(payload?: ISocketMessage[]): void {
     })
 }
 
-export function setCurrentChatUsers(payload?: UserContract[]): void {
+export function setCurrentChatUsersAction(payload?: UserContract[]): void {
     store.dispatch({
         type: SET_CURRENT_CHAT_USERS,
         payload,
     })
 }
 
-export function setUsers(payload?: UserContract[]): void {
+export function setUsersAction(payload?: UserContract[]): void {
     store.dispatch({
         type: SET_USERS,
         payload,
     })
 }
 
-export function setAuth(payload: boolean): void {
+export function setAuthAction(payload: boolean): void {
     store.dispatch({
         type: SET_AUTH,
         payload,

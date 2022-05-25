@@ -1,5 +1,3 @@
-import './App.scss'
-
 import { Router } from 'core/router'
 import {
     ErrorPage,
@@ -8,20 +6,18 @@ import {
     Signup,
     ProfileEditContainer,
     ProfileEditPassContainer,
-    ChatsContainer,
 } from 'pages'
-import { ChatsEmptyContainer } from 'pages/Chats/ChatsEmptyContainer'
-import { ChatsNewContainer } from 'pages/ChatsNew/ChatsNew'
-import { ChatSingleContainer } from 'pages/ChatsNew/ChatSingle'
+import { ChatsContainer, ChatsSingleContainer } from 'pages/Chats'
+import { UsersContainer, UsersSingleContainer } from 'pages/Users'
 
-Router.use('/', ChatsNewContainer)
-    .use('/chats-new', ChatsNewContainer)
-    .use('/chats-new/.+', ChatSingleContainer)
+Router.use('/', ChatsContainer)
+    .use('/chats', ChatsContainer)
+    .use('/chats/.+', ChatsSingleContainer)
+    .use('/users', UsersContainer)
+    .use('/users/.+', UsersSingleContainer)
     .use('/profile/edit-pass', ProfileEditPassContainer)
     .use('/profile/edit', ProfileEditContainer)
     .use('/profile', ProfileContainer)
-    .use('/chats/.+', ChatsContainer)
-    .use('/chats', ChatsEmptyContainer)
     .use('/signin', Signin)
     .use('/signup', Signup)
     .use('/.*', ErrorPage)

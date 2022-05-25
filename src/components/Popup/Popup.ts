@@ -1,5 +1,3 @@
-import './Popup.scss'
-
 import { Component, ComponentChildrenProps } from 'core/block'
 import { classNames } from 'utils'
 import { Link } from '../Link'

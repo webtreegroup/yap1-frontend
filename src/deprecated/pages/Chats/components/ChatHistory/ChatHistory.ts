@@ -1,4 +1,3 @@
-import './ChatHistory.scss'
 import { Link, Popup, Loader } from 'components'
 import { Component } from 'core/block'
 import {

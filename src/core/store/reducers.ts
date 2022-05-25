@@ -3,7 +3,7 @@ import {
     StoreProps,
     LOADER_OFF,
     LOADER_ON,
-    PROFILE_LOAD,
+    SET_CURRENT_USER,
     SET_CONNECTED_CHATS,
     SET_CURRENT_CHAT,
     ADD_MESSAGE,
@@ -39,7 +39,7 @@ export function currentUserReducer(
     action: IAction,
 ): StoreProps['currentUser'] {
     switch (action.type) {
-        case PROFILE_LOAD:
+        case SET_CURRENT_USER:
             return {
                 ...state,
                 ...action.payload,

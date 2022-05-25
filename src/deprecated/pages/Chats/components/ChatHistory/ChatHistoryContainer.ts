@@ -1,5 +1,9 @@
 import { ChatAPI, ChatUsersContract, UserContract, UsersAPI } from 'core/api'
-import { setConnectedChatsAction, setCurrentChatUsers, store } from 'core/store'
+import {
+    setConnectedChatsAction,
+    setCurrentChatUsersAction,
+    store,
+} from 'core/store'
 import { WebSocketService } from 'core/websocket'
 import { ChatHistory } from '.'
 
@@ -41,7 +45,7 @@ export class ChatHistoryContainer {
         return ChatAPI.getChatUsers(currentChatId).then((xhr) => {
             const response: ChatUsersContract = JSON.parse(xhr.response)
 
-            setCurrentChatUsers(response.users)
+            setCurrentChatUsersAction(response.users)
         })
     }
 

@@ -1,5 +1,3 @@
-import './Button.scss'
-
 import { Component } from 'core/block'
 import { ButtonProps } from './Button.types'
 import { buttonTmplRender } from './Button.tmpl'

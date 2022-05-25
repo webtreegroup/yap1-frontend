@@ -4,7 +4,7 @@ import { setCurrentChatAction, store } from 'core/store'
 import { ROUTES, Router } from 'core/router'
 import { ComponentProps } from 'core/block/Component.types'
 
-export interface ChatGroupProps extends ComponentProps {
+export interface ChatsItemProps extends ComponentProps {
     id?: string
     name?: string
     lastMessage?: string
@@ -14,15 +14,15 @@ export interface ChatGroupProps extends ComponentProps {
     isCurrent?: boolean
 }
 
-export class ChatGroup extends Component<HTMLDivElement, ChatGroupProps> {
-    constructor(props: ChatGroupProps) {
+export class ChatsItem extends Component<HTMLDivElement, ChatsItemProps> {
+    constructor(props: ChatsItemProps) {
         const ChatSingleLink = new Link({
             onClick: () => {
                 if (store?.value?.currentChatId) {
                     setCurrentChatAction(props.id)
                 }
 
-                Router.go(`${ROUTES.CHATS_NEW.path}/?chatId=${props.id}`)
+                Router.go(`${ROUTES.CHATS.path}/?chatId=${props.id}`)
             },
             title: props.name,
         })

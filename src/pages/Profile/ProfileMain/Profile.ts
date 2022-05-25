@@ -1,5 +1,3 @@
-import '../Profile.scss'
-
 import { Link } from 'components'
 import { Component } from 'core/block'
 import { ROUTES } from 'core/router'

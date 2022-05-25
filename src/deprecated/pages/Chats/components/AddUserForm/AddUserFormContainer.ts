@@ -5,7 +5,12 @@ import {
     ChatUsersAPI,
     UsersAPI,
 } from 'core/api'
-import { loaderOffAction, loaderOnAction, setUsers, store } from 'core/store'
+import {
+    loaderOffAction,
+    loaderOnAction,
+    setUsersAction,
+    store,
+} from 'core/store'
 import { AddUserForm } from './AddUserForm'
 
 export class AddUserFormContainer {
@@ -14,7 +19,7 @@ export class AddUserFormContainer {
             .then((xhr) => {
                 const response: UserContract[] = JSON.parse(xhr.response)
 
-                setUsers(response)
+                setUsersAction(response)
             })
             .catch(console.error)
     }

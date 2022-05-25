@@ -1,4 +1,4 @@
-export * from './Chats'
+export * from '../deprecated/pages/Chats'
 export * from './Error'
 export * from './Profile'
 export * from './Signin'

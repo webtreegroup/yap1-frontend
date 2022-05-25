@@ -3,8 +3,8 @@ import { Router, ROUTES } from 'core/router'
 import {
     loaderOffAction,
     loaderOnAction,
-    setAuth,
-    setCurrentUserInfoAction,
+    setAuthAction,
+    setCurrentUserAction,
     store,
 } from 'core/store'
 
@@ -25,8 +25,8 @@ export function checkAuth(): Promise<void> {
 
             const response: UserContract = JSON.parse(xhr.response)
 
-            setAuth(true)
-            setCurrentUserInfoAction(response)
+            setAuthAction(true)
+            setCurrentUserAction(response)
         })
         .catch(console.error)
         .finally(() => {

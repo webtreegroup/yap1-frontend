@@ -11,17 +11,19 @@ export class SigninFormContainer {
     onSignin(request: ISignin): void {
         loaderOnAction()
 
-        AuthAPI.signin(request).then((response) => {
-            switch (response.status) {
-            case 200:
-                Router.go(ROUTES.CHATS.path)
-                break
-            default:
-                alert(SIGNIN_FAIL_MESSAGE)
-            }
-        }).finally(() => {
-            loaderOffAction()
-        })
+        AuthAPI.signin(request)
+            .then((response) => {
+                switch (response.status) {
+                    case 200:
+                        Router.go(ROUTES.CHATS.path)
+                        break
+                    default:
+                        alert(SIGNIN_FAIL_MESSAGE)
+                }
+            })
+            .finally(() => {
+                loaderOffAction()
+            })
     }
 
     createBlock(): SigninForm {

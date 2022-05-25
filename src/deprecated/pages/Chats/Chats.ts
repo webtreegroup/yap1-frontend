@@ -1,24 +1,12 @@
-import './Chats.scss'
-
 import { store } from 'core/store'
 import { Component } from 'core/block'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
+import { ChatHistoryContainer } from './components'
 import { ComponentProps } from 'core/block/Component.types'
 
-export class ChatsEmpty extends Component<HTMLDivElement, ComponentProps> {
+export class Chats extends Component<HTMLDivElement, ComponentProps> {
     constructor(props: ComponentProps) {
-        const ChatHistoryPlaceholder = new Component(
-            'main',
-            {
-                className: ['chat-history', 'chat-history_not-selected'],
-            },
-            {},
-            () => `
-            <div class="chat-history__placeholder">
-                Выберите чат чтобы отправить сообщение
-            </div>
-        `,
-        )
+        const ChatHistory = new ChatHistoryContainer()
 
         super(
             'main',
@@ -27,7 +15,7 @@ export class ChatsEmpty extends Component<HTMLDivElement, ComponentProps> {
                 className: 'chats-page',
             },
             {
-                root: [new ChatsAside(), ChatHistoryPlaceholder],
+                root: [new ChatsAside(), ChatHistory.createBlock()],
             },
         )
     }
