@@ -44,7 +44,7 @@ export class Users extends Component<HTMLDivElement, UsersProps> {
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">Чаты</h1>
+                <h1 class="text-center">Пользователи</h1>
 
                 <hr />
 

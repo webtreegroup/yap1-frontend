@@ -9,7 +9,11 @@ export class UsersAPI extends BaseAPI {
     }
 
     static getByLogin(login: string): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>(`/search/${login}`)
+        return usersAPIInstance.get<string>(`/by-login/${login}`)
+    }
+
+    static getById(id: string): Promise<IResponse<string>> {
+        return usersAPIInstance.get<string>(`/by-id/${id}`)
     }
 
     static getCurrentUser(): Promise<IResponse<string>> {

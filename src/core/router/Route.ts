@@ -42,14 +42,12 @@ export class Route {
     }
 
     render(): void {
-        if (!this._componentInstance) {
-            const componentInstance = new this._component()
+        const componentInstance = new this._component()
 
-            this._componentInstance =
-                componentInstance && 'createBlock' in componentInstance
-                    ? componentInstance.createBlock()
-                    : componentInstance
-        }
+        this._componentInstance =
+            componentInstance && 'createBlock' in componentInstance
+                ? componentInstance.createBlock()
+                : componentInstance
 
         this._componentInstance?.show(this._props.rootQuery)
     }

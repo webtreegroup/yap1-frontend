@@ -1,2 +1,2 @@
-export * from './ChatSingle'
+export * from './UsersSingle'
 export * from './Users'

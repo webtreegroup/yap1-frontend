@@ -36,6 +36,8 @@ export class Component<
 
     public props: PropsType
 
+    public state: StoreType = {}
+
     private _createDocumentElement(tagName: string): ElementType {
         return document.createElement(tagName) as ElementType
     }
@@ -177,6 +179,7 @@ export class Component<
         this.children = children
 
         this.props = this._makePropsProxy(props) as PropsType
+        this.state = this._makePropsProxy(this.state)
 
         this.eventBus.emit(this.events.COMPONENT_INIT)
     }
@@ -185,6 +188,10 @@ export class Component<
         if (!nextProps) return
 
         Object.assign(this.props, nextProps)
+    }
+
+    public setState(nextState?: StoreType): void {
+        Object.assign(this.state, nextState)
     }
 
     public get element(): ElementType | null {
