@@ -12,7 +12,11 @@ interface UsersProps extends ComponentProps {
     getSingleUser?: () => Promise<void | UserContract>
 }
 
-export class UsersSingle extends Component<HTMLDivElement, UsersProps> {
+export class UsersSingle extends Component<
+    HTMLDivElement,
+    UsersProps,
+    UserContract
+> {
     constructor(props: UsersProps = {}) {
         const HeaderComponent = new HeaderContainer().createBlock()
 
@@ -32,9 +36,9 @@ export class UsersSingle extends Component<HTMLDivElement, UsersProps> {
         checkAuth().then(() => {
             this.props.onLoadComponent?.()
             this.props.getSingleUser?.().then((user) => {
-                this.setState({
-                    user,
-                })
+                if (user) {
+                    this.setState(user)
+                }
             })
         })
     }
@@ -52,7 +56,7 @@ export class UsersSingle extends Component<HTMLDivElement, UsersProps> {
 
             <div class="container pt-5">
                 <h1 class="text-center">Пользователь: ${
-                    this.state.user?.login || ''
+                    this.state?.login || ''
                 }</h1>
                 
                 <hr />
@@ -63,30 +67,37 @@ export class UsersSingle extends Component<HTMLDivElement, UsersProps> {
                     </div>
 
                     <div class="col-sm-8">
-                        <div class="border p-3 bg-light text-center">
+                        <div class="border p-3 bg-light">
                             <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                </tbody>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <td>${this.state.id}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Логин</th>
+                                    <td>${this.state.login}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Имя</th>
+                                    <td>${this.state.firstName}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Фамилия</th>
+                                    <td>${this.state.secondName}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Email</th>
+                                    <td>${this.state.email}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Phone</th>
+                                    <td>${this.state.phone}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>
