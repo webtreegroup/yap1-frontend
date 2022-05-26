@@ -51,7 +51,7 @@ export function setChatsAction(payload: ChatContract[]): void {
     })
 }
 
-export function setCurrentChatAction(payload?: string): void {
+export function setCurrentChatAction(payload?: ChatContract): void {
     store.dispatch({
         type: SET_CURRENT_CHAT,
         payload,

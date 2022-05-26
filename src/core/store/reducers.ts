@@ -75,9 +75,9 @@ export function currentUserChatsReducer(
 }
 
 export function currentChatReducer(
-    state: StoreProps['currentChatId'],
+    state: StoreProps['currentChat'],
     action: IAction,
-): StoreProps['currentChatId'] {
+): StoreProps['currentChat'] {
     switch (action.type) {
         case SET_CURRENT_CHAT:
             return action.payload
@@ -156,7 +156,7 @@ export const reducers = {
     currentUser: currentUserReducer,
     currentUserChats: currentUserChatsReducer,
     chats: chatsReducer,
-    currentChatId: currentChatReducer,
+    currentChat: currentChatReducer,
     connectedChats: connectedChatsReducer,
     messages: messagesReducer,
     currentChatUsers: currentChatUsersReducer,

@@ -34,13 +34,7 @@ export class Chats extends Component<HTMLDivElement, ChatsProps> {
     }
 
     public setComponentTemplate(): string | undefined {
-        const chats = this.props.chats?.map(
-            (el) =>
-                new ChatsItem({
-                    id: el.id,
-                    name: el.name,
-                }),
-        )
+        const chats = this.props.chats?.map((el) => new ChatsItem(el))
 
         this.children = {
             ...this.children,
@@ -57,7 +51,7 @@ export class Chats extends Component<HTMLDivElement, ChatsProps> {
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <ul class="list-group" data-component="chats"></ul>
+                        <ul class="list-group mb-3" data-component="chats"></ul>
                     </div>
 
                     <div class="col-sm-8">

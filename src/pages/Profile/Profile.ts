@@ -41,7 +41,7 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
 
                 <hr />
 
-                <div class="border p-3 bg-light">
+                <div class="border p-3 mb-3 bg-light">
                     <table class="table">
                         <tr>
                             <th scope="col">Id</th>
@@ -73,6 +73,12 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
                             <td>${this.props.currentUser?.phone}</td>
                         </tr>
                     </table>
+                </div>
+
+                <div class="text-center">
+                    <button type="button" class="btn btn-secondary me-2">Редактировать</button>
+
+                    <button type="button" class="btn btn-danger">Изменить пароль</button>
                 </div>
             </div>
         `

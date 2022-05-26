@@ -41,7 +41,7 @@ export interface StoreProps extends StoreType {
     currentUserChats: ChatContract[]
     chats: ChatContract[]
     connectedChats: IConnectedChats
-    currentChatId?: string
+    currentChat?: ChatContract
     messages: ISocketMessage[]
     currentChatUsers: UserContract[]
     users: UserContract[]

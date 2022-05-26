@@ -1,29 +1,15 @@
 import { Component } from 'core/block'
 import { Link } from 'components'
-import { setCurrentChatAction, store } from 'core/store'
-import { ROUTES, Router } from 'core/router'
+import { ROUTES } from 'core/router'
 import { ComponentProps } from 'core/block/Component.types'
+import { ChatContract } from 'core/api'
 
-export interface ChatsItemProps extends ComponentProps {
-    id?: string
-    name?: string
-    lastMessage?: string
-    time?: string
-    unread?: number
-    isOwnMessage?: boolean
-    isCurrent?: boolean
-}
+export interface ChatsItemProps extends ComponentProps, ChatContract {}
 
 export class ChatsItem extends Component<HTMLDivElement, ChatsItemProps> {
     constructor(props: ChatsItemProps) {
         const ChatSingleLink = new Link({
-            onClick: () => {
-                if (store?.value?.currentChatId) {
-                    setCurrentChatAction(props.id)
-                }
-
-                Router.go(`${ROUTES.CHATS.path}/?chatId=${props.id}`)
-            },
+            path: `${ROUTES.CHATS.path}/?chatId=${props.id}`,
             title: props.name,
         })
 

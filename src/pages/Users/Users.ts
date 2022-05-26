@@ -51,7 +51,7 @@ export class Users extends Component<HTMLDivElement, UsersProps> {
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <ul class="list-group" data-component="users"></ul>
+                        <ul class="list-group mb-3" data-component="users"></ul>
                     </div>
 
                     <div class="col-sm-8">
