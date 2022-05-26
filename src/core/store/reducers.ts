@@ -11,6 +11,7 @@ import {
     SET_CURRENT_CHAT_USERS,
     SET_USERS,
     SET_AUTH,
+    SET_CURRENT_USER_CHATS,
 } from './store.config'
 import { IAction } from './store'
 
@@ -55,6 +56,18 @@ export function chatsReducer(
 ): StoreProps['chats'] {
     switch (action.type) {
         case SET_CHATS:
+            return action.payload
+        default:
+            return state
+    }
+}
+
+export function currentUserChatsReducer(
+    state: StoreProps['currentUserChats'],
+    action: IAction,
+): StoreProps['currentUserChats'] {
+    switch (action.type) {
+        case SET_CURRENT_USER_CHATS:
             return action.payload
         default:
             return state
@@ -141,6 +154,7 @@ export function messagesReducer(
 export const reducers = {
     loader: loaderReducer,
     currentUser: currentUserReducer,
+    currentUserChats: currentUserChatsReducer,
     chats: chatsReducer,
     currentChatId: currentChatReducer,
     connectedChats: connectedChatsReducer,

@@ -2,6 +2,7 @@ import { HeaderContainer } from 'components/Header'
 import { UserContract, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
+import { ROUTES } from 'core/router'
 import { store, SET_USERS, setUsersAction } from 'core/store'
 import { getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
@@ -55,9 +56,9 @@ export class UsersSingle extends Component<
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">Пользователь: ${
-                    this.state?.login || ''
-                }</h1>
+                <h1 class="text-center">${ROUTES.USERS.title} / ${
+            this.state?.login || ''
+        }</h1>
                 
                 <hr />
 

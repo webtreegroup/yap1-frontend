@@ -1,24 +1,17 @@
-import { Router } from 'core/router'
-import {
-    ErrorPage,
-    ProfileContainer,
-    Signin,
-    Signup,
-    ProfileEditContainer,
-    ProfileEditPassContainer,
-} from 'pages'
-import { ChatsContainer, ChatsSingleContainer } from 'pages/Chats'
+import { Router, ROUTES } from 'core/router'
+import { ErrorPage, Signin, Signup } from 'pages'
+import { ChatsContainer } from 'pages/Chats'
+import { OwnChatsContainer, OwnChatsSingleContainer } from 'pages/OwnChats'
 import { UsersContainer, UsersSingleContainer } from 'pages/Users'
 
-Router.use('/', ChatsContainer)
-    .use('/chats', ChatsContainer)
-    .use('/chats/.+', ChatsSingleContainer)
-    .use('/users', UsersContainer)
-    .use('/users/.+', UsersSingleContainer)
-    .use('/profile/edit-pass', ProfileEditPassContainer)
-    .use('/profile/edit', ProfileEditContainer)
-    .use('/profile', ProfileContainer)
-    .use('/signin', Signin)
-    .use('/signup', Signup)
+Router.use(ROUTES.HOME.path, OwnChatsContainer)
+    .use(`${ROUTES.HOME.path}/.+`, OwnChatsSingleContainer)
+    .use(ROUTES.CHATS.path, ChatsContainer)
+    .use(ROUTES.USERS.path, UsersContainer)
+    .use(`${ROUTES.USERS.path}/.+`, UsersSingleContainer)
+    .use(ROUTES.PROFILE_EDIT.path, ErrorPage)
+    .use(ROUTES.PROFILE.path, ErrorPage)
+    .use(ROUTES.SIGNIN.path, Signin)
+    .use(ROUTES.SIGNUP.path, Signup)
     .use('/.*', ErrorPage)
     .start()

@@ -15,6 +15,7 @@ import {
     SET_CURRENT_CHAT_USERS,
     SET_AUTH,
     SET_USERS,
+    SET_CURRENT_USER_CHATS,
 } from './store.config'
 
 export function loaderOnAction(): void {
@@ -32,6 +33,13 @@ export function loaderOffAction(): void {
 export function setCurrentUserAction(payload: UserContract): void {
     store.dispatch({
         type: SET_CURRENT_USER,
+        payload,
+    })
+}
+
+export function setCurrentUserChatsAction(payload: ChatContract[]): void {
+    store.dispatch({
+        type: SET_CURRENT_USER_CHATS,
         payload,
     })
 }

@@ -6,6 +6,7 @@ import { ChatContract } from '../api/chat.api'
 export const LOADER_ON = 'LOADER_ON'
 export const LOADER_OFF = 'LOADER_OFF'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const SET_CURRENT_USER_CHATS = 'SET_CURRENT_USER_CHATS'
 export const SET_CHATS = 'SET_CHATS'
 export const SET_CURRENT_CHAT = 'SET_CURRENT_CHAT'
 export const SET_CONNECTED_CHATS = 'SET_CONNECTED_CHATS'
@@ -37,6 +38,7 @@ export interface StoreProps extends StoreType {
         active: boolean
     }
     currentUser: UserContract
+    currentUserChats: ChatContract[]
     chats: ChatContract[]
     connectedChats: IConnectedChats
     currentChatId?: string
@@ -51,6 +53,7 @@ export const INITIAL_STATE = {
         active: false,
     },
     currentUser: {} as UserContract,
+    currentUserChats: [],
     chats: [],
     connectedChats: {},
     messages: [],

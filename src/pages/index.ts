@@ -1,5 +1,5 @@
 export * from '../deprecated/pages/Chats'
 export * from './Error'
-export * from './Profile'
+export * from '../deprecated/pages/Profile'
 export * from './Signin'
 export * from './Signup'

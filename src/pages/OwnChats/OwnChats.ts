@@ -1,25 +1,29 @@
 import { HeaderContainer } from 'components/Header'
-import { UserContract, UsersAPI } from 'core/api'
+import { ChatContract, UserChatsContract, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
 import { ROUTES } from 'core/router'
-import { store, setUsersAction, SET_USERS } from 'core/store'
+import {
+    store,
+    setCurrentUserChatsAction,
+    SET_CURRENT_USER_CHATS,
+} from 'core/store'
 import { checkAuth } from 'utils/auth.utils'
-import { UsersItem } from './UsersItem'
+import { OwnChatsItem } from './OwnChatsItem'
 
-interface UsersProps extends ComponentProps {
-    users?: UserContract[]
+interface OwnChatsProps extends ComponentProps {
+    chats?: ChatContract[]
 }
 
-export class Users extends Component<HTMLDivElement, UsersProps> {
-    constructor(props: UsersProps = {}) {
+export class OwnChats extends Component<HTMLDivElement, OwnChatsProps> {
+    constructor(props: OwnChatsProps = {}) {
         const HeaderComponent = new HeaderContainer().createBlock()
 
         super(
             'div',
             {
                 ...props,
-                className: 'Users',
+                className: 'OwnChats',
             },
             {
                 HeaderComponent,
@@ -34,29 +38,35 @@ export class Users extends Component<HTMLDivElement, UsersProps> {
     }
 
     public setComponentTemplate(): string | undefined {
-        const users = this.props.users?.map((el) => new UsersItem(el))
+        const chats = this.props.chats?.map(
+            (el) =>
+                new OwnChatsItem({
+                    id: el.id,
+                    name: el.name,
+                }),
+        )
 
         this.children = {
             ...this.children,
-            users,
+            chats,
         }
 
         return `
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">${ROUTES.USERS.title}</h1>
+                <h1 class="text-center">${ROUTES.MESSSAGING.title}</h1>
 
                 <hr />
 
                 <div class="row">
                     <div class="col-sm-4">
-                        <ul class="list-group" data-component="users"></ul>
+                        <ul class="list-group" data-component="chats"></ul>
                     </div>
 
                     <div class="col-sm-8">
                         <div class="border p-3 bg-light text-center">
-                            <div>Выберите пользователя</h5>
+                            <div>Выберите чат</h5>
                         </div>
                     </div>
                 </div>
@@ -65,31 +75,31 @@ export class Users extends Component<HTMLDivElement, UsersProps> {
     }
 }
 
-export class UsersContainer {
-    loadUsers(): void {
-        UsersAPI.getAll()
+export class OwnChatsContainer {
+    loadChats(): void {
+        UsersAPI.getUserChats(store.value.currentUser.id)
             .then((xhr) => {
-                const response: UserContract[] = JSON.parse(xhr.response)
+                const response: UserChatsContract = JSON.parse(xhr.response)
 
-                setUsersAction(response)
+                setCurrentUserChatsAction(response.chats)
             })
             .catch(console.error)
     }
 
-    createBlock(): Users {
-        const component = new Users({
+    createBlock(): OwnChats {
+        const component = new OwnChats({
             onLoadComponent: async () => {
-                this.loadUsers()
+                this.loadChats()
             },
         })
 
         store.subscribe(
             (state) => {
                 component.setProps({
-                    users: state.users,
+                    chats: state.currentUserChats,
                 })
             },
-            [SET_USERS],
+            [SET_CURRENT_USER_CHATS],
         )
 
         return component
