@@ -2,6 +2,7 @@ import { HeaderContainer } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
+import { ROUTES } from 'core/router'
 import { SET_CHATS, setChatsAction, store } from 'core/store'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatsItem } from './ChatsItem'
@@ -50,7 +51,7 @@ export class Chats extends Component<HTMLDivElement, ChatsProps> {
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">Чаты</h1>
+                <h1 class="text-center">${ROUTES.CHATS.title}</h1>
 
                 <hr />
 

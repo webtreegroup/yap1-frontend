@@ -32,8 +32,12 @@ export class Router {
             this._onRoute(target?.location.pathname)
         }
 
-        this._currentRoute = this.getRoute(window.location.pathname)
-        this._onRoute(window.location.pathname)
+        const [, pathWithoutOrigin] = window.location.href.split(
+            window.location.origin,
+        )
+
+        this._currentRoute = this.getRoute(pathWithoutOrigin)
+        this._onRoute(pathWithoutOrigin)
     }
 
     static _onRoute(pathname: string): void {

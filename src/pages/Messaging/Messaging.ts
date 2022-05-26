@@ -9,21 +9,21 @@ import {
     SET_CURRENT_USER_CHATS,
 } from 'core/store'
 import { checkAuth } from 'utils/auth.utils'
-import { OwnChatsItem } from './OwnChatsItem'
+import { MessagingItem } from './MessagingItem'
 
-interface OwnChatsProps extends ComponentProps {
+interface MessagingProps extends ComponentProps {
     chats?: ChatContract[]
 }
 
-export class OwnChats extends Component<HTMLDivElement, OwnChatsProps> {
-    constructor(props: OwnChatsProps = {}) {
+export class Messaging extends Component<HTMLDivElement, MessagingProps> {
+    constructor(props: MessagingProps = {}) {
         const HeaderComponent = new HeaderContainer().createBlock()
 
         super(
             'div',
             {
                 ...props,
-                className: 'OwnChats',
+                className: 'Messaging',
             },
             {
                 HeaderComponent,
@@ -40,7 +40,7 @@ export class OwnChats extends Component<HTMLDivElement, OwnChatsProps> {
     public setComponentTemplate(): string | undefined {
         const chats = this.props.chats?.map(
             (el) =>
-                new OwnChatsItem({
+                new MessagingItem({
                     id: el.id,
                     name: el.name,
                 }),
@@ -75,7 +75,7 @@ export class OwnChats extends Component<HTMLDivElement, OwnChatsProps> {
     }
 }
 
-export class OwnChatsContainer {
+export class MessagingContainer {
     loadChats(): void {
         UsersAPI.getUserChats(store.value.currentUser.id)
             .then((xhr) => {
@@ -86,8 +86,8 @@ export class OwnChatsContainer {
             .catch(console.error)
     }
 
-    createBlock(): OwnChats {
-        const component = new OwnChats({
+    createBlock(): Messaging {
+        const component = new Messaging({
             onLoadComponent: async () => {
                 this.loadChats()
             },

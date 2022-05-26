@@ -2,21 +2,22 @@ import { HeaderContainer } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
-import {
-    SET_CHATS,
-    setChatsAction,
-    store,
-    setCurrentChatAction,
-} from 'core/store'
+import { ROUTES } from 'core/router'
+import { SET_CHATS, setChatsAction, store } from 'core/store'
 import { getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatsItem } from './ChatsItem'
 
 interface ChatsSingleProps extends ComponentProps {
     chats?: ChatContract[]
+    getSingleChat?: () => Promise<void | ChatContract>
 }
 
-export class ChatsSingle extends Component<HTMLDivElement, ChatsSingleProps> {
+export class ChatsSingle extends Component<
+    HTMLDivElement,
+    ChatsSingleProps,
+    ChatContract
+> {
     constructor(props: ChatsSingleProps = {}) {
         const HeaderComponent = new HeaderContainer().createBlock()
 
@@ -35,6 +36,11 @@ export class ChatsSingle extends Component<HTMLDivElement, ChatsSingleProps> {
     public componentDidMount(): void {
         checkAuth().then(() => {
             this.props.onLoadComponent?.()
+            this.props.getSingleChat?.().then((chat) => {
+                if (chat) {
+                    this.setState(chat)
+                }
+            })
         })
     }
 
@@ -56,7 +62,9 @@ export class ChatsSingle extends Component<HTMLDivElement, ChatsSingleProps> {
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">Чат</h1>
+                <h1 class="text-center">${ROUTES.CHATS.title} / ${
+            this.state?.name || ''
+        }</h1>
                 
                 <hr />
 
@@ -66,8 +74,23 @@ export class ChatsSingle extends Component<HTMLDivElement, ChatsSingleProps> {
                     </div>
 
                     <div class="col-sm-8">
-                        <div class="border p-3 bg-light text-center">
-                            <h5 class="m-0">Конкретный чат</h5>
+                        <div class="border p-3 bg-light">
+                            <table class="table">
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <td>${this.state.id}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Владелец</th>
+                                    <td>${this.state.ownerId}</td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="col">Имя</th>
+                                    <td>${this.state.name}</td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -77,7 +100,7 @@ export class ChatsSingle extends Component<HTMLDivElement, ChatsSingleProps> {
 }
 
 export class ChatsSingleContainer {
-    loadChats(): void {
+    getChats(): void {
         ChatAPI.getAll()
             .then((xhr) => {
                 const response: ChatContract[] = JSON.parse(xhr.response)
@@ -87,20 +110,26 @@ export class ChatsSingleContainer {
             .catch(console.error)
     }
 
-    setCurrentChat(): void {
+    getSingleChat(): Promise<void | ChatContract> {
         const chatId = getUrlParam('chatId')
 
-        if (!chatId) return
+        if (!chatId) return Promise.reject()
 
-        setCurrentChatAction(chatId)
+        return ChatAPI.getById(chatId)
+            .then((xhr) => {
+                const response: ChatContract = JSON.parse(xhr.response)
+
+                return response
+            })
+            .catch(console.error)
     }
 
     createBlock(): ChatsSingle {
         const component = new ChatsSingle({
             onLoadComponent: async () => {
-                this.loadChats()
-                this.setCurrentChat()
+                this.getChats()
             },
+            getSingleChat: this.getSingleChat,
         })
 
         store.subscribe(

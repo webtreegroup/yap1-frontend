@@ -56,9 +56,9 @@ export class UsersSingle extends Component<
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">${ROUTES.USERS.title} / ${
-            this.state?.login || ''
-        }</h1>
+                <h1 class="text-center">
+                    ${ROUTES.USERS.title} / ${this.state?.login || ''}
+                </h1>
                 
                 <hr />
 

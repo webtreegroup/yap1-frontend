@@ -4,7 +4,7 @@ import { setCurrentChatAction, store } from 'core/store'
 import { ROUTES, Router } from 'core/router'
 import { ComponentProps } from 'core/block/Component.types'
 
-export interface OwnChatsItemProps extends ComponentProps {
+export interface MessagingItemProps extends ComponentProps {
     id?: string
     name?: string
     lastMessage?: string
@@ -14,8 +14,11 @@ export interface OwnChatsItemProps extends ComponentProps {
     isCurrent?: boolean
 }
 
-export class OwnChatsItem extends Component<HTMLDivElement, OwnChatsItemProps> {
-    constructor(props: OwnChatsItemProps) {
+export class MessagingItem extends Component<
+    HTMLDivElement,
+    MessagingItemProps
+> {
+    constructor(props: MessagingItemProps) {
         const ChatSingleLink = new Link({
             onClick: () => {
                 if (store?.value?.currentChatId) {
@@ -29,7 +32,7 @@ export class OwnChatsItem extends Component<HTMLDivElement, OwnChatsItemProps> {
 
         super(
             'li',
-            { ...props, className: ['OwnChatsItem', 'list-group-item'] },
+            { ...props, className: ['MessagingItem', 'list-group-item'] },
             {
                 ChatSingleLink,
             },

@@ -2,6 +2,7 @@ import { HeaderContainer } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component.types'
+import { ROUTES } from 'core/router'
 import {
     SET_CHATS,
     setChatsAction,
@@ -10,24 +11,24 @@ import {
 } from 'core/store'
 import { getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
-import { OwnChatsItem } from './OwnChatsItem'
+import { MessagingItem } from './MessagingItem'
 
-interface OwnChatsSingleProps extends ComponentProps {
+interface MessagingSingleProps extends ComponentProps {
     chats?: ChatContract[]
 }
 
-export class OwnChatsSingle extends Component<
+export class MessagingSingle extends Component<
     HTMLDivElement,
-    OwnChatsSingleProps
+    MessagingSingleProps
 > {
-    constructor(props: OwnChatsSingleProps = {}) {
+    constructor(props: MessagingSingleProps = {}) {
         const HeaderComponent = new HeaderContainer().createBlock()
 
         super(
             'div',
             {
                 ...props,
-                className: 'OwnChatSingle',
+                className: 'MessagingSingle',
             },
             {
                 HeaderComponent,
@@ -44,7 +45,7 @@ export class OwnChatsSingle extends Component<
     public setComponentTemplate(): string | undefined {
         const chats = this.props.chats?.map(
             (el) =>
-                new OwnChatsItem({
+                new MessagingItem({
                     id: el.id,
                     name: el.name,
                 }),
@@ -59,7 +60,7 @@ export class OwnChatsSingle extends Component<
             <div data-component="HeaderComponent"></div>
 
             <div class="container pt-5">
-                <h1 class="text-center">Чат</h1>
+                <h1 class="text-center">${ROUTES.MESSSAGING.title}</h1>
                 
                 <hr />
 
@@ -79,7 +80,7 @@ export class OwnChatsSingle extends Component<
     }
 }
 
-export class OwnChatsSingleContainer {
+export class MessagingSingleContainer {
     loadChats(): void {
         ChatAPI.getAll()
             .then((xhr) => {
@@ -98,8 +99,8 @@ export class OwnChatsSingleContainer {
         setCurrentChatAction(chatId)
     }
 
-    createBlock(): OwnChatsSingle {
-        const component = new OwnChatsSingle({
+    createBlock(): MessagingSingle {
+        const component = new MessagingSingle({
             onLoadComponent: async () => {
                 this.loadChats()
                 this.setCurrentChat()

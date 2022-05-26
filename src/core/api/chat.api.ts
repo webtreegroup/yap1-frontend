@@ -31,6 +31,10 @@ export class ChatAPI extends BaseAPI {
         return chatAPIInstance.get<string>(`/${chatId}/users`)
     }
 
+    static getById(chatId: string): Promise<IResponse<string>> {
+        return chatAPIInstance.get<string>(`/by-id/${chatId}`)
+    }
+
     static delete(chatId: string): Promise<IResponse<string>> {
         return chatAPIInstance.get('/', { data: { chatId } })
     }
