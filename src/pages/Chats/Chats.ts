@@ -33,7 +33,7 @@ export class Chats extends Component<HTMLDivElement, ChatsProps> {
         })
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         const chats = this.props.chats?.map((el) => new ChatsItem(el))
 
         this.children = {

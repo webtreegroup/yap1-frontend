@@ -1,4 +1,4 @@
-import { Link, Modal } from 'components'
+import { Modal } from 'components'
 
 import { ChatContract, UserChatsContract, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
@@ -10,6 +10,7 @@ import {
     SET_CURRENT_USER_CHATS,
 } from 'core/store'
 import { checkAuth } from 'utils/auth.utils'
+import { ChatForm } from '../ChatForm'
 import { ChatsSidebarItem } from './ChatsSidebarItem'
 
 interface ChatsSidebarProps extends ComponentProps {
@@ -18,14 +19,25 @@ interface ChatsSidebarProps extends ComponentProps {
 
 export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
     constructor(props: ChatsSidebarProps = {}) {
-        const AddChatForm = new Link({ title: 'Форма' })
+        const AddChatFormComponent = new ChatForm({
+            onSubmit: (formData) => {
+                console.log(formData.values())
+            },
+        })
+
+        const DeleteChatFormComponent = new ChatForm({
+            onSubmit: (formData) => {
+                console.log(formData.values())
+            },
+        })
+
         const AddChat = new Modal(
             {
                 id: 'AddChat',
                 modalTitle: 'Добавить чат',
             },
             {
-                body: AddChatForm,
+                body: AddChatFormComponent,
             },
         )
 
@@ -35,7 +47,7 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                 modalTitle: 'Удалить чат',
             },
             {
-                body: AddChatForm,
+                body: DeleteChatFormComponent,
             },
         )
 
@@ -58,7 +70,7 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
         })
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         const chats = this.props.chats?.map((el) => new ChatsSidebarItem(el))
 
         this.children = {

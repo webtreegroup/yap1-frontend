@@ -46,7 +46,7 @@ export class MessagingSingle extends Component<
         })
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         return `
             <div data-component="HeaderComponent"></div>
 

@@ -33,7 +33,7 @@ export class Users extends Component<HTMLDivElement, UsersProps> {
         })
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         const users = this.props.users?.map((el) => new UsersItem(el))
 
         this.children = {

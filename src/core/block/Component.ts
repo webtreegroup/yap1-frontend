@@ -43,39 +43,73 @@ export class Component<
 
     public state = {} as StateType
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    public createResources(_props: PropsType): void {}
+    constructor(
+        tagName: string,
+        props = {} as PropsType,
+        children = {} as ComponentChildrenProps,
+        baseTmplRender?: BaseTemplateRenderProps<PropsType>,
+    ) {
+        this._meta = {
+            tagName,
+            props,
+        }
 
-    private _createResources(props: PropsType): void {
+        this._baseTmplRender = baseTmplRender
+        this.eventBus = new EventBus()
+
+        this._registerEvents(this.eventBus)
+
+        this.children = children
+
+        this.props = this._makePropsProxy(props) as PropsType
+        this.state = this._makePropsProxy(this.state) as StateType
+
+        this.eventBus.emit(this.events.COMPONENT_INIT)
+    }
+
+    public createResources(
+        props: PropsType,
+        _documentElement: ElementType | null,
+    ): void {}
+
+    private _createResources(): void {
         const { tagName } = this._meta
 
         this._documentElement = document.createElement(tagName) as ElementType
 
-        addclassNames(this._documentElement, props.className)
+        addclassNames(this._documentElement, this.props.className)
 
-        this.createResources(props)
+        this.createResources(this.props, this._documentElement)
     }
 
     private _init(): void {
-        this._createResources(this.props)
+        this._createResources()
         this.eventBus.emit(this.events.COMPONENT_DID_MOUNT)
     }
 
-    public componentDidMount(): void {}
+    public componentDidMount(
+        props: PropsType,
+        _documentElement: ElementType | null,
+    ): void {}
 
     private _componentDidMount(): void {
-        this.componentDidMount()
+        this.componentDidMount(this.props, this._documentElement)
         this.eventBus.emit(this.events.COMPONENT_RENDER)
     }
 
-    public setComponentTemplate(): string | undefined {
-        return this._baseTmplRender?.(this.props)
+    public setComponentTemplate(
+        props?: PropsType,
+        _documentElement?: ElementType | null,
+    ): string {
+        if (!props) return ''
+
+        return this._baseTmplRender?.(props) || ''
     }
 
     private _render(): void {
         if (!this._documentElement) return
 
-        this._documentElement.innerHTML = this.setComponentTemplate() || ''
+        this._documentElement.innerHTML = this.setComponentTemplate(this.props)
 
         Object.keys(this.children).forEach((componentKey) => {
             const childComponents = this.children[componentKey]
@@ -102,6 +136,7 @@ export class Component<
     public componentShouldUpdate(
         oldProps: PropsType,
         newProps: PropsType,
+        _documentElement?: ElementType | null,
     ): boolean {
         return !isEqual(oldProps, newProps)
     }
@@ -110,12 +145,19 @@ export class Component<
         oldProps: PropsType,
         newProps: PropsType,
     ): void {
-        const response = this.componentShouldUpdate(oldProps, newProps)
+        const response = this.componentShouldUpdate(
+            oldProps,
+            newProps,
+            this._documentElement,
+        )
 
         if (response) this.eventBus.emit(this.events.COMPONENT_RENDER)
     }
 
-    public componentDidUpdate(): void {}
+    public componentDidUpdate(
+        props?: PropsType,
+        _documentElement?: ElementType | null,
+    ): void {}
 
     private _registerEvents(events: EventBus): void {
         events.on(this.events.COMPONENT_INIT, this._init.bind(this))
@@ -159,30 +201,6 @@ export class Component<
                 throw new Error('Нет доступа')
             },
         })
-    }
-
-    constructor(
-        tagName: string,
-        props = {} as PropsType,
-        children = {} as ComponentChildrenProps,
-        baseTmplRender?: BaseTemplateRenderProps<PropsType>,
-    ) {
-        this._meta = {
-            tagName,
-            props,
-        }
-
-        this._baseTmplRender = baseTmplRender
-        this.eventBus = new EventBus()
-
-        this._registerEvents(this.eventBus)
-
-        this.children = children
-
-        this.props = this._makePropsProxy(props) as PropsType
-        this.state = this._makePropsProxy(this.state) as StateType
-
-        this.eventBus.emit(this.events.COMPONENT_INIT)
     }
 
     public setProps(nextProps?: PropsType): void {

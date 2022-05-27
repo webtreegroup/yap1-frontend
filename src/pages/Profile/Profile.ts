@@ -32,7 +32,7 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
         })
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         return `
             <div data-component="HeaderComponent"></div>
 

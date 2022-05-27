@@ -21,7 +21,7 @@ export class Messaging extends Component<HTMLDivElement> {
         )
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         return `
             <div data-component="HeaderComponent"></div>
 

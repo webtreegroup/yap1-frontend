@@ -44,7 +44,7 @@ export class ChatsSingle extends Component<
         })
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         const chats = this.props.chats?.map((el) => new ChatsItem(el))
 
         this.children = {

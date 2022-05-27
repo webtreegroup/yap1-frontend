@@ -6,6 +6,7 @@ export interface ModalProps extends ComponentProps {
     modalTitle: string
     oKButtonText?: string
     cancelButtonText?: string
+    footer?: boolean
 }
 
 export class Modal extends Component<HTMLDivElement, ModalProps> {
@@ -27,13 +28,13 @@ export class Modal extends Component<HTMLDivElement, ModalProps> {
         this.element?.setAttribute('aria-hidden', 'true')
     }
 
-    setComponentTemplate(): string {
+    setComponentTemplate(props?: ModalProps): string {
         return `
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">${
-                            this.props.modalTitle
+                            props?.modalTitle
                         }</h5>
 
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -41,15 +42,22 @@ export class Modal extends Component<HTMLDivElement, ModalProps> {
 
                     <div class="modal-body" data-component="body"></div>
                     
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            ${this.props.cancelButtonText || 'Отмена'}
-                        </button>
+                    ${
+                        props?.footer
+                            ? `
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                    ${props?.cancelButtonText || 'Отмена'}
+                                </button>
 
-                        <button type="button" class="btn btn-primary">
-                            ${this.props.oKButtonText || 'Далее'}
-                        </button>
-                    </div>
+                                <button type="button" class="btn btn-primary">
+                                    ${props?.oKButtonText || 'Далее'}
+                                </button>
+                            </div>
+                        `
+                            : ''
+                    }
+                    
                 </div>
             </div>
         `

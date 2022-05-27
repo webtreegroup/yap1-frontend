@@ -9,7 +9,7 @@ export class Route {
 
     _componentInstance: Component | null
 
-    _props: StoreType
+    props: StoreType
 
     constructor(
         pathname: string,
@@ -19,7 +19,7 @@ export class Route {
         this._pathname = pathname
         this._component = component
         this._componentInstance = null
-        this._props = props
+        this.props = props
     }
 
     get pathname(): string {
@@ -49,6 +49,6 @@ export class Route {
                 ? componentInstance.createBlock()
                 : componentInstance
 
-        this._componentInstance?.show(this._props.rootQuery)
+        this._componentInstance?.show(this.props.rootQuery)
     }
 }

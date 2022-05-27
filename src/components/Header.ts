@@ -41,7 +41,7 @@ export class Header extends Component<HTMLLinkElement, HeaderProps> {
         )
     }
 
-    public setComponentTemplate(): string | undefined {
+    public setComponentTemplate(): string {
         const userName = `${this.props.currentUser?.firstName} ${this.props.currentUser?.secondName}`
 
         const UserLink = new Link({
