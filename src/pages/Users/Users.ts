@@ -1,7 +1,7 @@
 import { HeaderContainer } from 'components/Header'
 import { UserContract, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { ROUTES } from 'core/router'
 import { store, setUsersAction, SET_USERS } from 'core/store'
 import { checkAuth } from 'utils/auth.utils'

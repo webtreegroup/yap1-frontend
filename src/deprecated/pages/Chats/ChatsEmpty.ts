@@ -1,7 +1,7 @@
 import { store } from 'core/store'
 import { Component } from 'core/block'
 import { ChatsAside } from './components/ChatsAside/ChatsAside'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 
 export class ChatsEmpty extends Component<HTMLDivElement, ComponentProps> {
     constructor(props: ComponentProps) {

@@ -3,7 +3,11 @@ import { StoreType } from 'App.types'
 import { EventBus } from './EventBus'
 import isEqual from 'lodash/isEqual'
 import { EVENTS } from './Component.config'
-import { ComponentProps } from './Component.types'
+
+export interface ComponentProps {
+    className?: string | string[]
+    onLoadComponent?: () => Promise<void>
+}
 
 interface ComponentMetaProps {
     tagName: string
@@ -39,17 +43,13 @@ export class Component<
 
     public state = {} as StateType
 
-    private _createDocumentElement(tagName: string): ElementType {
-        return document.createElement(tagName) as ElementType
-    }
-
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     public createResources(_props: PropsType): void {}
 
     private _createResources(props: PropsType): void {
         const { tagName } = this._meta
 
-        this._documentElement = this._createDocumentElement(tagName)
+        this._documentElement = document.createElement(tagName) as ElementType
 
         addclassNames(this._documentElement, props.className)
 

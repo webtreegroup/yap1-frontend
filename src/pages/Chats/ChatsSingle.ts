@@ -1,7 +1,7 @@
 import { HeaderContainer } from 'components/Header'
 import { ChatAPI, ChatContract } from 'core/api'
 import { Component } from 'core/block'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { ROUTES } from 'core/router'
 import { SET_CHATS, setChatsAction, store } from 'core/store'
 import { getUrlParam } from 'utils'

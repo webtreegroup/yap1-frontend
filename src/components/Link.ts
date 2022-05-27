@@ -1,5 +1,5 @@
 import { Component } from 'core/block'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { Router } from 'core/router'
 
 export interface LinkProps extends ComponentProps {

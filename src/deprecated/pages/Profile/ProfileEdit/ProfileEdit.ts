@@ -1,4 +1,4 @@
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { Link, Loader } from 'components'
 import { Component } from 'core/block'
 import { ROUTES } from 'core/router'

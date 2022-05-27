@@ -1,7 +1,8 @@
+import { Link, Modal } from 'components'
 import { HeaderContainer } from 'components/Header'
 import { ChatContract, UserChatsContract, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { ROUTES } from 'core/router'
 import {
     store,
@@ -19,6 +20,17 @@ export class Messaging extends Component<HTMLDivElement, MessagingProps> {
     constructor(props: MessagingProps = {}) {
         const HeaderComponent = new HeaderContainer().createBlock()
 
+        const testLink = new Link({ title: 'test' })
+        const ModalTest = new Modal(
+            {
+                id: 'testModal',
+                modalTitle: 'Добавить пользователя',
+            },
+            {
+                body: testLink,
+            },
+        )
+
         super(
             'div',
             {
@@ -27,6 +39,7 @@ export class Messaging extends Component<HTMLDivElement, MessagingProps> {
             },
             {
                 HeaderComponent,
+                ModalTest,
             },
         )
     }
@@ -72,6 +85,10 @@ export class Messaging extends Component<HTMLDivElement, MessagingProps> {
                             </svg>
                             удалить чат
                         </a>
+
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testModal">
+                            Launch demo modal
+                        </button>
                     </div>
 
                     <div class="col-sm-8">

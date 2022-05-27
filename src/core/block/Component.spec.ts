@@ -1,5 +1,5 @@
 import { renderComponent } from 'utils'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import {
     Component,
     BaseTemplateRenderProps,

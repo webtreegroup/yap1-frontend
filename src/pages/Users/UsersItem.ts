@@ -1,7 +1,7 @@
 import { Component } from 'core/block'
 import { Link } from 'components'
 import { ROUTES } from 'core/router'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { UserContract } from 'core/api'
 
 export interface UsersItemProps extends ComponentProps, UserContract {}

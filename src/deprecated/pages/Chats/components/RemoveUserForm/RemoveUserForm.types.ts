@@ -1,4 +1,4 @@
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 
 export interface IRemoveUserForm extends ComponentProps {
     onRemoveUser?: (login: string, currentChatId?: string) => void

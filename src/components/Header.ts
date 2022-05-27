@@ -1,6 +1,6 @@
 import { UserContract } from 'core/api'
 import { Component } from 'core/block'
-import { ComponentProps } from 'core/block/Component.types'
+import { ComponentProps } from 'core/block/Component'
 import { ROUTES } from 'core/router'
 import { SET_CURRENT_USER, store } from 'core/store'
 import { Link } from './Link'
