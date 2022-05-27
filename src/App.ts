@@ -5,16 +5,16 @@ import {
     Signup,
     ChatsContainer,
     ChatsSingleContainer,
-    MessagingContainer,
+    Messaging,
     MessagingSingleContainer,
     UsersContainer,
     UsersSingleContainer,
     ProfileContainer,
 } from 'pages'
 
-Router.use(ROUTES.HOME.path, MessagingContainer)
+Router.use(ROUTES.HOME.path, Messaging)
     .use(`${ROUTES.MESSSAGING.path}/.+`, MessagingSingleContainer)
-    .use(`${ROUTES.MESSSAGING.path}`, MessagingContainer)
+    .use(`${ROUTES.MESSSAGING.path}`, Messaging)
     .use(`${ROUTES.CHATS.path}/.+`, ChatsSingleContainer)
     .use(ROUTES.CHATS.path, ChatsContainer)
     .use(ROUTES.USERS.path, UsersContainer)
