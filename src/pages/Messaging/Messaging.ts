@@ -1,5 +1,5 @@
 import { ChatsSidebarContainer } from 'pages/Messaging/ChatsSidebar'
-import { HeaderContainer } from 'components/Header'
+import { HeaderContainer } from 'components'
 
 import { Component } from 'core/block'
 import { ROUTES } from 'core/router'

@@ -18,19 +18,13 @@ module.exports = {
                 exclude: /node_modules/,
             },
             {
-                test: /\.s[ac]ss$/i,
+                test: /\.css$/,
                 use: [
                     process.env.NODE_ENV !== 'production'
                         ? 'style-loader'
                         : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
-                    {
-                        loader: 'sass-loader',
                         options: {
                             sourceMap: true,
                         },

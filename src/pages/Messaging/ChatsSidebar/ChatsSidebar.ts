@@ -1,4 +1,5 @@
-import { Modal } from 'components'
+import { Modal, Notification } from 'components'
+import { NotificationHelper } from 'components/Notification/Notification.utils'
 
 import {
     ChatAPI,
@@ -11,7 +12,6 @@ import {
 } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
-import { Router } from 'core/router'
 
 import {
     store,
@@ -29,15 +29,23 @@ interface ChatsSidebarProps extends ComponentProps {
 
 export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
     constructor(props: ChatsSidebarProps = {}) {
+        const NotificationComponent = new Notification({
+            title: CHAT_ADD_SUCCESS_MESSAGE,
+        })
+
         const AddChatFormComponent = new ChatForm({
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
+                if (!body.name) return
+
                 ChatAPI.create(body).then((response) => {
                     switch (response.status) {
                         case 200:
-                            alert(CHAT_ADD_SUCCESS_MESSAGE)
-                            Router.reload()
+                            this.props.onLoadComponent?.()
+
+                            NotificationHelper.show()
+
                             break
                         default:
                             alert(CHAT_ADD_FAIL_MESSAGE)
@@ -81,6 +89,7 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             {
                 AddChat,
                 DeleteChat,
+                NotifComponent: NotificationComponent,
             },
         )
     }
@@ -117,6 +126,21 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                 </svg>
                 удалить чат
             </a>
+
+            <div
+                id="chatsSidebarNotification"
+                class="toast align-items-center text-bg-primary border-0" 
+                role="alert" 
+                aria-live="assertive" 
+                aria-atomic="true"
+            >
+                <div class="d-flex">
+                    <div class="toast-body">
+                    Hello, world! This is a toast message.
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
         `
     }
 }

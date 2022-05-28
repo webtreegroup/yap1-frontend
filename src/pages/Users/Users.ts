@@ -1,4 +1,4 @@
-import { HeaderContainer } from 'components/Header'
+import { HeaderContainer } from 'components'
 import { UserContract, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'

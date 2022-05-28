@@ -1,8 +1,9 @@
+import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min'
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 import { Router, ROUTES } from 'core/router'
 import {
     ErrorPage,
-    Signin,
-    Signup,
     ChatsContainer,
     ChatsSingleContainer,
     Messaging,
@@ -21,7 +22,7 @@ Router.use(ROUTES.HOME.path, Messaging)
     .use(`${ROUTES.USERS.path}/.+`, UsersSingleContainer)
     .use(ROUTES.PROFILE_EDIT.path, ErrorPage)
     .use(ROUTES.PROFILE.path, ProfileContainer)
-    .use(ROUTES.SIGNIN.path, Signin)
-    .use(ROUTES.SIGNUP.path, Signup)
+    .use(ROUTES.SIGNIN.path, ErrorPage)
+    .use(ROUTES.SIGNUP.path, ErrorPage)
     .use('/.*', ErrorPage)
     .start()
