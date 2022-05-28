@@ -2,7 +2,7 @@ import {
     CHAT_ADD_FAIL_MESSAGE,
     CHAT_ADD_SUCCESS_MESSAGE,
     ChatAPI,
-    AddChatContract,
+    ChatFormContract,
 } from 'core/api'
 import { Router } from 'core/router'
 import { loaderOffAction, loaderOnAction } from 'core/store'
@@ -13,7 +13,7 @@ export class AddChatFormContainer {
         this.onAddChat = this.onAddChat.bind(this)
     }
 
-    onAddChat(request: AddChatContract): void {
+    onAddChat(request: ChatFormContract): void {
         loaderOnAction()
 
         ChatAPI.create(request)

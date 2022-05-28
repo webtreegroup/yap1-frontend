@@ -62,3 +62,15 @@ export function addclassNames(
 
     element?.classList.add(...classes)
 }
+
+export function formDataToObj<T extends object>(formData: FormData): T {
+    const form: { [key: string]: any } = {}
+
+    for (const pair of formData.entries()) {
+        const [key, value] = pair
+
+        form[key] = value
+    }
+
+    return form as T
+}

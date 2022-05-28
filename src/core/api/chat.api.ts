@@ -12,15 +12,19 @@ export interface ChatModel {
     ownerId: string
 }
 
-export interface AddChatContract {
+export interface ChatFormContract {
     name: string
 }
 
 const chatAPIInstance = new HTTP('/chats')
 
 export class ChatAPI extends BaseAPI {
-    static create<T = AddChatContract>(data: T): Promise<IResponse<T>> {
+    static create<T = ChatFormContract>(data: T): Promise<IResponse<T>> {
         return chatAPIInstance.post<T>('/', { data })
+    }
+
+    static delete<T = ChatFormContract>(data: T): Promise<IResponse<string>> {
+        return chatAPIInstance.delete('/', { data })
     }
 
     static getAll(): Promise<IResponse<string>> {
@@ -33,9 +37,5 @@ export class ChatAPI extends BaseAPI {
 
     static getById(chatId: string): Promise<IResponse<string>> {
         return chatAPIInstance.get<string>(`/by-id/${chatId}`)
-    }
-
-    static delete(chatId: string): Promise<IResponse<string>> {
-        return chatAPIInstance.get('/', { data: { chatId } })
     }
 }

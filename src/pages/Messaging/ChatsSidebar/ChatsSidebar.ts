@@ -1,14 +1,24 @@
 import { Modal } from 'components'
 
-import { ChatContract, UserChatsContract, UsersAPI } from 'core/api'
+import {
+    ChatAPI,
+    ChatContract,
+    ChatFormContract,
+    CHAT_ADD_FAIL_MESSAGE,
+    CHAT_ADD_SUCCESS_MESSAGE,
+    UserChatsContract,
+    UsersAPI,
+} from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
+import { Router } from 'core/router'
 
 import {
     store,
     setCurrentUserChatsAction,
     SET_CURRENT_USER_CHATS,
 } from 'core/store'
+import { formDataToObj } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatForm } from '../ChatForm'
 import { ChatsSidebarItem } from './ChatsSidebarItem'
@@ -21,7 +31,18 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
     constructor(props: ChatsSidebarProps = {}) {
         const AddChatFormComponent = new ChatForm({
             onSubmit: (formData) => {
-                console.log(formData.values())
+                const body = formDataToObj<ChatFormContract>(formData)
+
+                ChatAPI.create(body).then((response) => {
+                    switch (response.status) {
+                        case 200:
+                            alert(CHAT_ADD_SUCCESS_MESSAGE)
+                            Router.reload()
+                            break
+                        default:
+                            alert(CHAT_ADD_FAIL_MESSAGE)
+                    }
+                })
             },
         })
 

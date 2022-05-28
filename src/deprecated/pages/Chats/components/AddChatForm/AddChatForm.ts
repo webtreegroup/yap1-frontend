@@ -1,4 +1,4 @@
-import { AddChatContract } from 'core/api'
+import { ChatFormContract } from 'core/api'
 import { Button, Form, InputControl } from 'components'
 import { ADD_CHAT_FORM_CONTROLS } from './AddChatForm.config'
 import { addChatFormTmplRender } from './AddChatForm.tmpl'
@@ -16,7 +16,7 @@ export class AddChatForm extends Form<IAddChatForm> {
         })
     }
 
-    onSubmit(request: AddChatContract): void {
+    onSubmit(request: ChatFormContract): void {
         this.props.onAddChat?.(request)
     }
 

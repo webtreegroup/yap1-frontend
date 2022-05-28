@@ -1,5 +1,5 @@
-import { AddChatContract } from 'core/api'
+import { ChatFormContract } from 'core/api'
 
 export interface IAddChatForm {
-    onAddChat?: (request: AddChatContract) => void
+    onAddChat?: (request: ChatFormContract) => void
 }
