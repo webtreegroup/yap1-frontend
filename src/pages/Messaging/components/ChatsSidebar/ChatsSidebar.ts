@@ -6,6 +6,8 @@ import {
     ChatFormContract,
     CHAT_ADD_FAIL_MESSAGE,
     CHAT_ADD_SUCCESS_MESSAGE,
+    CHAT_REMOVE_FAIL_MESSAGE,
+    CHAT_REMOVE_SUCCESS_MESSAGE,
     UserChatsContract,
     UsersAPI,
 } from 'core/api'
@@ -20,6 +22,7 @@ import {
 import { formDataToObj } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatForm } from '../ChatForm'
+import { validateBody } from './ChatsSidebar.utils'
 import { ChatsSidebarItem } from './ChatsSidebarItem'
 
 interface ChatsSidebarProps extends ComponentProps {
@@ -28,8 +31,12 @@ interface ChatsSidebarProps extends ComponentProps {
 
 export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
     constructor(props: ChatsSidebarProps = {}) {
-        const NotificationComponent = new Notification({
+        const AddNotification = new Notification({
             title: CHAT_ADD_SUCCESS_MESSAGE,
+        })
+
+        const RemoveNotification = new Notification({
+            title: CHAT_REMOVE_SUCCESS_MESSAGE,
         })
 
         const NotificationContainer = new Component(
@@ -44,7 +51,8 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                 ],
             },
             {
-                NotificationComponent,
+                AddNotification,
+                RemoveNotification,
             },
         )
 
@@ -52,18 +60,14 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
-                if (!body.name) {
-                    alert('Название чата обязательно для заполнения!')
-
-                    return
-                }
+                if (!validateBody(body)) return
 
                 ChatAPI.create(body).then((response) => {
                     switch (response.status) {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            NotificationComponent?.show()
+                            AddNotification?.show()
 
                             break
                         default:
@@ -75,7 +79,22 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
 
         const DeleteChatFormComponent = new ChatForm({
             onSubmit: (formData) => {
-                console.log(formData.values())
+                const body = formDataToObj<ChatFormContract>(formData)
+
+                if (!validateBody(body)) return
+
+                ChatAPI.delete(body).then((response) => {
+                    switch (response.status) {
+                        case 200:
+                            this.props.onLoadComponent?.()
+
+                            RemoveNotification?.show()
+
+                            break
+                        default:
+                            alert(CHAT_REMOVE_FAIL_MESSAGE)
+                    }
+                })
             },
         })
 

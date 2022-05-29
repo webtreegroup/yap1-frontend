@@ -11,7 +11,9 @@ export const PROFILE_CHANGE_SUCCESS_MESSAGE = 'Данные успешное о�
 export const PROFILE_CHANGE_FAIL_MESSAGE =
     'Не удалось обновить данные.\nЧто то пошло не так!'
 export const CHAT_ADD_SUCCESS_MESSAGE = 'Чат успешно добавлен!'
+export const CHAT_REMOVE_SUCCESS_MESSAGE = 'Чат успешно удален!'
 export const CHAT_ADD_FAIL_MESSAGE = 'Не удалось добавить чат!'
+export const CHAT_REMOVE_FAIL_MESSAGE = 'Не удалось удалить чат!'
 export const CHAT_ADD_USER_SUCCESS_MESSAGE =
     'Пользователь успешно добавлен в чат!'
 export const CHAT_ADD_USER_FAIL_MESSAGE =

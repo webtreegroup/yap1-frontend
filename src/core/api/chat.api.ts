@@ -19,12 +19,12 @@ export interface ChatFormContract {
 const chatAPIInstance = new HTTP('/chats')
 
 export class ChatAPI extends BaseAPI {
-    static create<T = ChatFormContract>(data: T): Promise<IResponse<T>> {
-        return chatAPIInstance.post<T>('/', { data })
+    static create<T = ChatFormContract>(data: T): Promise<IResponse<string>> {
+        return chatAPIInstance.post('/', { data })
     }
 
     static delete<T = ChatFormContract>(data: T): Promise<IResponse<string>> {
-        return chatAPIInstance.delete('/', { data })
+        return chatAPIInstance.delete('/by-name', { data })
     }
 
     static getAll(): Promise<IResponse<string>> {
