@@ -1,11 +1,14 @@
 import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
+import { Toast } from 'bootstrap'
 
 export interface NotificationProps extends ComponentProps {
     title: string
 }
 
 export class Notification extends Component<HTMLDivElement, NotificationProps> {
+    toastIntance: Toast | null = null
+
     constructor(
         props: NotificationProps,
         children = {} as ComponentChildrenProps,
@@ -23,10 +26,25 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
             },
             children,
         )
+
+        this.mountToast()
     }
 
-    createResources(_props: NotificationProps): void {
-        this.element?.setAttribute('id', 'notification')
+    public show(): void {
+        if (!this.toastIntance) return
+
+        this.toastIntance.show()
+    }
+
+    mountToast(): void {
+        if (!this.element) return
+
+        this.toastIntance = Toast.getOrCreateInstance(this.element, {
+            autohide: false,
+        })
+    }
+
+    createResources(): void {
         this.element?.setAttribute('role', 'alert')
         this.element?.setAttribute('aria-live', 'assertive')
         this.element?.setAttribute('aria-atomic', 'true')
@@ -35,10 +53,17 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
     setComponentTemplate({ title }: NotificationProps): string {
         return `
             <div class="d-flex">
-            <div class="toast-body">
-                ${title}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                <div class="toast-body">
+                    ${title}
+                </div>
+                
+                <button 
+                    type="button" 
+                    class="btn-close btn-close-white me-2 m-auto" 
+                    data-bs-dismiss="toast" 
+                    aria-label="Close"
+                >
+                </button>
             </div>
         `
     }

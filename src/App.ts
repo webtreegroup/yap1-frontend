@@ -10,6 +10,7 @@ import {
     MessagingSingleContainer,
     UsersContainer,
     UsersSingleContainer,
+    SignInContainer,
     ProfileContainer,
 } from 'pages'
 
@@ -22,7 +23,7 @@ Router.use(ROUTES.HOME.path, Messaging)
     .use(`${ROUTES.USERS.path}/.+`, UsersSingleContainer)
     .use(ROUTES.PROFILE_EDIT.path, ErrorPage)
     .use(ROUTES.PROFILE.path, ProfileContainer)
-    .use(ROUTES.SIGNIN.path, ErrorPage)
+    .use(ROUTES.SIGNIN.path, SignInContainer)
     .use(ROUTES.SIGNUP.path, ErrorPage)
     .use('/.*', ErrorPage)
     .start()

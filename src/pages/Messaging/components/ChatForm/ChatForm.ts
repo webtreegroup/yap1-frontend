@@ -29,6 +29,7 @@ export class ChatForm extends Component<HTMLFormElement, ChatFormProps> {
         return `
             <div class="mb-3">
                 <label for="message" class="form-label">Название чата</label>
+                
                 <input 
                     type="text" 
                     class="form-control" 

@@ -68,18 +68,20 @@ export class Component<
     }
 
     public createResources(
-        props: PropsType,
+        _props: PropsType,
         _documentElement: ElementType | null,
     ): void {}
 
     private _createResources(): void {
         const { tagName } = this._meta
 
-        this._documentElement = document.createElement(tagName) as ElementType
+        const element = document.createElement(tagName) as ElementType
 
-        addclassNames(this._documentElement, this.props.className)
+        this._documentElement = element
 
-        this.createResources(this.props, this._documentElement)
+        addclassNames(element, this.props.className)
+
+        this.createResources(this.props, element)
     }
 
     private _init(): void {
@@ -88,7 +90,7 @@ export class Component<
     }
 
     public componentDidMount(
-        props: PropsType,
+        _props: PropsType,
         _documentElement: ElementType | null,
     ): void {}
 
@@ -155,7 +157,7 @@ export class Component<
     }
 
     public componentDidUpdate(
-        props?: PropsType,
+        _props?: PropsType,
         _documentElement?: ElementType | null,
     ): void {}
 

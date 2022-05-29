@@ -1,5 +1,4 @@
 import { Modal, Notification } from 'components'
-import { NotificationHelper } from 'components/Notification/Notification.utils'
 
 import {
     ChatAPI,
@@ -37,14 +36,20 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
-                if (!body.name) return
+                if (!body.name) {
+                    alert('Название чата обязательно для заполнения!')
+
+                    return
+                }
+
+                NotificationComponent?.show()
 
                 ChatAPI.create(body).then((response) => {
                     switch (response.status) {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            NotificationHelper.show()
+                            NotificationComponent?.show()
 
                             break
                         default:
@@ -89,7 +94,7 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             {
                 AddChat,
                 DeleteChat,
-                NotifComponent: NotificationComponent,
+                NotificationComponent,
             },
         )
     }
@@ -126,21 +131,6 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                 </svg>
                 удалить чат
             </a>
-
-            <div
-                id="chatsSidebarNotification"
-                class="toast align-items-center text-bg-primary border-0" 
-                role="alert" 
-                aria-live="assertive" 
-                aria-atomic="true"
-            >
-                <div class="d-flex">
-                    <div class="toast-body">
-                    Hello, world! This is a toast message.
-                    </div>
-                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-            </div>
         `
     }
 }

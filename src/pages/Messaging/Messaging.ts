@@ -1,4 +1,4 @@
-import { ChatsSidebarContainer } from 'pages/Messaging/ChatsSidebar'
+import { ChatsSidebarContainer } from 'pages/Messaging/components/ChatsSidebar'
 import { HeaderContainer } from 'components'
 
 import { Component } from 'core/block'

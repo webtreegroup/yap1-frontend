@@ -11,7 +11,7 @@ import {
 } from 'core/store'
 import { getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
-import { ChatsSidebarContainer } from './ChatsSidebar'
+import { ChatsSidebarContainer } from './components/ChatsSidebar'
 
 interface MessagingSingleProps extends ComponentProps {
     getSingleChat?: () => Promise<void>
