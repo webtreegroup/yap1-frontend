@@ -32,6 +32,22 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             title: CHAT_ADD_SUCCESS_MESSAGE,
         })
 
+        const NotificationContainer = new Component(
+            'div',
+            {
+                className: [
+                    'toast-container',
+                    'position-fixed',
+                    'bottom-0',
+                    'end-0',
+                    'p-3',
+                ],
+            },
+            {
+                NotificationComponent,
+            },
+        )
+
         const AddChatFormComponent = new ChatForm({
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
@@ -41,8 +57,6 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
 
                     return
                 }
-
-                NotificationComponent?.show()
 
                 ChatAPI.create(body).then((response) => {
                     switch (response.status) {
@@ -94,7 +108,7 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             {
                 AddChat,
                 DeleteChat,
-                NotificationComponent,
+                NotificationContainer,
             },
         )
     }
