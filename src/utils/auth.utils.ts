@@ -8,13 +8,7 @@ import {
     store,
 } from 'core/store'
 
-export function checkAuth(): Promise<void> {
-    if (store.value.auth) {
-        return Promise.resolve()
-    }
-
-    loaderOnAction()
-
+export function getCurrentUser(): Promise<void> {
     return UsersAPI.getCurrentUser()
         .then((xhr) => {
             if (xhr.status !== 200) {
@@ -32,4 +26,14 @@ export function checkAuth(): Promise<void> {
         .finally(() => {
             loaderOffAction()
         })
+}
+
+export function checkAuth(): Promise<void> {
+    if (store.value.auth) {
+        return Promise.resolve()
+    }
+
+    loaderOnAction()
+
+    return getCurrentUser()
 }

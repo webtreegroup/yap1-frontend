@@ -1,7 +1,11 @@
+import { Button } from 'components/Button'
+import { UserContract } from 'core/api'
 import { Component, ComponentProps } from 'core/block'
+import { ROUTES } from 'core/router'
 
 interface ProfileEditFormProps extends ComponentProps {
     onSubmit?: (formData: FormData) => void
+    initialValues?: UserContract
 }
 
 export class ProfileEditForm extends Component<
@@ -9,10 +13,23 @@ export class ProfileEditForm extends Component<
     ProfileEditFormProps
 > {
     constructor(props: ProfileEditFormProps) {
-        super('form', {
-            ...props,
-            className: 'SignInForm',
+        const ButtonEdit = new Button({
+            path: ROUTES.PROFILE.path,
+            className: 'me-2',
+            type: 'btn-secondary',
+            title: 'Отмена',
         })
+
+        super(
+            'form',
+            {
+                ...props,
+                className: 'ProfileEditForm',
+            },
+            {
+                Buttons: [ButtonEdit],
+            },
+        )
     }
 
     public createResources(
@@ -30,6 +47,12 @@ export class ProfileEditForm extends Component<
 
     public setComponentTemplate(): string {
         return `
+            <input 
+                type="hidden" 
+                name="id" 
+                value="${this.props.initialValues?.id}" 
+            /> 
+
             <div class="mb-3">
                 <label for="login" class="form-label">Логин</label>
 
@@ -39,7 +62,8 @@ export class ProfileEditForm extends Component<
                     id="login" 
                     name="login"
                     placeholder="Введите значение"
-                >
+                    value="${this.props.initialValues?.login}" 
+                />
             </div>
 
             <div class="mb-3">
@@ -51,7 +75,8 @@ export class ProfileEditForm extends Component<
                     id="firstName" 
                     name="firstName"
                     placeholder="Введите значение"
-                >
+                    value="${this.props.initialValues?.firstName}" 
+                />
             </div>
 
             <div class="mb-3">
@@ -63,7 +88,8 @@ export class ProfileEditForm extends Component<
                     id="secondName" 
                     name="secondName"
                     placeholder="Введите значение"
-                >
+                    value="${this.props.initialValues?.secondName}" 
+                />
             </div>
 
             <div class="mb-3">
@@ -75,7 +101,8 @@ export class ProfileEditForm extends Component<
                     id="email" 
                     name="email"
                     placeholder="Введите значение"
-                >
+                    value="${this.props.initialValues?.email}" 
+                />
             </div>
 
             <div class="mb-3">
@@ -87,15 +114,18 @@ export class ProfileEditForm extends Component<
                     id="phone" 
                     name="phone"
                     placeholder="Введите значение"
-                >
+                    value="${this.props.initialValues?.phone}" 
+                />
             </div>
 
-            <button 
-                class="w-100 mb-2 btn rounded-3 btn-primary" 
-                type="submit"
-            >
-                Войти
-            </button>
+            <div class="text-center" data-component="Buttons">
+                <button 
+                    class="me-2 btn btn-primary" 
+                    type="submit"
+                >
+                    Сохранить
+                </button>
+            </div>
         `
     }
 }

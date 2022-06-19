@@ -1,16 +1,15 @@
-import { Button, HeaderContainer } from 'components'
-import { UserContract } from 'core/api'
+import { HeaderContainer } from 'components'
+import { PROFILE_CHANGE_FAIL_MESSAGE, UsersAPI } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
-import { ROUTES } from 'core/router'
+import { Router, ROUTES } from 'core/router'
 import { store, SET_CURRENT_USER } from 'core/store'
 import { formDataToObj } from 'utils'
-import { checkAuth } from 'utils/auth.utils'
+import { checkAuth, getCurrentUser } from 'utils/auth.utils'
 import { ProfileEditForm } from './components'
 
 interface ProfileProps extends ComponentProps {
     onEdit?: (formData: FormData) => void
-    currentUser?: UserContract
 }
 
 export class ProfileEdit extends Component<HTMLDivElement, ProfileProps> {
@@ -19,19 +18,6 @@ export class ProfileEdit extends Component<HTMLDivElement, ProfileProps> {
 
         const Form = new ProfileEditForm({
             onSubmit: props.onEdit,
-        })
-
-        const ButtonEdit = new Button({
-            path: ROUTES.PROFILE_EDIT.path,
-            className: 'me-2',
-            type: 'btn-secondary',
-            title: 'Редактировать',
-        })
-
-        const ButtonEditPass = new Button({
-            path: ROUTES.PROFILE_EDIT.path,
-            type: 'btn-danger',
-            title: 'Изменить пароль',
         })
 
         super(
@@ -43,7 +29,6 @@ export class ProfileEdit extends Component<HTMLDivElement, ProfileProps> {
             {
                 HeaderComponent,
                 Form,
-                Buttons: [ButtonEdit, ButtonEditPass],
             },
         )
     }
@@ -63,41 +48,7 @@ export class ProfileEdit extends Component<HTMLDivElement, ProfileProps> {
 
                 <hr />
 
-                <div class="border p-3 mb-3 bg-light" data-component="Form">
-                    <table class="table">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <td>${this.props.currentUser?.id}</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="col">Логин</th>
-                            <td>${this.props.currentUser?.login}</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="col">Имя</th>
-                            <td>${this.props.currentUser?.firstName}</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="col">Фамилия</th>
-                            <td>${this.props.currentUser?.secondName}</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="col">Email</th>
-                            <td>${this.props.currentUser?.email}</td>
-                        </tr>
-
-                        <tr>
-                            <th scope="col">Телефон</th>
-                            <td>${this.props.currentUser?.phone}</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="text-center" data-component="Buttons"></div>
+                <div class="border p-3 mb-3 bg-light" data-component="Form"></div>
             </div>
         `
     }
@@ -111,25 +62,20 @@ export class ProfileEditContainer {
 
         console.log(body)
 
-        // if (!body.login || !body.password) {
-        //     alert('Логин и пароль обязательны для заполнения!')
-
-        //     return
-        // }
-
-        // AuthAPI.signin(body)
-        //     .then((response) => {
-        //         switch (response.status) {
-        //             case 200:
-        //                 Router.go(ROUTES.CHATS.path)
-        //                 break
-        //             default:
-        //                 alert(SIGNIN_FAIL_MESSAGE)
-        //         }
-        //     })
-        //     .finally(() => {
-        //         console.log('loader off...')
-        //     })
+        UsersAPI.updateUserById(body)
+            .then((response) => {
+                switch (response.status) {
+                    case 200:
+                        getCurrentUser()
+                        Router.go(ROUTES.PROFILE.path)
+                        break
+                    default:
+                        alert(PROFILE_CHANGE_FAIL_MESSAGE)
+                }
+            })
+            .finally(() => {
+                console.log('loader off...')
+            })
     }
 
     createBlock(): ProfileEdit {
@@ -139,8 +85,10 @@ export class ProfileEditContainer {
 
         store.subscribe(
             (state) => {
-                component.setProps({
-                    currentUser: state.currentUser,
+                const form = component.children.Form as Component
+
+                form?.setProps({
+                    initialValues: state.currentUser,
                 })
             },
             [SET_CURRENT_USER],

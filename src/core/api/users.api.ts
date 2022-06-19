@@ -29,4 +29,11 @@ export class UsersAPI extends BaseAPI {
     static getCurrentUser(): Promise<IResponse<string>> {
         return usersAPIInstance.get<string>('/current')
     }
+
+    static updateUserById({
+        id,
+        ...data
+    }: UserContract): Promise<IResponse<string>> {
+        return usersAPIInstance.put<string>(`/${id}`, { data })
+    }
 }
