@@ -3,15 +3,15 @@ import { ComponentProps } from 'core/block/Component'
 import { Toast } from 'bootstrap'
 
 export interface NotificationProps extends ComponentProps {
-    title: string
+    title?: string
 }
 
 export class Notification extends Component<HTMLDivElement, NotificationProps> {
     toastIntance: Toast | null = null
 
     constructor(
-        props: NotificationProps,
-        children = {} as ComponentChildrenProps,
+        props: NotificationProps = {},
+        children: ComponentChildrenProps = {},
     ) {
         super(
             'div',
@@ -30,8 +30,12 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
         this.mountToast()
     }
 
-    public show(): void {
+    public show(title?: string): void {
         if (!this.toastIntance) return
+
+        if (title) {
+            this.props.title = title
+        }
 
         this.toastIntance.show()
     }
@@ -54,7 +58,7 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
         return `
             <div class="d-flex">
                 <div class="toast-body">
-                    ${title}
+                    ${title || ''}
                 </div>
                 
                 <button 

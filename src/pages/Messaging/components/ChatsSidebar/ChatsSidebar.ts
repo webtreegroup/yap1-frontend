@@ -31,13 +31,7 @@ interface ChatsSidebarProps extends ComponentProps {
 
 export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
     constructor(props: ChatsSidebarProps = {}) {
-        const AddNotification = new Notification({
-            title: CHAT_ADD_SUCCESS_MESSAGE,
-        })
-
-        const RemoveNotification = new Notification({
-            title: CHAT_REMOVE_SUCCESS_MESSAGE,
-        })
+        const NotificationComponent = new Notification()
 
         const NotificationContainer = new Component(
             'div',
@@ -51,8 +45,7 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                 ],
             },
             {
-                AddNotification,
-                RemoveNotification,
+                NotificationComponent,
             },
         )
 
@@ -67,7 +60,9 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            AddNotification?.show()
+                            NotificationComponent?.show(
+                                CHAT_ADD_SUCCESS_MESSAGE,
+                            )
 
                             break
                         default:
@@ -88,7 +83,9 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            RemoveNotification?.show()
+                            NotificationComponent?.show(
+                                CHAT_REMOVE_SUCCESS_MESSAGE,
+                            )
 
                             break
                         default:

@@ -12,6 +12,7 @@ import {
     UsersSingleContainer,
     SignInContainer,
     ProfileContainer,
+    ProfileEditContainer,
 } from 'pages'
 
 Router.use(ROUTES.HOME.path, Messaging)
@@ -21,7 +22,7 @@ Router.use(ROUTES.HOME.path, Messaging)
     .use(ROUTES.CHATS.path, ChatsContainer)
     .use(ROUTES.USERS.path, UsersContainer)
     .use(`${ROUTES.USERS.path}/.+`, UsersSingleContainer)
-    .use(ROUTES.PROFILE_EDIT.path, ErrorPage)
+    .use(ROUTES.PROFILE_EDIT.path, ProfileEditContainer)
     .use(ROUTES.PROFILE.path, ProfileContainer)
     .use(ROUTES.SIGNIN.path, SignInContainer)
     .use(ROUTES.SIGNUP.path, ErrorPage)

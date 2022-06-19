@@ -4,15 +4,22 @@ import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { ROUTES } from 'core/router'
 import { store, SET_CURRENT_USER } from 'core/store'
+import { formDataToObj } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
+import { ProfileEditForm } from './components'
 
 interface ProfileProps extends ComponentProps {
+    onEdit?: (formData: FormData) => void
     currentUser?: UserContract
 }
 
-export class Profile extends Component<HTMLDivElement, ProfileProps> {
-    constructor(props: ProfileProps = {}) {
+export class ProfileEdit extends Component<HTMLDivElement, ProfileProps> {
+    constructor(props: ProfileProps) {
         const HeaderComponent = new HeaderContainer().createBlock()
+
+        const Form = new ProfileEditForm({
+            onSubmit: props.onEdit,
+        })
 
         const ButtonEdit = new Button({
             path: ROUTES.PROFILE_EDIT.path,
@@ -35,6 +42,7 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
             },
             {
                 HeaderComponent,
+                Form,
                 Buttons: [ButtonEdit, ButtonEditPass],
             },
         )
@@ -55,7 +63,7 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
 
                 <hr />
 
-                <div class="border p-3 mb-3 bg-light">
+                <div class="border p-3 mb-3 bg-light" data-component="Form">
                     <table class="table">
                         <tr>
                             <th scope="col">Id</th>
@@ -83,7 +91,7 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
                         </tr>
 
                         <tr>
-                            <th scope="col">Phone</th>
+                            <th scope="col">Телефон</th>
                             <td>${this.props.currentUser?.phone}</td>
                         </tr>
                     </table>
@@ -95,9 +103,39 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
     }
 }
 
-export class ProfileContainer {
-    createBlock(): Profile {
-        const component = new Profile()
+export class ProfileEditContainer {
+    onEdit(request: FormData): void {
+        console.log('loader on...')
+
+        const body = formDataToObj<any>(request)
+
+        console.log(body)
+
+        // if (!body.login || !body.password) {
+        //     alert('Логин и пароль обязательны для заполнения!')
+
+        //     return
+        // }
+
+        // AuthAPI.signin(body)
+        //     .then((response) => {
+        //         switch (response.status) {
+        //             case 200:
+        //                 Router.go(ROUTES.CHATS.path)
+        //                 break
+        //             default:
+        //                 alert(SIGNIN_FAIL_MESSAGE)
+        //         }
+        //     })
+        //     .finally(() => {
+        //         console.log('loader off...')
+        //     })
+    }
+
+    createBlock(): ProfileEdit {
+        const component = new ProfileEdit({
+            onEdit: this.onEdit,
+        })
 
         store.subscribe(
             (state) => {
