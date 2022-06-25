@@ -13,6 +13,7 @@ import {
     SignInContainer,
     ProfileContainer,
     ProfileEditContainer,
+    SignUpContainer,
 } from 'pages'
 
 Router.use(ROUTES.HOME.path, Messaging)
@@ -25,6 +26,6 @@ Router.use(ROUTES.HOME.path, Messaging)
     .use(ROUTES.PROFILE_EDIT.path, ProfileEditContainer)
     .use(ROUTES.PROFILE.path, ProfileContainer)
     .use(ROUTES.SIGNIN.path, SignInContainer)
-    .use(ROUTES.SIGNUP.path, ErrorPage)
+    .use(ROUTES.SIGNUP.path, SignUpContainer)
     .use('/.*', ErrorPage)
     .start()

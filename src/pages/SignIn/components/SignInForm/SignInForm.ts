@@ -1,4 +1,6 @@
+import { Button } from 'components'
 import { Component, ComponentProps } from 'core/block'
+import { ROUTES } from 'core/router'
 
 interface SignInFormProps extends ComponentProps {
     onSubmit: (formData: FormData) => void
@@ -6,10 +8,22 @@ interface SignInFormProps extends ComponentProps {
 
 export class SignInForm extends Component<HTMLFormElement, SignInFormProps> {
     constructor(props: SignInFormProps) {
-        super('form', {
-            ...props,
-            className: 'SignInForm',
+        const ButtonSignUp = new Button({
+            path: ROUTES.SIGNUP.path,
+            type: 'btn-danger',
+            title: 'Зарегистрироваться',
         })
+
+        super(
+            'form',
+            {
+                ...props,
+                className: 'SignInForm',
+            },
+            {
+                Buttons: [ButtonSignUp],
+            },
+        )
     }
 
     public createResources(
@@ -40,7 +54,7 @@ export class SignInForm extends Component<HTMLFormElement, SignInFormProps> {
             </div>
 
             <div class="mb-3">
-                <label for="Password" class="form-label">Логин</label>
+                <label for="Password" class="form-label">Пароль</label>
 
                 <input 
                     type="password" 
@@ -51,12 +65,14 @@ export class SignInForm extends Component<HTMLFormElement, SignInFormProps> {
                 >
             </div>
 
-            <button 
-                class="w-100 mb-2 btn rounded-3 btn-primary" 
-                type="submit"
-            >
-                Войти
-            </button>
+            <div class="text-center" data-component="Buttons">
+                <button 
+                    class="w-100 mb-2 me-2 btn rounded-3 btn-primary" 
+                    type="submit"
+                >
+                    Войти
+                </button>
+            </div>
         `
     }
 }
