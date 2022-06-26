@@ -52,7 +52,7 @@ export function getUrlParam(paramKey: string): string | null {
     return paramValue
 }
 
-export function addclassNames(
+export function addClassNames(
     element?: HTMLElement | null,
     className?: string | string[],
 ): void | undefined {
@@ -61,6 +61,17 @@ export function addclassNames(
     const classes = Array.isArray(className) ? className : [className]
 
     element?.classList.add(...classes)
+}
+
+export function removeClassNames(
+    element?: HTMLElement | null,
+    className?: string | string[],
+): void | undefined {
+    if (!element || !className) return
+
+    const classes = Array.isArray(className) ? className : [className]
+
+    element?.classList.remove(...classes)
 }
 
 export function formDataToObj<T extends object>(formData: FormData): T {

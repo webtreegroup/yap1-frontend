@@ -60,9 +60,9 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            NotificationComponent?.show(
-                                CHAT_ADD_SUCCESS_MESSAGE,
-                            )
+                            NotificationComponent?.showNote({
+                                title: CHAT_ADD_SUCCESS_MESSAGE,
+                            })
 
                             break
                         default:

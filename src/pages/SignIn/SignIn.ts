@@ -1,16 +1,17 @@
 import { AuthAPI, ISignin, SIGNIN_FAIL_MESSAGE } from 'core/api'
-import { Component } from 'core/block'
+import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Router, ROUTES } from 'core/router'
 import { formDataToObj } from 'utils'
 import { SignInForm } from './components'
+import { Notification } from 'components'
 
 interface SignInProps extends ComponentProps {
     onSignin: (formData: FormData) => void
 }
 
 export class SignIn extends Component<HTMLDivElement, SignInProps> {
-    constructor(props: SignInProps) {
+    constructor(props: SignInProps, children?: ComponentChildrenProps) {
         const FormComponent = new SignInForm({ onSubmit: props.onSignin })
 
         super(
@@ -20,6 +21,7 @@ export class SignIn extends Component<HTMLDivElement, SignInProps> {
                 className: ['SignIn', 'vh-100'],
             },
             {
+                ...children,
                 FormComponent,
             },
         )
@@ -43,36 +45,54 @@ export class SignIn extends Component<HTMLDivElement, SignInProps> {
 }
 
 export class SignInContainer {
-    onSignin(request: FormData): void {
-        console.log('loader on...')
+    createBlock(): SignIn {
+        const NotificationComponent = new Notification()
 
-        const body = formDataToObj<ISignin>(request)
+        const NotificationContainer = new Component(
+            'div',
+            {
+                className: [
+                    'toast-container',
+                    'position-fixed',
+                    'bottom-0',
+                    'end-0',
+                    'p-3',
+                ],
+            },
+            {
+                NotificationComponent,
+            },
+        )
 
-        if (!body.login || !body.password) {
-            alert('Логин и пароль обязательны для заполнения!')
+        const onSignin = (request: FormData): void => {
+            console.log('loader on...')
 
-            return
+            const body = formDataToObj<ISignin>(request)
+
+            AuthAPI.signin(body)
+                .then((response) => {
+                    switch (response.status) {
+                        case 200:
+                            Router.go(ROUTES.CHATS.path)
+                            break
+                        default:
+                            NotificationComponent?.showNote({
+                                title: SIGNIN_FAIL_MESSAGE,
+                                bgColor: 'danger',
+                            })
+                    }
+                })
+                .finally(() => {
+                    console.log('loader off...')
+                })
         }
 
-        AuthAPI.signin(body)
-            .then((response) => {
-                switch (response.status) {
-                    case 200:
-                        Router.go(ROUTES.CHATS.path)
-                        break
-                    default:
-                        alert(SIGNIN_FAIL_MESSAGE)
-                }
-            })
-            .finally(() => {
-                console.log('loader off...')
-            })
-    }
-
-    createBlock(): SignIn {
-        const component = new SignIn({
-            onSignin: this.onSignin,
-        })
+        const component = new SignIn(
+            {
+                onSignin,
+            },
+            { NotificationContainer },
+        )
 
         return component
     }

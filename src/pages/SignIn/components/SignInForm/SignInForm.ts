@@ -67,7 +67,7 @@ export class SignInForm extends Component<HTMLFormElement, SignInFormProps> {
 
             <div class="text-center" data-component="Buttons">
                 <button 
-                    class="w-100 mb-2 me-2 btn rounded-3 btn-primary" 
+                    class="me-2 btn btn-primary" 
                     type="submit"
                 >
                     Войти

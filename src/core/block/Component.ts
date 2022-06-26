@@ -1,4 +1,4 @@
-import { addclassNames, renderComponent } from 'utils'
+import { addClassNames, removeClassNames, renderComponent } from 'utils'
 import { StoreType } from 'App.types'
 import { EventBus } from './EventBus'
 import isEqual from 'lodash/isEqual'
@@ -79,9 +79,17 @@ export class Component<
 
         this._documentElement = element
 
-        addclassNames(element, this.props.className)
+        this.addClass(this.props.className)
 
         this.createResources(this.props, element)
+    }
+
+    public addClass(className?: string | string[]): void {
+        addClassNames(this._documentElement, className)
+    }
+
+    public removeClass(className?: string | string[]): void {
+        removeClassNames(this._documentElement, className)
     }
 
     private _init(): void {

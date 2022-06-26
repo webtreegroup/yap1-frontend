@@ -1,16 +1,18 @@
 import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Toast } from 'bootstrap'
+import { ColorTheme } from 'App.types'
 
 export interface NotificationProps extends ComponentProps {
     title?: string
+    bgColor?: ColorTheme
 }
 
 export class Notification extends Component<HTMLDivElement, NotificationProps> {
     toastIntance: Toast | null = null
 
     constructor(
-        props: NotificationProps = {},
+        { bgColor = 'primary', ...props }: NotificationProps = {},
         children: ComponentChildrenProps = {},
     ) {
         super(
@@ -20,7 +22,7 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
                 className: [
                     'toast',
                     'align-items-center',
-                    'text-bg-primary',
+                    `text-bg-${bgColor}`,
                     'border-0',
                 ],
             },
@@ -30,12 +32,25 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
         this.mountToast()
     }
 
-    public show(title?: string): void {
+    public changeBg(bgColor?: ColorTheme): void {
+        this.removeClass([
+            'text-bg-primary',
+            'text-bg-secondary',
+            'text-bg-success',
+            'text-bg-danger',
+            'text-bg-warning',
+            'text-bg-info',
+            'text-bg-light',
+            'text-bg-dark',
+        ])
+        this.addClass(`text-bg-${bgColor}`)
+    }
+
+    public showNote({ title, bgColor }: NotificationProps): void {
         if (!this.toastIntance) return
 
-        if (title) {
-            this.props.title = title
-        }
+        this.props.title = title
+        if (bgColor) this.changeBg(bgColor)
 
         this.toastIntance.show()
     }
