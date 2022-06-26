@@ -102,7 +102,7 @@ export class SignUpForm extends Component<HTMLFormElement, SignUpFormProps> {
             </div>
 
             <div class="mb-3">
-                <label for="Password" class="form-label">Пароль</label>
+                <label for="password" class="form-label">Пароль</label>
 
                 <input 
                     type="password" 
@@ -114,13 +114,13 @@ export class SignUpForm extends Component<HTMLFormElement, SignUpFormProps> {
             </div>
 
             <div class="mb-3">
-                <label for="Password" class="form-label">Пароль (еще раз)</label>
+                <label for="passwordConfirm" class="form-label">Пароль (еще раз)</label>
 
                 <input 
-                    type="passwordConfirm" 
+                    type="password" 
                     class="form-control" 
-                    id="password" 
-                    name="password" 
+                    id="passwordConfirm" 
+                    name="passwordConfirm" 
                     placeholder="Введите значение"
                 >
             </div>

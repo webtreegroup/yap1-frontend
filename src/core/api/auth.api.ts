@@ -1,16 +1,17 @@
 import { HTTP } from './api'
 import { BaseAPI } from './base.api'
 
-export interface ISignup {
+export interface SignUpContract {
     firstName: string
     secondName: string
     login: string
     email: string
     phone: string
     password: string
+    passwordConfirm: string
 }
 
-export interface ISignin {
+export interface SignInContract {
     login: string
     password: string
 }
@@ -33,11 +34,11 @@ export interface ChatUsersContract {
 const authAPIInstance = new HTTP('/auth')
 
 export class AuthAPI extends BaseAPI {
-    static signup(data: ISignup): Promise<XMLHttpRequest> {
+    static signup(data: SignUpContract): Promise<XMLHttpRequest> {
         return authAPIInstance.post('/signup', { data })
     }
 
-    static signin(data: ISignin): Promise<XMLHttpRequest> {
+    static signin(data: SignInContract): Promise<XMLHttpRequest> {
         return authAPIInstance.post('/signin', { data })
     }
 

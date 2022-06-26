@@ -1,16 +1,17 @@
-import { AuthAPI, ISignup, SIGNIN_FAIL_MESSAGE } from 'core/api'
-import { Component } from 'core/block'
+import { AuthAPI, SignUpContract } from 'core/api'
+import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Router, ROUTES } from 'core/router'
-import { formDataToObj } from 'utils'
+import { formDataToObj, getValidationMessage } from 'utils'
 import { SignUpForm } from './components'
+import { Notification } from 'components'
 
 interface SignUpProps extends ComponentProps {
     onSignUp: (formData: FormData) => void
 }
 
 export class SignUp extends Component<HTMLDivElement, SignUpProps> {
-    constructor(props: SignUpProps) {
+    constructor(props: SignUpProps, children?: ComponentChildrenProps) {
         const FormComponent = new SignUpForm({ onSubmit: props.onSignUp })
 
         super(
@@ -20,6 +21,7 @@ export class SignUp extends Component<HTMLDivElement, SignUpProps> {
                 className: ['SignUp', 'vh-100'],
             },
             {
+                ...children,
                 FormComponent,
             },
         )
@@ -43,36 +45,56 @@ export class SignUp extends Component<HTMLDivElement, SignUpProps> {
 }
 
 export class SignUpContainer {
-    onSignUp(request: FormData): void {
-        console.log('loader on...')
+    createBlock(): SignUp {
+        const NotificationComponent = new Notification()
 
-        const body = formDataToObj<ISignup>(request)
+        const NotificationContainer = new Component(
+            'div',
+            {
+                className: [
+                    'toast-container',
+                    'position-fixed',
+                    'bottom-0',
+                    'end-0',
+                    'p-3',
+                ],
+            },
+            {
+                NotificationComponent,
+            },
+        )
 
-        if (!body.login || !body.password) {
-            alert('Логин и пароль обязательны для заполнения!')
+        const onSignUp = (request: FormData): void => {
+            console.log('loader on...')
 
-            return
+            const body = formDataToObj<SignUpContract>(request)
+
+            AuthAPI.signup(body)
+                .then((response) => {
+                    switch (response.status) {
+                        case 200:
+                            Router.go(ROUTES.CHATS.path)
+                            break
+                        default:
+                            NotificationComponent?.showNote({
+                                title: getValidationMessage(
+                                    response.responseText,
+                                ),
+                                bgColor: 'danger',
+                            })
+                    }
+                })
+                .finally(() => {
+                    console.log('loader off...')
+                })
         }
 
-        AuthAPI.signup(body)
-            .then((response) => {
-                switch (response.status) {
-                    case 200:
-                        Router.go(ROUTES.CHATS.path)
-                        break
-                    default:
-                        alert(SIGNIN_FAIL_MESSAGE)
-                }
-            })
-            .finally(() => {
-                console.log('loader off...')
-            })
-    }
-
-    createBlock(): SignUp {
-        const component = new SignUp({
-            onSignUp: this.onSignUp,
-        })
+        const component = new SignUp(
+            {
+                onSignUp,
+            },
+            { NotificationContainer },
+        )
 
         return component
     }

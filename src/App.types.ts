@@ -11,3 +11,8 @@ export type ColorTheme =
     | 'info'
     | 'light'
     | 'dark'
+
+export interface ValidateResultProps {
+    state: boolean
+    fields: string[]
+}

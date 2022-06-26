@@ -1,8 +1,8 @@
-import { AuthAPI, ISignin, SIGNIN_FAIL_MESSAGE } from 'core/api'
+import { AuthAPI, SignInContract } from 'core/api'
 import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Router, ROUTES } from 'core/router'
-import { formDataToObj } from 'utils'
+import { formDataToObj, getValidationMessage } from 'utils'
 import { SignInForm } from './components'
 import { Notification } from 'components'
 
@@ -67,7 +67,7 @@ export class SignInContainer {
         const onSignin = (request: FormData): void => {
             console.log('loader on...')
 
-            const body = formDataToObj<ISignin>(request)
+            const body = formDataToObj<SignInContract>(request)
 
             AuthAPI.signin(body)
                 .then((response) => {
@@ -77,7 +77,9 @@ export class SignInContainer {
                             break
                         default:
                             NotificationComponent?.showNote({
-                                title: SIGNIN_FAIL_MESSAGE,
+                                title: getValidationMessage(
+                                    response.responseText,
+                                ),
                                 bgColor: 'danger',
                             })
                     }
