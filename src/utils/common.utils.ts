@@ -1,5 +1,8 @@
 import { ResponseBody, StoreType } from 'App.types'
+import { AuthAPI } from 'core/api'
 import { Component } from 'core/block'
+import { Router, ROUTES } from 'core/router'
+import { store } from 'core/store'
 
 export function escapeHtml(value: FormDataEntryValue): FormDataEntryValue {
     if (typeof value !== 'string') return value
@@ -88,4 +91,12 @@ export function formDataToObj<T extends object>(formData: FormData): T {
 
 export function getResponse(response: string): ResponseBody {
     return JSON.parse(response)
+}
+
+export async function logout(): Promise<void> {
+    await AuthAPI.logout()
+
+    store.clean()
+
+    Router.go(ROUTES.SIGNIN.path)
 }

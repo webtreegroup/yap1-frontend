@@ -1,8 +1,9 @@
-import { AuthAPI, UserContract } from 'core/api'
+import { UserContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
-import { Router, ROUTES } from 'core/router'
+import { ROUTES } from 'core/router'
 import { SET_CURRENT_USER, store } from 'core/store'
+import { logout } from 'utils'
 import { Link } from '../Link'
 
 export interface HeaderProps extends ComponentProps {
@@ -28,11 +29,7 @@ export class Header extends Component<HTMLLinkElement, HeaderProps> {
         const LogoutLink = new Link({
             title: 'Выход',
             className: 'nav-link',
-            onClick: async () => {
-                await AuthAPI.logout()
-
-                Router.go(ROUTES.SIGNIN.path)
-            },
+            onClick: logout,
         })
 
         super(

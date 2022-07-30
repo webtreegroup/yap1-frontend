@@ -51,6 +51,10 @@ export class Store {
         })
     }
 
+    clean(): void {
+        this._state = INITIAL_STATE
+    }
+
     private reduce(state: StoreProps, action: IAction | {}) {
         const newState = {} as StoreProps
 

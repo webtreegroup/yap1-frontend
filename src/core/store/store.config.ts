@@ -15,6 +15,7 @@ export const ADD_OLD_MESSAGES = 'ADD_OLD_MESSAGES'
 export const SET_CURRENT_CHAT_USERS = 'SET_CURRENT_CHAT_USERS'
 export const SET_USERS = 'SET_USERS'
 export const SET_AUTH = 'SET_AUTH'
+export const CLEAN_STORE = 'CLEAN_STORE'
 
 export interface ISocketMessage {
     content: string
