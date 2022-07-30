@@ -99,7 +99,7 @@ export class Header extends Component<HTMLLinkElement, HeaderProps> {
 }
 
 export class HeaderContainer {
-    createBlock(): Header {
+    createComponent(): Header {
         const component = new Header()
 
         store.subscribe(

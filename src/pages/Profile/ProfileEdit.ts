@@ -14,7 +14,7 @@ interface ProfileProps extends ComponentProps {
 
 export class ProfileEdit extends Component<HTMLDivElement, ProfileProps> {
     constructor(props: ProfileProps) {
-        const HeaderComponent = new HeaderContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
 
         const Form = new ProfileEditForm({
             onSubmit: props.onEdit,
@@ -78,7 +78,7 @@ export class ProfileEditContainer {
             })
     }
 
-    createBlock(): ProfileEdit {
+    createComponent(): ProfileEdit {
         const component = new ProfileEdit({
             onEdit: this.onEdit,
         })

@@ -12,6 +12,6 @@ export type ColorTheme =
     | 'light'
     | 'dark'
 
-export type ResponseBody = {
+export type ResponseBodyWithMessage = {
     message: string
 }

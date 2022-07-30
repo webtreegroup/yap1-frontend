@@ -19,7 +19,7 @@ export class UsersSingle extends Component<
     UserContract
 > {
     constructor(props: UsersProps = {}) {
-        const HeaderComponent = new HeaderContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
 
         super(
             'div',
@@ -133,7 +133,7 @@ export class UsersSingleContainer {
             .catch(console.error)
     }
 
-    createBlock(): UsersSingle {
+    createComponent(): UsersSingle {
         const component = new UsersSingle({
             onLoadComponent: async () => {
                 this.getUsers()

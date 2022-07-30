@@ -19,7 +19,7 @@ export class ChatsSingle extends Component<
     ChatContract
 > {
     constructor(props: ChatsSingleProps = {}) {
-        const HeaderComponent = new HeaderContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
 
         super(
             'div',
@@ -118,7 +118,7 @@ export class ChatsSingleContainer {
             .catch(console.error)
     }
 
-    createBlock(): ChatsSingle {
+    createComponent(): ChatsSingle {
         const component = new ChatsSingle({
             onLoadComponent: async () => {
                 this.getChats()

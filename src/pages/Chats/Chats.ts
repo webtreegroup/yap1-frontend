@@ -13,7 +13,7 @@ interface ChatsProps extends ComponentProps {
 
 export class Chats extends Component<HTMLDivElement, ChatsProps> {
     constructor(props: ChatsProps = {}) {
-        const HeaderComponent = new HeaderContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
 
         super(
             'div',
@@ -76,7 +76,7 @@ export class ChatsContainer {
             .catch(console.error)
     }
 
-    createBlock(): Chats {
+    createComponent(): Chats {
         const component = new Chats({
             onLoadComponent: async () => {
                 this.loadChats()

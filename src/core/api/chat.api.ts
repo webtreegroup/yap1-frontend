@@ -1,4 +1,5 @@
 import { HTTP, IResponse } from './api'
+import { UserContract } from './auth.api'
 import { BaseAPI } from './base.api'
 
 export interface ChatContract {
@@ -7,9 +8,11 @@ export interface ChatContract {
     ownerId: string
 }
 
-export interface ChatModel {
+export interface ChatUsersContract {
+    id: string
     name: string
     ownerId: string
+    users: UserContract[]
 }
 
 export interface ChatFormContract {

@@ -12,7 +12,7 @@ interface ProfileProps extends ComponentProps {
 
 export class Profile extends Component<HTMLDivElement, ProfileProps> {
     constructor(props: ProfileProps = {}) {
-        const HeaderComponent = new HeaderContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
 
         const ButtonEdit = new Button({
             path: ROUTES.PROFILE_EDIT.path,
@@ -96,7 +96,7 @@ export class Profile extends Component<HTMLDivElement, ProfileProps> {
 }
 
 export class ProfileContainer {
-    createBlock(): Profile {
+    createComponent(): Profile {
         const component = new Profile()
 
         store.subscribe(

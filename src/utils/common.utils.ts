@@ -1,4 +1,4 @@
-import { ResponseBody, StoreType } from 'App.types'
+import { ResponseBodyWithMessage, StoreType } from 'App.types'
 import { AuthAPI } from 'core/api'
 import { Component } from 'core/block'
 import { Router, ROUTES } from 'core/router'
@@ -89,7 +89,9 @@ export function formDataToObj<T extends object>(formData: FormData): T {
     return form as T
 }
 
-export function getResponse(response: string): ResponseBody {
+export function getResponseBody<T = ResponseBodyWithMessage>(
+    response: string,
+): T {
     return JSON.parse(response)
 }
 

@@ -13,7 +13,7 @@ interface UsersProps extends ComponentProps {
 
 export class Users extends Component<HTMLDivElement, UsersProps> {
     constructor(props: UsersProps = {}) {
-        const HeaderComponent = new HeaderContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
 
         super(
             'div',
@@ -76,7 +76,7 @@ export class UsersContainer {
             .catch(console.error)
     }
 
-    createBlock(): Users {
+    createComponent(): Users {
         const component = new Users({
             onLoadComponent: async () => {
                 this.loadUsers()

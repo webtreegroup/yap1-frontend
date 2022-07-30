@@ -45,8 +45,8 @@ export class Route {
         const componentInstance = new this._component()
 
         this._componentInstance =
-            componentInstance && 'createBlock' in componentInstance
-                ? componentInstance.createBlock()
+            componentInstance && 'createComponent' in componentInstance
+                ? componentInstance.createComponent()
                 : componentInstance
 
         this._componentInstance?.show(this.props.rootQuery)

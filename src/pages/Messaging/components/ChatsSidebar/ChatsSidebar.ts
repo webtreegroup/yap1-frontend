@@ -176,7 +176,7 @@ export class ChatsSidebarContainer {
             .catch(console.error)
     }
 
-    createBlock(): ChatsSidebar {
+    createComponent(): ChatsSidebar {
         const component = new ChatsSidebar({
             onLoadComponent: async () => {
                 this.loadChats()

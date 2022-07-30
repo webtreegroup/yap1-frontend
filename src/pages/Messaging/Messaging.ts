@@ -6,8 +6,9 @@ import { ROUTES } from 'core/router'
 
 export class Messaging extends Component<HTMLDivElement> {
     constructor() {
-        const HeaderComponent = new HeaderContainer().createBlock()
-        const ChatsSidebarComponent = new ChatsSidebarContainer().createBlock()
+        const HeaderComponent = new HeaderContainer().createComponent()
+        const ChatsSidebarComponent =
+            new ChatsSidebarContainer().createComponent()
 
         super(
             'div',

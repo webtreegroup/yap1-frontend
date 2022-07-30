@@ -2,7 +2,7 @@ import { AuthAPI, SignInContract } from 'core/api'
 import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Router, ROUTES } from 'core/router'
-import { formDataToObj, getResponse } from 'utils'
+import { formDataToObj, getResponseBody } from 'utils'
 import { SignInForm } from './components'
 import { Notification } from 'components'
 
@@ -45,7 +45,7 @@ export class SignIn extends Component<HTMLDivElement, SignInProps> {
 }
 
 export class SignInContainer {
-    createBlock(): SignIn {
+    createComponent(): SignIn {
         const NotificationComponent = new Notification()
 
         const NotificationContainer = new Component(
@@ -71,7 +71,7 @@ export class SignInContainer {
 
             AuthAPI.signin(body)
                 .then((response) => {
-                    const responseBody = getResponse(response.response)
+                    const responseBody = getResponseBody(response.response)
 
                     switch (response.status) {
                         case 200:
