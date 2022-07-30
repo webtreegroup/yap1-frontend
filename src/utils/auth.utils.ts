@@ -1,4 +1,5 @@
-import { ACCESS_FORBIDDEN, UserContract, UsersAPI } from 'core/api'
+import { UserContract, UsersAPI } from 'core/api'
+import { MESSAGES } from 'core/local'
 import { Router, ROUTES } from 'core/router'
 import {
     loaderOffAction,
@@ -14,7 +15,7 @@ export function getCurrentUser(): Promise<void> {
             if (xhr.status !== 200) {
                 Router.go(ROUTES.SIGNIN.path)
 
-                throw new Error(ACCESS_FORBIDDEN)
+                throw new Error(MESSAGES.ACCESS_FORBIDDEN)
             }
 
             const response: UserContract = JSON.parse(xhr.response)

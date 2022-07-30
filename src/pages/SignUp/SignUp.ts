@@ -1,10 +1,10 @@
 import { AuthAPI, SignUpContract } from 'core/api'
 import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
+import { eventEmitter, EVENTS } from 'core/helpers'
 import { Router, ROUTES } from 'core/router'
 import { formDataToObj, getResponseBody } from 'utils'
 import { SignUpForm } from './components'
-import { Notification } from 'components'
 
 interface SignUpProps extends ComponentProps {
     onSignUp: (formData: FormData) => void
@@ -46,24 +46,6 @@ export class SignUp extends Component<HTMLDivElement, SignUpProps> {
 
 export class SignUpContainer {
     createComponent(): SignUp {
-        const NotificationComponent = new Notification()
-
-        const NotificationContainer = new Component(
-            'div',
-            {
-                className: [
-                    'toast-container',
-                    'position-fixed',
-                    'bottom-0',
-                    'end-0',
-                    'p-3',
-                ],
-            },
-            {
-                NotificationComponent,
-            },
-        )
-
         const onSignUp = (request: FormData): void => {
             console.log('loader on...')
 
@@ -78,7 +60,7 @@ export class SignUpContainer {
                             Router.go(ROUTES.HOME.path)
                             break
                         default:
-                            NotificationComponent?.showNote({
+                            eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
                                 title: responseBody.message,
                                 bgColor: 'danger',
                             })
@@ -89,12 +71,9 @@ export class SignUpContainer {
                 })
         }
 
-        const component = new SignUp(
-            {
-                onSignUp,
-            },
-            { NotificationContainer },
-        )
+        const component = new SignUp({
+            onSignUp,
+        })
 
         return component
     }

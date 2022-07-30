@@ -1,9 +1,6 @@
 import { StoreType } from 'App.types'
-import {
-    FAIL_MESSAGE_500_DEFAULT,
-    FAIL_MESSAGE_DEFAULT,
-    METHOD,
-} from './api.consts'
+import { MESSAGES } from 'core/local'
+import { METHOD } from './api.consts'
 
 type OptionsType = {
     method: METHOD
@@ -75,9 +72,9 @@ export class HTTP {
 
         const defaultReject = (xhr: XMLHttpRequest) => {
             if (xhr.status === 500) {
-                alert(FAIL_MESSAGE_500_DEFAULT)
+                alert(MESSAGES.FAIL_500_DEFAULT)
             } else {
-                alert(FAIL_MESSAGE_DEFAULT)
+                alert(MESSAGES.FAIL_DEFAULT)
             }
         }
 

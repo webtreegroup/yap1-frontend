@@ -1,18 +1,16 @@
-import { Modal, Notification } from 'components'
+import { Modal } from 'components'
 
 import {
     ChatAPI,
     ChatContract,
     ChatFormContract,
-    CHAT_ADD_FAIL_MESSAGE,
-    CHAT_ADD_SUCCESS_MESSAGE,
-    CHAT_REMOVE_FAIL_MESSAGE,
-    CHAT_REMOVE_SUCCESS_MESSAGE,
     UserChatsContract,
     UsersAPI,
 } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
+import { eventEmitter, EVENTS } from 'core/helpers'
+import { MESSAGES } from 'core/local'
 
 import {
     store,
@@ -31,24 +29,6 @@ interface ChatsSidebarProps extends ComponentProps {
 
 export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
     constructor(props: ChatsSidebarProps = {}) {
-        const NotificationComponent = new Notification()
-
-        const NotificationContainer = new Component(
-            'div',
-            {
-                className: [
-                    'toast-container',
-                    'position-fixed',
-                    'bottom-0',
-                    'end-0',
-                    'p-3',
-                ],
-            },
-            {
-                NotificationComponent,
-            },
-        )
-
         const AddChatFormComponent = new ChatForm({
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
@@ -60,13 +40,13 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            NotificationComponent?.showNote({
-                                title: CHAT_ADD_SUCCESS_MESSAGE,
+                            eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                                title: MESSAGES.CHAT_ADD_SUCCESS,
                             })
 
                             break
                         default:
-                            alert(CHAT_ADD_FAIL_MESSAGE)
+                            alert(MESSAGES.CHAT_ADD_FAIL)
                     }
                 })
             },
@@ -83,13 +63,13 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
                         case 200:
                             this.props.onLoadComponent?.()
 
-                            NotificationComponent?.show(
-                                CHAT_REMOVE_SUCCESS_MESSAGE,
-                            )
+                            eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                                title: MESSAGES.CHAT_REMOVE_SUCCESS,
+                            })
 
                             break
                         default:
-                            alert(CHAT_REMOVE_FAIL_MESSAGE)
+                            alert(MESSAGES.CHAT_REMOVE_FAIL)
                     }
                 })
             },
@@ -124,7 +104,6 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             {
                 AddChat,
                 DeleteChat,
-                NotificationContainer,
             },
         )
     }

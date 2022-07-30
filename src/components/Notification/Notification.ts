@@ -2,13 +2,17 @@ import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Toast } from 'bootstrap'
 import { ColorTheme } from 'App.types'
+import { eventEmitter, EVENTS } from 'core/helpers'
 
 export interface NotificationProps extends ComponentProps {
     title?: string
     bgColor?: ColorTheme
 }
 
-export class Notification extends Component<HTMLDivElement, NotificationProps> {
+export class AppNotification extends Component<
+    HTMLDivElement,
+    NotificationProps
+> {
     toastIntance: Toast | null = null
 
     constructor(
@@ -67,6 +71,18 @@ export class Notification extends Component<HTMLDivElement, NotificationProps> {
         this.element?.setAttribute('role', 'alert')
         this.element?.setAttribute('aria-live', 'assertive')
         this.element?.setAttribute('aria-atomic', 'true')
+    }
+
+    public componentDidMount(
+        _props: NotificationProps,
+        _documentElement: HTMLDivElement | null,
+    ): void {
+        eventEmitter.on(EVENTS.NOTIFICATION_SHOW, ({ title, bgColor }) => {
+            this.showNote({
+                title,
+                bgColor,
+            })
+        })
     }
 
     setComponentTemplate({ title }: NotificationProps): string {

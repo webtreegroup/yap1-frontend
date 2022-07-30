@@ -1,7 +1,8 @@
 import { HeaderContainer } from 'components'
-import { PROFILE_CHANGE_FAIL_MESSAGE, UsersAPI } from 'core/api'
+import { UsersAPI } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
+import { MESSAGES } from 'core/local'
 import { Router, ROUTES } from 'core/router'
 import { store, SET_CURRENT_USER } from 'core/store'
 import { formDataToObj } from 'utils'
@@ -70,7 +71,7 @@ export class ProfileEditContainer {
                         Router.go(ROUTES.PROFILE.path)
                         break
                     default:
-                        alert(PROFILE_CHANGE_FAIL_MESSAGE)
+                        alert(MESSAGES.PROFILE_CHANGE_FAIL)
                 }
             })
             .finally(() => {
