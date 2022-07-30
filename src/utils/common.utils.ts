@@ -1,5 +1,4 @@
-import { StoreType, ValidateResultProps } from 'App.types'
-import { FIELDS_DICTIONARY, VALIDATION_FAILED_MESSAGE } from 'core/api'
+import { ResponseBody, StoreType } from 'App.types'
 import { Component } from 'core/block'
 
 export function escapeHtml(value: FormDataEntryValue): FormDataEntryValue {
@@ -87,10 +86,6 @@ export function formDataToObj<T extends object>(formData: FormData): T {
     return form as T
 }
 
-export function getValidationMessage(response: string): string {
-    const result: ValidateResultProps = JSON.parse(response)
-
-    return `${VALIDATION_FAILED_MESSAGE}: ${result.fields
-        .map((el) => FIELDS_DICTIONARY[el])
-        .join(', ')}.`
+export function getResponse(response: string): ResponseBody {
+    return JSON.parse(response)
 }

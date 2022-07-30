@@ -1,5 +1,3 @@
-import { StoreType } from 'App.types'
-
 export enum METHOD {
     GET = 'GET',
     POST = 'POST',
@@ -7,7 +5,6 @@ export enum METHOD {
     DELETE = 'DELETE',
 }
 
-export const VALIDATION_FAILED_MESSAGE = 'Заполните обязательные поля'
 export const PROFILE_CHANGE_SUCCESS_MESSAGE = 'Данные успешное обновлены!'
 export const PROFILE_CHANGE_FAIL_MESSAGE =
     'Не удалось обновить данные.\nЧто то пошло не так!'
@@ -26,12 +23,3 @@ export const CHAT_REMOVE_USER_FAIL_MESSAGE =
 export const FAIL_MESSAGE_500_DEFAULT = 'Ошибка сервера!'
 export const FAIL_MESSAGE_DEFAULT = 'Что то пошло не так!'
 export const ACCESS_FORBIDDEN = 'Доступ запрещен!'
-
-export const FIELDS_DICTIONARY: StoreType<string> = {
-    login: 'логин',
-    password: 'пароль',
-    firstName: 'имя',
-    secondName: 'фамилия',
-    email: 'email',
-    phone: 'телефон',
-}

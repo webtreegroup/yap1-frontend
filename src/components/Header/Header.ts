@@ -1,7 +1,7 @@
-import { UserContract } from 'core/api'
+import { AuthAPI, UserContract } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
-import { ROUTES } from 'core/router'
+import { Router, ROUTES } from 'core/router'
 import { SET_CURRENT_USER, store } from 'core/store'
 import { Link } from '../Link'
 
@@ -25,6 +25,15 @@ export class Header extends Component<HTMLLinkElement, HeaderProps> {
             ...ROUTES.PROFILE,
             className: 'nav-link',
         })
+        const LogoutLink = new Link({
+            title: 'Выход',
+            className: 'nav-link',
+            onClick: async () => {
+                await AuthAPI.logout()
+
+                Router.go(ROUTES.SIGNIN.path)
+            },
+        })
 
         super(
             'div',
@@ -37,6 +46,7 @@ export class Header extends Component<HTMLLinkElement, HeaderProps> {
                 ChatsLink,
                 UsersLink,
                 ProfileLink,
+                LogoutLink,
             },
         )
     }
@@ -78,6 +88,8 @@ export class Header extends Component<HTMLLinkElement, HeaderProps> {
                                 <li class="nav-item" data-component="UsersLink"></li>
 
                                 <li class="nav-item" data-component="ProfileLink"></li>
+
+                                <li class="nav-item" data-component="LogoutLink"></li>
                             </ul>
 
                             <div class="d-flex" data-component="UserLink"></div>

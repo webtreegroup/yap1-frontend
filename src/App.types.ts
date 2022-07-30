@@ -12,7 +12,6 @@ export type ColorTheme =
     | 'light'
     | 'dark'
 
-export interface ValidateResultProps {
-    state: boolean
-    fields: string[]
+export type ResponseBody = {
+    message: string
 }

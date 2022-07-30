@@ -2,7 +2,7 @@ import { AuthAPI, SignUpContract } from 'core/api'
 import { Component, ComponentChildrenProps } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
 import { Router, ROUTES } from 'core/router'
-import { formDataToObj, getValidationMessage } from 'utils'
+import { formDataToObj, getResponse } from 'utils'
 import { SignUpForm } from './components'
 import { Notification } from 'components'
 
@@ -71,15 +71,15 @@ export class SignUpContainer {
 
             AuthAPI.signup(body)
                 .then((response) => {
+                    const responseBody = getResponse(response.response)
+
                     switch (response.status) {
                         case 200:
-                            Router.go(ROUTES.CHATS.path)
+                            Router.go(ROUTES.HOME.path)
                             break
                         default:
                             NotificationComponent?.showNote({
-                                title: getValidationMessage(
-                                    response.responseText,
-                                ),
+                                title: responseBody.message,
                                 bgColor: 'danger',
                             })
                     }
