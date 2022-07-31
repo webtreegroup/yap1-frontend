@@ -4,19 +4,19 @@ import { Toast } from 'bootstrap'
 import { ColorTheme } from 'App.types'
 import { eventEmitter, EVENTS } from 'core/helpers'
 
-export interface NotificationProps extends ComponentProps {
+export interface AppNotificationProps extends ComponentProps {
     title?: string
     bgColor?: ColorTheme
 }
 
 export class AppNotification extends Component<
     HTMLDivElement,
-    NotificationProps
+    AppNotificationProps
 > {
     toastIntance: Toast | null = null
 
     constructor(
-        { bgColor = 'primary', ...props }: NotificationProps = {},
+        { bgColor = 'primary', ...props }: AppNotificationProps = {},
         children: ComponentChildrenProps = {},
     ) {
         super(
@@ -50,7 +50,7 @@ export class AppNotification extends Component<
         this.addClass(`text-bg-${bgColor}`)
     }
 
-    public showNote({ title, bgColor }: NotificationProps): void {
+    public showNote({ title, bgColor }: AppNotificationProps): void {
         if (!this.toastIntance) return
 
         this.props.title = title
@@ -74,7 +74,7 @@ export class AppNotification extends Component<
     }
 
     public componentDidMount(
-        _props: NotificationProps,
+        _props: AppNotificationProps,
         _documentElement: HTMLDivElement | null,
     ): void {
         eventEmitter.on(EVENTS.NOTIFICATION_SHOW, ({ title, bgColor }) => {
@@ -85,7 +85,7 @@ export class AppNotification extends Component<
         })
     }
 
-    setComponentTemplate({ title }: NotificationProps): string {
+    setComponentTemplate({ title }: AppNotificationProps): string {
         return `
             <div class="d-flex">
                 <div class="toast-body">

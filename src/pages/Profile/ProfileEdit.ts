@@ -2,6 +2,7 @@ import { HeaderContainer } from 'components'
 import { UsersAPI } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
+import { eventEmitter, EVENTS } from 'core/helpers'
 import { MESSAGES } from 'core/local'
 import { Router, ROUTES } from 'core/router'
 import { store, SET_CURRENT_USER } from 'core/store'
@@ -68,10 +69,15 @@ export class ProfileEditContainer {
                 switch (response.status) {
                     case 200:
                         getCurrentUser()
+
                         Router.go(ROUTES.PROFILE.path)
+
                         break
                     default:
-                        alert(MESSAGES.PROFILE_CHANGE_FAIL)
+                        eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                            title: MESSAGES.PROFILE_CHANGE_FAIL,
+                            bgColor: 'success',
+                        })
                 }
             })
             .finally(() => {

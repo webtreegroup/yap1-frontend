@@ -15,7 +15,6 @@ import {
     ProfileEditContainer,
     SignUpContainer,
 } from 'pages'
-import { Component } from 'core/block'
 import { AppNotification } from 'components'
 
 Router.use(ROUTES.HOME.path, Messaging)
@@ -32,22 +31,6 @@ Router.use(ROUTES.HOME.path, Messaging)
     .use('/.*', ErrorPage)
     .start()
 
-const NotificationComponent = new AppNotification()
+const Notification = new AppNotification()
 
-const NotificationContainer = new Component(
-    'div',
-    {
-        className: [
-            'toast-container',
-            'position-fixed',
-            'bottom-0',
-            'end-0',
-            'p-3',
-        ],
-    },
-    {
-        NotificationComponent,
-    },
-)
-
-NotificationContainer.show('.app')
+Notification.show('.toast-container')

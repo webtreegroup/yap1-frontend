@@ -17,10 +17,9 @@ import {
     setCurrentUserChatsAction,
     SET_CURRENT_USER_CHATS,
 } from 'core/store'
-import { formDataToObj } from 'utils'
+import { formDataToObj, getResponseBody } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatForm } from '../ChatForm'
-import { validateBody } from './ChatsSidebar.utils'
 import { ChatsSidebarItem } from './ChatsSidebarItem'
 
 interface ChatsSidebarProps extends ComponentProps {
@@ -33,20 +32,24 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
-                if (!validateBody(body)) return
-
                 ChatAPI.create(body).then((response) => {
+                    const responseBody = getResponseBody(response.response)
+
                     switch (response.status) {
                         case 200:
                             this.props.onLoadComponent?.()
 
                             eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
                                 title: MESSAGES.CHAT_ADD_SUCCESS,
+                                bgColor: 'success',
                             })
 
                             break
                         default:
-                            alert(MESSAGES.CHAT_ADD_FAIL)
+                            eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                                title: responseBody.message,
+                                bgColor: 'danger',
+                            })
                     }
                 })
             },
@@ -56,20 +59,24 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
-                if (!validateBody(body)) return
-
                 ChatAPI.delete(body).then((response) => {
+                    const responseBody = getResponseBody(response.response)
+
                     switch (response.status) {
                         case 200:
                             this.props.onLoadComponent?.()
 
                             eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
                                 title: MESSAGES.CHAT_REMOVE_SUCCESS,
+                                bgColor: 'success',
                             })
 
                             break
                         default:
-                            alert(MESSAGES.CHAT_REMOVE_FAIL)
+                            eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                                title: responseBody.message,
+                                bgColor: 'danger',
+                            })
                     }
                 })
             },

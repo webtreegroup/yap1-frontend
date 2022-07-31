@@ -23,7 +23,6 @@ import { formDataToObj, getResponseBody, getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatForm } from './components'
 import { ChatsSidebarContainer } from './components/ChatsSidebar'
-import { validateBody } from './components/ChatsSidebar/ChatsSidebar.utils'
 
 interface MessagingSingleProps extends ComponentProps {
     getSingleChat?: () => Promise<void>
@@ -65,12 +64,11 @@ export class MessagingSingle extends Component<
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
-                if (!validateBody(body)) return
-
                 console.log(body, this.props.currentChat)
 
                 eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
                     title: MESSAGES.CHAT_ADD_USER_SUCCESS,
+                    bgColor: 'success',
                 })
             },
         })

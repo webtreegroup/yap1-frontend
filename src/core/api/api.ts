@@ -1,4 +1,5 @@
 import { StoreType } from 'App.types'
+import { eventEmitter, EVENTS } from 'core/helpers'
 import { MESSAGES } from 'core/local'
 import { METHOD } from './api.consts'
 
@@ -71,11 +72,13 @@ export class HTTP {
         const { method, data } = options
 
         const defaultReject = (xhr: XMLHttpRequest) => {
-            if (xhr.status === 500) {
-                alert(MESSAGES.FAIL_500_DEFAULT)
-            } else {
-                alert(MESSAGES.FAIL_DEFAULT)
-            }
+            eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                title:
+                    xhr.status === 500
+                        ? MESSAGES.FAIL_500_DEFAULT
+                        : MESSAGES.FAIL_DEFAULT,
+                bgColor: 'danger',
+            })
         }
 
         return new Promise<IResponse<T>>((resolve, reject = defaultReject) => {
