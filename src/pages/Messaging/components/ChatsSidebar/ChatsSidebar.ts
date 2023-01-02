@@ -153,6 +153,8 @@ export class ChatsSidebar extends Component<HTMLDivElement, ChatsSidebarProps> {
 
 export class ChatsSidebarContainer {
     loadChats(): void {
+        if (!store.value.currentUser.id) return
+
         UsersAPI.getUserChats(store.value.currentUser.id)
             .then((xhr) => {
                 const response: UserChatsContract = JSON.parse(xhr.response)

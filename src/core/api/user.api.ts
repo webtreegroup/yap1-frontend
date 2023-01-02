@@ -7,33 +7,33 @@ export interface UserChatsContract extends UserContract {
     chats: ChatContract[]
 }
 
-const usersAPIInstance = new HTTP('/users')
+const userAPIInstance = new HTTP('/users')
 
 export class UsersAPI extends BaseAPI {
     static getAll(): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>('/')
+        return userAPIInstance.get<string>('/')
     }
 
-    static getByLogin(login: string): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>(`/by-login/${login}`)
+    static getByLogin(login: string): Promise<IResponse<UserContract>> {
+        return userAPIInstance.get<UserContract>(`/by-login/${login}`)
     }
 
     static getUserChats(id: string): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>(`/${id}/chats`)
+        return userAPIInstance.get<string>(`/${id}/chats`)
     }
 
     static getById(id: string): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>(`/by-id/${id}`)
+        return userAPIInstance.get<string>(`/by-id/${id}`)
     }
 
     static getCurrentUser(): Promise<IResponse<string>> {
-        return usersAPIInstance.get<string>('/current')
+        return userAPIInstance.get<string>('/current')
     }
 
     static updateUserById({
         id,
         ...data
     }: UserContract): Promise<IResponse<string>> {
-        return usersAPIInstance.put<string>(`/${id}`, { data })
+        return userAPIInstance.put<string>(`/${id}`, { data })
     }
 }

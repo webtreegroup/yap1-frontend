@@ -25,12 +25,6 @@ export interface UserContract {
     phone: string
 }
 
-export interface ChatUsersContract {
-    name: string
-    ownerId: string
-    users: UserContract[]
-}
-
 const authAPIInstance = new HTTP('/auth')
 
 export class AuthAPI extends BaseAPI {

@@ -1,5 +1,5 @@
 {
-  "name": "practicum",
+  "name": "yap1",
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",
@@ -19,16 +19,8 @@
       "pre-push": "npm run validate"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/webtreegroup/mf.messenger.praktikum.yandex.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/webtreegroup/mf.messenger.praktikum.yandex/issues"
-  },
-  "homepage": "https://github.com/webtreegroup/mf.messenger.praktikum.yandex#readme",
   "devDependencies": {
     "@babel/cli": "7.12.10",
     "@babel/core": "7.12.10",

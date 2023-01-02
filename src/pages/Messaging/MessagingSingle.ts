@@ -3,8 +3,8 @@ import {
     ChatAPI,
     ChatContract,
     ChatFormContract,
-    ChatUsersContract,
     UserContract,
+    UsersAPI,
 } from 'core/api'
 import { Component } from 'core/block'
 import { ComponentProps } from 'core/block/Component'
@@ -19,7 +19,7 @@ import {
     setCurrentChatUsersAction,
     SET_CURRENT_CHAT_USERS,
 } from 'core/store'
-import { formDataToObj, getResponseBody, getUrlParam } from 'utils'
+import { formDataToObj, getUrlParam } from 'utils'
 import { checkAuth } from 'utils/auth.utils'
 import { ChatForm } from './components'
 import { ChatsSidebarContainer } from './components/ChatsSidebar'
@@ -61,6 +61,22 @@ export class MessagingSingle extends Component<
 
     public setComponentTemplate(): string {
         const AddUserFormComponent = new ChatForm({
+            onSubmit: async (formData) => {
+                const body = formDataToObj<ChatFormContract>(formData)
+
+                const result = await UsersAPI.getByLogin(body.name)
+
+                console.log(result, this.props.currentChat)
+                console.log(result.response, this.props.currentChat)
+
+                eventEmitter.emit(EVENTS.NOTIFICATION_SHOW, {
+                    title: MESSAGES.CHAT_ADD_USER_SUCCESS,
+                    bgColor: 'success',
+                })
+            },
+        })
+
+        const DeleteUserFormComponent = new ChatForm({
             onSubmit: (formData) => {
                 const body = formDataToObj<ChatFormContract>(formData)
 
@@ -83,9 +99,19 @@ export class MessagingSingle extends Component<
             },
         )
 
+        const DeleteUser = new Modal(
+            {
+                id: 'DeleteUser',
+                modalTitle: 'Удалить пользователя из чата',
+            },
+            {
+                body: DeleteUserFormComponent,
+            },
+        )
+
         this.children = {
             ...this.children,
-            modals: [AddUser],
+            modals: [AddUser, DeleteUser],
         }
 
         const users = this.props.currentChatUsers
@@ -121,7 +147,7 @@ export class MessagingSingle extends Component<
                                         добавить
                                     </a>
 
-                                    <a href="#" class="text-decoration-none link-danger" data-bs-toggle="modal" data-bs-target="#AddUser">
+                                    <a href="#" class="text-decoration-none link-danger" data-bs-toggle="modal" data-bs-target="#DeleteUser">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"></path>
                                             <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"></path>
@@ -157,15 +183,10 @@ export class MessagingSingleContainer {
             if (!chatId) return
 
             const chatXhr = await ChatAPI.getById(chatId)
-            const chatResponse = getResponseBody<ChatContract>(chatXhr.response)
-
             const usersXhr = await ChatAPI.getChatUsers(chatId)
-            const usersResponse = getResponseBody<ChatUsersContract>(
-                usersXhr.response,
-            )
 
-            setCurrentChatAction(chatResponse)
-            setCurrentChatUsersAction(usersResponse.users)
+            setCurrentChatAction(chatXhr.response)
+            setCurrentChatUsersAction(usersXhr.response.users)
         } catch (error) {
             console.error(error)
         }

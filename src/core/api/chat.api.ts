@@ -34,11 +34,11 @@ export class ChatAPI extends BaseAPI {
         return chatAPIInstance.get<string>('/')
     }
 
-    static getChatUsers(chatId: string): Promise<IResponse<string>> {
-        return chatAPIInstance.get<string>(`/${chatId}/users`)
+    static getChatUsers(chatId: string): Promise<IResponse<ChatUsersContract>> {
+        return chatAPIInstance.get<ChatUsersContract>(`/${chatId}/users`)
     }
 
-    static getById(chatId: string): Promise<IResponse<string>> {
-        return chatAPIInstance.get<string>(`/by-id/${chatId}`)
+    static getById(chatId: string): Promise<IResponse<ChatContract>> {
+        return chatAPIInstance.get<ChatContract>(`/by-id/${chatId}`)
     }
 }
